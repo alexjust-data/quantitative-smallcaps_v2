@@ -81,7 +81,7 @@ def run_batch(batch_id: int, tickers: List[str], args, script_path: Path, temp_d
         with open(log_path, "a", encoding="utf-8") as lf:
             lf.write(f"== BATCH {batch_id:04d} attempt {attempt}/{tries} ==\n")
             lf.flush()
-            proc = subprocess.run(cmd, stdout=lf, stderr=subprocess.STDOUT, text=True)
+            proc = subprocess.run(cmd, stdout=lf, stderr=subprocess.STDOUT, text=True, env=env)
             rc = proc.returncode
         if rc == 0:
             break

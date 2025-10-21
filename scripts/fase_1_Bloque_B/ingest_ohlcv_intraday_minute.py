@@ -1,19 +1,22 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-ingest_ohlcv_intraday_minute.py  (version STREAMING, sin fuga de memoria)
+ingest_ohlcv_intraday_minute.py  (version STREAMING + MENSUAL + ZSTD + RL ADAPTATIVO)
 
 - Descarga OHLCV 1-min de Polygon paginando con cursor.
 - Escribe cada pagina directamente a disco por anio/mes (sin acumular en RAM).
-- Usa requests.Session() con pool=1 (TLS estable) y SIN hilos internos.
+- Usa requests.Session() con pool=3 (TLS estable) y SIN hilos internos.
 - Idempotente: mergea y deduplica por 'minute'.
+- NUEVO: Descarga MENSUAL para reducir JSON gigante y pico de RAM.
+- NUEVO: Compresion ZSTD con level=2 para archivos mas pequenos.
+- NUEVO: Rate-limit ADAPTATIVO que se ajusta segun errores/exitos.
 
 Uso tipico con launcher externo (paralelismo fuera):
   export POLYGON_API_KEY="tu_api_key"
   python ingest_ohlcv_intraday_minute.py \
     --tickers-csv processed/universe/cs_xnas_xnys_under2b_2025-10-21.csv \
     --outdir raw/polygon/ohlcv_intraday_1m \
-    --from 2004-01-01 --to 2010-12-31 \
+    --from 2004-01-01 --to 2025-10-21 \
     --rate-limit 0.20 \
     --max-tickers-per-process 40
 """
@@ -37,7 +40,8 @@ BASE_URL   = "https://api.polygon.io"
 TIMEOUT    = 40
 RETRY_MAX  = 8
 BACKOFF    = 1.6
-PAGE_LIMIT = 10000  # Desatascado: reduce "buffer allocation" errors
+# Trabajando por MESES podemos subir el limite sin reventar memoria
+PAGE_LIMIT = 50000
 ADJUSTED   = True
 
 def log(m: str) -> None:
@@ -57,7 +61,7 @@ def parse_next_cursor(next_url: Optional[str]) -> Optional[str]:
 def build_session() -> requests.Session:
     s = requests.Session()
     # Pool mejorado para reutilizar conexiones SSL (evita overhead de handshake)
-    adapter = requests.adapters.HTTPAdapter(pool_connections=2, pool_maxsize=3, max_retries=0)
+    adapter = requests.adapters.HTTPAdapter(pool_connections=3, pool_maxsize=4, max_retries=0)
     s.mount("https://", adapter)
     # Desactivar gzip para evitar "Unable to allocate output buffer"
     s.headers.update({"Accept-Encoding": "identity"})
@@ -129,16 +133,16 @@ def write_page_by_month(df: pl.DataFrame, outdir: Path, ticker: str) -> int:
             merged = pl.concat([old, part], how="vertical_relaxed")\
                        .unique(subset=["minute"], keep="last")\
                        .sort(["date","minute"])
-            merged.write_parquet(outp)
+            merged.write_parquet(outp, compression="zstd", compression_level=2, statistics=False)
             del old, merged
         else:
-            part.write_parquet(outp)
+            part.write_parquet(outp, compression="zstd", compression_level=2, statistics=False)
         files += 1
         del part
     return files
 
 def fetch_and_stream_write(session: requests.Session, api_key: str, ticker: str, from_date: str, to_date: str,
-                           rate_limit_s: Optional[float], outdir: Path) -> str:
+                           rate_limit_s_ref: Optional[float], outdir: Path) -> str:
     url = f"{BASE_URL}/v2/aggs/ticker/{ticker}/range/1/minute/{from_date}/{to_date}"
     headers = {"Authorization": f"Bearer {api_key}", "Accept": "application/json"}
     params = {"adjusted": str(ADJUSTED).lower(), "sort": "asc", "limit": PAGE_LIMIT}
@@ -147,11 +151,27 @@ def fetch_and_stream_write(session: requests.Session, api_key: str, ticker: str,
     pages = 0
     rows_total = 0
     files_total = 0
+    # rate-limit adaptativo (compartido por llamada)
+    cur_rl = rate_limit_s_ref if rate_limit_s_ref and rate_limit_s_ref > 0 else None
+    ok_streak, err_streak = 0, 0
+    MIN_RL, MAX_RL = 0.12, 0.35
 
     while True:
         p = params.copy()
         if cursor: p["cursor"] = cursor
-        data = http_get_json(session, url, p, headers) or {}
+        try:
+            data = http_get_json(session, url, p, headers) or {}
+            ok_streak += 1; err_streak = 0
+            # si varias paginas ok seguidas, aflojamos un poco
+            if cur_rl and ok_streak >= 5:
+                cur_rl = max(MIN_RL, cur_rl - 0.02); ok_streak = 0
+        except Exception as e:
+            err_streak += 1; ok_streak = 0
+            if cur_rl:
+                cur_rl = min(MAX_RL, cur_rl + 0.04)
+            # re-propaga para que quede registrado en results
+            raise
+
         results = data.get("results") or []
         pages += 1
         rows_total += len(results)
@@ -168,8 +188,8 @@ def fetch_and_stream_write(session: requests.Session, api_key: str, ticker: str,
 
         if not cursor:
             break
-        if rate_limit_s and rate_limit_s > 0:
-            time.sleep(rate_limit_s)
+        if cur_rl and cur_rl > 0:
+            time.sleep(cur_rl)
 
     return f"{ticker}: {rows_total:,} rows, {files_total} files ({pages} pages) [1m]"
 
@@ -201,14 +221,49 @@ def main():
 
     session = build_session()
 
-    log(f"Tickers: {len(tickers):,} | {args.date_from} -> {args.date_to} | rate={rate_limit}s/page")
+    log(f"Tickers: {len(tickers):,} | {args.date_from} -> {args.date_to} | rate={rate_limit}s/page (adaptativo)")
     processed = 0
     results = []
 
+    # === Iteracion MENSUAL ===
+    # Divide [date_from, date_to] en meses y descarga por mes: menos JSON gigante, menos RAM pico.
+    def month_range(dfrom: dt.date, dto: dt.date):
+        y, m = dfrom.year, dfrom.month
+        while (y < dto.year) or (y == dto.year and m <= dto.month):
+            yield y, m
+            if m == 12: y, m = y + 1, 1
+            else: m += 1
+
+    df = dt.datetime.strptime(args.date_from, "%Y-%m-%d").date()
+    dt0 = dt.datetime.strptime(args.date_to,   "%Y-%m-%d").date()
+
     for t in tickers:
         try:
-            res = fetch_and_stream_write(session, api_key, t, args.date_from, args.date_to, rate_limit, outdir)
-            results.append(res)
+            pages_sum = 0
+            rows_sum  = 0
+            files_sum = 0
+            for (y, m) in month_range(df, dt0):
+                # primer y ultimo dia del mes
+                start = dt.date(y, m, 1)
+                if m == 12:
+                    end = dt.date(y+1, 1, 1) - dt.timedelta(days=1)
+                else:
+                    end = dt.date(y, m+1, 1) - dt.timedelta(days=1)
+                res = fetch_and_stream_write(
+                    session, api_key, t,
+                    start.strftime("%Y-%m-%d"), end.strftime("%Y-%m-%d"),
+                    rate_limit, outdir
+                )
+                # recolecta contadores para el resumen por ticker
+                # "TICKER: X rows, Y files (Z pages) [1m]"
+                try:
+                    parts = res.split(":")[1].strip().split(",")
+                    rows_sum  += int(parts[0].split()[0].replace(",", ""))
+                    files_sum += int(parts[1].split()[0])
+                    pages_sum += int(parts[2].split()[0].replace("(", ""))
+                except Exception:
+                    pass
+            results.append(f"{t}: {rows_sum:,} rows, {files_sum} files ({pages_sum} pages) [1m]")
         except Exception as e:
             results.append(f"{t}: ERROR {e}")
         processed += 1
