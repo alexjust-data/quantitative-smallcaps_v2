@@ -1,0 +1,264 @@
+================================================================================
+DESGLOSE DE TICKERS POR NÚMERO DE VENTANAS COMPLETAS
+================================================================================
+
+
+3 ventana(s) completas (1 tickers):
+--------------------------------------------------------------------------------
+HIFS:
+  Ventanas: 2017-01-01_2025-10-21, 2011-01-01_2016-12-31, 2004-01-01_2010-12-31
+  Rows: 43,815
+  Días únicos: 4426
+  Rango: 2004-01-05 to 2025-10-21
+  ⚠️  Gaps detectados: 41
+
+
+2 ventana(s) completas (4 tickers):
+--------------------------------------------------------------------------------
+GCBC:
+  Ventanas: 2011-01-01_2016-12-31, 2004-01-01_2010-12-31
+  Rows: 8,590
+  Días únicos: 2068
+  Rango: 2004-01-02 to 2016-12-30
+  ⚠️  Gaps detectados: 39
+
+NATH:
+  Ventanas: 2017-01-01_2025-10-21, 2004-01-01_2010-12-31
+  Rows: 70,083
+  Días únicos: 3941
+  Rango: 2004-01-02 to 2025-10-20
+  ⚠️  Gaps detectados: 1
+
+PDEX:
+  Ventanas: 2011-01-01_2016-12-31, 2004-01-01_2010-12-31
+  Rows: 44,105
+  Días únicos: 3131
+  Rango: 2004-01-02 to 2016-12-30
+  ⚠️  Gaps detectados: 1
+
+UBFO:
+  Ventanas: 2011-01-01_2016-12-31, 2004-01-01_2010-12-31
+  Rows: 58,588
+  Días únicos: 3143
+  Rango: 2004-01-02 to 2016-12-30
+
+
+1 ventana(s) completas (33 tickers):
+--------------------------------------------------------------------------------
+ACNB:
+  Ventanas: 2011-01-01_2016-12-31
+  Rows: 11,795
+  Días únicos: 1439
+  Rango: 2010-12-21 to 2016-12-30
+
+AGM.A:
+  Ventanas: 2004-01-01_2010-12-31
+  Rows: 7,428
+  Días únicos: 1363
+  Rango: 2004-01-02 to 2010-12-31
+  ⚠️  Gaps detectados: 8
+
+AUBN:
+  Ventanas: 2004-01-01_2010-12-31
+  Rows: 7,867
+  Días únicos: 1136
+  Rango: 2004-01-02 to 2010-12-31
+  ⚠️  Gaps detectados: 23
+
+CARV:
+  Ventanas: 2011-01-01_2016-12-31
+  Rows: 18,000
+  Días únicos: 2069
+  Rango: 2007-07-10 to 2018-06-19
+  ⚠️  Gaps detectados: 24
+
+CBAN:
+  Ventanas: 2004-01-01_2010-12-31
+  Rows: 11,605
+  Días únicos: 1458
+  Rango: 2004-01-05 to 2010-12-31
+  ⚠️  Gaps detectados: 2
+
+CTO:
+  Ventanas: 2011-01-01_2016-12-31
+  Rows: 42,701
+  Días únicos: 1509
+  Rango: 2011-01-03 to 2016-12-30
+
+DJCO:
+  Ventanas: 2004-01-01_2010-12-31
+  Rows: 2,413
+  Días únicos: 701
+  Rango: 2004-01-06 to 2010-12-31
+  ⚠️  Gaps detectados: 78
+
+ELSE:
+  Ventanas: 2004-01-01_2010-12-31
+  Rows: 20,626
+  Días únicos: 1556
+  Rango: 2004-01-05 to 2010-12-31
+  ⚠️  Gaps detectados: 1
+
+EML:
+  Ventanas: 2004-01-01_2010-12-31
+  Rows: 32,691
+  Días únicos: 1651
+  Rango: 2004-01-02 to 2010-12-31
+
+FCAP:
+  Ventanas: 2011-01-01_2016-12-31
+  Rows: 5,595
+  Días únicos: 1751
+  Rango: 2004-01-02 to 2016-12-30
+  ⚠️  Gaps detectados: 66
+
+FLXS:
+  Ventanas: 2004-01-01_2010-12-31
+  Rows: 17,394
+  Días únicos: 1703
+  Rango: 2004-01-02 to 2010-12-31
+
+HFWA:
+  Ventanas: 2004-01-01_2010-12-31
+  Rows: 28,261
+  Días únicos: 1688
+  Rango: 2004-01-02 to 2010-12-31
+
+HTB:
+  Ventanas: 2004-01-01_2010-12-31
+  Rows: 36,197
+  Días únicos: 1760
+  Rango: 2004-01-02 to 2010-12-31
+
+IPW:
+  Ventanas: 2011-01-01_2016-12-31
+  Rows: 19,278
+  Días únicos: 1967
+  Rango: 2008-07-25 to 2016-12-30
+  ⚠️  Gaps detectados: 2
+
+ISRL:
+  Ventanas: 2011-01-01_2016-12-31
+  Rows: 5,652
+  Días únicos: 1133
+  Rango: 2011-01-03 to 2016-12-29
+  ⚠️  Gaps detectados: 12
+
+JBI:
+  Ventanas: 2004-01-01_2010-12-31
+  Rows: 6,913
+  Días únicos: 1574
+  Rango: 2004-01-02 to 2010-12-31
+
+LAKE:
+  Ventanas: 2004-01-01_2010-12-31
+  Rows: 45,824
+  Días únicos: 1753
+  Rango: 2004-01-02 to 2010-12-31
+
+MLP:
+  Ventanas: 2011-01-01_2016-12-31
+  Rows: 23,962
+  Días únicos: 1495
+  Rango: 2011-01-03 to 2016-12-30
+
+MTEX:
+  Ventanas: 2011-01-01_2016-12-31
+  Rows: 30,374
+  Días únicos: 1487
+  Rango: 2011-01-03 to 2016-12-30
+
+NRIM:
+  Ventanas: 2004-01-01_2010-12-31
+  Rows: 30,049
+  Días únicos: 1746
+  Rango: 2004-01-02 to 2010-12-31
+
+NWFL:
+  Ventanas: 2004-01-01_2010-12-31
+  Rows: 6,977
+  Días únicos: 1184
+  Rango: 2004-01-05 to 2010-12-31
+  ⚠️  Gaps detectados: 22
+
+PBHC:
+  Ventanas: 2004-01-01_2010-12-31
+  Rows: 1,581
+  Días únicos: 656
+  Rango: 2004-01-02 to 2010-12-31
+  ⚠️  Gaps detectados: 81
+
+PEBK:
+  Ventanas: 2004-01-01_2010-12-31
+  Rows: 7,632
+  Días únicos: 1475
+  Rango: 2004-01-02 to 2010-12-31
+  ⚠️  Gaps detectados: 1
+
+RAND:
+  Ventanas: 2004-01-01_2010-12-31
+  Rows: 18,000
+  Días únicos: 1663
+  Rango: 2004-01-02 to 2012-12-04
+  ⚠️  Gaps detectados: 14
+
+RC:
+  Ventanas: 2004-01-01_2010-12-31
+  Rows: 17,681
+  Días únicos: 1469
+  Rango: 2004-01-02 to 2010-12-30
+  ⚠️  Gaps detectados: 7
+
+RGCO:
+  Ventanas: 2004-01-01_2010-12-31
+  Rows: 6,740
+  Días únicos: 1460
+  Rango: 2004-01-02 to 2010-12-30
+  ⚠️  Gaps detectados: 2
+
+SAR:
+  Ventanas: 2011-01-01_2016-12-31
+  Rows: 23,569
+  Días únicos: 1482
+  Rango: 2011-01-03 to 2016-12-30
+
+STRS:
+  Ventanas: 2004-01-01_2010-12-31
+  Rows: 22,102
+  Días únicos: 1541
+  Rango: 2004-01-02 to 2010-12-31
+  ⚠️  Gaps detectados: 4
+
+STRT:
+  Ventanas: 2004-01-01_2010-12-31
+  Rows: 23,879
+  Días únicos: 1709
+  Rango: 2004-01-02 to 2010-12-31
+
+TAIT:
+  Ventanas: 2004-01-01_2010-12-31
+  Rows: 6,250
+  Días únicos: 1231
+  Rango: 2004-01-02 to 2010-12-31
+  ⚠️  Gaps detectados: 20
+
+UMH:
+  Ventanas: 2004-01-01_2010-12-31
+  Rows: 50,000
+  Días únicos: 1746
+  Rango: 2004-01-02 to 2010-12-07
+
+VLGEA:
+  Ventanas: 2004-01-01_2010-12-31
+  Rows: 34,632
+  Días únicos: 1615
+  Rango: 2004-01-02 to 2010-12-31
+  ⚠️  Gaps detectados: 2
+
+WLFC:
+  Ventanas: 2004-01-01_2010-12-31
+  Rows: 34,180
+  Días únicos: 1700
+  Rango: 2004-01-02 to 2010-12-31
+  ⚠️  Gaps detectados: 1
+

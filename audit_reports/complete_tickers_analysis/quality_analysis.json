@@ -1,0 +1,1377 @@
+{
+  "ACNB": {
+    "total_rows": 11795,
+    "unique_dates": 1439,
+    "unique_minutes": 11795,
+    "date_range": "2010-12-21 to 2016-12-30",
+    "files_read": 73,
+    "avg_minutes_per_day": 8.2,
+    "min_minutes_per_day": 1,
+    "max_minutes_per_day": 127,
+    "total_volume": 5457350,
+    "avg_volume_per_minute": 462.68,
+    "total_trades": 31812,
+    "avg_trades_per_minute": 2.7,
+    "price_range": {
+      "min_low": 13.28,
+      "max_high": 32.85,
+      "avg_close": 20.628745019075883
+    },
+    "duplicates": 0,
+    "gaps_count": 0,
+    "major_gaps": [],
+    "windows_complete": [
+      "2011-01-01_2016-12-31"
+    ],
+    "windows_count": 1
+  },
+  "AGM.A": {
+    "total_rows": 7428,
+    "unique_dates": 1363,
+    "unique_minutes": 7428,
+    "date_range": "2004-01-02 to 2010-12-31",
+    "files_read": 84,
+    "avg_minutes_per_day": 5.4,
+    "min_minutes_per_day": 1,
+    "max_minutes_per_day": 74,
+    "total_volume": 2505098,
+    "avg_volume_per_minute": 337.25,
+    "total_trades": 12090,
+    "avg_trades_per_minute": 1.63,
+    "price_range": {
+      "min_low": 1.25,
+      "max_high": 25.98,
+      "avg_close": 14.805778217555174
+    },
+    "duplicates": 0,
+    "gaps_count": 8,
+    "major_gaps": [
+      {
+        "from": "2004-05-17",
+        "to": "2004-06-01",
+        "days": 15
+      },
+      {
+        "from": "2004-06-28",
+        "to": "2004-07-08",
+        "days": 10
+      },
+      {
+        "from": "2004-07-13",
+        "to": "2004-07-21",
+        "days": 8
+      },
+      {
+        "from": "2004-08-12",
+        "to": "2004-08-25",
+        "days": 13
+      },
+      {
+        "from": "2004-09-17",
+        "to": "2004-09-27",
+        "days": 10
+      }
+    ],
+    "windows_complete": [
+      "2004-01-01_2010-12-31"
+    ],
+    "windows_count": 1
+  },
+  "AUBN": {
+    "total_rows": 7867,
+    "unique_dates": 1136,
+    "unique_minutes": 7867,
+    "date_range": "2004-01-02 to 2010-12-31",
+    "files_read": 84,
+    "avg_minutes_per_day": 6.9,
+    "min_minutes_per_day": 1,
+    "max_minutes_per_day": 144,
+    "total_volume": 2938562,
+    "avg_volume_per_minute": 373.53,
+    "total_trades": 16370,
+    "avg_trades_per_minute": 2.08,
+    "price_range": {
+      "min_low": 16.86,
+      "max_high": 30.0,
+      "avg_close": 22.2017914834117
+    },
+    "duplicates": 0,
+    "gaps_count": 23,
+    "major_gaps": [
+      {
+        "from": "2004-05-18",
+        "to": "2004-05-27",
+        "days": 9
+      },
+      {
+        "from": "2004-06-15",
+        "to": "2004-06-23",
+        "days": 8
+      },
+      {
+        "from": "2004-07-20",
+        "to": "2004-07-28",
+        "days": 8
+      },
+      {
+        "from": "2004-08-06",
+        "to": "2004-08-17",
+        "days": 11
+      },
+      {
+        "from": "2004-08-30",
+        "to": "2004-09-08",
+        "days": 9
+      }
+    ],
+    "windows_complete": [
+      "2004-01-01_2010-12-31"
+    ],
+    "windows_count": 1
+  },
+  "CBAN": {
+    "total_rows": 11605,
+    "unique_dates": 1458,
+    "unique_minutes": 11605,
+    "date_range": "2004-01-05 to 2010-12-31",
+    "files_read": 84,
+    "avg_minutes_per_day": 8.0,
+    "min_minutes_per_day": 1,
+    "max_minutes_per_day": 117,
+    "total_volume": 5215849,
+    "avg_volume_per_minute": 449.45,
+    "total_trades": 23470,
+    "avg_trades_per_minute": 2.02,
+    "price_range": {
+      "min_low": 3.35,
+      "max_high": 34.0,
+      "avg_close": 17.84031987074536
+    },
+    "duplicates": 0,
+    "gaps_count": 2,
+    "major_gaps": [
+      {
+        "from": "2004-07-29",
+        "to": "2004-08-06",
+        "days": 8
+      },
+      {
+        "from": "2009-02-12",
+        "to": "2009-02-23",
+        "days": 11
+      }
+    ],
+    "windows_complete": [
+      "2004-01-01_2010-12-31"
+    ],
+    "windows_count": 1
+  },
+  "CTO": {
+    "total_rows": 42701,
+    "unique_dates": 1509,
+    "unique_minutes": 42701,
+    "date_range": "2011-01-03 to 2016-12-30",
+    "files_read": 72,
+    "avg_minutes_per_day": 28.3,
+    "min_minutes_per_day": 1,
+    "max_minutes_per_day": 285,
+    "total_volume": 49762362,
+    "avg_volume_per_minute": 1165.37,
+    "total_trades": 127974,
+    "avg_trades_per_minute": 3.0,
+    "price_range": {
+      "min_low": 8.1667,
+      "max_high": 24.18,
+      "avg_close": 14.323419369569795
+    },
+    "duplicates": 0,
+    "gaps_count": 0,
+    "major_gaps": [],
+    "windows_complete": [
+      "2011-01-01_2016-12-31"
+    ],
+    "windows_count": 1
+  },
+  "DJCO": {
+    "total_rows": 2413,
+    "unique_dates": 701,
+    "unique_minutes": 2413,
+    "date_range": "2004-01-06 to 2010-12-31",
+    "files_read": 84,
+    "avg_minutes_per_day": 3.4,
+    "min_minutes_per_day": 1,
+    "max_minutes_per_day": 47,
+    "total_volume": 880220,
+    "avg_volume_per_minute": 364.78,
+    "total_trades": 4325,
+    "avg_trades_per_minute": 1.79,
+    "price_range": {
+      "min_low": 31.0,
+      "max_high": 76.96,
+      "avg_close": 51.74538748445921
+    },
+    "duplicates": 0,
+    "gaps_count": 78,
+    "major_gaps": [
+      {
+        "from": "2004-01-20",
+        "to": "2004-02-02",
+        "days": 13
+      },
+      {
+        "from": "2004-04-02",
+        "to": "2004-04-13",
+        "days": 11
+      },
+      {
+        "from": "2004-05-14",
+        "to": "2004-05-26",
+        "days": 12
+      },
+      {
+        "from": "2004-06-04",
+        "to": "2004-07-09",
+        "days": 35
+      },
+      {
+        "from": "2004-07-26",
+        "to": "2004-08-12",
+        "days": 17
+      }
+    ],
+    "windows_complete": [
+      "2004-01-01_2010-12-31"
+    ],
+    "windows_count": 1
+  },
+  "ELSE": {
+    "total_rows": 20626,
+    "unique_dates": 1556,
+    "unique_minutes": 20626,
+    "date_range": "2004-01-05 to 2010-12-31",
+    "files_read": 84,
+    "avg_minutes_per_day": 13.3,
+    "min_minutes_per_day": 1,
+    "max_minutes_per_day": 447,
+    "total_volume": 27579208,
+    "avg_volume_per_minute": 1337.11,
+    "total_trades": 72939,
+    "avg_trades_per_minute": 3.54,
+    "price_range": {
+      "min_low": 1.69,
+      "max_high": 11.65,
+      "avg_close": 5.473719616018614
+    },
+    "duplicates": 0,
+    "gaps_count": 1,
+    "major_gaps": [
+      {
+        "from": "2009-06-29",
+        "to": "2009-07-13",
+        "days": 14
+      }
+    ],
+    "windows_complete": [
+      "2004-01-01_2010-12-31"
+    ],
+    "windows_count": 1
+  },
+  "EML": {
+    "total_rows": 32691,
+    "unique_dates": 1651,
+    "unique_minutes": 32691,
+    "date_range": "2004-01-02 to 2010-12-31",
+    "files_read": 84,
+    "avg_minutes_per_day": 19.8,
+    "min_minutes_per_day": 1,
+    "max_minutes_per_day": 251,
+    "total_volume": 16963342,
+    "avg_volume_per_minute": 518.9,
+    "total_trades": 68520,
+    "avg_trades_per_minute": 2.1,
+    "price_range": {
+      "min_low": 7.88,
+      "max_high": 33.9,
+      "avg_close": 18.736948282401897
+    },
+    "duplicates": 0,
+    "gaps_count": 0,
+    "major_gaps": [],
+    "windows_complete": [
+      "2004-01-01_2010-12-31"
+    ],
+    "windows_count": 1
+  },
+  "FCAP": {
+    "total_rows": 5595,
+    "unique_dates": 1751,
+    "unique_minutes": 5595,
+    "date_range": "2004-01-02 to 2016-12-30",
+    "files_read": 155,
+    "avg_minutes_per_day": 3.2,
+    "min_minutes_per_day": 1,
+    "max_minutes_per_day": 69,
+    "total_volume": 2291044,
+    "avg_volume_per_minute": 409.48,
+    "total_trades": 12511,
+    "avg_trades_per_minute": 2.24,
+    "price_range": {
+      "min_low": 11.77,
+      "max_high": 34.999,
+      "avg_close": 21.56434704200179
+    },
+    "duplicates": 0,
+    "gaps_count": 66,
+    "major_gaps": [
+      {
+        "from": "2004-01-13",
+        "to": "2004-01-22",
+        "days": 9
+      },
+      {
+        "from": "2004-03-12",
+        "to": "2004-03-22",
+        "days": 10
+      },
+      {
+        "from": "2004-03-22",
+        "to": "2004-03-30",
+        "days": 8
+      },
+      {
+        "from": "2004-04-08",
+        "to": "2004-04-19",
+        "days": 11
+      },
+      {
+        "from": "2004-04-20",
+        "to": "2004-04-29",
+        "days": 9
+      }
+    ],
+    "windows_complete": [
+      "2011-01-01_2016-12-31"
+    ],
+    "windows_count": 1
+  },
+  "FLXS": {
+    "total_rows": 17394,
+    "unique_dates": 1703,
+    "unique_minutes": 17394,
+    "date_range": "2004-01-02 to 2010-12-31",
+    "files_read": 84,
+    "avg_minutes_per_day": 10.2,
+    "min_minutes_per_day": 1,
+    "max_minutes_per_day": 116,
+    "total_volume": 8828557,
+    "avg_volume_per_minute": 507.56,
+    "total_trades": 37661,
+    "avg_trades_per_minute": 2.17,
+    "price_range": {
+      "min_low": 4.98,
+      "max_high": 24.35,
+      "avg_close": 13.625996280326568
+    },
+    "duplicates": 0,
+    "gaps_count": 0,
+    "major_gaps": [],
+    "windows_complete": [
+      "2004-01-01_2010-12-31"
+    ],
+    "windows_count": 1
+  },
+  "GCBC": {
+    "total_rows": 8590,
+    "unique_dates": 2068,
+    "unique_minutes": 8590,
+    "date_range": "2004-01-02 to 2016-12-30",
+    "files_read": 156,
+    "avg_minutes_per_day": 4.2,
+    "min_minutes_per_day": 1,
+    "max_minutes_per_day": 66,
+    "total_volume": 11420512,
+    "avg_volume_per_minute": 1329.51,
+    "total_trades": 18991,
+    "avg_trades_per_minute": 2.21,
+    "price_range": {
+      "min_low": 2.375,
+      "max_high": 12.6,
+      "avg_close": 5.933176996507569
+    },
+    "duplicates": 0,
+    "gaps_count": 39,
+    "major_gaps": [
+      {
+        "from": "2004-06-02",
+        "to": "2004-06-16",
+        "days": 14
+      },
+      {
+        "from": "2004-07-07",
+        "to": "2004-07-15",
+        "days": 8
+      },
+      {
+        "from": "2004-07-19",
+        "to": "2004-07-27",
+        "days": 8
+      },
+      {
+        "from": "2004-08-09",
+        "to": "2004-08-19",
+        "days": 10
+      },
+      {
+        "from": "2004-10-06",
+        "to": "2004-10-14",
+        "days": 8
+      }
+    ],
+    "windows_complete": [
+      "2004-01-01_2010-12-31",
+      "2011-01-01_2016-12-31"
+    ],
+    "windows_count": 2
+  },
+  "HFWA": {
+    "total_rows": 28261,
+    "unique_dates": 1688,
+    "unique_minutes": 28261,
+    "date_range": "2004-01-02 to 2010-12-31",
+    "files_read": 84,
+    "avg_minutes_per_day": 16.7,
+    "min_minutes_per_day": 1,
+    "max_minutes_per_day": 280,
+    "total_volume": 14683203,
+    "avg_volume_per_minute": 519.56,
+    "total_trades": 69679,
+    "avg_trades_per_minute": 2.47,
+    "price_range": {
+      "min_low": 8.55,
+      "max_high": 29.33,
+      "avg_close": 16.540361013410738
+    },
+    "duplicates": 0,
+    "gaps_count": 0,
+    "major_gaps": [],
+    "windows_complete": [
+      "2004-01-01_2010-12-31"
+    ],
+    "windows_count": 1
+  },
+  "HIFS": {
+    "total_rows": 43815,
+    "unique_dates": 4426,
+    "unique_minutes": 43815,
+    "date_range": "2004-01-05 to 2025-10-21",
+    "files_read": 262,
+    "avg_minutes_per_day": 9.9,
+    "min_minutes_per_day": 1,
+    "max_minutes_per_day": 164,
+    "total_volume": 19412844,
+    "avg_volume_per_minute": 443.06,
+    "total_trades": 668085,
+    "avg_trades_per_minute": 15.25,
+    "price_range": {
+      "min_low": 22.1,
+      "max_high": 432.19,
+      "avg_close": 182.49844311982199
+    },
+    "duplicates": 0,
+    "gaps_count": 41,
+    "major_gaps": [
+      {
+        "from": "2004-09-21",
+        "to": "2004-10-04",
+        "days": 13
+      },
+      {
+        "from": "2004-11-03",
+        "to": "2004-11-11",
+        "days": 8
+      },
+      {
+        "from": "2004-11-18",
+        "to": "2004-11-26",
+        "days": 8
+      },
+      {
+        "from": "2005-05-05",
+        "to": "2005-05-16",
+        "days": 11
+      },
+      {
+        "from": "2005-05-24",
+        "to": "2005-06-01",
+        "days": 8
+      }
+    ],
+    "windows_complete": [
+      "2004-01-01_2010-12-31",
+      "2011-01-01_2016-12-31",
+      "2017-01-01_2025-10-21"
+    ],
+    "windows_count": 3
+  },
+  "HTB": {
+    "total_rows": 36197,
+    "unique_dates": 1760,
+    "unique_minutes": 36197,
+    "date_range": "2004-01-02 to 2010-12-31",
+    "files_read": 84,
+    "avg_minutes_per_day": 20.6,
+    "min_minutes_per_day": 1,
+    "max_minutes_per_day": 157,
+    "total_volume": 37696911,
+    "avg_volume_per_minute": 1041.44,
+    "total_trades": 77749,
+    "avg_trades_per_minute": 2.15,
+    "price_range": {
+      "min_low": 11.0,
+      "max_high": 27.34,
+      "avg_close": 23.717857176009055
+    },
+    "duplicates": 0,
+    "gaps_count": 0,
+    "major_gaps": [],
+    "windows_complete": [
+      "2004-01-01_2010-12-31"
+    ],
+    "windows_count": 1
+  },
+  "IPW": {
+    "total_rows": 19278,
+    "unique_dates": 1967,
+    "unique_minutes": 19278,
+    "date_range": "2008-07-25 to 2016-12-30",
+    "files_read": 102,
+    "avg_minutes_per_day": 9.8,
+    "min_minutes_per_day": 1,
+    "max_minutes_per_day": 332,
+    "total_volume": 19285950,
+    "avg_volume_per_minute": 1000.41,
+    "total_trades": 51860,
+    "avg_trades_per_minute": 2.69,
+    "price_range": {
+      "min_low": 12.4547,
+      "max_high": 32.38,
+      "avg_close": 21.63604294532629
+    },
+    "duplicates": 0,
+    "gaps_count": 2,
+    "major_gaps": [
+      {
+        "from": "2008-07-28",
+        "to": "2008-08-13",
+        "days": 16
+      },
+      {
+        "from": "2008-08-26",
+        "to": "2008-09-03",
+        "days": 8
+      }
+    ],
+    "windows_complete": [
+      "2011-01-01_2016-12-31"
+    ],
+    "windows_count": 1
+  },
+  "ISRL": {
+    "total_rows": 5652,
+    "unique_dates": 1133,
+    "unique_minutes": 5652,
+    "date_range": "2011-01-03 to 2016-12-29",
+    "files_read": 72,
+    "avg_minutes_per_day": 5.0,
+    "min_minutes_per_day": 1,
+    "max_minutes_per_day": 67,
+    "total_volume": 1328323,
+    "avg_volume_per_minute": 235.02,
+    "total_trades": 12551,
+    "avg_trades_per_minute": 2.22,
+    "price_range": {
+      "min_low": 53.27,
+      "max_high": 157.99,
+      "avg_close": 98.03120966029728
+    },
+    "duplicates": 0,
+    "gaps_count": 12,
+    "major_gaps": [
+      {
+        "from": "2012-08-22",
+        "to": "2012-09-04",
+        "days": 13
+      },
+      {
+        "from": "2013-02-22",
+        "to": "2013-03-04",
+        "days": 10
+      },
+      {
+        "from": "2013-03-05",
+        "to": "2013-03-13",
+        "days": 8
+      },
+      {
+        "from": "2015-02-24",
+        "to": "2015-03-05",
+        "days": 9
+      },
+      {
+        "from": "2015-03-12",
+        "to": "2015-03-20",
+        "days": 8
+      }
+    ],
+    "windows_complete": [
+      "2011-01-01_2016-12-31"
+    ],
+    "windows_count": 1
+  },
+  "JBI": {
+    "total_rows": 6913,
+    "unique_dates": 1574,
+    "unique_minutes": 6913,
+    "date_range": "2004-01-02 to 2010-12-31",
+    "files_read": 84,
+    "avg_minutes_per_day": 4.4,
+    "min_minutes_per_day": 1,
+    "max_minutes_per_day": 120,
+    "total_volume": 3185313,
+    "avg_volume_per_minute": 460.77,
+    "total_trades": 11682,
+    "avg_trades_per_minute": 1.69,
+    "price_range": {
+      "min_low": 16.0,
+      "max_high": 28.75,
+      "avg_close": 25.23796703312601
+    },
+    "duplicates": 0,
+    "gaps_count": 0,
+    "major_gaps": [],
+    "windows_complete": [
+      "2004-01-01_2010-12-31"
+    ],
+    "windows_count": 1
+  },
+  "LAKE": {
+    "total_rows": 45824,
+    "unique_dates": 1753,
+    "unique_minutes": 45824,
+    "date_range": "2004-01-02 to 2010-12-31",
+    "files_read": 84,
+    "avg_minutes_per_day": 26.1,
+    "min_minutes_per_day": 1,
+    "max_minutes_per_day": 358,
+    "total_volume": 30617298,
+    "avg_volume_per_minute": 668.15,
+    "total_trades": 113749,
+    "avg_trades_per_minute": 2.48,
+    "price_range": {
+      "min_low": 5.03,
+      "max_high": 27.559,
+      "avg_close": 15.645292375174591
+    },
+    "duplicates": 0,
+    "gaps_count": 0,
+    "major_gaps": [],
+    "windows_complete": [
+      "2004-01-01_2010-12-31"
+    ],
+    "windows_count": 1
+  },
+  "MLP": {
+    "total_rows": 23962,
+    "unique_dates": 1495,
+    "unique_minutes": 23962,
+    "date_range": "2011-01-03 to 2016-12-30",
+    "files_read": 72,
+    "avg_minutes_per_day": 16.0,
+    "min_minutes_per_day": 1,
+    "max_minutes_per_day": 208,
+    "total_volume": 16847837,
+    "avg_volume_per_minute": 703.11,
+    "total_trades": 71617,
+    "avg_trades_per_minute": 2.99,
+    "price_range": {
+      "min_low": 1.83,
+      "max_high": 15.05,
+      "avg_close": 5.481365286703951
+    },
+    "duplicates": 0,
+    "gaps_count": 0,
+    "major_gaps": [],
+    "windows_complete": [
+      "2011-01-01_2016-12-31"
+    ],
+    "windows_count": 1
+  },
+  "MTEX": {
+    "total_rows": 30374,
+    "unique_dates": 1487,
+    "unique_minutes": 30374,
+    "date_range": "2011-01-03 to 2016-12-30",
+    "files_read": 72,
+    "avg_minutes_per_day": 20.4,
+    "min_minutes_per_day": 1,
+    "max_minutes_per_day": 211,
+    "total_volume": 12990017,
+    "avg_volume_per_minute": 427.67,
+    "total_trades": 88116,
+    "avg_trades_per_minute": 2.9,
+    "price_range": {
+      "min_low": 1.5,
+      "max_high": 35.0,
+      "avg_close": 17.373268627773733
+    },
+    "duplicates": 0,
+    "gaps_count": 0,
+    "major_gaps": [],
+    "windows_complete": [
+      "2011-01-01_2016-12-31"
+    ],
+    "windows_count": 1
+  },
+  "NATH": {
+    "total_rows": 70083,
+    "unique_dates": 3941,
+    "unique_minutes": 70083,
+    "date_range": "2004-01-02 to 2025-10-20",
+    "files_read": 190,
+    "avg_minutes_per_day": 17.8,
+    "min_minutes_per_day": 1,
+    "max_minutes_per_day": 171,
+    "total_volume": 36185951,
+    "avg_volume_per_minute": 516.33,
+    "total_trades": 487949,
+    "avg_trades_per_minute": 6.96,
+    "price_range": {
+      "min_low": 5.0,
+      "max_high": 118.495,
+      "avg_close": 49.45855032200388
+    },
+    "duplicates": 0,
+    "gaps_count": 1,
+    "major_gaps": [
+      {
+        "from": "2010-12-31",
+        "to": "2017-01-03",
+        "days": 2195
+      }
+    ],
+    "windows_complete": [
+      "2004-01-01_2010-12-31",
+      "2017-01-01_2025-10-21"
+    ],
+    "windows_count": 2
+  },
+  "NRIM": {
+    "total_rows": 30049,
+    "unique_dates": 1746,
+    "unique_minutes": 30049,
+    "date_range": "2004-01-02 to 2010-12-31",
+    "files_read": 84,
+    "avg_minutes_per_day": 17.2,
+    "min_minutes_per_day": 1,
+    "max_minutes_per_day": 216,
+    "total_volume": 63023344,
+    "avg_volume_per_minute": 2097.35,
+    "total_trades": 65056,
+    "avg_trades_per_minute": 2.16,
+    "price_range": {
+      "min_low": 1.625,
+      "max_high": 7.6025,
+      "avg_close": 4.798512120203671
+    },
+    "duplicates": 0,
+    "gaps_count": 0,
+    "major_gaps": [],
+    "windows_complete": [
+      "2004-01-01_2010-12-31"
+    ],
+    "windows_count": 1
+  },
+  "NWFL": {
+    "total_rows": 6977,
+    "unique_dates": 1184,
+    "unique_minutes": 6977,
+    "date_range": "2004-01-05 to 2010-12-31",
+    "files_read": 84,
+    "avg_minutes_per_day": 5.9,
+    "min_minutes_per_day": 1,
+    "max_minutes_per_day": 92,
+    "total_volume": 4340284,
+    "avg_volume_per_minute": 622.08,
+    "total_trades": 14327,
+    "avg_trades_per_minute": 2.05,
+    "price_range": {
+      "min_low": 13.3567,
+      "max_high": 24.0,
+      "avg_close": 19.565429367923176
+    },
+    "duplicates": 0,
+    "gaps_count": 22,
+    "major_gaps": [
+      {
+        "from": "2004-03-24",
+        "to": "2004-04-01",
+        "days": 8
+      },
+      {
+        "from": "2004-09-01",
+        "to": "2004-09-14",
+        "days": 13
+      },
+      {
+        "from": "2004-09-21",
+        "to": "2004-10-04",
+        "days": 13
+      },
+      {
+        "from": "2004-10-08",
+        "to": "2004-10-20",
+        "days": 12
+      },
+      {
+        "from": "2005-08-19",
+        "to": "2005-08-31",
+        "days": 12
+      }
+    ],
+    "windows_complete": [
+      "2004-01-01_2010-12-31"
+    ],
+    "windows_count": 1
+  },
+  "PBHC": {
+    "total_rows": 1581,
+    "unique_dates": 656,
+    "unique_minutes": 1581,
+    "date_range": "2004-01-02 to 2010-12-31",
+    "files_read": 84,
+    "avg_minutes_per_day": 2.4,
+    "min_minutes_per_day": 1,
+    "max_minutes_per_day": 31,
+    "total_volume": 899813,
+    "avg_volume_per_minute": 569.14,
+    "total_trades": 2682,
+    "avg_trades_per_minute": 1.7,
+    "price_range": {
+      "min_low": 4.75,
+      "max_high": 25.0,
+      "avg_close": 11.515344275774828
+    },
+    "duplicates": 0,
+    "gaps_count": 81,
+    "major_gaps": [
+      {
+        "from": "2004-02-11",
+        "to": "2004-02-23",
+        "days": 12
+      },
+      {
+        "from": "2004-03-23",
+        "to": "2004-04-05",
+        "days": 13
+      },
+      {
+        "from": "2004-06-01",
+        "to": "2004-06-09",
+        "days": 8
+      },
+      {
+        "from": "2004-06-09",
+        "to": "2004-06-22",
+        "days": 13
+      },
+      {
+        "from": "2004-07-02",
+        "to": "2004-07-13",
+        "days": 11
+      }
+    ],
+    "windows_complete": [
+      "2004-01-01_2010-12-31"
+    ],
+    "windows_count": 1
+  },
+  "PDEX": {
+    "total_rows": 44105,
+    "unique_dates": 3131,
+    "unique_minutes": 44105,
+    "date_range": "2004-01-02 to 2016-12-30",
+    "files_read": 156,
+    "avg_minutes_per_day": 14.1,
+    "min_minutes_per_day": 1,
+    "max_minutes_per_day": 383,
+    "total_volume": 44557815,
+    "avg_volume_per_minute": 1010.27,
+    "total_trades": 150042,
+    "avg_trades_per_minute": 3.4,
+    "price_range": {
+      "min_low": 0.8097,
+      "max_high": 11.67,
+      "avg_close": 4.669250361636992
+    },
+    "duplicates": 0,
+    "gaps_count": 1,
+    "major_gaps": [
+      {
+        "from": "2010-06-17",
+        "to": "2010-07-19",
+        "days": 32
+      }
+    ],
+    "windows_complete": [
+      "2004-01-01_2010-12-31",
+      "2011-01-01_2016-12-31"
+    ],
+    "windows_count": 2
+  },
+  "PEBK": {
+    "total_rows": 7632,
+    "unique_dates": 1475,
+    "unique_minutes": 7632,
+    "date_range": "2004-01-02 to 2010-12-31",
+    "files_read": 84,
+    "avg_minutes_per_day": 5.2,
+    "min_minutes_per_day": 1,
+    "max_minutes_per_day": 41,
+    "total_volume": 6670391,
+    "avg_volume_per_minute": 874.0,
+    "total_trades": 15374,
+    "avg_trades_per_minute": 2.01,
+    "price_range": {
+      "min_low": 3.5909,
+      "max_high": 19.7182,
+      "avg_close": 10.947394378930824
+    },
+    "duplicates": 0,
+    "gaps_count": 1,
+    "major_gaps": [
+      {
+        "from": "2005-05-24",
+        "to": "2005-06-01",
+        "days": 8
+      }
+    ],
+    "windows_complete": [
+      "2004-01-01_2010-12-31"
+    ],
+    "windows_count": 1
+  },
+  "RAND": {
+    "total_rows": 15787,
+    "unique_dates": 1320,
+    "unique_minutes": 15787,
+    "date_range": "2004-01-02 to 2010-12-30",
+    "files_read": 84,
+    "avg_minutes_per_day": 12.0,
+    "min_minutes_per_day": 1,
+    "max_minutes_per_day": 492,
+    "total_volume": 4027290,
+    "avg_volume_per_minute": 255.1,
+    "total_trades": 63654,
+    "avg_trades_per_minute": 4.03,
+    "price_range": {
+      "min_low": 9.81,
+      "max_high": 46.26,
+      "avg_close": 21.87018847152719
+    },
+    "duplicates": 0,
+    "gaps_count": 9,
+    "major_gaps": [
+      {
+        "from": "2005-09-30",
+        "to": "2005-10-11",
+        "days": 11
+      },
+      {
+        "from": "2008-07-24",
+        "to": "2008-08-05",
+        "days": 12
+      },
+      {
+        "from": "2009-04-03",
+        "to": "2009-04-13",
+        "days": 10
+      },
+      {
+        "from": "2009-05-20",
+        "to": "2009-05-28",
+        "days": 8
+      },
+      {
+        "from": "2009-06-16",
+        "to": "2009-06-29",
+        "days": 13
+      }
+    ],
+    "windows_complete": [
+      "2004-01-01_2010-12-31"
+    ],
+    "windows_count": 1
+  },
+  "RC": {
+    "total_rows": 17681,
+    "unique_dates": 1469,
+    "unique_minutes": 17681,
+    "date_range": "2004-01-02 to 2010-12-30",
+    "files_read": 84,
+    "avg_minutes_per_day": 12.0,
+    "min_minutes_per_day": 1,
+    "max_minutes_per_day": 156,
+    "total_volume": 16235917,
+    "avg_volume_per_minute": 918.27,
+    "total_trades": 30344,
+    "avg_trades_per_minute": 1.72,
+    "price_range": {
+      "min_low": 0.01,
+      "max_high": 16.24,
+      "avg_close": 8.976832984559696
+    },
+    "duplicates": 0,
+    "gaps_count": 7,
+    "major_gaps": [
+      {
+        "from": "2009-10-28",
+        "to": "2009-11-05",
+        "days": 8
+      },
+      {
+        "from": "2010-03-19",
+        "to": "2010-03-29",
+        "days": 10
+      },
+      {
+        "from": "2010-05-19",
+        "to": "2010-06-02",
+        "days": 14
+      },
+      {
+        "from": "2010-06-22",
+        "to": "2010-07-01",
+        "days": 9
+      },
+      {
+        "from": "2010-07-16",
+        "to": "2010-07-27",
+        "days": 11
+      }
+    ],
+    "windows_complete": [
+      "2004-01-01_2010-12-31"
+    ],
+    "windows_count": 1
+  },
+  "RGCO": {
+    "total_rows": 6740,
+    "unique_dates": 1460,
+    "unique_minutes": 6740,
+    "date_range": "2004-01-02 to 2010-12-30",
+    "files_read": 84,
+    "avg_minutes_per_day": 4.6,
+    "min_minutes_per_day": 1,
+    "max_minutes_per_day": 91,
+    "total_volume": 7439253,
+    "avg_volume_per_minute": 1103.75,
+    "total_trades": 12664,
+    "avg_trades_per_minute": 1.88,
+    "price_range": {
+      "min_low": 7.2634,
+      "max_high": 12.3367,
+      "avg_close": 9.027456053412457
+    },
+    "duplicates": 0,
+    "gaps_count": 2,
+    "major_gaps": [
+      {
+        "from": "2008-12-09",
+        "to": "2008-12-17",
+        "days": 8
+      },
+      {
+        "from": "2009-01-15",
+        "to": "2009-01-26",
+        "days": 11
+      }
+    ],
+    "windows_complete": [
+      "2004-01-01_2010-12-31"
+    ],
+    "windows_count": 1
+  },
+  "SAR": {
+    "total_rows": 23569,
+    "unique_dates": 1482,
+    "unique_minutes": 23569,
+    "date_range": "2011-01-03 to 2016-12-30",
+    "files_read": 72,
+    "avg_minutes_per_day": 15.9,
+    "min_minutes_per_day": 1,
+    "max_minutes_per_day": 151,
+    "total_volume": 14969351,
+    "avg_volume_per_minute": 635.13,
+    "total_trades": 62771,
+    "avg_trades_per_minute": 2.66,
+    "price_range": {
+      "min_low": 10.948,
+      "max_high": 21.04,
+      "avg_close": 16.43948816241673
+    },
+    "duplicates": 0,
+    "gaps_count": 0,
+    "major_gaps": [],
+    "windows_complete": [
+      "2011-01-01_2016-12-31"
+    ],
+    "windows_count": 1
+  },
+  "STRS": {
+    "total_rows": 22102,
+    "unique_dates": 1541,
+    "unique_minutes": 22102,
+    "date_range": "2004-01-02 to 2010-12-31",
+    "files_read": 84,
+    "avg_minutes_per_day": 14.3,
+    "min_minutes_per_day": 1,
+    "max_minutes_per_day": 236,
+    "total_volume": 8601295,
+    "avg_volume_per_minute": 389.16,
+    "total_trades": 46768,
+    "avg_trades_per_minute": 2.12,
+    "price_range": {
+      "min_low": 4.5,
+      "max_high": 40.73,
+      "avg_close": 19.344371287666274
+    },
+    "duplicates": 0,
+    "gaps_count": 4,
+    "major_gaps": [
+      {
+        "from": "2005-08-31",
+        "to": "2005-09-12",
+        "days": 12
+      },
+      {
+        "from": "2005-10-20",
+        "to": "2005-10-28",
+        "days": 8
+      },
+      {
+        "from": "2005-11-18",
+        "to": "2005-11-28",
+        "days": 10
+      },
+      {
+        "from": "2006-08-07",
+        "to": "2006-08-15",
+        "days": 8
+      }
+    ],
+    "windows_complete": [
+      "2004-01-01_2010-12-31"
+    ],
+    "windows_count": 1
+  },
+  "STRT": {
+    "total_rows": 23879,
+    "unique_dates": 1709,
+    "unique_minutes": 23879,
+    "date_range": "2004-01-02 to 2010-12-31",
+    "files_read": 84,
+    "avg_minutes_per_day": 14.0,
+    "min_minutes_per_day": 1,
+    "max_minutes_per_day": 119,
+    "total_volume": 9486292,
+    "avg_volume_per_minute": 397.27,
+    "total_trades": 48601,
+    "avg_trades_per_minute": 2.04,
+    "price_range": {
+      "min_low": 6.262,
+      "max_high": 69.27,
+      "avg_close": 39.48007759956447
+    },
+    "duplicates": 0,
+    "gaps_count": 0,
+    "major_gaps": [],
+    "windows_complete": [
+      "2004-01-01_2010-12-31"
+    ],
+    "windows_count": 1
+  },
+  "TAIT": {
+    "total_rows": 6250,
+    "unique_dates": 1231,
+    "unique_minutes": 6250,
+    "date_range": "2004-01-02 to 2010-12-31",
+    "files_read": 84,
+    "avg_minutes_per_day": 5.1,
+    "min_minutes_per_day": 1,
+    "max_minutes_per_day": 94,
+    "total_volume": 6350028,
+    "avg_volume_per_minute": 1016.0,
+    "total_trades": 14214,
+    "avg_trades_per_minute": 2.27,
+    "price_range": {
+      "min_low": 0.25,
+      "max_high": 3.57,
+      "avg_close": 2.0291082559999984
+    },
+    "duplicates": 0,
+    "gaps_count": 20,
+    "major_gaps": [
+      {
+        "from": "2005-07-08",
+        "to": "2005-07-19",
+        "days": 11
+      },
+      {
+        "from": "2006-01-06",
+        "to": "2006-01-18",
+        "days": 12
+      },
+      {
+        "from": "2006-03-06",
+        "to": "2006-03-14",
+        "days": 8
+      },
+      {
+        "from": "2006-06-27",
+        "to": "2006-07-05",
+        "days": 8
+      },
+      {
+        "from": "2006-08-18",
+        "to": "2006-08-31",
+        "days": 13
+      }
+    ],
+    "windows_complete": [
+      "2004-01-01_2010-12-31"
+    ],
+    "windows_count": 1
+  },
+  "UBFO": {
+    "total_rows": 58588,
+    "unique_dates": 3143,
+    "unique_minutes": 58588,
+    "date_range": "2004-01-02 to 2016-12-30",
+    "files_read": 156,
+    "avg_minutes_per_day": 18.6,
+    "min_minutes_per_day": 1,
+    "max_minutes_per_day": 222,
+    "total_volume": 38656181,
+    "avg_volume_per_minute": 659.8,
+    "total_trades": 146217,
+    "avg_trades_per_minute": 2.5,
+    "price_range": {
+      "min_low": 1.52,
+      "max_high": 22.8278,
+      "avg_close": 10.871984983272986
+    },
+    "duplicates": 0,
+    "gaps_count": 0,
+    "major_gaps": [],
+    "windows_complete": [
+      "2004-01-01_2010-12-31",
+      "2011-01-01_2016-12-31"
+    ],
+    "windows_count": 2
+  },
+  "UMH": {
+    "total_rows": 50000,
+    "unique_dates": 1746,
+    "unique_minutes": 50000,
+    "date_range": "2004-01-02 to 2010-12-07",
+    "files_read": 84,
+    "avg_minutes_per_day": 28.6,
+    "min_minutes_per_day": 2,
+    "max_minutes_per_day": 303,
+    "total_volume": 25709391,
+    "avg_volume_per_minute": 514.19,
+    "total_trades": 101894,
+    "avg_trades_per_minute": 2.04,
+    "price_range": {
+      "min_low": 4.87,
+      "max_high": 17.5,
+      "avg_close": 11.202304212000021
+    },
+    "duplicates": 0,
+    "gaps_count": 0,
+    "major_gaps": [],
+    "windows_complete": [
+      "2004-01-01_2010-12-31"
+    ],
+    "windows_count": 1
+  },
+  "VLGEA": {
+    "total_rows": 34632,
+    "unique_dates": 1615,
+    "unique_minutes": 34632,
+    "date_range": "2004-01-02 to 2010-12-31",
+    "files_read": 84,
+    "avg_minutes_per_day": 21.4,
+    "min_minutes_per_day": 1,
+    "max_minutes_per_day": 121,
+    "total_volume": 19164475,
+    "avg_volume_per_minute": 553.37,
+    "total_trades": 68238,
+    "avg_trades_per_minute": 1.97,
+    "price_range": {
+      "min_low": 7.675,
+      "max_high": 33.99,
+      "avg_close": 25.311806326518802
+    },
+    "duplicates": 0,
+    "gaps_count": 2,
+    "major_gaps": [
+      {
+        "from": "2004-07-12",
+        "to": "2004-07-20",
+        "days": 8
+      },
+      {
+        "from": "2005-11-22",
+        "to": "2005-11-30",
+        "days": 8
+      }
+    ],
+    "windows_complete": [
+      "2004-01-01_2010-12-31"
+    ],
+    "windows_count": 1
+  },
+  "WLFC": {
+    "total_rows": 34180,
+    "unique_dates": 1700,
+    "unique_minutes": 34180,
+    "date_range": "2004-01-02 to 2010-12-31",
+    "files_read": 84,
+    "avg_minutes_per_day": 20.1,
+    "min_minutes_per_day": 1,
+    "max_minutes_per_day": 188,
+    "total_volume": 19532563,
+    "avg_volume_per_minute": 571.46,
+    "total_trades": 82903,
+    "avg_trades_per_minute": 2.43,
+    "price_range": {
+      "min_low": 6.32,
+      "max_high": 17.614,
+      "avg_close": 11.76180097717964
+    },
+    "duplicates": 0,
+    "gaps_count": 1,
+    "major_gaps": [
+      {
+        "from": "2005-11-23",
+        "to": "2005-12-01",
+        "days": 8
+      }
+    ],
+    "windows_complete": [
+      "2004-01-01_2010-12-31"
+    ],
+    "windows_count": 1
+  }
+}
