@@ -1,0 +1,37 @@
+# universe_config.yaml
+# Configuracion de umbrales para universo dinamico "info-rich"
+
+thresholds:
+  # RVOL minimo (volumen relativo 30 sesiones)
+  rvol: 2.0
+
+  # % change diario minimo (absoluto)
+  pctchg: 0.15  # 15%
+
+  # Dollar volume minimo
+  dvol: 5000000  # $5M
+
+  # Rango de precio valido
+  min_price: 0.5
+  max_price: 20.0
+
+  # Market cap maximo (small caps)
+  cap_max: 2000000000  # $2B
+
+processing:
+  # Numero de procesos paralelos
+  parallel: 8
+
+  # Compresion de outputs
+  compression: zstd
+  compression_level: 2
+
+  # Top N para ranking
+  top_k: 200
+
+# Notas:
+# - rvol: Valores tipicos 1.5-3.0 (2.0 = volumen 2x sobre promedio 30 dias)
+# - pctchg: 0.15 = 15% movimiento minimo para considerar "info-rich"
+# - dvol: $5M es umbral tipico para liquidez real en small caps
+# - Precio: [0.5, 20] evita penny stocks (<$0.50) y large caps (>$20)
+# - cap_max: $2B define small caps segun tu universo
