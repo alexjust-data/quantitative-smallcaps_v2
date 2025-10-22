@@ -1,0 +1,17 @@
+{
+  "description": "Esquema para eventos ML (ej. DILUTION_EVENT, IMPULSE_UP, HALT_SEQ, FIRST_RED_DAY)",
+  "columns": {
+    "event_type": "string",
+    "anchor_ts": "int64 (μs)",
+    "start_ts": "int64 (μs)",
+    "end_ts": "int64 (μs)",
+    "score": "float64",
+    "params": "json string (opcional)",
+    "source": "string (ej: sec_edgar|news|halt_rss)"
+  },
+  "keys": ["ticker","date","anchor_ts"],
+  "relations": {
+    "bars": "dataset anchor_ts == bars.t_close",
+    "labels": "opcional para vincular outcome posterior"
+  }
+}

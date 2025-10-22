@@ -1,0 +1,11 @@
+{
+  "total_rows": 1610057,
+  "label_counts": {
+    "-1": 923213,
+    "0": 32381,
+    "1": 654463
+  },
+  "bad_rows": 0,
+  "max_label_share": 0.5734039229667024,
+  "status": "PASS"
+}

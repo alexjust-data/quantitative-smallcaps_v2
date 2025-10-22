@@ -1,0 +1,8 @@
+{
+  "train_rows": 1297816,
+  "valid_rows": 324467,
+  "t_train_max": 1749575418560402,
+  "t_valid_min": 1749575879464725,
+  "purge": 50,
+  "status": "PASS"
+}

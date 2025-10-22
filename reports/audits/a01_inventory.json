@@ -1,0 +1,142 @@
+{
+  "root": "D:\\04_TRADING_SMALLCAPS",
+  "checks": [
+    {
+      "subdir": "raw/polygon/trades",
+      "days_ok": 11054,
+      "days_missing": 0,
+      "sample": {
+        "2024-10-18": {
+          "present": [
+            "_SUCCESS",
+            "trades.parquet"
+          ],
+          "missing": []
+        },
+        "2023-06-07": {
+          "present": [
+            "_SUCCESS",
+            "trades.parquet"
+          ],
+          "missing": []
+        },
+        "2025-01-08": {
+          "present": [
+            "_SUCCESS",
+            "trades.parquet"
+          ],
+          "missing": []
+        }
+      }
+    },
+    {
+      "subdir": "processed/bars",
+      "days_ok": 11054,
+      "days_missing": 0,
+      "sample": {
+        "2023-02-24": {
+          "present": [
+            "_SUCCESS",
+            "dollar_imbalance.parquet"
+          ],
+          "missing": []
+        },
+        "2025-01-10": {
+          "present": [
+            "_SUCCESS",
+            "dollar_imbalance.parquet"
+          ],
+          "missing": []
+        },
+        "2023-06-07": {
+          "present": [
+            "_SUCCESS",
+            "dollar_imbalance.parquet"
+          ],
+          "missing": []
+        }
+      }
+    },
+    {
+      "subdir": "processed/labels",
+      "days_ok": 11054,
+      "days_missing": 0,
+      "sample": {
+        "2023-02-24": {
+          "present": [
+            "labels.parquet"
+          ],
+          "missing": []
+        },
+        "2023-06-07": {
+          "present": [
+            "labels.parquet"
+          ],
+          "missing": []
+        },
+        "2025-01-14": {
+          "present": [
+            "labels.parquet"
+          ],
+          "missing": []
+        }
+      }
+    },
+    {
+      "subdir": "processed/weights",
+      "days_ok": 11054,
+      "days_missing": 0,
+      "sample": {
+        "2025-04-02": {
+          "present": [
+            "weights.parquet"
+          ],
+          "missing": []
+        },
+        "2025-09-11": {
+          "present": [
+            "weights.parquet"
+          ],
+          "missing": []
+        },
+        "2024-10-16": {
+          "present": [
+            "weights.parquet"
+          ],
+          "missing": []
+        }
+      }
+    },
+    {
+      "subdir": "processed/datasets/daily",
+      "days_ok": 11054,
+      "days_missing": 0,
+      "sample": {
+        "2023-02-24": {
+          "present": [
+            "dataset.parquet"
+          ],
+          "missing": []
+        },
+        "2024-10-18": {
+          "present": [
+            "dataset.parquet"
+          ],
+          "missing": []
+        },
+        "2025-01-14": {
+          "present": [
+            "dataset.parquet"
+          ],
+          "missing": []
+        }
+      }
+    }
+  ],
+  "date_range": {
+    "min_requested": "2020-01-03",
+    "max_requested": "2025-10-21",
+    "observed_total_days": 1419
+  },
+  "status": "PASS"
+}

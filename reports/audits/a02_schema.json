@@ -1,0 +1,86 @@
+{
+  "root": "D:/04_TRADING_SMALLCAPS",
+  "results": {
+    "trades": {
+      "n_files": 2001,
+      "null_viol": 0,
+      "type_viol": 0,
+      "sample": [
+        {
+          "file": "D:\\04_TRADING_SMALLCAPS\\raw\\polygon\\trades\\ZIM\\date=2023-04-04\\trades.parquet"
+        },
+        {
+          "file": "D:\\04_TRADING_SMALLCAPS\\raw\\polygon\\trades\\ZIM\\date=2023-05-22\\trades.parquet"
+        },
+        {
+          "file": "D:\\04_TRADING_SMALLCAPS\\raw\\polygon\\trades\\ZIM\\date=2023-12-15\\trades.parquet"
+        }
+      ]
+    },
+    "bars": {
+      "n_files": 2001,
+      "null_viol": 0,
+      "type_viol": 0,
+      "sample": [
+        {
+          "file": "D:\\04_TRADING_SMALLCAPS\\processed\\bars\\ZIM\\date=2023-12-15\\dollar_imbalance.parquet"
+        },
+        {
+          "file": "D:\\04_TRADING_SMALLCAPS\\processed\\bars\\ZIM\\date=2023-04-04\\dollar_imbalance.parquet"
+        },
+        {
+          "file": "D:\\04_TRADING_SMALLCAPS\\processed\\bars\\ZIM\\date=2024-06-06\\dollar_imbalance.parquet"
+        }
+      ]
+    },
+    "labels": {
+      "n_files": 2001,
+      "null_viol": 0,
+      "type_viol": 0,
+      "sample": [
+        {
+          "file": "D:\\04_TRADING_SMALLCAPS\\processed\\labels\\ZIM\\date=2023-12-15\\labels.parquet"
+        },
+        {
+          "file": "D:\\04_TRADING_SMALLCAPS\\processed\\labels\\ZIM\\date=2023-04-04\\labels.parquet"
+        },
+        {
+          "file": "D:\\04_TRADING_SMALLCAPS\\processed\\labels\\ZIM\\date=2024-06-06\\labels.parquet"
+        }
+      ]
+    },
+    "weights": {
+      "n_files": 2001,
+      "null_viol": 0,
+      "type_viol": 0,
+      "sample": [
+        {
+          "file": "D:\\04_TRADING_SMALLCAPS\\processed\\weights\\YIBO\\date=2025-01-28\\weights.parquet"
+        },
+        {
+          "file": "D:\\04_TRADING_SMALLCAPS\\processed\\weights\\YIBO\\date=2025-01-27\\weights.parquet"
+        },
+        {
+          "file": "D:\\04_TRADING_SMALLCAPS\\processed\\weights\\ZIM\\date=2023-12-15\\weights.parquet"
+        }
+      ]
+    },
+    "dataset": {
+      "n_files": 2001,
+      "null_viol": 0,
+      "type_viol": 0,
+      "sample": [
+        {
+          "file": "D:\\04_TRADING_SMALLCAPS\\processed\\datasets\\daily\\ZIM\\date=2023-12-15\\dataset.parquet"
+        },
+        {
+          "file": "D:\\04_TRADING_SMALLCAPS\\processed\\datasets\\daily\\ZIM\\date=2023-04-04\\dataset.parquet"
+        },
+        {
+          "file": "D:\\04_TRADING_SMALLCAPS\\processed\\datasets\\daily\\ZIM\\date=2024-06-06\\dataset.parquet"
+        }
+      ]
+    }
+  },
+  "status": "PASS"
+}
