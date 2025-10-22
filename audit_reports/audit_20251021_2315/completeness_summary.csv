@@ -1,0 +1,3108 @@
+ticker,downloaded,total_rows,total_files,months_count,date_range,has_corrupt_files,has_empty_files
+AACB,true,7076,19,19,2004-01-02 to 2005-07-07,false,false
+AACI,false,0,0,0,,false,false
+AAM,false,0,0,0,,false,false
+AAME,false,0,0,0,,false,false
+AAMI,false,0,0,0,,false,false
+AAOI,false,0,0,0,,false,false
+AARD,false,0,0,0,,false,false
+AAT,false,0,0,0,,false,false
+ABAT,false,0,0,0,,false,false
+ABCL,true,479766,59,59,2020-12-11 to 2025-10-21,false,false
+ABEO,false,0,0,0,,false,false
+ABL,false,0,0,0,,false,false
+ABLV,false,0,0,0,,false,false
+ABOS,false,0,0,0,,false,false
+ABP,false,0,0,0,,false,false
+ABSI,false,0,0,0,,false,false
+ABTS,false,0,0,0,,false,false
+ABUS,false,0,0,0,,false,false
+ABVC,false,0,0,0,,false,false
+ABVE,false,0,0,0,,false,false
+ACB,true,18000,14,14,2007-09-28 to 2018-12-06,false,false
+ACCL,false,0,0,0,,false,false
+ACCO,false,0,0,0,,false,false
+ACDC,false,0,0,0,,false,false
+ACEL,false,0,0,0,,false,false
+ACET,false,0,0,0,,false,false
+ACFN,false,0,0,0,,false,false
+ACHV,false,0,0,0,,false,false
+ACIC,false,0,0,0,,false,false
+ACIU,false,0,0,0,,false,false
+ACNB,true,11795,73,73,2010-12-21 to 2016-12-30,false,false
+ACNT,false,0,0,0,,false,false
+ACOG,true,18000,12,12,2024-11-12 to 2025-10-01,false,false
+ACON,false,0,0,0,,false,false
+ACR,true,46880,57,57,2021-02-17 to 2025-10-20,false,false
+ACRE,false,0,0,0,,false,false
+ACRS,false,0,0,0,,false,false
+ACRV,false,0,0,0,,false,false
+ACTG,false,0,0,0,,false,false
+ACTU,true,50000,15,15,2004-01-02 to 2005-03-08,false,false
+ACVA,true,18000,4,4,2021-03-24 to 2021-06-21,false,false
+ACXP,false,0,0,0,,false,false
+ADAM,false,0,0,0,,false,false
+ADCT,true,958710,150,150,2004-01-02 to 2025-10-21,false,false
+ADEA,false,0,0,0,,false,false
+ADGM,false,0,0,0,,false,false
+ADIL,true,18000,9,9,2018-07-27 to 2019-03-15,false,false
+ADN,false,0,0,0,,false,false
+ADNT,false,0,0,0,,false,false
+ADSE,false,0,0,0,,false,false
+ADTN,false,0,0,0,,false,false
+ADTX,false,0,0,0,,false,false
+ADUR,false,0,0,0,,false,false
+ADV,false,0,0,0,,false,false
+ADVB,false,0,0,0,,false,false
+ADVM,false,0,0,0,,false,false
+AEBI,false,0,0,0,,false,false
+AEC,false,0,0,0,,false,false
+AEHL,false,0,0,0,,false,false
+AEHR,false,0,0,0,,false,false
+AEI,false,0,0,0,,false,false
+AEMD,true,10000,9,9,2015-07-13 to 2016-03-01,false,false
+AENT,true,26343,32,32,2023-03-20 to 2025-10-21,false,false
+AERT,true,74321,66,66,2006-07-03 to 2025-10-21,false,false
+AESI,false,0,0,0,,false,false
+AEVA,false,0,0,0,,false,false
+AEXA,false,0,0,0,,false,false
+AEYE,false,0,0,0,,false,false
+AFBI,false,0,0,0,,false,false
+AFCG,false,0,0,0,,false,false
+AFJK,false,0,0,0,,false,false
+AFRI,false,0,0,0,,false,false
+AFYA,false,0,0,0,,false,false
+AGAE,false,0,0,0,,false,false
+AGEN,false,0,0,0,,false,false
+AGH,false,0,0,0,,false,false
+AGL,false,0,0,0,,false,false
+AGM,false,0,0,0,,false,false
+AGM.A,true,7428,84,84,2004-01-02 to 2010-12-31,false,false
+AGMH,false,0,0,0,,false,false
+AGRI,false,0,0,0,,false,false
+AGRO,false,0,0,0,,false,false
+AGRZ,true,2429,1,1,2025-10-01 to 2025-10-21,false,false
+AHCO,false,0,0,0,,false,false
+AHH,false,0,0,0,,false,false
+AHT,true,50000,21,21,2004-01-02 to 2005-09-13,false,false
+AIFF,false,0,0,0,,false,false
+AIFU,false,0,0,0,,false,false
+AIHS,true,189205,92,92,2018-03-16 to 2025-10-21,false,false
+AII,true,22842,29,29,2004-01-02 to 2008-02-22,false,false
+AIIO,false,0,0,0,,false,false
+AIMD,false,0,0,0,,false,false
+AIN,false,0,0,0,,false,false
+AIOT,false,0,0,0,,false,false
+AIP,false,0,0,0,,false,false
+AIRE,false,0,0,0,,false,false
+AIRG,true,20339,5,5,2016-08-12 to 2016-12-30,false,false
+AIRJ,false,0,0,0,,false,false
+AIRO,true,18000,3,3,2025-06-13 to 2025-08-15,false,false
+AIRS,false,0,0,0,,false,false
+AIRT,true,159477,262,262,2004-01-02 to 2025-10-21,false,false
+AISP,false,0,0,0,,false,false
+AIV,false,0,0,0,,false,false
+AKA,false,0,0,0,,false,false
+AKAN,false,0,0,0,,false,false
+AKBA,false,0,0,0,,false,false
+ALBT,false,0,0,0,,false,false
+ALCO,true,10000,16,16,2004-01-02 to 2005-04-05,false,false
+ALCY,false,0,0,0,,false,false
+ALDF,false,0,0,0,,false,false
+ALDX,false,0,0,0,,false,false
+ALEC,false,0,0,0,,false,false
+ALEX,false,0,0,0,,false,false
+ALF,false,0,0,0,,false,false
+ALGS,false,0,0,0,,false,false
+ALGT,false,0,0,0,,false,false
+ALIT,false,0,0,0,,false,false
+ALLO,true,10000,2,2,2018-10-11 to 2018-11-30,false,false
+ALLR,true,217008,47,47,2021-12-21 to 2025-10-21,false,false
+ALLT,false,0,0,0,,false,false
+ALM,true,29427,56,56,2004-01-02 to 2010-12-31,false,false
+ALMS,false,0,0,0,,false,false
+ALMU,false,0,0,0,,false,false
+ALNT,false,0,0,0,,false,false
+ALOT,false,0,0,0,,false,false
+ALRS,false,0,0,0,,false,false
+ALT,false,0,0,0,,false,false
+ALTG,false,0,0,0,,false,false
+ALTI,false,0,0,0,,false,false
+ALTO,false,0,0,0,,false,false
+ALTS,false,0,0,0,,false,false
+ALUR,false,0,0,0,,false,false
+ALX,false,0,0,0,,false,false
+ALXO,false,0,0,0,,false,false
+ALZN,false,0,0,0,,false,false
+AMAL,false,0,0,0,,false,false
+AMBC,false,0,0,0,,false,false
+AMBQ,true,11434,4,4,2025-07-30 to 2025-10-21,false,false
+AMC,false,0,0,0,,false,false
+AMCX,false,0,0,0,,false,false
+AMIX,false,0,0,0,,false,false
+AMLX,true,18000,15,15,2017-06-01 to 2022-04-11,false,false
+AMN,false,0,0,0,,false,false
+AMOD,false,0,0,0,,false,false
+AMPG,false,0,0,0,,false,false
+AMPH,false,0,0,0,,false,false
+AMPL,false,0,0,0,,false,false
+AMPX,false,0,0,0,,false,false
+AMPY,false,0,0,0,,false,false
+AMRK,false,0,0,0,,false,false
+AMSF,false,0,0,0,,false,false
+AMST,false,0,0,0,,false,false
+AMTB,false,0,0,0,,false,false
+AMTX,true,32294,31,31,2014-06-06 to 2016-12-30,false,false
+AMWD,false,0,0,0,,false,false
+AMWL,false,0,0,0,,false,false
+ANAB,false,0,0,0,,false,false
+ANDE,false,0,0,0,,false,false
+ANEB,true,17946,54,54,2021-05-07 to 2025-10-21,false,false
+ANGH,false,0,0,0,,false,false
+ANGI,false,0,0,0,,false,false
+ANGO,false,0,0,0,,false,false
+ANGX,false,0,0,0,,false,false
+ANIK,false,0,0,0,,false,false
+ANIX,false,0,0,0,,false,false
+ANNA,true,4164,11,11,2024-12-16 to 2025-10-21,false,false
+ANNX,false,0,0,0,,false,false
+ANPA,false,0,0,0,,false,false
+ANRO,false,0,0,0,,false,false
+ANSC,false,0,0,0,,false,false
+ANTA,false,0,0,0,,false,false
+ANTX,false,0,0,0,,false,false
+ANVS,false,0,0,0,,false,false
+ANY,true,834,14,14,2008-02-25 to 2009-03-19,false,false
+AOMR,false,0,0,0,,false,false
+AORT,false,0,0,0,,false,false
+AOSL,false,0,0,0,,false,false
+AOUT,true,141873,63,63,2020-08-25 to 2025-10-21,false,false
+AP,false,0,0,0,,false,false
+APAD,false,0,0,0,,false,false
+APEI,false,0,0,0,,false,false
+APLM,false,0,0,0,,false,false
+APLT,false,0,0,0,,false,false
+APM,false,0,0,0,,false,false
+APOG,false,0,0,0,,false,false
+APPS,false,0,0,0,,false,false
+APRE,false,0,0,0,,false,false
+APVO,false,0,0,0,,false,false
+APWC,false,0,0,0,,false,false
+APYX,false,0,0,0,,false,false
+AQB,false,0,0,0,,false,false
+AQMS,false,0,0,0,,false,false
+AQST,true,456910,88,88,2018-07-25 to 2025-10-21,false,false
+ARAI,false,0,0,0,,false,false
+ARAY,false,0,0,0,,false,false
+ARBB,false,0,0,0,,false,false
+ARBE,false,0,0,0,,false,false
+ARCB,false,0,0,0,,false,false
+ARCO,false,0,0,0,,false,false
+ARCT,true,18000,3,3,2012-03-01 to 2012-05-23,false,false
+ARDX,false,0,0,0,,false,false
+AREB,true,10000,4,4,2021-12-31 to 2022-03-16,false,false
+AREC,true,10000,17,17,2019-02-15 to 2020-06-12,false,false
+ARHS,false,0,0,0,,false,false
+ARI,false,0,0,0,,false,false
+ARKO,false,0,0,0,,false,false
+ARKR,false,0,0,0,,false,false
+ARL,true,18000,100,100,2004-01-02 to 2012-04-03,false,false
+ARLO,false,0,0,0,,false,false
+AROW,false,0,0,0,,false,false
+ARQ,true,76774,21,21,2024-02-01 to 2025-10-21,false,false
+ARQQ,true,156556,47,47,2006-02-01 to 2023-12-29,false,false
+ARR,false,0,0,0,,false,false
+ARRY,false,0,0,0,,false,false
+ARTL,false,0,0,0,,false,false
+ARTNA,false,0,0,0,,false,false
+ARTV,false,0,0,0,,false,false
+ARTW,true,10000,43,43,2004-01-05 to 2007-07-16,false,false
+ARVN,true,18000,9,9,2018-09-27 to 2019-05-15,false,false
+ASBP,false,0,0,0,,false,false
+ASC,false,0,0,0,,false,false
+ASIC,false,0,0,0,,false,false
+ASIX,false,0,0,0,,false,false
+ASLE,false,0,0,0,,false,false
+ASMB,false,0,0,0,,false,false
+ASNS,false,0,0,0,,false,false
+ASPC,false,0,0,0,,false,false
+ASPI,false,0,0,0,,false,false
+ASPN,true,18000,13,13,2014-06-13 to 2015-06-29,false,false
+ASPS,false,0,0,0,,false,false
+ASRT,false,0,0,0,,false,false
+ASRV,false,0,0,0,,false,false
+ASST,false,0,0,0,,false,false
+ASTC,true,33000,20,20,2009-05-04 to 2010-12-31,false,false
+ASTE,false,0,0,0,,false,false
+ASTH,false,0,0,0,,false,false
+ASTI,false,0,0,0,,false,false
+ASTL,false,0,0,0,,false,false
+ASUR,false,0,0,0,,false,false
+ASYS,false,0,0,0,,false,false
+ATAI,true,21756,36,36,2008-01-29 to 2010-12-31,false,false
+ATEN,false,0,0,0,,false,false
+ATER,false,0,0,0,,false,false
+ATEX,false,0,0,0,,false,false
+ATGL,false,0,0,0,,false,false
+ATHA,false,0,0,0,,false,false
+ATHR,false,0,0,0,,false,false
+ATII,false,0,0,0,,false,false
+ATLC,false,0,0,0,,false,false
+ATLN,false,0,0,0,,false,false
+ATLO,false,0,0,0,,false,false
+ATLX,false,0,0,0,,false,false
+ATMV,false,0,0,0,,false,false
+ATNI,false,0,0,0,,false,false
+ATOM,false,0,0,0,,false,false
+ATON,false,0,0,0,,false,false
+ATOS,false,0,0,0,,false,false
+ATPC,false,0,0,0,,false,false
+ATRA,false,0,0,0,,false,false
+ATRC,false,0,0,0,,false,false
+ATRO,true,10000,35,35,2004-01-02 to 2006-11-07,false,false
+ATUS,false,0,0,0,,false,false
+ATXG,false,0,0,0,,false,false
+ATXS,false,0,0,0,,false,false
+ATYR,true,10000,3,3,2024-06-05 to 2024-08-21,false,false
+AUBN,true,7867,84,84,2004-01-02 to 2010-12-31,false,false
+AUDC,true,50000,10,10,2004-01-02 to 2004-10-27,false,false
+AUID,false,0,0,0,,false,false
+AUNA,true,28805,20,20,2024-03-22 to 2025-10-20,false,false
+AUPH,false,0,0,0,,false,false
+AURA,false,0,0,0,,false,false
+AURE,false,0,0,0,,false,false
+AUUD,false,0,0,0,,false,false
+AVBC,false,0,0,0,,false,false
+AVBH,false,0,0,0,,false,false
+AVBP,false,0,0,0,,false,false
+AVD,true,933440,262,262,2004-01-02 to 2025-10-21,false,false
+AVDL,false,0,0,0,,false,false
+AVIR,false,0,0,0,,false,false
+AVNS,false,0,0,0,,false,false
+AVNW,false,0,0,0,,false,false
+AVO,true,50000,9,9,2004-01-02 to 2004-09-20,false,false
+AVR,true,15000,11,11,2004-01-02 to 2004-11-23,false,false
+AVTX,false,0,0,0,,false,false
+AVXL,false,0,0,0,,false,false
+AWRE,false,0,0,0,,false,false
+AXG,false,0,0,0,,false,false
+AXGN,false,0,0,0,,false,false
+AXIN,false,0,0,0,,false,false
+AXL,false,0,0,0,,false,false
+AXR,false,0,0,0,,false,false
+AXTI,true,187748,82,82,2004-01-02 to 2010-10-29,false,false
+AYTU,false,0,0,0,,false,false
+AZ,true,453611,116,116,2004-01-02 to 2025-10-21,false,false
+AZI,false,0,0,0,,false,false
+AZTA,true,18000,3,3,2021-12-01 to 2022-02-28,false,false
+BACC,false,0,0,0,,false,false
+BACQ,false,0,0,0,,false,false
+BAER,false,0,0,0,,false,false
+BAFN,false,0,0,0,,false,false
+BALY,false,0,0,0,,false,false
+BAND,false,0,0,0,,false,false
+BANL,false,0,0,0,,false,false
+BANX,false,0,0,0,,false,false
+BAOS,false,0,0,0,,false,false
+BARK,false,0,0,0,,false,false
+BAYA,false,0,0,0,,false,false
+BBBY,false,0,0,0,,false,false
+BBCP,false,0,0,0,,false,false
+BBDC,false,0,0,0,,false,false
+BBGI,false,0,0,0,,false,false
+BBLG,false,0,0,0,,false,false
+BBNX,false,0,0,0,,false,false
+BBOT,true,7477,3,3,2025-08-12 to 2025-10-21,false,false
+BBSI,false,0,0,0,,false,false
+BBT,false,0,0,0,,false,false
+BBW,true,962004,253,253,2004-10-28 to 2025-10-21,false,false
+BCAB,false,0,0,0,,false,false
+BCAL,false,0,0,0,,false,false
+BCAR,false,0,0,0,,false,false
+BCAX,false,0,0,0,,false,false
+BCBP,false,0,0,0,,false,false
+BCDA,false,0,0,0,,false,false
+BCG,false,0,0,0,,false,false
+BCIC,false,0,0,0,,false,false
+BCML,false,0,0,0,,false,false
+BCRX,false,0,0,0,,false,false
+BCSF,false,0,0,0,,false,false
+BCTX,false,0,0,0,,false,false
+BDMD,true,10000,5,5,2024-10-02 to 2025-02-10,false,false
+BDN,true,50000,10,10,2004-01-02 to 2004-10-27,false,false
+BDSX,false,0,0,0,,false,false
+BDTX,false,0,0,0,,false,false
+BEAG,false,0,0,0,,false,false
+BEAT,false,0,0,0,,false,false
+BEEM,false,0,0,0,,false,false
+BEEP,false,0,0,0,,false,false
+BELFA,false,0,0,0,,false,false
+BELFB,false,0,0,0,,false,false
+BENF,false,0,0,0,,false,false
+BETR,false,0,0,0,,false,false
+BFC,false,0,0,0,,false,false
+BFIN,false,0,0,0,,false,false
+BFLY,false,0,0,0,,false,false
+BFRG,false,0,0,0,,false,false
+BFRI,true,18000,3,3,2021-10-29 to 2021-12-21,false,false
+BFS,false,0,0,0,,false,false
+BFST,false,0,0,0,,false,false
+BGL,true,13246,5,5,2025-06-26 to 2025-10-21,false,false
+BGLC,false,0,0,0,,false,false
+BGM,false,0,0,0,,false,false
+BGMS,false,0,0,0,,false,false
+BGS,false,0,0,0,,false,false
+BGSF,false,0,0,0,,false,false
+BH,false,0,0,0,,false,false
+BH.A,false,0,0,0,,false,false
+BHAT,false,0,0,0,,false,false
+BHE,false,0,0,0,,false,false
+BHR,false,0,0,0,,false,false
+BHRB,false,0,0,0,,false,false
+BHST,false,0,0,0,,false,false
+BHVN,false,0,0,0,,false,false
+BIAF,false,0,0,0,,false,false
+BIOA,true,169326,71,71,2013-06-10 to 2025-10-21,false,false
+BIOX,false,0,0,0,,false,false
+BIRD,false,0,0,0,,false,false
+BIVI,false,0,0,0,,false,false
+BIYA,true,24117,8,8,2025-03-21 to 2025-10-21,false,false
+BJDX,false,0,0,0,,false,false
+BJRI,false,0,0,0,,false,false
+BKHA,false,0,0,0,,false,false
+BKKT,false,0,0,0,,false,false
+BKSY,false,0,0,0,,false,false
+BKV,false,0,0,0,,false,false
+BKYI,false,0,0,0,,false,false
+BLBD,true,127635,64,64,2015-02-25 to 2020-05-29,false,false
+BLBX,false,0,0,0,,false,false
+BLDP,false,0,0,0,,false,false
+BLFS,true,27220,34,34,2014-03-26 to 2016-12-30,false,false
+BLFY,false,0,0,0,,false,false
+BLIN,false,0,0,0,,false,false
+BLIV,false,0,0,0,,false,false
+BLMN,false,0,0,0,,false,false
+BLMZ,false,0,0,0,,false,false
+BLND,false,0,0,0,,false,false
+BLNE,false,0,0,0,,false,false
+BLNK,false,0,0,0,,false,false
+BLUW,false,0,0,0,,false,false
+BLX,false,0,0,0,,false,false
+BLZE,false,0,0,0,,false,false
+BMBL,true,5384,1,1,2021-02-11 to 2021-02-27,false,false
+BMEA,false,0,0,0,,false,false
+BMGL,false,0,0,0,,false,false
+BMHL,false,0,0,0,,false,false
+BMR,false,0,0,0,,false,false
+BMRA,false,0,0,0,,false,false
+BMRC,false,0,0,0,,false,false
+BNAI,false,0,0,0,,false,false
+BNBX,false,0,0,0,,false,false
+BNC,false,0,0,0,,false,false
+BNED,false,0,0,0,,false,false
+BNGO,false,0,0,0,,false,false
+BNKK,false,0,0,0,,false,false
+BNRG,false,0,0,0,,false,false
+BNTC,false,0,0,0,,false,false
+BNZI,true,86741,18,18,2023-12-15 to 2025-05-30,false,false
+BOC,false,0,0,0,,false,false
+BODI,false,0,0,0,,false,false
+BOF,false,0,0,0,,false,false
+BOLD,false,0,0,0,,false,false
+BOLT,false,0,0,0,,false,false
+BON,false,0,0,0,,false,false
+BOOM,true,10000,12,12,2004-01-02 to 2004-12-20,false,false
+BORR,true,15000,10,10,2019-07-31 to 2020-04-15,false,false
+BOSC,false,0,0,0,,false,false
+BOTJ,true,3914,60,60,2012-01-25 to 2016-12-30,false,false
+BOW,true,50000,8,8,2004-01-02 to 2004-08-12,false,false
+BOXL,false,0,0,0,,false,false
+BPRN,false,0,0,0,,false,false
+BRAG,false,0,0,0,,false,false
+BRCB,false,0,0,0,,false,false
+BRCC,false,0,0,0,,false,false
+BRFH,false,0,0,0,,false,false
+BRID,false,0,0,0,,false,false
+BRLS,false,0,0,0,,false,false
+BRLT,false,0,0,0,,false,false
+BRR,false,0,0,0,,false,false
+BRSP,false,0,0,0,,false,false
+BRT,false,0,0,0,,false,false
+BRTX,false,0,0,0,,false,false
+BRY,false,0,0,0,,false,false
+BSAA,false,0,0,0,,false,false
+BSBK,false,0,0,0,,false,false
+BSET,false,0,0,0,,false,false
+BSLK,false,0,0,0,,false,false
+BSRR,false,0,0,0,,false,false
+BSVN,false,0,0,0,,false,false
+BTAI,false,0,0,0,,false,false
+BTBD,false,0,0,0,,false,false
+BTBT,false,0,0,0,,false,false
+BTCS,false,0,0,0,,false,false
+BTCT,false,0,0,0,,false,false
+BTE,false,0,0,0,,false,false
+BTM,false,0,0,0,,false,false
+BTMD,false,0,0,0,,false,false
+BTOC,false,0,0,0,,false,false
+BTOG,false,0,0,0,,false,false
+BTQ,true,14185,26,26,2009-01-06 to 2025-10-21,false,false
+BTTC,true,6075,32,32,2022-07-08 to 2025-10-21,false,false
+BUUU,false,0,0,0,,false,false
+BV,true,811903,161,161,2012-02-24 to 2025-10-21,false,false
+BVFL,false,0,0,0,,false,false
+BVS,false,0,0,0,,false,false
+BW,true,50000,15,15,2004-01-02 to 2005-03-30,false,false
+BWB,false,0,0,0,,false,false
+BWEN,false,0,0,0,,false,false
+BWFG,true,11908,32,32,2014-05-15 to 2016-12-30,false,false
+BWIN,false,0,0,0,,false,false
+BWLP,false,0,0,0,,false,false
+BWMN,false,0,0,0,,false,false
+BWMX,false,0,0,0,,false,false
+BXC,true,662478,251,251,2004-12-14 to 2025-10-21,false,false
+BY,false,0,0,0,,false,false
+BYFC,false,0,0,0,,false,false
+BYND,false,0,0,0,,false,false
+BYRN,false,0,0,0,,false,false
+BYSI,true,204807,104,104,2017-03-09 to 2025-10-21,false,false
+BZAI,false,0,0,0,,false,false
+BZFD,false,0,0,0,,false,false
+BZH,false,0,0,0,,false,false
+CAAS,false,0,0,0,,false,false
+CABA,false,0,0,0,,false,false
+CABO,false,0,0,0,,false,false
+CAC,false,0,0,0,,false,false
+CADL,false,0,0,0,,false,false
+CAEP,true,4524,5,5,2025-06-26 to 2025-10-20,false,false
+CAL,false,0,0,0,,false,false
+CALC,false,0,0,0,,false,false
+CAMP,false,0,0,0,,false,false
+CAPL,false,0,0,0,,false,false
+CAPN,true,40395,44,44,2014-11-13 to 2025-10-21,false,false
+CAPR,false,0,0,0,,false,false
+CAPS,false,0,0,0,,false,false
+CAPT,false,0,0,0,,false,false
+CARE,false,0,0,0,,false,false
+CARL,true,8189,4,4,2025-07-23 to 2025-10-21,false,false
+CARS,false,0,0,0,,false,false
+CARV,true,18000,132,132,2007-07-10 to 2018-06-19,false,false
+CASH,false,0,0,0,,false,false
+CASI,true,21183,31,31,2014-06-16 to 2016-12-30,false,false
+CASS,true,18000,52,52,2004-01-02 to 2008-04-14,false,false
+CATO,false,0,0,0,,false,false
+CBAN,true,11605,84,84,2004-01-05 to 2010-12-31,false,false
+CBAT,false,0,0,0,,false,false
+CBFV,false,0,0,0,,false,false
+CBIO,false,0,0,0,,false,false
+CBK,false,0,0,0,,false,false
+CBL,true,50000,11,11,2004-01-02 to 2004-11-08,false,false
+CBLL,false,0,0,0,,false,false
+CBNA,false,0,0,0,,false,false
+CBNK,true,82298,210,210,2006-07-20 to 2025-10-21,false,false
+CBRL,false,0,0,0,,false,false
+CBUS,false,0,0,0,,false,false
+CC,false,0,0,0,,false,false
+CCAP,false,0,0,0,,false,false
+CCB,false,0,0,0,,false,false
+CCBG,false,0,0,0,,false,false
+CCCC,false,0,0,0,,false,false
+CCCX,false,0,0,0,,false,false
+CCD,false,0,0,0,,false,false
+CCEC,false,0,0,0,,false,false
+CCG,false,0,0,0,,false,false
+CCHH,false,0,0,0,,false,false
+CCII,false,0,0,0,,false,false
+CCIX,false,0,0,0,,false,false
+CCLD,true,67836,34,34,2023-01-10 to 2025-10-21,false,false
+CCNE,false,0,0,0,,false,false
+CCO,false,0,0,0,,false,false
+CCRD,false,0,0,0,,false,false
+CCRN,false,0,0,0,,false,false
+CCS,false,0,0,0,,false,false
+CCSI,false,0,0,0,,false,false
+CCTG,false,0,0,0,,false,false
+CDIO,true,130281,37,37,2022-10-26 to 2025-10-21,false,false
+CDLX,false,0,0,0,,false,false
+CDNA,true,18000,26,26,2014-07-17 to 2016-08-17,false,false
+CDRE,false,0,0,0,,false,false
+CDRO,false,0,0,0,,false,false
+CDT,true,30832,7,7,2004-01-02 to 2004-07-15,false,false
+CDTG,false,0,0,0,,false,false
+CDXS,false,0,0,0,,false,false
+CDZI,false,0,0,0,,false,false
+CECO,false,0,0,0,,false,false
+CELU,false,0,0,0,,false,false
+CELZ,false,0,0,0,,false,false
+CENN,false,0,0,0,,false,false
+CENT,false,0,0,0,,false,false
+CENTA,false,0,0,0,,false,false
+CEP,false,0,0,0,,false,false
+CEPF,false,0,0,0,,false,false
+CEPO,false,0,0,0,,false,false
+CEPT,false,0,0,0,,false,false
+CEPU,false,0,0,0,,false,false
+CERO,false,0,0,0,,false,false
+CERS,true,50000,22,22,2004-01-02 to 2005-10-18,false,false
+CERT,false,0,0,0,,false,false
+CETX,false,0,0,0,,false,false
+CETY,false,0,0,0,,false,false
+CEVA,true,832259,262,262,2004-01-02 to 2025-10-21,false,false
+CFBK,false,0,0,0,,false,false
+CFFI,false,0,0,0,,false,false
+CFFN,false,0,0,0,,false,false
+CFND,false,0,0,0,,false,false
+CFSB,false,0,0,0,,false,false
+CGBD,false,0,0,0,,false,false
+CGC,true,18000,10,10,2004-01-02 to 2004-10-25,false,false
+CGCT,false,0,0,0,,false,false
+CGEM,false,0,0,0,,false,false
+CGEN,false,0,0,0,,false,false
+CGNT,false,0,0,0,,false,false
+CGO,false,0,0,0,,false,false
+CGTL,true,30925,12,12,2024-11-26 to 2025-10-21,false,false
+CGTX,true,149142,49,49,2021-10-08 to 2025-10-21,false,false
+CHAC,false,0,0,0,,false,false
+CHAI,true,2640,7,7,2023-12-13 to 2025-10-21,false,false
+CHAR,false,0,0,0,,false,false
+CHCI,false,0,0,0,,false,false
+CHCO,false,0,0,0,,false,false
+CHCT,true,358873,126,126,2015-05-21 to 2025-10-21,false,false
+CHEK,false,0,0,0,,false,false
+CHGG,false,0,0,0,,false,false
+CHI,false,0,0,0,,false,false
+CHMG,false,0,0,0,,false,false
+CHMI,false,0,0,0,,false,false
+CHNR,true,50000,38,38,2004-11-22 to 2007-12-04,false,false
+CHPG,true,182,5,5,2025-06-20 to 2025-10-16,false,false
+CHPT,false,0,0,0,,false,false
+CHR,false,0,0,0,,false,false
+CHRS,false,0,0,0,,false,false
+CHSN,false,0,0,0,,false,false
+CHW,false,0,0,0,,false,false
+CHY,true,50000,19,19,2004-01-02 to 2005-07-18,false,false
+CIA,false,0,0,0,,false,false
+CIGL,false,0,0,0,,false,false
+CIIT,false,0,0,0,,false,false
+CIM,false,0,0,0,,false,false
+CING,false,0,0,0,,false,false
+CINT,false,0,0,0,,false,false
+CIO,false,0,0,0,,false,false
+CION,false,0,0,0,,false,false
+CISO,false,0,0,0,,false,false
+CISS,false,0,0,0,,false,false
+CIVB,false,0,0,0,,false,false
+CJET,false,0,0,0,,false,false
+CJMB,false,0,0,0,,false,false
+CLAR,false,0,0,0,,false,false
+CLB,false,0,0,0,,false,false
+CLBK,false,0,0,0,,false,false
+CLCO,true,90927,32,32,2023-03-17 to 2025-10-21,false,false
+CLDT,false,0,0,0,,false,false
+CLDX,false,0,0,0,,false,false
+CLFD,false,0,0,0,,false,false
+CLGN,false,0,0,0,,false,false
+CLIK,false,0,0,0,,false,false
+CLIR,false,0,0,0,,false,false
+CLMB,false,0,0,0,,false,false
+CLMT,false,0,0,0,,false,false
+CLNE,false,0,0,0,,false,false
+CLNN,false,0,0,0,,false,false
+CLOV,false,0,0,0,,false,false
+CLPR,false,0,0,0,,false,false
+CLPS,false,0,0,0,,false,false
+CLPT,false,0,0,0,,false,false
+CLRB,false,0,0,0,,false,false
+CLRO,false,0,0,0,,false,false
+CLSD,false,0,0,0,,false,false
+CLST,false,0,0,0,,false,false
+CLW,false,0,0,0,,false,false
+CLWT,false,0,0,0,,false,false
+CLYM,false,0,0,0,,false,false
+CMBM,false,0,0,0,,false,false
+CMCO,true,50000,21,21,2004-01-02 to 2005-09-20,false,false
+CMCT,false,0,0,0,,false,false
+CMDB,false,0,0,0,,false,false
+CMND,false,0,0,0,,false,false
+CMP,true,50000,17,17,2004-01-02 to 2005-05-04,false,false
+CMPR,false,0,0,0,,false,false
+CMPX,true,227179,74,74,2004-01-02 to 2025-10-21,false,false
+CMRC,false,0,0,0,,false,false
+CMRE,true,8954,2,2,2010-11-04 to 2010-12-31,false,false
+CMTG,false,0,0,0,,false,false
+CMTL,false,0,0,0,,false,false
+CNCK,false,0,0,0,,false,false
+CNDT,false,0,0,0,,false,false
+CNET,false,0,0,0,,false,false
+CNEY,false,0,0,0,,false,false
+CNMD,false,0,0,0,,false,false
+CNNE,false,0,0,0,,false,false
+CNOB,false,0,0,0,,false,false
+CNSP,false,0,0,0,,false,false
+CNTB,false,0,0,0,,false,false
+CNTX,false,0,0,0,,false,false
+CNTY,true,50000,29,29,2004-01-02 to 2006-05-03,false,false
+CNVS,false,0,0,0,,false,false
+CNXN,false,0,0,0,,false,false
+COCH,false,0,0,0,,false,false
+COCP,false,0,0,0,,false,false
+CODA,false,0,0,0,,false,false
+CODI,false,0,0,0,,false,false
+CODX,false,0,0,0,,false,false
+COEP,false,0,0,0,,false,false
+COFS,false,0,0,0,,false,false
+COHU,false,0,0,0,,false,false
+COLA,false,0,0,0,,false,false
+COLL,true,2613,14,14,2004-01-02 to 2005-02-17,false,false
+COOK,false,0,0,0,,false,false
+COOT,false,0,0,0,,false,false
+COPL,false,0,0,0,,false,false
+COSM,false,0,0,0,,false,false
+COSO,false,0,0,0,,false,false
+COUR,false,0,0,0,,false,false
+COYA,true,44499,35,35,2022-12-29 to 2025-10-21,false,false
+CPBI,false,0,0,0,,false,false
+CPF,false,0,0,0,,false,false
+CPHC,false,0,0,0,,false,false
+CPIX,false,0,0,0,,false,false
+CPOP,false,0,0,0,,false,false
+CPS,true,50000,9,9,2004-01-02 to 2004-09-22,false,false
+CPSH,false,0,0,0,,false,false
+CPSS,false,0,0,0,,false,false
+CPZ,true,10000,9,9,2019-11-26 to 2020-07-20,false,false
+CRAI,true,546235,262,262,2004-01-02 to 2025-10-21,false,false
+CRAQ,false,0,0,0,,false,false
+CRBP,false,0,0,0,,false,false
+CRBU,true,344840,52,52,2021-07-23 to 2025-10-21,false,false
+CRCT,false,0,0,0,,false,false
+CRD.A,false,0,0,0,,false,false
+CRD.B,true,50000,40,40,2004-01-02 to 2007-04-13,false,false
+CRDF,false,0,0,0,,false,false
+CRDL,false,0,0,0,,false,false
+CRE,false,0,0,0,,false,false
+CREG,false,0,0,0,,false,false
+CREV,false,0,0,0,,false,false
+CREX,false,0,0,0,,false,false
+CRGO,false,0,0,0,,false,false
+CRI,false,0,0,0,,false,false
+CRIS,false,0,0,0,,false,false
+CRMD,false,0,0,0,,false,false
+CRMT,true,50000,24,24,2004-01-02 to 2005-12-13,false,false
+CRNC,false,0,0,0,,false,false
+CRNT,false,0,0,0,,false,false
+CRON,false,0,0,0,,false,false
+CRSR,false,0,0,0,,false,false
+CRT,false,0,0,0,,false,false
+CRVO,false,0,0,0,,false,false
+CRVS,false,0,0,0,,false,false
+CRWS,true,8928,46,46,2007-03-19 to 2010-12-31,false,false
+CSAI,true,18000,5,5,2025-01-30 to 2025-05-07,false,false
+CSBR,false,0,0,0,,false,false
+CSGS,false,0,0,0,,false,false
+CSIQ,false,0,0,0,,false,false
+CSPI,true,24455,82,82,2004-01-02 to 2010-12-31,false,false
+CSR,false,0,0,0,,false,false
+CSTE,true,18000,13,13,2012-03-22 to 2013-03-25,false,false
+CSTL,false,0,0,0,,false,false
+CSV,false,0,0,0,,false,false
+CSWC,false,0,0,0,,false,false
+CTBI,false,0,0,0,,false,false
+CTEV,false,0,0,0,,false,false
+CTKB,false,0,0,0,,false,false
+CTLP,false,0,0,0,,false,false
+CTMX,true,629449,121,121,2015-10-08 to 2025-10-21,false,false
+CTNM,false,0,0,0,,false,false
+CTNT,false,0,0,0,,false,false
+CTO,true,42701,72,72,2011-01-03 to 2016-12-30,false,false
+CTOR,false,0,0,0,,false,false
+CTOS,false,0,0,0,,false,false
+CTRI,false,0,0,0,,false,false
+CTRM,false,0,0,0,,false,false
+CTRN,true,883948,246,246,2005-05-18 to 2025-10-21,false,false
+CTS,false,0,0,0,,false,false
+CTSO,false,0,0,0,,false,false
+CTW,true,17212,23,23,2017-01-03 to 2025-10-20,false,false
+CTXR,false,0,0,0,,false,false
+CUB,false,0,0,0,,false,false
+CUE,false,0,0,0,,false,false
+CULP,false,0,0,0,,false,false
+CUPR,false,0,0,0,,false,false
+CURI,false,0,0,0,,false,false
+CURR,false,0,0,0,,false,false
+CURV,false,0,0,0,,false,false
+CURX,false,0,0,0,,false,false
+CV,false,0,0,0,,false,false
+CVAC,false,0,0,0,,false,false
+CVEO,false,0,0,0,,false,false
+CVGI,false,0,0,0,,false,false
+CVGW,true,50000,63,63,2004-01-02 to 2009-03-10,false,false
+CVKD,false,0,0,0,,false,false
+CVLG,true,18000,7,7,2020-07-06 to 2021-01-06,false,false
+CVRX,false,0,0,0,,false,false
+CVV,false,0,0,0,,false,false
+CWBC,false,0,0,0,,false,false
+CWCO,false,0,0,0,,false,false
+CWD,false,0,0,0,,false,false
+CWH,false,0,0,0,,false,false
+CXAI,true,15000,3,3,2023-03-15 to 2023-05-05,false,false
+CXDO,false,0,0,0,,false,false
+CXM,false,0,0,0,,false,false
+CXW,false,0,0,0,,false,false
+CYCN,false,0,0,0,,false,false
+CYCU,false,0,0,0,,false,false
+CYD,true,718621,262,262,2004-01-02 to 2025-10-21,false,false
+CYH,false,0,0,0,,false,false
+CYN,true,50000,10,10,2004-01-02 to 2004-10-19,false,false
+CYRX,false,0,0,0,,false,false
+CZFS,false,0,0,0,,false,false
+CZNC,false,0,0,0,,false,false
+CZWI,false,0,0,0,,false,false
+DAAQ,false,0,0,0,,false,false
+DAC,false,0,0,0,,false,false
+DAIC,false,0,0,0,,false,false
+DAIO,false,0,0,0,,false,false
+DAKT,false,0,0,0,,false,false
+DARE,false,0,0,0,,false,false
+DAWN,false,0,0,0,,false,false
+DBGI,true,215420,54,54,2021-05-14 to 2025-10-21,false,false
+DBI,false,0,0,0,,false,false
+DBVT,false,0,0,0,,false,false
+DCBO,false,0,0,0,,false,false
+DCGO,false,0,0,0,,false,false
+DCO,false,0,0,0,,false,false
+DCOM,false,0,0,0,,false,false
+DCTH,false,0,0,0,,false,false
+DDD,false,0,0,0,,false,false
+DEA,false,0,0,0,,false,false
+DEC,false,0,0,0,,false,false
+DEFT,false,0,0,0,,false,false
+DENN,false,0,0,0,,false,false
+DERM,false,0,0,0,,false,false
+DEVS,false,0,0,0,,false,false
+DFDV,false,0,0,0,,false,false
+DFIN,false,0,0,0,,false,false
+DFLI,false,0,0,0,,false,false
+DFSC,true,7614,5,5,2025-06-30 to 2025-10-21,false,false
+DGICA,false,0,0,0,,false,false
+DGICB,false,0,0,0,,false,false
+DGII,true,50000,13,13,2004-01-02 to 2005-01-07,false,false
+DGLY,false,0,0,0,,false,false
+DGXX,false,0,0,0,,false,false
+DH,false,0,0,0,,false,false
+DHAI,false,0,0,0,,false,false
+DHIL,false,0,0,0,,false,false
+DHT,true,1490169,241,241,2005-10-13 to 2025-10-21,false,false
+DHX,false,0,0,0,,false,false
+DIBS,false,0,0,0,,false,false
+DIN,false,0,0,0,,false,false
+DJCO,true,2413,84,84,2004-01-06 to 2010-12-31,false,false
+DKI,false,0,0,0,,false,false
+DLHC,false,0,0,0,,false,false
+DLNG,true,10000,6,6,2013-11-13 to 2014-04-11,false,false
+DLPN,true,18000,31,31,2017-12-21 to 2020-06-10,false,false
+DLTH,false,0,0,0,,false,false
+DLX,false,0,0,0,,false,false
+DLXY,false,0,0,0,,false,false
+DMAA,false,0,0,0,,false,false
+DMAC,false,0,0,0,,false,false
+DMLP,false,0,0,0,,false,false
+DMRC,true,10000,4,4,2004-01-02 to 2004-04-01,false,false
+DNA,true,1007563,113,113,2004-01-02 to 2025-10-21,false,false
+DNOW,false,0,0,0,,false,false
+DNTH,true,81093,26,26,2023-09-12 to 2025-10-21,false,false
+DNUT,false,0,0,0,,false,false
+DOGZ,false,0,0,0,,false,false
+DOLE,false,0,0,0,,false,false
+DOMH,false,0,0,0,,false,false
+DOMO,false,0,0,0,,false,false
+DOUG,false,0,0,0,,false,false
+DPRO,false,0,0,0,,false,false
+DRCT,false,0,0,0,,false,false
+DRDB,false,0,0,0,,false,false
+DRH,true,1809329,246,246,2005-05-26 to 2025-10-21,false,false
+DRIO,true,217029,116,116,2016-03-04 to 2025-10-21,false,false
+DRMA,false,0,0,0,,false,false
+DRTS,false,0,0,0,,false,false
+DRUG,false,0,0,0,,false,false
+DSGN,false,0,0,0,,false,false
+DSGR,false,0,0,0,,false,false
+DSP,false,0,0,0,,false,false
+DSWL,true,10000,20,20,2004-01-02 to 2005-08-01,false,false
+DSX,false,0,0,0,,false,false
+DSY,false,0,0,0,,false,false
+DTCK,false,0,0,0,,false,false
+DTI,false,0,0,0,,false,false
+DTIL,false,0,0,0,,false,false
+DTSQ,false,0,0,0,,false,false
+DTSS,false,0,0,0,,false,false
+DTST,false,0,0,0,,false,false
+DUO,true,226782,72,72,2019-11-01 to 2025-10-21,false,false
+DUOT,false,0,0,0,,false,false
+DV,false,0,0,0,,false,false
+DVAX,true,18000,23,23,2004-02-19 to 2005-12-19,false,false
+DVLT,false,0,0,0,,false,false
+DWSN,false,0,0,0,,false,false
+DWTX,false,0,0,0,,false,false
+DX,false,0,0,0,,false,false
+DXLG,false,0,0,0,,false,false
+DXPE,false,0,0,0,,false,false
+DXR,false,0,0,0,,false,false
+DXST,false,0,0,0,,false,false
+DXYZ,false,0,0,0,,false,false
+DYAI,false,0,0,0,,false,false
+DYCQ,false,0,0,0,,false,false
+EAF,false,0,0,0,,false,false
+EARN,false,0,0,0,,false,false
+EB,false,0,0,0,,false,false
+EBF,false,0,0,0,,false,false
+EBMT,false,0,0,0,,false,false
+EBON,true,269362,65,65,2020-06-26 to 2025-10-21,false,false
+EBS,false,0,0,0,,false,false
+ECBK,false,0,0,0,,false,false
+ECDA,false,0,0,0,,false,false
+ECO,false,0,0,0,,false,false
+ECOR,false,0,0,0,,false,false
+ECPG,false,0,0,0,,false,false
+ECVT,false,0,0,0,,false,false
+ECX,false,0,0,0,,false,false
+EDBL,false,0,0,0,,false,false
+EDHL,false,0,0,0,,false,false
+EDIT,false,0,0,0,,false,false
+EDRY,false,0,0,0,,false,false
+EDSA,false,0,0,0,,false,false
+EDTK,false,0,0,0,,false,false
+EDUC,false,0,0,0,,false,false
+EE,true,50000,13,13,2004-01-02 to 2005-01-06,false,false
+EEIQ,false,0,0,0,,false,false
+EEX,true,18000,6,6,2017-04-28 to 2017-09-14,false,false
+EFC,false,0,0,0,,false,false
+EFOI,false,0,0,0,,false,false
+EFSC,false,0,0,0,,false,false
+EFSI,false,0,0,0,,false,false
+EFXT,false,0,0,0,,false,false
+EGAN,false,0,0,0,,false,false
+EGBN,false,0,0,0,,false,false
+EGHA,false,0,0,0,,false,false
+EGHT,false,0,0,0,,false,false
+EGY,false,0,0,0,,false,false
+EHAB,false,0,0,0,,false,false
+EHGO,false,0,0,0,,false,false
+EHLD,false,0,0,0,,false,false
+EHTH,true,15000,6,6,2006-10-13 to 2007-03-07,false,false
+EIG,false,0,0,0,,false,false
+EJH,false,0,0,0,,false,false
+EKSO,false,0,0,0,,false,false
+ELAB,false,0,0,0,,false,false
+ELBM,false,0,0,0,,false,false
+ELDN,false,0,0,0,,false,false
+ELME,false,0,0,0,,false,false
+ELOG,false,0,0,0,,false,false
+ELPW,false,0,0,0,,false,false
+ELSE,true,20626,84,84,2004-01-05 to 2010-12-31,false,false
+ELTK,false,0,0,0,,false,false
+ELTX,false,0,0,0,,false,false
+ELUT,false,0,0,0,,false,false
+ELVA,false,0,0,0,,false,false
+ELVN,false,0,0,0,,false,false
+EMBC,true,228738,43,43,2022-04-01 to 2025-10-21,false,false
+EML,true,32691,84,84,2004-01-02 to 2010-12-31,false,false
+EMPD,false,0,0,0,,false,false
+ENGN,false,0,0,0,,false,false
+ENGS,false,0,0,0,,false,false
+ENLV,false,0,0,0,,false,false
+ENOV,false,0,0,0,,false,false
+ENR,true,1796512,262,262,2004-01-02 to 2025-10-21,false,false
+ENSC,false,0,0,0,,false,false
+ENTA,false,0,0,0,,false,false
+ENTO,false,0,0,0,,false,false
+ENTX,false,0,0,0,,false,false
+ENVB,false,0,0,0,,false,false
+EOLS,false,0,0,0,,false,false
+EPC,false,0,0,0,,false,false
+EPOW,false,0,0,0,,false,false
+EPRX,false,0,0,0,,false,false
+EPSM,false,0,0,0,,false,false
+EPSN,false,0,0,0,,false,false
+EPWK,false,0,0,0,,false,false
+EQ,false,0,0,0,,false,false
+EQBK,false,0,0,0,,false,false
+EQS,false,0,0,0,,false,false
+EQV,false,0,0,0,,false,false
+ERAS,false,0,0,0,,false,false
+ERII,false,0,0,0,,false,false
+ERNA,false,0,0,0,,false,false
+ESCA,false,0,0,0,,false,false
+ESEA,false,0,0,0,,false,false
+ESGL,true,18000,54,54,2016-11-01 to 2024-09-13,false,false
+ESLA,false,0,0,0,,false,false
+ESOA,false,0,0,0,,false,false
+ESPR,false,0,0,0,,false,false
+ESQ,false,0,0,0,,false,false
+ESRT,false,0,0,0,,false,false
+ESTA,true,15000,12,12,2018-07-19 to 2019-06-10,false,false
+ETD,false,0,0,0,,false,false
+ETHM,false,0,0,0,,false,false
+ETHZ,false,0,0,0,,false,false
+ETON,false,0,0,0,,false,false
+ETS,false,0,0,0,,false,false
+EU,false,0,0,0,,false,false
+EUDA,false,0,0,0,,false,false
+EURK,false,0,0,0,,false,false
+EVAC,true,12430,24,24,2012-05-11 to 2025-10-21,false,false
+EVC,false,0,0,0,,false,false
+EVCM,false,0,0,0,,false,false
+EVER,true,765521,151,151,2012-05-03 to 2025-10-21,false,false
+EVEX,false,0,0,0,,false,false
+EVGN,false,0,0,0,,false,false
+EVGO,false,0,0,0,,false,false
+EVH,false,0,0,0,,false,false
+EVLV,false,0,0,0,,false,false
+EVOK,true,253853,146,146,2013-09-25 to 2025-10-21,false,false
+EVTC,false,0,0,0,,false,false
+EVTL,false,0,0,0,,false,false
+EVTV,false,0,0,0,,false,false
+EWCZ,false,0,0,0,,false,false
+EWTX,false,0,0,0,,false,false
+EXFY,false,0,0,0,,false,false
+EXOZ,false,0,0,0,,false,false
+EXPI,false,0,0,0,,false,false
+EYPT,false,0,0,0,,false,false
+EZGO,false,0,0,0,,false,false
+EZPW,false,0,0,0,,false,false
+FACT,false,0,0,0,,false,false
+FAMI,true,379894,93,93,2018-02-16 to 2025-10-21,false,false
+FARM,false,0,0,0,,false,false
+FAT,false,0,0,0,,false,false
+FATBB,true,9571,51,51,2021-08-24 to 2025-10-21,false,false
+FATE,false,0,0,0,,false,false
+FATN,true,10000,6,6,2025-04-08 to 2025-09-19,false,false
+FBGL,true,10000,2,2,2025-02-06 to 2025-03-27,false,false
+FBIO,false,0,0,0,,false,false
+FBIZ,false,0,0,0,,false,false
+FBLA,false,0,0,0,,false,false
+FBLG,false,0,0,0,,false,false
+FBNC,false,0,0,0,,false,false
+FBRT,false,0,0,0,,false,false
+FBRX,false,0,0,0,,false,false
+FBYD,false,0,0,0,,false,false
+FC,true,378228,262,262,2004-01-02 to 2025-10-21,false,false
+FCAP,true,5595,155,155,2004-01-02 to 2016-12-30,false,false
+FCBC,false,0,0,0,,false,false
+FCCO,false,0,0,0,,false,false
+FCEL,false,0,0,0,,false,false
+FCF,false,0,0,0,,false,false
+FCHL,false,0,0,0,,false,false
+FCUV,false,0,0,0,,false,false
+FDBC,false,0,0,0,,false,false
+FDMT,false,0,0,0,,false,false
+FDP,false,0,0,0,,false,false
+FDSB,false,0,0,0,,false,false
+FDUS,false,0,0,0,,false,false
+FEAM,false,0,0,0,,false,false
+FEBO,true,18000,22,22,2023-11-30 to 2025-08-28,false,false
+FEIM,false,0,0,0,,false,false
+FEMY,false,0,0,0,,false,false
+FENC,false,0,0,0,,false,false
+FERA,true,587,7,7,2025-04-21 to 2025-10-17,false,false
+FET,false,0,0,0,,false,false
+FF,false,0,0,0,,false,false
+FFAI,false,0,0,0,,false,false
+FFIC,true,743602,262,262,2004-01-02 to 2025-10-21,false,false
+FFWM,false,0,0,0,,false,false
+FGBI,false,0,0,0,,false,false
+FGEN,false,0,0,0,,false,false
+FGI,false,0,0,0,,false,false
+FGL,false,0,0,0,,false,false
+FGMC,false,0,0,0,,false,false
+FGNX,false,0,0,0,,false,false
+FHTX,false,0,0,0,,false,false
+FIEE,false,0,0,0,,false,false
+FIGS,false,0,0,0,,false,false
+FIHL,false,0,0,0,,false,false
+FINW,false,0,0,0,,false,false
+FIP,false,0,0,0,,false,false
+FISI,false,0,0,0,,false,false
+FIVN,false,0,0,0,,false,false
+FKWL,false,0,0,0,,false,false
+FLD,false,0,0,0,,false,false
+FLGC,false,0,0,0,,false,false
+FLGT,false,0,0,0,,false,false
+FLL,true,10000,42,42,2005-07-28 to 2008-12-11,false,false
+FLNG,false,0,0,0,,false,false
+FLNT,false,0,0,0,,false,false
+FLOC,false,0,0,0,,false,false
+FLUX,false,0,0,0,,false,false
+FLWS,true,567288,137,137,2004-01-02 to 2015-05-29,false,false
+FLXS,true,17394,84,84,2004-01-02 to 2010-12-31,false,false
+FLYE,true,57799,17,17,2024-06-06 to 2025-10-21,false,false
+FLYW,false,0,0,0,,false,false
+FMAO,false,0,0,0,,false,false
+FMBH,false,0,0,0,,false,false
+FMFC,false,0,0,0,,false,false
+FMNB,false,0,0,0,,false,false
+FMST,false,0,0,0,,false,false
+FNGR,false,0,0,0,,false,false
+FNKO,false,0,0,0,,false,false
+FNLC,false,0,0,0,,false,false
+FNWB,false,0,0,0,,false,false
+FNWD,false,0,0,0,,false,false
+FOA,false,0,0,0,,false,false
+FOFO,false,0,0,0,,false,false
+FONR,false,0,0,0,,false,false
+FOR,false,0,0,0,,false,false
+FORA,false,0,0,0,,false,false
+FORD,true,358248,262,262,2004-01-02 to 2025-10-21,false,false
+FORR,false,0,0,0,,false,false
+FOSL,false,0,0,0,,false,false
+FOXF,false,0,0,0,,false,false
+FOXX,false,0,0,0,,false,false
+FPAY,false,0,0,0,,false,false
+FPH,false,0,0,0,,false,false
+FPI,false,0,0,0,,false,false
+FRAF,false,0,0,0,,false,false
+FRBA,false,0,0,0,,false,false
+FRD,false,0,0,0,,false,false
+FRGE,false,0,0,0,,false,false
+FRGT,true,156220,42,42,2022-05-27 to 2025-10-21,false,false
+FRPH,false,0,0,0,,false,false
+FRST,false,0,0,0,,false,false
+FSBC,true,1345,31,31,2004-01-05 to 2016-12-30,false,false
+FSBW,false,0,0,0,,false,false
+FSCO,false,0,0,0,,false,false
+FSEA,false,0,0,0,,false,false
+FSFG,true,2062,27,27,2008-10-07 to 2010-12-30,false,false
+FSHP,false,0,0,0,,false,false
+FSLY,false,0,0,0,,false,false
+FSTR,false,0,0,0,,false,false
+FSUN,false,0,0,0,,false,false
+FTCI,true,311088,55,55,2021-04-28 to 2025-10-21,false,false
+FTEK,false,0,0,0,,false,false
+FTEL,false,0,0,0,,false,false
+FTFT,false,0,0,0,,false,false
+FTHM,false,0,0,0,,false,false
+FTK,false,0,0,0,,false,false
+FTLF,false,0,0,0,,false,false
+FTRE,false,0,0,0,,false,false
+FTRK,false,0,0,0,,false,false
+FUBO,false,0,0,0,,false,false
+FUFU,false,0,0,0,,false,false
+FULC,false,0,0,0,,false,false
+FUNC,true,88376,262,262,2004-01-02 to 2025-10-21,false,false
+FUND,false,0,0,0,,false,false
+FUSB,false,0,0,0,,false,false
+FVCB,false,0,0,0,,false,false
+FVR,false,0,0,0,,false,false
+FVRR,false,0,0,0,,false,false
+FWRD,true,355993,63,63,2004-01-02 to 2009-03-31,false,false
+FWRG,false,0,0,0,,false,false
+FXNC,false,0,0,0,,false,false
+GABC,false,0,0,0,,false,false
+GAIA,false,0,0,0,,false,false
+GAIN,false,0,0,0,,false,false
+GALT,false,0,0,0,,false,false
+GAMB,false,0,0,0,,false,false
+GAME,false,0,0,0,,false,false
+GANX,false,0,0,0,,false,false
+GASS,false,0,0,0,,false,false
+GAUZ,false,0,0,0,,false,false
+GBFH,false,0,0,0,,false,false
+GBIO,true,247041,65,65,2020-06-12 to 2025-10-21,false,false
+GBLI,false,0,0,0,,false,false
+GBX,false,0,0,0,,false,false
+GCBC,true,8590,156,156,2004-01-02 to 2016-12-30,false,false
+GCI,false,0,0,0,,false,false
+GCL,false,0,0,0,,false,false
+GCMG,false,0,0,0,,false,false
+GCO,true,50000,10,10,2004-01-02 to 2004-10-08,false,false
+GCT,false,0,0,0,,false,false
+GCTK,false,0,0,0,,false,false
+GCTS,false,0,0,0,,false,false
+GDC,false,0,0,0,,false,false
+GDEN,false,0,0,0,,false,false
+GDEV,true,15629,39,39,2021-08-27 to 2025-10-21,false,false
+GDHG,false,0,0,0,,false,false
+GDOT,true,19989,6,6,2010-07-22 to 2010-12-31,false,false
+GDRX,true,18000,3,3,2020-09-23 to 2020-11-19,false,false
+GDTC,false,0,0,0,,false,false
+GDYN,false,0,0,0,,false,false
+GECC,true,1432,2,2,2016-11-04 to 2016-12-30,false,false
+GEG,false,0,0,0,,false,false
+GEL,false,0,0,0,,false,false
+GELS,false,0,0,0,,false,false
+GENK,false,0,0,0,,false,false
+GEOS,false,0,0,0,,false,false
+GERN,false,0,0,0,,false,false
+GES,false,0,0,0,,false,false
+GETY,false,0,0,0,,false,false
+GEVO,false,0,0,0,,false,false
+GFAI,false,0,0,0,,false,false
+GFR,false,0,0,0,,false,false
+GGR,false,0,0,0,,false,false
+GHLD,false,0,0,0,,false,false
+GHM,false,0,0,0,,false,false
+GHRS,false,0,0,0,,false,false
+GIBO,false,0,0,0,,false,false
+GIC,false,0,0,0,,false,false
+GIFI,false,0,0,0,,false,false
+GIFT,false,0,0,0,,false,false
+GIG,false,0,0,0,,false,false
+GIGM,false,0,0,0,,false,false
+GIII,false,0,0,0,,false,false
+GILT,false,0,0,0,,false,false
+GIPR,false,0,0,0,,false,false
+GITS,false,0,0,0,,false,false
+GLAD,false,0,0,0,,false,false
+GLBS,false,0,0,0,,false,false
+GLBZ,false,0,0,0,,false,false
+GLDD,true,1065692,227,227,2006-12-27 to 2025-10-21,false,false
+GLE,true,21967,35,35,2005-02-23 to 2007-12-04,false,false
+GLIBA,true,18000,4,4,2018-03-12 to 2018-06-13,false,false
+GLIBK,false,0,0,0,,false,false
+GLMD,false,0,0,0,,false,false
+GLP,false,0,0,0,,false,false
+GLRE,true,50000,18,18,2007-05-24 to 2008-10-23,false,false
+GLSI,false,0,0,0,,false,false
+GLTO,false,0,0,0,,false,false
+GLUE,false,0,0,0,,false,false
+GLXG,false,0,0,0,,false,false
+GMGI,false,0,0,0,,false,false
+GMHS,false,0,0,0,,false,false
+GMM,false,0,0,0,,false,false
+GMRE,true,18353,7,7,2016-06-29 to 2016-12-30,false,false
+GNE,false,0,0,0,,false,false
+GNK,true,9956,2,2,2007-04-11 to 2007-05-31,false,false
+GNL,false,0,0,0,,false,false
+GNLN,false,0,0,0,,false,false
+GNLX,true,15000,9,9,2023-01-26 to 2023-09-18,false,false
+GNPX,false,0,0,0,,false,false
+GNSS,false,0,0,0,,false,false
+GO,false,0,0,0,,false,false
+GOCO,false,0,0,0,,false,false
+GOGO,false,0,0,0,,false,false
+GOOD,true,649268,258,258,2004-01-02 to 2025-06-30,false,false
+GOOS,false,0,0,0,,false,false
+GORV,false,0,0,0,,false,false
+GOSS,false,0,0,0,,false,false
+GOVX,false,0,0,0,,false,false
+GP,false,0,0,0,,false,false
+GPAT,false,0,0,0,,false,false
+GPMT,false,0,0,0,,false,false
+GPRE,false,0,0,0,,false,false
+GPRK,false,0,0,0,,false,false
+GPRO,false,0,0,0,,false,false
+GRAN,false,0,0,0,,false,false
+GRC,false,0,0,0,,false,false
+GRCE,false,0,0,0,,false,false
+GRDN,false,0,0,0,,false,false
+GREE,false,0,0,0,,false,false
+GRI,false,0,0,0,,false,false
+GRNQ,false,0,0,0,,false,false
+GRNT,false,0,0,0,,false,false
+GROV,false,0,0,0,,false,false
+GROW,false,0,0,0,,false,false
+GRPN,false,0,0,0,,false,false
+GRRR,false,0,0,0,,false,false
+GRWG,false,0,0,0,,false,false
+GSBC,false,0,0,0,,false,false
+GSBD,false,0,0,0,,false,false
+GSHD,true,18000,7,7,2018-04-27 to 2018-10-24,false,false
+GSHR,false,0,0,0,,false,false
+GSIT,false,0,0,0,,false,false
+GSIW,false,0,0,0,,false,false
+GSL,false,0,0,0,,false,false
+GSM,false,0,0,0,,false,false
+GSUN,false,0,0,0,,false,false
+GT,true,1619262,198,198,2004-01-02 to 2020-06-30,false,false
+GTBP,false,0,0,0,,false,false
+GTEC,false,0,0,0,,false,false
+GTEN,false,0,0,0,,false,false
+GTERA,false,0,0,0,,false,false
+GTI,false,0,0,0,,false,false
+GTIM,false,0,0,0,,false,false
+GTN,false,0,0,0,,false,false
+GTN.A,false,0,0,0,,false,false
+GTY,false,0,0,0,,false,false
+GURE,true,18000,6,6,2011-06-30 to 2011-11-09,false,false
+GUTS,false,0,0,0,,false,false
+GV,false,0,0,0,,false,false
+GVH,false,0,0,0,,false,false
+GWAV,false,0,0,0,,false,false
+GWH,false,0,0,0,,false,false
+GWRS,true,90685,115,115,2016-04-28 to 2025-10-21,false,false
+GXAI,false,0,0,0,,false,false
+GYRE,false,0,0,0,,false,false
+GYRO,false,0,0,0,,false,false
+HAFC,false,0,0,0,,false,false
+HAIN,false,0,0,0,,false,false
+HAO,false,0,0,0,,false,false
+HBB,false,0,0,0,,false,false
+HBCP,true,14925,27,27,2008-10-03 to 2010-12-31,false,false
+HBIO,false,0,0,0,,false,false
+HBNB,false,0,0,0,,false,false
+HBNC,false,0,0,0,,false,false
+HBT,false,0,0,0,,false,false
+HCAI,false,0,0,0,,false,false
+HCAT,false,0,0,0,,false,false
+HCHL,false,0,0,0,,false,false
+HCKT,false,0,0,0,,false,false
+HCMA,false,0,0,0,,false,false
+HCSG,false,0,0,0,,false,false
+HCTI,false,0,0,0,,false,false
+HCWB,false,0,0,0,,false,false
+HDSN,true,43297,79,79,2004-06-02 to 2010-12-31,false,false
+HE,false,0,0,0,,false,false
+HELE,false,0,0,0,,false,false
+HERZ,false,0,0,0,,false,false
+HFBL,false,0,0,0,,false,false
+HFFG,false,0,0,0,,false,false
+HFWA,true,28261,84,84,2004-01-02 to 2010-12-31,false,false
+HGBL,false,0,0,0,,false,false
+HGTY,false,0,0,0,,false,false
+HHS,false,0,0,0,,false,false
+HIFS,true,43815,262,262,2004-01-05 to 2025-10-21,false,false
+HIHO,false,0,0,0,,false,false
+HIND,false,0,0,0,,false,false
+HIPO,false,0,0,0,,false,false
+HIT,true,41988,11,11,2024-12-23 to 2025-10-20,false,false
+HITI,false,0,0,0,,false,false
+HIVE,false,0,0,0,,false,false
+HKIT,false,0,0,0,,false,false
+HKPD,false,0,0,0,,false,false
+HLF,true,50000,17,17,2004-12-16 to 2006-04-18,false,false
+HLIO,false,0,0,0,,false,false
+HLIT,false,0,0,0,,false,false
+HLLY,false,0,0,0,,false,false
+HLMN,false,0,0,0,,false,false
+HLP,false,0,0,0,,false,false
+HLX,false,0,0,0,,false,false
+HMN,true,695753,139,139,2004-01-02 to 2015-07-31,false,false
+HMR,true,10000,26,26,2008-02-05 to 2025-03-11,false,false
+HNNA,false,0,0,0,,false,false
+HNRG,false,0,0,0,,false,false
+HNST,false,0,0,0,,false,false
+HNVR,false,0,0,0,,false,false
+HOFT,true,18000,10,10,2004-01-02 to 2004-10-22,false,false
+HOLO,false,0,0,0,,false,false
+HOND,false,0,0,0,,false,false
+HONE,true,319158,113,113,2016-06-30 to 2025-10-21,false,false
+HOPE,false,0,0,0,,false,false
+HOTH,false,0,0,0,,false,false
+HOUR,false,0,0,0,,false,false
+HOUS,false,0,0,0,,false,false
+HOV,false,0,0,0,,false,false
+HOVR,true,93135,22,22,2024-01-16 to 2025-10-21,false,false
+HOWL,false,0,0,0,,false,false
+HPAI,false,0,0,0,,false,false
+HPK,false,0,0,0,,false,false
+HPP,true,17157,7,7,2010-06-24 to 2010-12-31,false,false
+HQI,false,0,0,0,,false,false
+HRMY,false,0,0,0,,false,false
+HROW,false,0,0,0,,false,false
+HRTG,false,0,0,0,,false,false
+HRTX,false,0,0,0,,false,false
+HRZN,false,0,0,0,,false,false
+HSCS,false,0,0,0,,false,false
+HSDT,false,0,0,0,,false,false
+HSHP,false,0,0,0,,false,false
+HSII,false,0,0,0,,false,false
+HSPO,false,0,0,0,,false,false
+HSPT,true,272,9,9,2025-02-05 to 2025-10-21,false,false
+HSTM,false,0,0,0,,false,false
+HTB,true,36197,84,84,2004-01-02 to 2010-12-31,false,false
+HTBK,false,0,0,0,,false,false
+HTCO,false,0,0,0,,false,false
+HTCR,false,0,0,0,,false,false
+HTLD,true,643164,96,96,2004-01-02 to 2011-12-30,false,false
+HTLM,false,0,0,0,,false,false
+HTO,false,0,0,0,,false,false
+HTOO,false,0,0,0,,false,false
+HTZ,false,0,0,0,,false,false
+HUBC,false,0,0,0,,false,false
+HUDI,false,0,0,0,,false,false
+HUHU,false,0,0,0,,false,false
+HUMA,false,0,0,0,,false,false
+HUN,false,0,0,0,,false,false
+HURA,false,0,0,0,,false,false
+HURC,false,0,0,0,,false,false
+HVII,false,0,0,0,,false,false
+HVMC,true,80,1,1,2025-10-02 to 2025-10-16,false,false
+HVT,true,50000,15,15,2004-01-02 to 2005-03-02,false,false
+HWBK,true,3098,43,43,2007-06-18 to 2010-12-31,false,false
+HWH,false,0,0,0,,false,false
+HXHX,false,0,0,0,,false,false
+HY,false,0,0,0,,false,false
+HYAC,true,18000,35,35,2017-11-17 to 2020-12-22,false,false
+HYFM,false,0,0,0,,false,false
+HYFT,false,0,0,0,,false,false
+HYMC,false,0,0,0,,false,false
+HYPD,false,0,0,0,,false,false
+HYPR,true,2639,9,9,2004-01-02 to 2004-09-22,false,false
+HZO,false,0,0,0,,false,false
+IART,true,50000,11,11,2004-01-02 to 2004-11-19,false,false
+IAS,false,0,0,0,,false,false
+IBAC,false,0,0,0,,false,false
+IBCP,false,0,0,0,,false,false
+IBEX,false,0,0,0,,false,false
+IBG,false,0,0,0,,false,false
+IBIO,false,0,0,0,,false,false
+IBTA,false,0,0,0,,false,false
+ICCC,false,0,0,0,,false,false
+ICCM,false,0,0,0,,false,false
+ICFI,false,0,0,0,,false,false
+ICHR,false,0,0,0,,false,false
+ICMB,false,0,0,0,,false,false
+ICON,false,0,0,0,,false,false
+ICU,false,0,0,0,,false,false
+IDAI,true,102747,47,47,2021-12-31 to 2025-10-21,false,false
+IDN,false,0,0,0,,false,false
+IDT,false,0,0,0,,false,false
+IFBD,false,0,0,0,,false,false
+IFRX,false,0,0,0,,false,false
+IGIC,false,0,0,0,,false,false
+IHRT,false,0,0,0,,false,false
+III,false,0,0,0,,false,false
+IIIN,true,790949,254,254,2004-09-28 to 2025-10-21,false,false
+IIIV,true,15000,6,6,2018-06-21 to 2018-11-15,false,false
+IINN,false,0,0,0,,false,false
+IIPR,false,0,0,0,,false,false
+IKT,true,15000,8,8,2020-12-23 to 2021-07-09,false,false
+ILLR,false,0,0,0,,false,false
+IMA,false,0,0,0,,false,false
+IMAX,false,0,0,0,,false,false
+IMCC,false,0,0,0,,false,false
+IMDX,false,0,0,0,,false,false
+IMG,false,0,0,0,,false,false
+IMKTA,true,50000,32,32,2004-01-02 to 2006-10-10,false,false
+IMMR,false,0,0,0,,false,false
+IMMX,false,0,0,0,,false,false
+IMNM,false,0,0,0,,false,false
+IMNN,false,0,0,0,,false,false
+IMPP,false,0,0,0,,false,false
+IMRX,true,2919,16,16,2007-07-26 to 2008-10-21,false,false
+IMTE,false,0,0,0,,false,false
+IMTX,false,0,0,0,,false,false
+IMUX,false,0,0,0,,false,false
+IMXI,false,0,0,0,,false,false
+INAB,false,0,0,0,,false,false
+INAC,false,0,0,0,,false,false
+INBK,true,18000,36,36,2013-02-22 to 2016-01-07,false,false
+INBS,false,0,0,0,,false,false
+INBX,false,0,0,0,,false,false
+INCR,true,18000,6,6,2014-11-07 to 2015-04-27,false,false
+INDI,false,0,0,0,,false,false
+INDP,false,0,0,0,,false,false
+INEO,false,0,0,0,,false,false
+INGN,false,0,0,0,,false,false
+INHD,false,0,0,0,,false,false
+INKT,false,0,0,0,,false,false
+INLF,false,0,0,0,,false,false
+INM,false,0,0,0,,false,false
+INMB,true,218482,81,81,2019-02-04 to 2025-10-21,false,false
+INMD,false,0,0,0,,false,false
+INN,false,0,0,0,,false,false
+INNV,false,0,0,0,,false,false
+INO,true,1403551,247,247,2005-04-04 to 2025-10-21,false,false
+INR,true,1626,34,34,2008-03-18 to 2010-12-31,false,false
+INSE,false,0,0,0,,false,false
+INSG,false,0,0,0,,false,false
+INTG,false,0,0,0,,false,false
+INTJ,false,0,0,0,,false,false
+INTS,false,0,0,0,,false,false
+INTZ,false,0,0,0,,false,false
+INV,true,40570,59,59,2004-01-02 to 2025-10-21,false,false
+INVA,false,0,0,0,,false,false
+INVE,false,0,0,0,,false,false
+INVX,false,0,0,0,,false,false
+INVZ,true,421774,55,55,2021-04-06 to 2025-10-21,false,false
+IOBT,false,0,0,0,,false,false
+IOSP,false,0,0,0,,false,false
+IOTR,false,0,0,0,,false,false
+IOVA,false,0,0,0,,false,false
+IPCX,false,0,0,0,,false,false
+IPDN,false,0,0,0,,false,false
+IPI,true,1279891,234,234,2004-01-02 to 2025-10-21,false,false
+IPM,true,10420,10,10,2025-01-06 to 2025-10-21,false,false
+IPOD,false,0,0,0,,false,false
+IPSC,true,18000,7,7,2021-06-18 to 2021-12-03,false,false
+IPST,true,4711,2,2,2025-09-22 to 2025-10-21,false,false
+IPW,true,19278,102,102,2008-07-25 to 2016-12-30,false,false
+IPWR,false,0,0,0,,false,false
+IQST,false,0,0,0,,false,false
+IRBT,false,0,0,0,,false,false
+IRD,true,35056,13,13,2024-10-24 to 2025-10-21,false,false
+IRDM,false,0,0,0,,false,false
+IRIX,false,0,0,0,,false,false
+IRMD,true,18000,18,18,2014-07-16 to 2015-12-28,false,false
+IROQ,false,0,0,0,,false,false
+IRWD,false,0,0,0,,false,false
+ISBA,false,0,0,0,,false,false
+ISPC,false,0,0,0,,false,false
+ISPO,false,0,0,0,,false,false
+ISPR,false,0,0,0,,false,false
+ISRL,true,5652,72,72,2011-01-03 to 2016-12-29,false,false
+ISSC,false,0,0,0,,false,false
+ISTR,false,0,0,0,,false,false
+ITIC,false,0,0,0,,false,false
+ITRM,false,0,0,0,,false,false
+ITRN,false,0,0,0,,false,false
+IVDA,false,0,0,0,,false,false
+IVF,false,0,0,0,,false,false
+IVP,false,0,0,0,,false,false
+IVR,false,0,0,0,,false,false
+IVVD,false,0,0,0,,false,false
+IZEA,true,2918,11,11,2016-02-26 to 2016-12-30,false,false
+IZM,false,0,0,0,,false,false
+JACK,false,0,0,0,,false,false
+JAGX,false,0,0,0,,false,false
+JAKK,false,0,0,0,,false,false
+JAMF,false,0,0,0,,false,false
+JANX,false,0,0,0,,false,false
+JBDI,false,0,0,0,,false,false
+JBGS,false,0,0,0,,false,false
+JBI,true,6913,84,84,2004-01-02 to 2010-12-31,false,false
+JBIO,false,0,0,0,,false,false
+JBLU,false,0,0,0,,false,false
+JBSS,false,0,0,0,,false,false
+JCAP,false,0,0,0,,false,false
+JCSE,false,0,0,0,,false,false
+JCTC,false,0,0,0,,false,false
+JDZG,true,18000,6,6,2024-05-15 to 2024-10-21,false,false
+JELD,false,0,0,0,,false,false
+JEM,true,2142,33,33,2008-04-04 to 2010-12-31,false,false
+JENA,false,0,0,0,,false,false
+JFB,false,0,0,0,,false,false
+JFBR,false,0,0,0,,false,false
+JILL,false,0,0,0,,false,false
+JJSF,false,0,0,0,,false,false
+JL,false,0,0,0,,false,false
+JLHL,false,0,0,0,,false,false
+JMSB,false,0,0,0,,false,false
+JOUT,false,0,0,0,,false,false
+JRSH,true,24541,54,54,2018-05-04 to 2022-10-31,false,false
+JRVR,false,0,0,0,,false,false
+JSPR,false,0,0,0,,false,false
+JTAI,false,0,0,0,,false,false
+JUNS,false,0,0,0,,false,false
+JVA,false,0,0,0,,false,false
+JWEL,false,0,0,0,,false,false
+JXG,false,0,0,0,,false,false
+JYD,false,0,0,0,,false,false
+JYNT,false,0,0,0,,false,false
+JZXN,false,0,0,0,,false,false
+KALA,false,0,0,0,,false,false
+KALU,false,0,0,0,,false,false
+KALV,true,353900,108,108,2016-11-22 to 2025-10-21,false,false
+KARO,false,0,0,0,,false,false
+KAVL,false,0,0,0,,false,false
+KBDC,false,0,0,0,,false,false
+KBSX,false,0,0,0,,false,false
+KCHV,false,0,0,0,,false,false
+KDK,false,0,0,0,,false,false
+KE,false,0,0,0,,false,false
+KELYA,false,0,0,0,,false,false
+KELYB,false,0,0,0,,false,false
+KEQU,false,0,0,0,,false,false
+KFFB,true,23101,248,248,2005-03-03 to 2025-10-21,false,false
+KFII,false,0,0,0,,false,false
+KFRC,false,0,0,0,,false,false
+KFS,false,0,0,0,,false,false
+KG,false,0,0,0,,false,false
+KGEI,false,0,0,0,,false,false
+KIDS,true,4815,15,15,2007-11-05 to 2009-01-07,false,false
+KIDZ,true,10000,2,2,2025-04-07 to 2025-05-13,false,false
+KINS,false,0,0,0,,false,false
+KITT,false,0,0,0,,false,false
+KLC,false,0,0,0,,false,false
+KLRS,false,0,0,0,,false,false
+KLTO,false,0,0,0,,false,false
+KLTR,false,0,0,0,,false,false
+KLXE,false,0,0,0,,false,false
+KMDA,false,0,0,0,,false,false
+KMRK,false,0,0,0,,false,false
+KMT,false,0,0,0,,false,false
+KMTS,false,0,0,0,,false,false
+KNDI,false,0,0,0,,false,false
+KNOP,true,10000,8,8,2013-04-10 to 2013-11-15,false,false
+KOD,true,336656,67,67,2018-10-04 to 2024-04-30,false,false
+KODK,true,18000,8,8,2013-11-01 to 2014-06-09,false,false
+KOP,false,0,0,0,,false,false
+KOPN,false,0,0,0,,false,false
+KORE,false,0,0,0,,false,false
+KOS,false,0,0,0,,false,false
+KOSS,false,0,0,0,,false,false
+KOYN,false,0,0,0,,false,false
+KPLT,true,18000,3,3,2021-06-10 to 2021-08-24,false,false
+KPRX,false,0,0,0,,false,false
+KPTI,false,0,0,0,,false,false
+KREF,false,0,0,0,,false,false
+KRMD,false,0,0,0,,false,false
+KRNT,false,0,0,0,,false,false
+KRNY,false,0,0,0,,false,false
+KRO,false,0,0,0,,false,false
+KROS,false,0,0,0,,false,false
+KRP,false,0,0,0,,false,false
+KRRO,false,0,0,0,,false,false
+KRT,false,0,0,0,,false,false
+KRUS,false,0,0,0,,false,false
+KSCP,false,0,0,0,,false,false
+KSS,false,0,0,0,,false,false
+KTCC,true,18000,31,31,2004-01-02 to 2006-07-26,false,false
+KTTA,false,0,0,0,,false,false
+KURA,false,0,0,0,,false,false
+KVAC,false,0,0,0,,false,false
+KVHI,false,0,0,0,,false,false
+KW,false,0,0,0,,false,false
+KWM,false,0,0,0,,false,false
+KXIN,false,0,0,0,,false,false
+KYTX,false,0,0,0,,false,false
+KZR,false,0,0,0,,false,false
+LAB,false,0,0,0,,false,false
+LAC,false,0,0,0,,false,false
+LADR,false,0,0,0,,false,false
+LAES,false,0,0,0,,false,false
+LAKE,true,45824,84,84,2004-01-02 to 2010-12-31,false,false
+LAND,false,0,0,0,,false,false
+LANV,false,0,0,0,,false,false
+LAR,false,0,0,0,,false,false
+LARK,false,0,0,0,,false,false
+LASE,false,0,0,0,,false,false
+LASR,false,0,0,0,,false,false
+LAW,false,0,0,0,,false,false
+LAZR,true,18000,2,2,2020-12-03 to 2021-01-08,false,false
+LB,false,0,0,0,,false,false
+LBGJ,false,0,0,0,,false,false
+LBRX,true,4165,2,2,2025-09-11 to 2025-10-21,false,false
+LC,false,0,0,0,,false,false
+LCCC,false,0,0,0,,false,false
+LCFY,false,0,0,0,,false,false
+LCNB,false,0,0,0,,false,false
+LCUT,false,0,0,0,,false,false
+LDI,false,0,0,0,,false,false
+LDWY,false,0,0,0,,false,false
+LE,false,0,0,0,,false,false
+LEDS,true,270302,179,179,2010-12-09 to 2025-10-21,false,false
+LEE,false,0,0,0,,false,false
+LEG,true,10000,2,2,2004-01-02 to 2004-02-13,false,false
+LEGH,true,105504,83,83,2018-12-14 to 2025-10-21,false,false
+LENZ,false,0,0,0,,false,false
+LESL,false,0,0,0,,false,false
+LEXX,false,0,0,0,,false,false
+LFCR,true,113539,36,36,2022-11-15 to 2025-10-21,false,false
+LFMD,false,0,0,0,,false,false
+LFST,false,0,0,0,,false,false
+LFT,false,0,0,0,,false,false
+LFVN,false,0,0,0,,false,false
+LFWD,false,0,0,0,,false,false
+LGCB,false,0,0,0,,false,false
+LGCL,false,0,0,0,,false,false
+LGHL,false,0,0,0,,false,false
+LGIH,false,0,0,0,,false,false
+LGN,false,0,0,0,,false,false
+LGO,false,0,0,0,,false,false
+LGVN,true,31021,68,68,2004-01-02 to 2009-08-18,false,false
+LHAI,false,0,0,0,,false,false
+LHSW,true,14579,7,7,2025-04-03 to 2025-10-21,false,false
+LICN,true,10000,4,4,2023-02-06 to 2023-05-16,false,false
+LIDR,false,0,0,0,,false,false
+LIEN,false,0,0,0,,false,false
+LILA,false,0,0,0,,false,false
+LILAK,false,0,0,0,,false,false
+LIMN,false,0,0,0,,false,false
+LINC,false,0,0,0,,false,false
+LIND,true,454854,124,124,2015-07-09 to 2025-10-21,false,false
+LINK,true,10000,10,10,2004-01-02 to 2004-10-14,false,false
+LION,false,0,0,0,,false,false
+LIQT,false,0,0,0,,false,false
+LITM,false,0,0,0,,false,false
+LITS,false,0,0,0,,false,false
+LIVE,true,10000,49,49,2008-02-01 to 2012-02-10,false,false
+LIXT,false,0,0,0,,false,false
+LKFN,false,0,0,0,,false,false
+LMAT,false,0,0,0,,false,false
+LMB,false,0,0,0,,false,false
+LMFA,false,0,0,0,,false,false
+LMNR,false,0,0,0,,false,false
+LNAI,false,0,0,0,,false,false
+LNKB,false,0,0,0,,false,false
+LNKS,true,17883,11,11,2024-12-05 to 2025-10-21,false,false
+LNN,false,0,0,0,,false,false
+LNSR,true,54102,61,61,2020-10-02 to 2025-10-21,false,false
+LNZA,false,0,0,0,,false,false
+LOAN,false,0,0,0,,false,false
+LOB,false,0,0,0,,false,false
+LOBO,false,0,0,0,,false,false
+LOCL,false,0,0,0,,false,false
+LOCO,false,0,0,0,,false,false
+LOKV,false,0,0,0,,false,false
+LOOP,false,0,0,0,,false,false
+LOVE,false,0,0,0,,false,false
+LPAA,true,1171,14,14,2024-09-03 to 2025-10-21,false,false
+LPBB,true,1294,12,12,2024-11-29 to 2025-10-20,false,false
+LPCN,false,0,0,0,,false,false
+LPG,true,745013,138,138,2014-05-08 to 2025-10-21,false,false
+LPRO,false,0,0,0,,false,false
+LPSN,false,0,0,0,,false,false
+LPTH,true,343881,262,262,2004-01-02 to 2025-10-21,false,false
+LPTX,false,0,0,0,,false,false
+LQDA,false,0,0,0,,false,false
+LQDT,false,0,0,0,,false,false
+LRHC,false,0,0,0,,false,false
+LRMR,false,0,0,0,,false,false
+LSAK,false,0,0,0,,false,false
+LSBK,true,15336,235,235,2006-04-04 to 2025-10-21,false,false
+LSE,false,0,0,0,,false,false
+LSH,false,0,0,0,,false,false
+LSPD,false,0,0,0,,false,false
+LSTA,true,17682,38,38,2022-09-15 to 2025-10-21,false,false
+LTBR,false,0,0,0,,false,false
+LTC,false,0,0,0,,false,false
+LTRN,false,0,0,0,,false,false
+LTRX,true,18000,19,19,2004-01-02 to 2005-07-07,false,false
+LUCD,false,0,0,0,,false,false
+LUCK,true,43378,11,11,2024-12-12 to 2025-10-21,false,false
+LUCY,true,12716,22,22,2004-01-05 to 2005-10-05,false,false
+LUNG,false,0,0,0,,false,false
+LUNR,false,0,0,0,,false,false
+LVLU,false,0,0,0,,false,false
+LVO,false,0,0,0,,false,false
+LVRO,false,0,0,0,,false,false
+LVTX,false,0,0,0,,false,false
+LVWR,false,0,0,0,,false,false
+LWAC,true,2904,9,9,2021-03-01 to 2025-10-21,false,false
+LWAY,false,0,0,0,,false,false
+LWLG,false,0,0,0,,false,false
+LXEO,false,0,0,0,,false,false
+LXFR,false,0,0,0,,false,false
+LXRX,false,0,0,0,,false,false
+LXU,true,50000,48,48,2004-01-02 to 2007-12-05,false,false
+LYEL,false,0,0,0,,false,false
+LYRA,false,0,0,0,,false,false
+LYTS,false,0,0,0,,false,false
+LZ,true,50000,10,10,2004-01-02 to 2004-10-06,false,false
+LZB,false,0,0,0,,false,false
+LZM,false,0,0,0,,false,false
+LZMH,false,0,0,0,,false,false
+MAAS,false,0,0,0,,false,false
+MACI,false,0,0,0,,false,false
+MAGH,false,0,0,0,,false,false
+MAGN,false,0,0,0,,false,false
+MAMA,false,0,0,0,,false,false
+MAMK,false,0,0,0,,false,false
+MAMO,false,0,0,0,,false,false
+MAN,false,0,0,0,,false,false
+MAPS,false,0,0,0,,false,false
+MARPS,false,0,0,0,,false,false
+MASK,true,17263,10,10,2025-01-08 to 2025-10-21,false,false
+MASS,false,0,0,0,,false,false
+MATH,true,71549,154,154,2005-10-27 to 2025-10-20,false,false
+MATV,false,0,0,0,,false,false
+MATW,false,0,0,0,,false,false
+MAX,false,0,0,0,,false,false
+MAXN,false,0,0,0,,false,false
+MAYA,false,0,0,0,,false,false
+MAYS,true,1927,79,79,2004-01-13 to 2010-12-30,false,false
+MAZE,false,0,0,0,,false,false
+MB,false,0,0,0,,false,false
+MBAV,false,0,0,0,,false,false
+MBBC,false,0,0,0,,false,false
+MBC,false,0,0,0,,false,false
+MBCN,true,1061,28,28,2014-09-10 to 2016-12-30,false,false
+MBI,true,18000,3,3,2004-01-02 to 2004-03-18,false,false
+MBIN,false,0,0,0,,false,false
+MBIO,false,0,0,0,,false,false
+MBOT,false,0,0,0,,false,false
+MBRX,false,0,0,0,,false,false
+MBUU,false,0,0,0,,false,false
+MBVI,false,0,0,0,,false,false
+MBWM,true,317591,262,262,2004-01-02 to 2025-10-21,false,false
+MBX,false,0,0,0,,false,false
+MCB,false,0,0,0,,false,false
+MCBS,false,0,0,0,,false,false
+MCFT,true,427331,124,124,2015-07-17 to 2025-10-21,false,false
+MCGA,true,4048,2,2,2025-09-08 to 2025-10-21,false,false
+MCHX,false,0,0,0,,false,false
+MCRB,false,0,0,0,,false,false
+MCRI,true,50000,20,20,2004-01-02 to 2005-08-02,false,false
+MCS,false,0,0,0,,false,false
+MCTR,false,0,0,0,,false,false
+MCW,true,378411,53,53,2021-06-25 to 2025-10-21,false,false
+MD,false,0,0,0,,false,false
+MDAI,false,0,0,0,,false,false
+MDBH,true,7003,26,26,2023-09-21 to 2025-10-21,false,false
+MDCX,false,0,0,0,,false,false
+MDIA,false,0,0,0,,false,false
+MDRR,false,0,0,0,,false,false
+MDV,true,21146,13,13,2006-03-15 to 2007-03-19,false,false
+MDWD,false,0,0,0,,false,false
+MDXG,false,0,0,0,,false,false
+MDXH,false,0,0,0,,false,false
+MEC,false,0,0,0,,false,false
+MED,false,0,0,0,,false,false
+MEG,false,0,0,0,,false,false
+MEGL,false,0,0,0,,false,false
+MEI,false,0,0,0,,false,false
+MERC,false,0,0,0,,false,false
+MESA,true,18000,3,3,2004-01-02 to 2004-03-22,false,false
+METCB,false,0,0,0,,false,false
+MFA,false,0,0,0,,false,false
+MFH,false,0,0,0,,false,false
+MFI,false,0,0,0,,false,false
+MFIC,false,0,0,0,,false,false
+MFIN,true,202216,114,114,2016-05-11 to 2025-10-21,false,false
+MG,false,0,0,0,,false,false
+MGIC,false,0,0,0,,false,false
+MGIH,false,0,0,0,,false,false
+MGN,false,0,0,0,,false,false
+MGNX,false,0,0,0,,false,false
+MGPI,false,0,0,0,,false,false
+MGRT,false,0,0,0,,false,false
+MGRX,false,0,0,0,,false,false
+MGTX,false,0,0,0,,false,false
+MGX,false,0,0,0,,false,false
+MGYR,false,0,0,0,,false,false
+MHUA,false,0,0,0,,false,false
+MIGI,false,0,0,0,,false,false
+MIMI,false,0,0,0,,false,false
+MIND,false,0,0,0,,false,false
+MIRA,false,0,0,0,,false,false
+MIST,false,0,0,0,,false,false
+MITK,true,2632,5,5,2004-01-02 to 2004-05-24,false,false
+MITT,false,0,0,0,,false,false
+MKDW,false,0,0,0,,false,false
+MKLY,false,0,0,0,,false,false
+MKTW,false,0,0,0,,false,false
+MKZR,false,0,0,0,,false,false
+MLAB,false,0,0,0,,false,false
+MLAC,false,0,0,0,,false,false
+MLCI,false,0,0,0,,false,false
+MLEC,false,0,0,0,,false,false
+MLGO,false,0,0,0,,false,false
+MLKN,false,0,0,0,,false,false
+MLNK,false,0,0,0,,false,false
+MLP,true,23962,72,72,2011-01-03 to 2016-12-30,false,false
+MLR,false,0,0,0,,false,false
+MLTX,false,0,0,0,,false,false
+MMI,false,0,0,0,,false,false
+MMLP,false,0,0,0,,false,false
+MNDO,false,0,0,0,,false,false
+MNDR,false,0,0,0,,false,false
+MNKD,false,0,0,0,,false,false
+MNMD,false,0,0,0,,false,false
+MNOV,false,0,0,0,,false,false
+MNPR,false,0,0,0,,false,false
+MNRO,false,0,0,0,,false,false
+MNSB,false,0,0,0,,false,false
+MNTK,false,0,0,0,,false,false
+MNTN,false,0,0,0,,false,false
+MNTS,false,0,0,0,,false,false
+MNY,false,0,0,0,,false,false
+MOBX,true,64632,23,23,2023-12-22 to 2025-10-21,false,false
+MODD,false,0,0,0,,false,false
+MODG,true,10000,2,2,2022-09-07 to 2022-10-13,false,false
+MOFG,false,0,0,0,,false,false
+MOGO,false,0,0,0,,false,false
+MOV,true,18000,10,10,2004-01-02 to 2004-10-07,false,false
+MOVE,false,0,0,0,,false,false
+MPAA,false,0,0,0,,false,false
+MPB,false,0,0,0,,false,false
+MPX,false,0,0,0,,false,false
+MRAM,false,0,0,0,,false,false
+MRBK,false,0,0,0,,false,false
+MRC,false,0,0,0,,false,false
+MRCC,false,0,0,0,,false,false
+MRKR,false,0,0,0,,false,false
+MRNO,false,0,0,0,,false,false
+MRSN,false,0,0,0,,false,false
+MRTN,false,0,0,0,,false,false
+MRVI,false,0,0,0,,false,false
+MSAI,false,0,0,0,,false,false
+MSB,false,0,0,0,,false,false
+MSBI,true,11514,8,8,2016-05-24 to 2016-12-30,false,false
+MSDL,false,0,0,0,,false,false
+MSEX,true,450133,262,262,2004-01-02 to 2025-10-21,false,false
+MSGM,false,0,0,0,,false,false
+MSGY,true,8898,4,4,2025-07-08 to 2025-10-21,false,false
+MSIF,false,0,0,0,,false,false
+MSPR,false,0,0,0,,false,false
+MSS,true,18000,9,9,2004-01-02 to 2004-09-23,false,false
+MSW,false,0,0,0,,false,false
+MTC,true,5387,2,2,2010-10-07 to 2010-11-03,false,false
+MTEK,false,0,0,0,,false,false
+MTEN,false,0,0,0,,false,false
+MTEX,true,30374,72,72,2011-01-03 to 2016-12-30,false,false
+MTR,false,0,0,0,,false,false
+MTRX,false,0,0,0,,false,false
+MTUS,false,0,0,0,,false,false
+MTVA,false,0,0,0,,false,false
+MTW,false,0,0,0,,false,false
+MTX,false,0,0,0,,false,false
+MURA,false,0,0,0,,false,false
+MUX,false,0,0,0,,false,false
+MVBF,false,0,0,0,,false,false
+MVIS,true,50000,15,15,2004-01-02 to 2005-03-30,false,false
+MVO,false,0,0,0,,false,false
+MVST,false,0,0,0,,false,false
+MWYN,false,0,0,0,,false,false
+MX,false,0,0,0,,false,false
+MXCT,false,0,0,0,,false,false
+MXL,false,0,0,0,,false,false
+MYE,false,0,0,0,,false,false
+MYFW,false,0,0,0,,false,false
+MYGN,false,0,0,0,,false,false
+MYNZ,false,0,0,0,,false,false
+MYPS,false,0,0,0,,false,false
+MYSE,false,0,0,0,,false,false
+MYSZ,false,0,0,0,,false,false
+NA,false,0,0,0,,false,false
+NABL,false,0,0,0,,false,false
+NAGE,false,0,0,0,,false,false
+NAII,true,121375,262,262,2004-01-02 to 2025-10-21,false,false
+NAKA,false,0,0,0,,false,false
+NAMM,false,0,0,0,,false,false
+NAOV,false,0,0,0,,false,false
+NAT,false,0,0,0,,false,false
+NATH,true,70083,190,190,2004-01-02 to 2025-10-20,false,false
+NATR,false,0,0,0,,false,false
+NAUT,true,18000,5,5,2021-06-10 to 2021-10-14,false,false
+NAVI,true,1177212,226,226,2004-01-02 to 2025-10-21,false,false
+NB,false,0,0,0,,false,false
+NBBK,false,0,0,0,,false,false
+NBHC,false,0,0,0,,false,false
+NBN,false,0,0,0,,false,false
+NBR,false,0,0,0,,false,false
+NC,false,0,0,0,,false,false
+NCDL,false,0,0,0,,false,false
+NCEW,true,18000,10,10,2024-12-18 to 2025-09-17,false,false
+NCI,false,0,0,0,,false,false
+NCMI,false,0,0,0,,false,false
+NCPL,false,0,0,0,,false,false
+NCRA,false,0,0,0,,false,false
+NCSM,false,0,0,0,,false,false
+NCT,true,18000,5,5,2004-01-02 to 2004-05-13,false,false
+NDLS,false,0,0,0,,false,false
+NDRA,false,0,0,0,,false,false
+NECB,true,13692,54,54,2006-07-06 to 2010-12-31,false,false
+NEGG,false,0,0,0,,false,false
+NEO,true,934252,155,155,2012-12-10 to 2025-10-21,false,false
+NEOG,true,15000,30,30,2004-01-02 to 2006-06-15,false,false
+NEON,false,0,0,0,,false,false
+NEOV,false,0,0,0,,false,false
+NEPH,false,0,0,0,,false,false
+NERV,false,0,0,0,,false,false
+NESR,false,0,0,0,,false,false
+NETD,false,0,0,0,,false,false
+NEWT,false,0,0,0,,false,false
+NEXA,true,208603,97,97,2017-10-27 to 2025-10-21,false,false
+NEXM,false,0,0,0,,false,false
+NEXN,false,0,0,0,,false,false
+NEXT,false,0,0,0,,false,false
+NFBK,false,0,0,0,,false,false
+NFE,false,0,0,0,,false,false
+NGL,false,0,0,0,,false,false
+NGNE,false,0,0,0,,false,false
+NGS,false,0,0,0,,false,false
+NGVC,false,0,0,0,,false,false
+NGVT,false,0,0,0,,false,false
+NHIC,false,0,0,0,,false,false
+NHTC,false,0,0,0,,false,false
+NIC,false,0,0,0,,false,false
+NINE,false,0,0,0,,false,false
+NISN,true,89874,60,60,2020-11-16 to 2025-10-21,false,false
+NITO,false,0,0,0,,false,false
+NIVF,false,0,0,0,,false,false
+NIXX,false,0,0,0,,false,false
+NKLR,false,0,0,0,,false,false
+NKSH,false,0,0,0,,false,false
+NKTR,true,50000,8,8,2004-01-02 to 2004-08-02,false,false
+NKTX,true,342855,64,64,2020-07-10 to 2025-10-21,false,false
+NL,true,18000,9,9,2004-01-02 to 2004-09-21,false,false
+NLOP,false,0,0,0,,false,false
+NLSP,false,0,0,0,,false,false
+NMAX,false,0,0,0,,false,false
+NMFC,false,0,0,0,,false,false
+NMG,true,92851,54,54,2021-05-24 to 2025-10-21,false,false
+NMM,false,0,0,0,,false,false
+NMP,false,0,0,0,,false,false
+NMRA,false,0,0,0,,false,false
+NMTC,false,0,0,0,,false,false
+NN,false,0,0,0,,false,false
+NNBR,false,0,0,0,,false,false
+NNNN,false,0,0,0,,false,false
+NNOX,false,0,0,0,,false,false
+NOA,false,0,0,0,,false,false
+NODK,false,0,0,0,,false,false
+NOEM,false,0,0,0,,false,false
+NOMD,false,0,0,0,,false,false
+NOTE,false,0,0,0,,false,false
+NOTV,false,0,0,0,,false,false
+NPAC,false,0,0,0,,false,false
+NPB,false,0,0,0,,false,false
+NPCE,false,0,0,0,,false,false
+NPK,false,0,0,0,,false,false
+NPKI,false,0,0,0,,false,false
+NPWR,false,0,0,0,,false,false
+NRC,false,0,0,0,,false,false
+NRDS,false,0,0,0,,false,false
+NRDY,true,10000,3,3,2021-09-21 to 2021-11-05,false,false
+NREF,true,90457,69,69,2020-02-07 to 2025-10-21,false,false
+NRGV,false,0,0,0,,false,false
+NRIM,true,30049,84,84,2004-01-02 to 2010-12-31,false,false
+NRIX,false,0,0,0,,false,false
+NRP,false,0,0,0,,false,false
+NRSN,false,0,0,0,,false,false
+NRT,false,0,0,0,,false,false
+NRXP,false,0,0,0,,false,false
+NSP,false,0,0,0,,false,false
+NSPR,false,0,0,0,,false,false
+NSSC,false,0,0,0,,false,false
+NSTS,true,7497,46,46,2022-01-19 to 2025-10-21,false,false
+NSYS,false,0,0,0,,false,false
+NTB,false,0,0,0,,false,false
+NTCL,false,0,0,0,,false,false
+NTCT,false,0,0,0,,false,false
+NTGR,false,0,0,0,,false,false
+NTHI,false,0,0,0,,false,false
+NTIC,false,0,0,0,,false,false
+NTRB,false,0,0,0,,false,false
+NTRP,false,0,0,0,,false,false
+NTST,true,30345,40,40,2004-01-02 to 2007-04-10,false,false
+NTWK,false,0,0,0,,false,false
+NTWO,false,0,0,0,,false,false
+NUAI,false,0,0,0,,false,false
+NUKK,false,0,0,0,,false,false
+NUS,false,0,0,0,,false,false
+NUTX,false,0,0,0,,false,false
+NUVB,false,0,0,0,,false,false
+NUWE,true,18000,9,9,2021-04-27 to 2021-12-10,false,false
+NVAX,true,19320,6,6,2004-01-02 to 2004-06-30,false,false
+NVCR,true,818320,121,121,2015-10-02 to 2025-10-21,false,false
+NVCT,false,0,0,0,,false,false
+NVEC,true,50000,8,8,2004-01-02 to 2004-08-03,false,false
+NVFY,false,0,0,0,,false,false
+NVGS,false,0,0,0,,false,false
+NVNI,false,0,0,0,,false,false
+NVNO,false,0,0,0,,false,false
+NVRI,false,0,0,0,,false,false
+NVVE,false,0,0,0,,false,false
+NWBI,false,0,0,0,,false,false
+NWFL,true,6977,84,84,2004-01-05 to 2010-12-31,false,false
+NWN,false,0,0,0,,false,false
+NWPX,false,0,0,0,,false,false
+NWTG,true,24025,8,8,2025-03-17 to 2025-10-21,false,false
+NX,true,50000,12,12,2004-01-02 to 2004-12-07,false,false
+NXDR,false,0,0,0,,false,false
+NXGL,true,37503,47,47,2021-12-22 to 2025-10-20,false,false
+NXL,false,0,0,0,,false,false
+NXPL,true,356,14,14,2006-01-27 to 2007-02-20,false,false
+NXRT,false,0,0,0,,false,false
+NXTC,true,18000,7,7,2019-05-09 to 2019-11-27,false,false
+NXTT,false,0,0,0,,false,false
+NXXT,false,0,0,0,,false,false
+NYAX,false,0,0,0,,false,false
+NYC,false,0,0,0,,false,false
+NYXH,false,0,0,0,,false,false
+OABI,false,0,0,0,,false,false
+OACC,false,0,0,0,,false,false
+OAKU,false,0,0,0,,false,false
+OBA,false,0,0,0,,false,false
+OBIO,false,0,0,0,,false,false
+OBK,false,0,0,0,,false,false
+OBLG,false,0,0,0,,false,false
+OBT,true,2337,29,29,2011-08-26 to 2013-12-06,false,false
+OCC,false,0,0,0,,false,false
+OCCI,false,0,0,0,,false,false
+OCFC,true,50000,42,42,2004-01-02 to 2007-06-26,false,false
+OCG,false,0,0,0,,false,false
+OCGN,false,0,0,0,,false,false
+OCS,false,0,0,0,,false,false
+OCSL,false,0,0,0,,false,false
+ODC,false,0,0,0,,false,false
+ODP,false,0,0,0,,false,false
+ODV,false,0,0,0,,false,false
+ODYS,false,0,0,0,,false,false
+OEC,false,0,0,0,,false,false
+OESX,true,50000,17,17,2007-12-19 to 2009-04-02,false,false
+OFAL,false,0,0,0,,false,false
+OFG,false,0,0,0,,false,false
+OFIX,true,50000,24,24,2004-01-02 to 2005-12-29,false,false
+OFLX,true,21959,65,65,2005-08-01 to 2010-12-31,false,false
+OFS,false,0,0,0,,false,false
+OGI,false,0,0,0,,false,false
+OI,false,0,0,0,,false,false
+OIS,false,0,0,0,,false,false
+OKUR,false,0,0,0,,false,false
+OKYO,false,0,0,0,,false,false
+OLB,false,0,0,0,,false,false
+OLMA,false,0,0,0,,false,false
+OLP,false,0,0,0,,false,false
+OLPX,false,0,0,0,,false,false
+OM,false,0,0,0,,false,false
+OMCC,false,0,0,0,,false,false
+OMCL,true,455256,82,82,2004-01-02 to 2010-10-29,false,false
+OMDA,false,0,0,0,,false,false
+OMER,false,0,0,0,,false,false
+OMEX,false,0,0,0,,false,false
+OMH,false,0,0,0,,false,false
+OMI,false,0,0,0,,false,false
+OMSE,true,9460,6,6,2025-05-13 to 2025-10-21,false,false
+ONCH,false,0,0,0,,false,false
+ONCO,false,0,0,0,,false,false
+ONCY,false,0,0,0,,false,false
+ONEG,false,0,0,0,,false,false
+ONEW,false,0,0,0,,false,false
+ONFO,false,0,0,0,,false,false
+ONIT,true,15867,17,17,2024-06-10 to 2025-10-21,false,false
+ONL,true,253983,48,48,2021-11-15 to 2025-10-21,false,false
+ONMD,false,0,0,0,,false,false
+ONTF,false,0,0,0,,false,false
+OOMA,false,0,0,0,,false,false
+OP,false,0,0,0,,false,false
+OPAD,false,0,0,0,,false,false
+OPAL,false,0,0,0,,false,false
+OPBK,true,188,5,5,2004-01-02 to 2004-05-10,false,false
+OPFI,false,0,0,0,,false,false
+OPK,false,0,0,0,,false,false
+OPRT,false,0,0,0,,false,false
+OPRX,true,10000,10,10,2018-06-22 to 2019-03-04,false,false
+OPTX,false,0,0,0,,false,false
+OPXS,false,0,0,0,,false,false
+OPY,false,0,0,0,,false,false
+ORBS,false,0,0,0,,false,false
+ORC,false,0,0,0,,false,false
+ORGN,false,0,0,0,,false,false
+ORGO,false,0,0,0,,false,false
+ORIC,false,0,0,0,,false,false
+ORIQ,false,0,0,0,,false,false
+ORIS,false,0,0,0,,false,false
+ORKA,false,0,0,0,,false,false
+ORKT,false,0,0,0,,false,false
+ORMP,false,0,0,0,,false,false
+ORN,true,699409,198,198,2009-05-14 to 2025-10-21,false,false
+ORRF,true,14726,21,21,2009-04-28 to 2010-12-31,false,false
+OSBC,false,0,0,0,,false,false
+OSPN,false,0,0,0,,false,false
+OSRH,false,0,0,0,,false,false
+OSS,false,0,0,0,,false,false
+OSUR,false,0,0,0,,false,false
+OTLK,false,0,0,0,,false,false
+OUST,false,0,0,0,,false,false
+OVBC,false,0,0,0,,false,false
+OVID,false,0,0,0,,false,false
+OVLY,false,0,0,0,,false,false
+OWLT,false,0,0,0,,false,false
+OXBR,false,0,0,0,,false,false
+OXLC,false,0,0,0,,false,false
+OXM,false,0,0,0,,false,false
+OXSQ,false,0,0,0,,false,false
+OYSE,false,0,0,0,,false,false
+PACB,true,10394,3,3,2010-10-27 to 2010-12-31,false,false
+PACH,false,0,0,0,,false,false
+PACK,false,0,0,0,,false,false
+PACS,false,0,0,0,,false,false
+PAHC,false,0,0,0,,false,false
+PAII,false,0,0,0,,false,false
+PAL,true,50000,12,12,2004-01-02 to 2004-12-20,false,false
+PALI,false,0,0,0,,false,false
+PAMT,false,0,0,0,,false,false
+PANL,false,0,0,0,,false,false
+PAR,true,15000,6,6,2007-11-16 to 2008-04-15,false,false
+PARR,false,0,0,0,,false,false
+PASG,false,0,0,0,,false,false
+PASW,false,0,0,0,,false,false
+PAVM,false,0,0,0,,false,false
+PAVS,false,0,0,0,,false,false
+PAYS,false,0,0,0,,false,false
+PBBK,true,5790,52,52,2021-07-15 to 2025-10-21,false,false
+PBFS,false,0,0,0,,false,false
+PBHC,true,1581,84,84,2004-01-02 to 2010-12-31,false,false
+PBI,false,0,0,0,,false,false
+PBM,false,0,0,0,,false,false
+PBPB,false,0,0,0,,false,false
+PBT,false,0,0,0,,false,false
+PBYI,false,0,0,0,,false,false
+PC,true,207614,38,38,2008-10-01 to 2011-11-30,false,false
+PCAP,true,15000,12,12,2005-07-28 to 2006-06-30,false,false
+PCB,false,0,0,0,,false,false
+PCRX,false,0,0,0,,false,false
+PCSA,true,27124,12,12,2004-03-22 to 2005-02-15,false,false
+PCSC,false,0,0,0,,false,false
+PCYO,false,0,0,0,,false,false
+PD,true,18000,3,3,2004-01-02 to 2004-03-10,false,false
+PDCC,true,2025,16,16,2024-07-18 to 2025-10-21,false,false
+PDEX,true,44105,156,156,2004-01-02 to 2016-12-30,false,false
+PDFS,false,0,0,0,,false,false
+PDLB,false,0,0,0,,false,false
+PDM,false,0,0,0,,false,false
+PDS,true,1570063,262,262,2004-01-02 to 2025-10-21,false,false
+PDSB,false,0,0,0,,false,false
+PDYN,false,0,0,0,,false,false
+PEB,false,0,0,0,,false,false
+PEBK,true,7632,84,84,2004-01-02 to 2010-12-31,false,false
+PEBO,true,50000,48,48,2004-01-02 to 2007-12-03,false,false
+PELI,false,0,0,0,,false,false
+PENG,false,0,0,0,,false,false
+PEPG,false,0,0,0,,false,false
+PERF,false,0,0,0,,false,false
+PERI,false,0,0,0,,false,false
+PESI,false,0,0,0,,false,false
+PETS,false,0,0,0,,false,false
+PETZ,false,0,0,0,,false,false
+PEW,false,0,0,0,,false,false
+PFAI,false,0,0,0,,false,false
+PFBC,true,50000,33,33,2005-02-15 to 2007-10-16,false,false
+PFIS,true,53757,139,139,2014-04-02 to 2025-10-21,false,false
+PFLT,false,0,0,0,,false,false
+PFSA,false,0,0,0,,false,false
+PFX,false,0,0,0,,false,false
+PGAC,false,0,0,0,,false,false
+PGC,false,0,0,0,,false,false
+PGEN,false,0,0,0,,false,false
+PGNY,false,0,0,0,,false,false
+PGRE,true,18000,4,4,2014-11-19 to 2015-02-05,false,false
+PHAR,true,4970,5,5,2004-01-02 to 2004-05-12,false,false
+PHAT,false,0,0,0,,false,false
+PHH,false,0,0,0,,false,false
+PHIO,false,0,0,0,,false,false
+PHLT,false,0,0,0,,false,false
+PHOE,false,0,0,0,,false,false
+PHR,true,18000,8,8,2008-07-22 to 2009-02-19,false,false
+PHUN,false,0,0,0,,false,false
+PHVS,false,0,0,0,,false,false
+PIII,false,0,0,0,,false,false
+PINE,true,18000,11,11,2019-11-22 to 2020-09-16,false,false
+PKBK,true,88704,262,262,2004-01-02 to 2025-10-21,false,false
+PKE,false,0,0,0,,false,false
+PKOH,false,0,0,0,,false,false
+PKST,false,0,0,0,,false,false
+PLAB,true,1569028,262,262,2004-01-02 to 2025-10-21,false,false
+PLAY,false,0,0,0,,false,false
+PLBC,true,4008,68,68,2005-05-18 to 2010-12-31,false,false
+PLBY,false,0,0,0,,false,false
+PLCE,false,0,0,0,,false,false
+PLMK,false,0,0,0,,false,false
+PLOW,true,16746,8,8,2010-05-05 to 2010-12-31,false,false
+PLPC,false,0,0,0,,false,false
+PLRX,false,0,0,0,,false,false
+PLRZ,false,0,0,0,,false,false
+PLSE,false,0,0,0,,false,false
+PLTK,false,0,0,0,,false,false
+PLUR,true,18000,21,21,2022-07-26 to 2024-03-06,false,false
+PLUS,false,0,0,0,,false,false
+PLUT,false,0,0,0,,false,false
+PLYM,false,0,0,0,,false,false
+PMAX,false,0,0,0,,false,false
+PMCB,false,0,0,0,,false,false
+PMEC,false,0,0,0,,false,false
+PMN,false,0,0,0,,false,false
+PMT,false,0,0,0,,false,false
+PMTR,true,84200,40,40,2004-01-02 to 2025-10-21,false,false
+PMTS,false,0,0,0,,false,false
+PMVP,false,0,0,0,,false,false
+PN,false,0,0,0,,false,false
+PNBK,false,0,0,0,,false,false
+PNNT,false,0,0,0,,false,false
+PNRG,false,0,0,0,,false,false
+PNTG,false,0,0,0,,false,false
+POAI,false,0,0,0,,false,false
+POCI,true,15000,56,56,2004-01-02 to 2025-06-23,false,false
+PODC,true,22074,26,26,2023-09-08 to 2025-10-20,false,false
+POET,false,0,0,0,,false,false
+POLA,false,0,0,0,,false,false
+POLE,false,0,0,0,,false,false
+POWW,false,0,0,0,,false,false
+PPCB,false,0,0,0,,false,false
+PPIH,false,0,0,0,,false,false
+PPSI,false,0,0,0,,false,false
+PRA,false,0,0,0,,false,false
+PRAA,false,0,0,0,,false,false
+PRCH,false,0,0,0,,false,false
+PRCT,false,0,0,0,,false,false
+PRE,false,0,0,0,,false,false
+PRFX,false,0,0,0,,false,false
+PRG,true,2984,26,26,2004-01-02 to 2006-02-10,false,false
+PRGS,false,0,0,0,,false,false
+PRHI,false,0,0,0,,false,false
+PRLB,false,0,0,0,,false,false
+PRLD,false,0,0,0,,false,false
+PRME,false,0,0,0,,false,false
+PRO,false,0,0,0,,false,false
+PROF,false,0,0,0,,false,false
+PROK,false,0,0,0,,false,false
+PROP,false,0,0,0,,false,false
+PROV,false,0,0,0,,false,false
+PRPH,false,0,0,0,,false,false
+PRPL,false,0,0,0,,false,false
+PRPO,false,0,0,0,,false,false
+PRQR,false,0,0,0,,false,false
+PRSO,false,0,0,0,,false,false
+PRSU,false,0,0,0,,false,false
+PRTA,false,0,0,0,,false,false
+PRTH,false,0,0,0,,false,false
+PRTS,false,0,0,0,,false,false
+PRZO,false,0,0,0,,false,false
+PSBD,false,0,0,0,,false,false
+PSEC,true,1738278,256,256,2004-07-27 to 2025-10-21,false,false
+PSFE,false,0,0,0,,false,false
+PSHG,false,0,0,0,,false,false
+PSIG,true,26179,16,16,2024-07-19 to 2025-10-21,false,false
+PSNL,true,430608,77,77,2019-06-20 to 2025-10-21,false,false
+PSNY,false,0,0,0,,false,false
+PSQH,false,0,0,0,,false,false
+PSTL,false,0,0,0,,false,false
+PSTV,false,0,0,0,,false,false
+PTHL,true,33472,14,14,2024-09-05 to 2025-10-21,false,false
+PTIX,false,0,0,0,,false,false
+PTLE,false,0,0,0,,false,false
+PTLO,false,0,0,0,,false,false
+PUBM,false,0,0,0,,false,false
+PULM,true,10646,19,19,2015-06-16 to 2016-12-30,false,false
+PUMP,false,0,0,0,,false,false
+PVBC,true,4650,18,18,2015-07-16 to 2016-12-30,false,false
+PVL,false,0,0,0,,false,false
+PVLA,false,0,0,0,,false,false
+PWP,false,0,0,0,,false,false
+PX,false,0,0,0,,false,false
+PXED,false,0,0,0,,false,false
+PXLW,false,0,0,0,,false,false
+PXS,false,0,0,0,,false,false
+PYPD,false,0,0,0,,false,false
+PYXS,false,0,0,0,,false,false
+PZZA,false,0,0,0,,false,false
+QCLS,false,0,0,0,,false,false
+QCRH,false,0,0,0,,false,false
+QDEL,false,0,0,0,,false,false
+QETA,true,999,24,24,2023-11-30 to 2025-10-16,false,false
+QIPT,false,0,0,0,,false,false
+QLGN,false,0,0,0,,false,false
+QMCO,true,305833,69,69,2020-02-03 to 2025-10-21,false,false
+QNCX,false,0,0,0,,false,false
+QNST,false,0,0,0,,false,false
+QNTM,false,0,0,0,,false,false
+QRHC,false,0,0,0,,false,false
+QSEA,false,0,0,0,,false,false
+QSI,false,0,0,0,,false,false
+QTRX,false,0,0,0,,false,false
+QTTB,false,0,0,0,,false,false
+QUAD,false,0,0,0,,false,false
+QUIK,false,0,0,0,,false,false
+QUMS,false,0,0,0,,false,false
+QVCGA,true,40951,9,9,2025-02-24 to 2025-10-21,false,false
+RAAQ,false,0,0,0,,false,false
+RAC,false,0,0,0,,false,false
+RAIL,false,0,0,0,,false,false
+RAIN,false,0,0,0,,false,false
+RAMP,false,0,0,0,,false,false
+RAND,true,18000,108,108,2004-01-02 to 2012-12-04,false,false
+RANG,false,0,0,0,,false,false
+RANI,false,0,0,0,,false,false
+RAPP,false,0,0,0,,false,false
+RAPT,false,0,0,0,,false,false
+RAVE,true,187876,130,130,2015-01-09 to 2025-10-21,false,false
+RAY,true,7210,25,25,2004-01-02 to 2006-01-04,false,false
+RAYA,false,0,0,0,,false,false
+RBB,false,0,0,0,,false,false
+RBBN,false,0,0,0,,false,false
+RBCAA,true,10000,16,16,2004-01-02 to 2005-04-20,false,false
+RBKB,false,0,0,0,,false,false
+RBNE,false,0,0,0,,false,false
+RBOT,false,0,0,0,,false,false
+RC,true,17681,84,84,2004-01-02 to 2010-12-30,false,false
+RCAT,true,18000,5,5,2021-04-30 to 2021-08-03,false,false
+RCKT,false,0,0,0,,false,false
+RCKY,true,18000,5,5,2004-01-02 to 2004-05-26,false,false
+RCMT,false,0,0,0,,false,false
+RCON,true,14342,18,18,2009-07-30 to 2010-12-31,false,false
+RCT,false,0,0,0,,false,false
+RCUS,false,0,0,0,,false,false
+RDAC,false,0,0,0,,false,false
+RDAG,false,0,0,0,,false,false
+RDCM,false,0,0,0,,false,false
+RDGT,false,0,0,0,,false,false
+RDI,true,38181,82,82,2004-03-30 to 2010-12-31,false,false
+RDIB,true,150,16,16,2009-09-04 to 2010-12-31,false,false
+RDNW,false,0,0,0,,false,false
+RDVT,false,0,0,0,,false,false
+RDW,false,0,0,0,,false,false
+RDWR,false,0,0,0,,false,false
+RDZN,false,0,0,0,,false,false
+REAL,false,0,0,0,,false,false
+REAX,false,0,0,0,,false,false
+REBN,false,0,0,0,,false,false
+RECT,false,0,0,0,,false,false
+REE,true,34725,6,6,2010-08-18 to 2011-01-01,false,false
+REFI,false,0,0,0,,false,false
+REFR,false,0,0,0,,false,false
+REKR,true,452583,79,79,2019-04-30 to 2025-10-21,false,false
+RELI,false,0,0,0,,false,false
+RELL,false,0,0,0,,false,false
+RENT,false,0,0,0,,false,false
+REPL,false,0,0,0,,false,false
+RES,false,0,0,0,,false,false
+RETO,false,0,0,0,,false,false
+REVB,false,0,0,0,,false,false
+REX,false,0,0,0,,false,false
+RFAI,false,0,0,0,,false,false
+RFIL,false,0,0,0,,false,false
+RFL,true,23923,24,24,2008-06-12 to 2010-05-21,false,false
+RGCO,true,6740,84,84,2004-01-02 to 2010-12-30,false,false
+RGNX,false,0,0,0,,false,false
+RGP,false,0,0,0,,false,false
+RGR,false,0,0,0,,false,false
+RGS,false,0,0,0,,false,false
+RHLD,false,0,0,0,,false,false
+RIBB,false,0,0,0,,false,false
+RICK,true,506639,262,262,2004-01-02 to 2025-10-21,false,false
+RIGL,false,0,0,0,,false,false
+RILY,false,0,0,0,,false,false
+RIME,true,65608,14,14,2024-09-09 to 2025-10-21,false,false
+RITR,false,0,0,0,,false,false
+RKDA,true,18000,17,17,2015-05-15 to 2016-09-12,false,false
+RLAY,false,0,0,0,,false,false
+RLJ,true,1238850,174,174,2011-05-11 to 2025-10-21,false,false
+RLMD,false,0,0,0,,false,false
+RLYB,true,99687,52,52,2021-07-29 to 2025-10-21,false,false
+RM,true,293895,145,145,2012-03-28 to 2024-03-28,false,false
+RMAX,false,0,0,0,,false,false
+RMBI,false,0,0,0,,false,false
+RMCF,false,0,0,0,,false,false
+RMCO,false,0,0,0,,false,false
+RMNI,false,0,0,0,,false,false
+RMR,true,66347,79,79,2004-01-02 to 2016-12-30,false,false
+RMSG,false,0,0,0,,false,false
+RMTI,false,0,0,0,,false,false
+RNAC,false,0,0,0,,false,false
+RNAZ,false,0,0,0,,false,false
+RNGR,false,0,0,0,,false,false
+RNTX,true,8227,10,10,2025-01-13 to 2025-10-21,false,false
+RNXT,true,66195,51,51,2021-08-26 to 2025-10-21,false,false
+ROCK,false,0,0,0,,false,false
+ROG,false,0,0,0,,false,false
+ROMA,false,0,0,0,,false,false
+ROOT,false,0,0,0,,false,false
+RPAY,false,0,0,0,,false,false
+RPD,false,0,0,0,,false,false
+RPGL,false,0,0,0,,false,false
+RPID,false,0,0,0,,false,false
+RPT,false,0,0,0,,false,false
+RPTX,false,0,0,0,,false,false
+RR,false,0,0,0,,false,false
+RRBI,false,0,0,0,,false,false
+RRGB,false,0,0,0,,false,false
+RSI,false,0,0,0,,false,false
+RSKD,false,0,0,0,,false,false
+RSSS,false,0,0,0,,false,false
+RSVR,false,0,0,0,,false,false
+RTAC,false,0,0,0,,false,false
+RUBI,false,0,0,0,,false,false
+RVLV,false,0,0,0,,false,false
+RVPH,false,0,0,0,,false,false
+RVSB,false,0,0,0,,false,false
+RVSN,false,0,0,0,,false,false
+RVYL,false,0,0,0,,false,false
+RWAY,false,0,0,0,,false,false
+RWT,true,18000,4,4,2004-01-02 to 2004-04-23,false,false
+RXST,false,0,0,0,,false,false
+RXT,false,0,0,0,,false,false
+RYAM,false,0,0,0,,false,false
+RYET,false,0,0,0,,false,false
+RYI,false,0,0,0,,false,false
+RYM,false,0,0,0,,false,false
+RYOJ,false,0,0,0,,false,false
+RZLT,true,18000,25,25,2020-11-09 to 2022-11-08,false,false
+RZLV,false,0,0,0,,false,false
+SABR,false,0,0,0,,false,false
+SABS,false,0,0,0,,false,false
+SAFE,false,0,0,0,,false,false
+SAFT,false,0,0,0,,false,false
+SAFX,false,0,0,0,,false,false
+SAGT,false,0,0,0,,false,false
+SAIH,false,0,0,0,,false,false
+SAMG,false,0,0,0,,false,false
+SANA,false,0,0,0,,false,false
+SANG,false,0,0,0,,false,false
+SAR,true,23569,72,72,2011-01-03 to 2016-12-30,false,false
+SATL,false,0,0,0,,false,false
+SAVA,true,605593,80,80,2019-03-28 to 2025-10-21,false,false
+SB,true,950526,210,210,2008-05-29 to 2025-10-21,false,false
+SBC,false,0,0,0,,false,false
+SBDS,true,1360,4,4,2025-07-24 to 2025-10-20,false,false
+SBFG,false,0,0,0,,false,false
+SBFM,true,18000,5,5,2021-12-31 to 2022-04-20,false,false
+SBGI,false,0,0,0,,false,false
+SBH,true,18000,4,4,2006-11-17 to 2007-02-14,false,false
+SBLX,false,0,0,0,,false,false
+SBR,false,0,0,0,,false,false
+SBSI,false,0,0,0,,false,false
+SBXD,false,0,0,0,,false,false
+SCHL,false,0,0,0,,false,false
+SCKT,false,0,0,0,,false,false
+SCL,false,0,0,0,,false,false
+SCLX,false,0,0,0,,false,false
+SCM,true,68262,49,49,2004-01-02 to 2013-03-28,false,false
+SCNX,false,0,0,0,,false,false
+SCOR,false,0,0,0,,false,false
+SCS,true,15381,6,5,2004-01-02 to 2004-06-18,true,false
+SCSC,false,0,0,0,,false,false
+SCVL,false,0,0,0,,false,false
+SCWO,false,0,0,0,,false,false
+SCYX,false,0,0,0,,false,false
+SD,true,1377208,208,208,2007-11-06 to 2025-10-21,false,false
+SDA,true,315624,159,159,2004-01-02 to 2025-10-21,false,false
+SDGR,false,0,0,0,,false,false
+SDHC,true,18000,8,8,2024-01-11 to 2024-08-05,false,false
+SDHY,false,0,0,0,,false,false
+SDOT,true,48350,28,28,2023-07-27 to 2025-10-21,false,false
+SDRL,false,0,0,0,,false,false
+SDST,false,0,0,0,,false,false
+SEAT,false,0,0,0,,false,false
+SEED,false,0,0,0,,false,false
+SEER,false,0,0,0,,false,false
+SEG,false,0,0,0,,false,false
+SEGG,false,0,0,0,,false,false
+SELF,false,0,0,0,,false,false
+SELX,false,0,0,0,,false,false
+SEM,false,0,0,0,,false,false
+SEMR,false,0,0,0,,false,false
+SENEA,true,222845,262,262,2004-01-08 to 2025-10-21,false,false
+SENEB,false,0,0,0,,false,false
+SEPN,false,0,0,0,,false,false
+SERA,false,0,0,0,,false,false
+SERV,false,0,0,0,,false,false
+SES,false,0,0,0,,false,false
+SEV,false,0,0,0,,false,false
+SEVN,false,0,0,0,,false,false
+SFBC,true,5486,50,50,2004-01-02 to 2008-02-29,false,false
+SFHG,false,0,0,0,,false,false
+SFIX,false,0,0,0,,false,false
+SFL,false,0,0,0,,false,false
+SFST,false,0,0,0,,false,false
+SFWL,false,0,0,0,,false,false
+SG,false,0,0,0,,false,false
+SGA,true,165449,262,262,2004-01-02 to 2025-10-21,false,false
+SGBX,false,0,0,0,,false,false
+SGC,false,0,0,0,,false,false
+SGD,false,0,0,0,,false,false
+SGHT,false,0,0,0,,false,false
+SGLY,false,0,0,0,,false,false
+SGML,false,0,0,0,,false,false
+SGMO,false,0,0,0,,false,false
+SGMT,false,0,0,0,,false,false
+SGRP,false,0,0,0,,false,false
+SGU,false,0,0,0,,false,false
+SHBI,false,0,0,0,,false,false
+SHCO,false,0,0,0,,false,false
+SHEN,false,0,0,0,,false,false
+SHFS,false,0,0,0,,false,false
+SHIM,false,0,0,0,,false,false
+SHIP,true,25878,27,27,2008-10-15 to 2010-12-31,false,false
+SHLS,false,0,0,0,,false,false
+SHMD,false,0,0,0,,false,false
+SHO,false,0,0,0,,false,false
+SHPH,false,0,0,0,,false,false
+SI,false,0,0,0,,false,false
+SIBN,false,0,0,0,,false,false
+SIDU,false,0,0,0,,false,false
+SIEB,false,0,0,0,,false,false
+SIGA,false,0,0,0,,false,false
+SILA,false,0,0,0,,false,false
+SILC,true,50000,24,24,2006-01-03 to 2007-12-10,false,false
+SILO,false,0,0,0,,false,false
+SIMA,false,0,0,0,,false,false
+SINT,false,0,0,0,,false,false
+SION,false,0,0,0,,false,false
+SITC,false,0,0,0,,false,false
+SJ,false,0,0,0,,false,false
+SJT,false,0,0,0,,false,false
+SKBL,false,0,0,0,,false,false
+SKIL,false,0,0,0,,false,false
+SKIN,false,0,0,0,,false,false
+SKK,false,0,0,0,,false,false
+SKLZ,false,0,0,0,,false,false
+SKWD,false,0,0,0,,false,false
+SKYE,false,0,0,0,,false,false
+SKYH,false,0,0,0,,false,false
+SKYQ,false,0,0,0,,false,false
+SKYT,false,0,0,0,,false,false
+SKYX,false,0,0,0,,false,false
+SLDB,false,0,0,0,,false,false
+SLDE,false,0,0,0,,false,false
+SLDP,false,0,0,0,,false,false
+SLE,true,50000,7,7,2004-01-02 to 2004-07-12,false,false
+SLGB,false,0,0,0,,false,false
+SLGL,false,0,0,0,,false,false
+SLMT,true,3887,1,1,2025-10-03 to 2025-10-21,false,false
+SLNG,false,0,0,0,,false,false
+SLNH,false,0,0,0,,false,false
+SLP,false,0,0,0,,false,false
+SLQT,false,0,0,0,,false,false
+SLRC,false,0,0,0,,false,false
+SLRX,false,0,0,0,,false,false
+SLS,false,0,0,0,,false,false
+SLSN,false,0,0,0,,false,false
+SLVM,false,0,0,0,,false,false
+SLXN,false,0,0,0,,false,false
+SMBC,false,0,0,0,,false,false
+SMBK,false,0,0,0,,false,false
+SMC,false,0,0,0,,false,false
+SMHI,false,0,0,0,,false,false
+SMID,false,0,0,0,,false,false
+SMLR,false,0,0,0,,false,false
+SMP,false,0,0,0,,false,false
+SMRT,false,0,0,0,,false,false
+SMSI,false,0,0,0,,false,false
+SMTI,true,7459,13,13,2004-01-02 to 2005-01-31,false,false
+SMTK,false,0,0,0,,false,false
+SMWB,false,0,0,0,,false,false
+SMX,false,0,0,0,,false,false
+SMXT,false,0,0,0,,false,false
+SNAL,false,0,0,0,,false,false
+SNBR,false,0,0,0,,false,false
+SNCR,false,0,0,0,,false,false
+SNCY,false,0,0,0,,false,false
+SND,false,0,0,0,,false,false
+SNDA,false,0,0,0,,false,false
+SNDL,false,0,0,0,,false,false
+SNDX,true,15000,8,8,2016-03-03 to 2016-10-24,false,false
+SNES,false,0,0,0,,false,false
+SNFCA,false,0,0,0,,false,false
+SNGX,false,0,0,0,,false,false
+SNOA,false,0,0,0,,false,false
+SNSE,true,8901,4,3,2021-02-04 to 2021-05-19,true,false
+SNT,false,0,0,0,,false,false
+SNTG,false,0,0,0,,false,false
+SNTI,false,0,0,0,,false,false
+SNWV,true,18544,47,47,2021-12-31 to 2025-10-21,false,false
+SNYR,false,0,0,0,,false,false
+SOBR,false,0,0,0,,false,false
+SOC,false,0,0,0,,false,false
+SOCA,false,0,0,0,,false,false
+SOHO,false,0,0,0,,false,false
+SOHU,false,0,0,0,,false,false
+SOND,false,0,0,0,,false,false
+SONM,false,0,0,0,,false,false
+SONN,false,0,0,0,,false,false
+SONO,false,0,0,0,,false,false
+SOPA,false,0,0,0,,false,false
+SOPH,false,0,0,0,,false,false
+SORA,false,0,0,0,,false,false
+SOS,true,7512,16,16,2004-01-02 to 2010-12-28,false,false
+SOTK,false,0,0,0,,false,false
+SOUL,false,0,0,0,,false,false
+SOWG,true,18000,38,38,2021-12-31 to 2025-01-03,false,false
+SPAI,false,0,0,0,,false,false
+SPB,false,0,0,0,,false,false
+SPCB,true,401202,146,146,2013-09-17 to 2025-10-21,false,false
+SPCE,false,0,0,0,,false,false
+SPEG,false,0,0,0,,false,false
+SPFI,true,64843,78,78,2019-05-09 to 2025-10-21,false,false
+SPH,false,0,0,0,,false,false
+SPHL,false,0,0,0,,false,false
+SPIR,false,0,0,0,,false,false
+SPKL,false,0,0,0,,false,false
+SPOK,true,10000,5,5,2014-07-09 to 2014-11-17,false,false
+SPPL,true,38194,26,26,2023-09-13 to 2025-10-21,false,false
+SPRB,false,0,0,0,,false,false
+SPRC,false,0,0,0,,false,false
+SPRO,false,0,0,0,,false,false
+SPRU,false,0,0,0,,false,false
+SPRY,false,0,0,0,,false,false
+SPT,false,0,0,0,,false,false
+SPWH,false,0,0,0,,false,false
+SPWR,false,0,0,0,,false,false
+SQFT,false,0,0,0,,false,false
+SRBK,false,0,0,0,,false,false
+SRCE,false,0,0,0,,false,false
+SRDX,false,0,0,0,,false,false
+SRFM,false,0,0,0,,false,false
+SRG,true,7262,25,25,2004-01-02 to 2008-10-14,false,false
+SRI,false,0,0,0,,false,false
+SRL,true,27688,95,95,2004-01-02 to 2025-10-21,false,false
+SRTA,true,11897,3,3,2025-08-29 to 2025-10-21,false,false
+SRTS,false,0,0,0,,false,false
+SRZN,false,0,0,0,,false,false
+SSBI,true,6428,54,54,2006-07-14 to 2010-12-31,false,false
+SSEA,false,0,0,0,,false,false
+SSII,false,0,0,0,,false,false
+SSKN,false,0,0,0,,false,false
+SSM,true,5217,56,56,2004-06-28 to 2010-05-03,false,false
+SSP,false,0,0,0,,false,false
+SSSS,false,0,0,0,,false,false
+SST,true,12846,61,61,2011-12-01 to 2016-12-30,false,false
+SSTI,false,0,0,0,,false,false
+SSTK,true,764518,157,157,2012-10-11 to 2025-10-21,false,false
+SSYS,false,0,0,0,,false,false
+STAA,false,0,0,0,,false,false
+STAI,false,0,0,0,,false,false
+STAK,false,0,0,0,,false,false
+STBA,false,0,0,0,,false,false
+STC,false,0,0,0,,false,false
+STEL,false,0,0,0,,false,false
+STEM,true,18000,6,6,2004-01-02 to 2004-06-15,false,false
+STEX,false,0,0,0,,false,false
+STFS,true,50995,13,13,2024-10-11 to 2025-10-21,false,false
+STGW,false,0,0,0,,false,false
+STHO,false,0,0,0,,false,false
+STI,true,1674972,213,213,2004-01-02 to 2025-10-21,false,false
+STIM,false,0,0,0,,false,false
+STKE,false,0,0,0,,false,false
+STKL,true,50000,12,12,2004-01-02 to 2004-12-09,false,false
+STKS,false,0,0,0,,false,false
+STOK,false,0,0,0,,false,false
+STRA,true,1027845,262,262,2004-01-02 to 2025-10-21,false,false
+STRO,false,0,0,0,,false,false
+STRR,false,0,0,0,,false,false
+STRS,true,22102,84,84,2004-01-02 to 2010-12-31,false,false
+STRT,true,23879,84,84,2004-01-02 to 2010-12-31,false,false
+STRZ,true,18000,91,91,2004-01-02 to 2025-07-11,false,false
+STSS,false,0,0,0,,false,false
+STTK,false,0,0,0,,false,false
+SUGP,false,0,0,0,,false,false
+SUIG,false,0,0,0,,false,false
+SUNE,false,0,0,0,,false,false
+SUNS,false,0,0,0,,false,false
+SUPV,false,0,0,0,,false,false
+SUPX,false,0,0,0,,false,false
+SURG,false,0,0,0,,false,false
+SUUN,false,0,0,0,,false,false
+SVAC,false,0,0,0,,false,false
+SVC,false,0,0,0,,false,false
+SVCC,false,0,0,0,,false,false
+SVCO,false,0,0,0,,false,false
+SVII,false,0,0,0,,false,false
+SVRA,false,0,0,0,,false,false
+SVV,false,0,0,0,,false,false
+SWAG,false,0,0,0,,false,false
+SWBI,false,0,0,0,,false,false
+SWIM,false,0,0,0,,false,false
+SWKH,true,26770,70,70,2020-01-23 to 2025-10-21,false,false
+SWVL,false,0,0,0,,false,false
+SXC,false,0,0,0,,false,false
+SXTC,false,0,0,0,,false,false
+SXTP,true,18000,8,8,2023-07-12 to 2024-02-21,false,false
+SYBT,false,0,0,0,,false,false
+SYBX,true,209474,99,99,2017-08-28 to 2025-10-21,false,false
+SYPR,true,262673,262,262,2004-01-02 to 2025-10-21,false,false
+SYRE,false,0,0,0,,false,false
+SZZL,false,0,0,0,,false,false
+TACH,true,247,5,5,2025-06-02 to 2025-10-20,false,false
+TACO,true,18000,6,6,2015-04-28 to 2015-09-21,false,false
+TACT,false,0,0,0,,false,false
+TAIT,true,6250,84,84,2004-01-02 to 2010-12-31,false,false
+TALK,true,50000,9,9,2004-01-02 to 2004-09-30,false,false
+TALO,false,0,0,0,,false,false
+TANH,false,0,0,0,,false,false
+TAOP,false,0,0,0,,false,false
+TAOX,false,0,0,0,,false,false
+TARA,false,0,0,0,,false,false
+TASK,false,0,0,0,,false,false
+TATT,false,0,0,0,,false,false
+TAVI,false,0,0,0,,false,false
+TAYD,false,0,0,0,,false,false
+TBCH,false,0,0,0,,false,false
+TBH,false,0,0,0,,false,false
+TBHC,true,7002,4,4,2025-07-29 to 2025-10-21,false,false
+TBI,true,18000,4,4,2004-01-02 to 2004-04-08,false,false
+TBLA,false,0,0,0,,false,false
+TBLD,false,0,0,0,,false,false
+TBMC,false,0,0,0,,false,false
+TBN,false,0,0,0,,false,false
+TBPH,false,0,0,0,,false,false
+TBRG,false,0,0,0,,false,false
+TCBK,false,0,0,0,,false,false
+TCBS,false,0,0,0,,false,false
+TCBX,false,0,0,0,,false,false
+TCI,false,0,0,0,,false,false
+TCMD,false,0,0,0,,false,false
+TCPC,false,0,0,0,,false,false
+TCRT,false,0,0,0,,false,false
+TCRX,false,0,0,0,,false,false
+TCX,false,0,0,0,,false,false
+TDAC,false,0,0,0,,false,false
+TDC,true,18000,3,3,2007-10-01 to 2007-12-06,false,false
+TDIC,false,0,0,0,,false,false
+TDOC,false,0,0,0,,false,false
+TDUP,false,0,0,0,,false,false
+TE,false,0,0,0,,false,false
+TEAD,false,0,0,0,,false,false
+TECX,true,46696,17,17,2024-06-21 to 2025-10-21,false,false
+TELA,false,0,0,0,,false,false
+TELO,false,0,0,0,,false,false
+TEN,false,0,0,0,,false,false
+TENX,false,0,0,0,,false,false
+TERN,false,0,0,0,,false,false
+TFIN,false,0,0,0,,false,false
+TG,false,0,0,0,,false,false
+TGE,false,0,0,0,,false,false
+TGHL,false,0,0,0,,false,false
+TGL,false,0,0,0,,false,false
+TH,false,0,0,0,,false,false
+THAR,true,64993,26,26,2023-09-25 to 2025-10-21,false,false
+THCH,false,0,0,0,,false,false
+THFF,true,262993,220,219,2004-01-02 to 2022-03-31,true,false
+THH,false,0,0,0,,false,false
+THR,false,0,0,0,,false,false
+THRM,false,0,0,0,,false,false
+THRY,false,0,0,0,,false,false
+THS,true,50000,15,15,2005-06-28 to 2006-08-17,false,false
+TIGR,true,8351,33,33,2008-04-21 to 2010-12-31,false,false
+TIL,true,1015,25,25,2007-03-12 to 2009-03-16,false,false
+TILE,false,0,0,0,,false,false
+TIPT,false,0,0,0,,false,false
+TIRX,false,0,0,0,,false,false
+TISI,true,819639,227,227,2006-12-28 to 2025-10-21,false,false
+TITN,false,0,0,0,,false,false
+TIVC,false,0,0,0,,false,false
+TIXT,false,0,0,0,,false,false
+TK,false,0,0,0,,false,false
+TKNO,false,0,0,0,,false,false
+TLF,false,0,0,0,,false,false
+TLIH,false,0,0,0,,false,false
+TLNC,false,0,0,0,,false,false
+TLPH,false,0,0,0,,false,false
+TLRY,false,0,0,0,,false,false
+TLS,false,0,0,0,,false,false
+TLSA,false,0,0,0,,false,false
+TLSI,false,0,0,0,,false,false
+TLYS,false,0,0,0,,false,false
+TMCI,false,0,0,0,,false,false
+TNC,true,3361,3,3,2004-01-02 to 2004-03-31,false,false
+TNDM,false,0,0,0,,false,false
+TNGX,false,0,0,0,,false,false
+TNK,false,0,0,0,,false,false
+TNMG,false,0,0,0,,false,false
+TNON,false,0,0,0,,false,false
+TNXP,false,0,0,0,,false,false
+TNYA,false,0,0,0,,false,false
+TOI,true,4609,37,37,2005-02-24 to 2008-02-15,false,false
+TOMZ,true,10000,3,3,2020-10-01 to 2020-12-31,false,false
+TONX,false,0,0,0,,false,false
+TOP,true,123668,41,41,2022-06-01 to 2025-10-21,false,false
+TORO,true,51899,32,32,2023-03-08 to 2025-10-21,false,false
+TOYO,false,0,0,0,,false,false
+TPB,true,10137,8,8,2016-05-11 to 2016-12-30,false,false
+TPCS,false,0,0,0,,false,false
+TPST,false,0,0,0,,false,false
+TPVG,false,0,0,0,,false,false
+TRAK,false,0,0,0,,false,false
+TRAW,false,0,0,0,,false,false
+TRC,false,0,0,0,,false,false
+TRDA,false,0,0,0,,false,false
+TREE,false,0,0,0,,false,false
+TRIN,true,282018,83,83,2005-01-04 to 2025-10-21,false,false
+TRIP,false,0,0,0,,false,false
+TRML,false,0,0,0,,false,false
+TRNR,true,113794,31,31,2023-04-28 to 2025-10-21,false,false
+TRNS,false,0,0,0,,false,false
+TRON,false,0,0,0,,false,false
+TROO,false,0,0,0,,false,false
+TROX,true,18000,4,4,2012-06-18 to 2012-09-27,false,false
+TRS,false,0,0,0,,false,false
+TRSG,false,0,0,0,,false,false
+TRST,true,50000,12,12,2004-01-02 to 2004-12-17,false,false
+TRTX,false,0,0,0,,false,false
+TRUE,true,9789,71,71,2005-02-28 to 2010-12-31,false,false
+TRUG,false,0,0,0,,false,false
+TRUP,false,0,0,0,,false,false
+TRVI,false,0,0,0,,false,false
+TSAT,false,0,0,0,,false,false
+TSBK,true,87178,262,262,2004-01-02 to 2025-10-21,false,false
+TSE,false,0,0,0,,false,false
+TSHA,false,0,0,0,,false,false
+TSQ,false,0,0,0,,false,false
+TSSI,false,0,0,0,,false,false
+TTEC,false,0,0,0,,false,false
+TTGT,true,50000,22,22,2007-05-17 to 2009-02-25,false,false
+TTI,false,0,0,0,,false,false
+TTRX,false,0,0,0,,false,false
+TTSH,false,0,0,0,,false,false
+TUSK,false,0,0,0,,false,false
+TVA,false,0,0,0,,false,false
+TVAI,false,0,0,0,,false,false
+TVGN,false,0,0,0,,false,false
+TVRD,true,9902,7,7,2025-04-16 to 2025-10-21,false,false
+TWFG,false,0,0,0,,false,false
+TWG,false,0,0,0,,false,false
+TWI,false,0,0,0,,false,false
+TWIN,false,0,0,0,,false,false
+TWNP,false,0,0,0,,false,false
+TWO,false,0,0,0,,false,false
+TWST,false,0,0,0,,false,false
+TXG,true,536427,74,74,2019-09-12 to 2025-10-21,false,false
+TXMD,true,914324,151,151,2013-04-23 to 2025-10-21,false,false
+TYGO,false,0,0,0,,false,false
+TYRA,false,0,0,0,,false,false
+TZOO,false,0,0,0,,false,false
+TZUP,true,42337,38,38,2022-03-21 to 2025-10-21,false,false
+UA,true,50000,8,8,2006-12-18 to 2007-07-10,false,false
+UAN,false,0,0,0,,false,false
+UBCP,false,0,0,0,,false,false
+UBFO,true,58588,156,156,2004-01-02 to 2016-12-30,false,false
+UBXG,false,0,0,0,,false,false
+UCAR,false,0,0,0,,false,false
+UCTT,false,0,0,0,,false,false
+UDMY,false,0,0,0,,false,false
+UEIC,true,50000,30,30,2004-01-02 to 2006-06-26,false,false
+UFCS,false,0,0,0,,false,false
+UFG,false,0,0,0,,false,false
+UFI,false,0,0,0,,false,false
+UFPT,false,0,0,0,,false,false
+UG,false,0,0,0,,false,false
+UGRO,true,105236,57,57,2021-02-12 to 2025-10-21,false,false
+UHG,false,0,0,0,,false,false
+UHT,false,0,0,0,,false,false
+UIS,false,0,0,0,,false,false
+UK,true,200,12,12,2015-04-29 to 2016-03-08,false,false
+ULBI,false,0,0,0,,false,false
+ULCC,true,414906,55,55,2021-04-01 to 2025-10-21,false,false
+ULH,true,18000,26,26,2016-05-02 to 2018-06-28,false,false
+ULY,true,36604,25,25,2023-10-19 to 2025-10-21,false,false
+UMH,true,50000,84,84,2004-01-02 to 2010-12-07,false,false
+UNB,false,0,0,0,,false,false
+UNCY,true,150126,52,52,2021-07-13 to 2025-10-21,false,false
+UNIT,false,0,0,0,,false,false
+UNTY,false,0,0,0,,false,false
+UOKA,false,0,0,0,,false,false
+UONE,false,0,0,0,,false,false
+UONEK,false,0,0,0,,false,false
+UP,false,0,0,0,,false,false
+UPB,false,0,0,0,,false,false
+UPBD,false,0,0,0,,false,false
+UPC,true,42589,6,6,2004-01-02 to 2004-06-30,false,false
+UPLD,false,0,0,0,,false,false
+UPXI,false,0,0,0,,false,false
+URGN,false,0,0,0,,false,false
+UROY,false,0,0,0,,false,false
+USAU,false,0,0,0,,false,false
+USCB,false,0,0,0,,false,false
+USEA,false,0,0,0,,false,false
+USEG,true,18000,16,16,2004-01-02 to 2005-04-27,false,false
+USGO,false,0,0,0,,false,false
+USIO,false,0,0,0,,false,false
+USNA,false,0,0,0,,false,false
+USPH,false,0,0,0,,false,false
+UTI,false,0,0,0,,false,false
+UTL,false,0,0,0,,false,false
+UTMD,false,0,0,0,,false,false
+UTSI,false,0,0,0,,false,false
+UTZ,false,0,0,0,,false,false
+UVE,false,0,0,0,,false,false
+UVSP,false,0,0,0,,false,false
+UVV,false,0,0,0,,false,false
+UWMC,true,465049,58,58,2021-01-22 to 2025-10-21,false,false
+UYSC,true,408,6,6,2025-05-27 to 2025-10-21,false,false
+VABK,false,0,0,0,,false,false
+VACH,false,0,0,0,,false,false
+VALU,false,0,0,0,,false,false
+VANI,false,0,0,0,,false,false
+VATE,false,0,0,0,,false,false
+VBIX,true,5276,45,45,2021-12-31 to 2025-10-20,false,false
+VBNK,false,0,0,0,,false,false
+VBTX,false,0,0,0,,false,false
+VCEL,false,0,0,0,,false,false
+VCIC,false,0,0,0,,false,false
+VCIG,false,0,0,0,,false,false
+VECO,false,0,0,0,,false,false
+VEEA,false,0,0,0,,false,false
+VEEE,false,0,0,0,,false,false
+VEL,false,0,0,0,,false,false
+VELO,false,0,0,0,,false,false
+VERA,true,238386,54,54,2021-05-14 to 2025-10-21,false,false
+VERI,false,0,0,0,,false,false
+VERO,false,0,0,0,,false,false
+VERU,false,0,0,0,,false,false
+VET,false,0,0,0,,false,false
+VFF,false,0,0,0,,false,false
+VGAS,false,0,0,0,,false,false
+VHC,false,0,0,0,,false,false
+VHI,false,0,0,0,,false,false
+VINP,false,0,0,0,,false,false
+VIR,false,0,0,0,,false,false
+VIRC,false,0,0,0,,false,false
+VITL,false,0,0,0,,false,false
+VIVK,false,0,0,0,,false,false
+VIVS,false,0,0,0,,false,false
+VLGEA,true,34632,84,84,2004-01-02 to 2010-12-31,false,false
+VLN,false,0,0,0,,false,false
+VMAR,false,0,0,0,,false,false
+VMD,false,0,0,0,,false,false
+VMEO,false,0,0,0,,false,false
+VNCE,false,0,0,0,,false,false
+VNDA,false,0,0,0,,false,false
+VNME,false,0,0,0,,false,false
+VOC,false,0,0,0,,false,false
+VOR,false,0,0,0,,false,false
+VOXR,false,0,0,0,,false,false
+VOYG,true,33771,5,5,2025-06-11 to 2025-10-21,false,false
+VPG,true,18000,8,8,2010-07-07 to 2011-02-01,false,false
+VRA,false,0,0,0,,false,false
+VRAR,false,0,0,0,,false,false
+VRAX,false,0,0,0,,false,false
+VRCA,false,0,0,0,,false,false
+VRDN,false,0,0,0,,false,false
+VRE,false,0,0,0,,false,false
+VREX,false,0,0,0,,false,false
+VRM,false,0,0,0,,false,false
+VRME,false,0,0,0,,false,false
+VRNT,true,1058168,196,196,2004-01-02 to 2023-09-29,false,false
+VRTS,false,0,0,0,,false,false
+VS,false,0,0,0,,false,false
+VSEE,false,0,0,0,,false,false
+VSME,false,0,0,0,,false,false
+VSTA,false,0,0,0,,false,false
+VSTD,false,0,0,0,,false,false
+VSTM,false,0,0,0,,false,false
+VSTS,false,0,0,0,,false,false
+VTEX,false,0,0,0,,false,false
+VTGN,true,460471,114,114,2016-05-11 to 2025-10-21,false,false
+VTLE,false,0,0,0,,false,false
+VTOL,false,0,0,0,,false,false
+VTS,false,0,0,0,,false,false
+VTSI,false,0,0,0,,false,false
+VTVT,false,0,0,0,,false,false
+VTYX,false,0,0,0,,false,false
+VUZI,false,0,0,0,,false,false
+VVOS,false,0,0,0,,false,false
+VVPR,false,0,0,0,,false,false
+VVX,true,90337,40,40,2022-07-08 to 2025-10-21,false,false
+VWAV,false,0,0,0,,false,false
+VYGR,false,0,0,0,,false,false
+VYNE,false,0,0,0,,false,false
+VYX,false,0,0,0,,false,false
+WABC,false,0,0,0,,false,false
+WAFU,false,0,0,0,,false,false
+WAI,false,0,0,0,,false,false
+WALD,false,0,0,0,,false,false
+WASH,false,0,0,0,,false,false
+WATT,false,0,0,0,,false,false
+WBI,false,0,0,0,,false,false
+WBUY,false,0,0,0,,false,false
+WBX,true,216070,49,49,2021-10-04 to 2025-10-21,false,false
+WCT,false,0,0,0,,false,false
+WEAV,false,0,0,0,,false,false
+WEN,false,0,0,0,,false,false
+WENN,false,0,0,0,,false,false
+WERN,false,0,0,0,,false,false
+WEST,true,18000,35,35,2008-02-25 to 2011-03-11,false,false
+WETH,false,0,0,0,,false,false
+WETO,false,0,0,0,,false,false
+WEYS,true,50000,70,70,2004-01-02 to 2009-10-28,false,false
+WFCF,false,0,0,0,,false,false
+WFF,false,0,0,0,,false,false
+WGO,false,0,0,0,,false,false
+WGRX,false,0,0,0,,false,false
+WHF,false,0,0,0,,false,false
+WHG,false,0,0,0,,false,false
+WHLR,false,0,0,0,,false,false
+WHWK,false,0,0,0,,false,false
+WILC,false,0,0,0,,false,false
+WIMI,false,0,0,0,,false,false
+WINA,false,0,0,0,,false,false
+WKC,true,156397,29,29,2023-06-16 to 2025-10-21,false,false
+WKHS,false,0,0,0,,false,false
+WKSP,false,0,0,0,,false,false
+WLAC,true,7148,11,11,2024-12-30 to 2025-10-21,false,false
+WLDN,true,11849,50,50,2006-11-21 to 2010-12-31,false,false
+WLDS,false,0,0,0,,false,false
+WLFC,true,34180,84,84,2004-01-02 to 2010-12-31,false,false
+WLKP,false,0,0,0,,false,false
+WLY,true,18000,5,5,2022-04-01 to 2022-08-17,false,false
+WLYB,false,0,0,0,,false,false
+WMK,false,0,0,0,,false,false
+WNC,false,0,0,0,,false,false
+WNEB,true,145091,109,109,2016-10-24 to 2025-10-21,false,false
+WNW,false,0,0,0,,false,false
+WOK,false,0,0,0,,false,false
+WOLF,false,0,0,0,,false,false
+WOOF,false,0,0,0,,false,false
+WORX,false,0,0,0,,false,false
+WOW,false,0,0,0,,false,false
+WPRT,false,0,0,0,,false,false
+WRAP,true,186725,59,59,2020-12-01 to 2025-10-21,false,false
+WRLD,true,15000,4,4,2004-01-02 to 2004-04-02,false,false
+WS,false,0,0,0,,false,false
+WSBF,false,0,0,0,,false,false
+WSBK,true,31297,15,15,2004-01-02 to 2025-10-21,false,false
+WSR,false,0,0,0,,false,false
+WT,false,0,0,0,,false,false
+WTBA,false,0,0,0,,false,false
+WTF,false,0,0,0,,false,false
+WTI,true,10000,4,4,2005-01-28 to 2005-04-14,false,false
+WTO,false,0,0,0,,false,false
+WTTR,false,0,0,0,,false,false
+WVE,false,0,0,0,,false,false
+WVVI,false,0,0,0,,false,false
+WW,true,50000,14,14,2004-01-02 to 2005-02-22,false,false
+WXM,false,0,0,0,,false,false
+WYFI,false,0,0,0,,false,false
+XAIR,false,0,0,0,,false,false
+XBIO,false,0,0,0,,false,false
+XBIT,false,0,0,0,,false,false
+XBP,true,39087,24,24,2023-11-30 to 2025-10-21,false,false
+XCUR,false,0,0,0,,false,false
+XELB,false,0,0,0,,false,false
+XERS,false,0,0,0,,false,false
+XFOR,false,0,0,0,,false,false
+XGN,false,0,0,0,,false,false
+XHLD,true,43106,9,9,2025-02-13 to 2025-10-21,false,false
+XHR,false,0,0,0,,false,false
+XIFR,false,0,0,0,,false,false
+XLO,true,18000,12,12,2021-10-22 to 2022-09-20,false,false
+XNCR,false,0,0,0,,false,false
+XOMA,false,0,0,0,,false,false
+XOS,false,0,0,0,,false,false
+XPEL,true,269143,76,76,2019-07-19 to 2025-10-21,false,false
+XPER,false,0,0,0,,false,false
+XPOF,false,0,0,0,,false,false
+XPON,true,128048,43,43,2022-04-01 to 2025-10-21,false,false
+XPRO,false,0,0,0,,false,false
+XRTX,false,0,0,0,,false,false
+XRX,true,50000,7,7,2004-01-02 to 2004-07-09,false,false
+XTIA,false,0,0,0,,false,false
+XTKG,false,0,0,0,,false,false
+XWEL,false,0,0,0,,false,false
+XXII,true,866827,140,140,2014-03-11 to 2025-10-21,false,false
+YAAS,false,0,0,0,,false,false
+YDDL,false,0,0,0,,false,false
+YDES,false,0,0,0,,false,false
+YDKG,false,0,0,0,,false,false
+YEXT,false,0,0,0,,false,false
+YGMZ,true,10000,5,5,2020-10-21 to 2021-02-17,false,false
+YHC,false,0,0,0,,false,false
+YHGJ,false,0,0,0,,false,false
+YHNA,false,0,0,0,,false,false
+YIBO,false,0,0,0,,false,false
+YMAT,false,0,0,0,,false,false
+YORW,true,15000,42,42,2004-01-02 to 2007-06-04,false,false
+YSXT,false,0,0,0,,false,false
+YTRA,false,0,0,0,,false,false
+YYAI,true,15000,4,4,2024-04-15 to 2024-07-29,false,false
+YYGH,false,0,0,0,,false,false
+ZBAI,false,0,0,0,,false,false
+ZBAO,false,0,0,0,,false,false
+ZBIO,false,0,0,0,,false,false
+ZCMD,false,0,0,0,,false,false
+ZD,false,0,0,0,,false,false
+ZDAI,false,0,0,0,,false,false
+ZENA,false,0,0,0,,false,false
+ZENV,false,0,0,0,,false,false
+ZEO,false,0,0,0,,false,false
+ZEUS,true,10000,5,5,2004-01-02 to 2004-05-17,false,false
+ZGM,false,0,0,0,,false,false
+ZIM,false,0,0,0,,false,false
+ZIMV,false,0,0,0,,false,false
+ZIP,false,0,0,0,,false,false
+ZJK,false,0,0,0,,false,false
+ZJYL,false,0,0,0,,false,false
+ZKIN,false,0,0,0,,false,false
+ZNB,false,0,0,0,,false,false
+ZNTL,false,0,0,0,,false,false
+ZOOZ,false,0,0,0,,false,false
+ZSPC,false,0,0,0,,false,false
+ZTEK,false,0,0,0,,false,false
+ZUMZ,true,1398612,246,246,2005-05-06 to 2025-10-21,false,false
+ZURA,false,0,0,0,,false,false
+ZVIA,false,0,0,0,,false,false
+ZVRA,false,0,0,0,,false,false
+ZYBT,false,0,0,0,,false,false
+ZYME,false,0,0,0,,false,false
+ZYXI,false,0,0,0,,false,false
