@@ -1,0 +1,122 @@
+# External Certification Sample Selection
+# Priority tickers from our actual data (3,110 symbols available)
+
+priority_tickers:
+  - symbol: WOLF
+    rationale: "Main test case, proven 98.76% match rate with Alpha Vantage"
+    volume_profile: "low"
+    dates:
+      - "2025-05-13"  # Already validated
+      - "2025-05-14"
+      - "2025-05-15"
+
+  - symbol: AMC
+    rationale: "Meme stock, high volatility, retail focus"
+    volume_profile: "high"
+    dates:
+      - "2025-05-13"
+      - "2025-05-14"
+      - "2025-05-15"
+
+  - symbol: BTBT
+    rationale: "Bitcoin mining, crypto correlation"
+    volume_profile: "medium"
+    dates:
+      - "2025-05-13"
+      - "2025-05-14"
+      - "2025-05-15"
+
+  - symbol: GRI
+    rationale: "Small cap, lower volume, representative"
+    volume_profile: "low"
+    dates:
+      - "2025-05-13"
+      - "2025-05-14"
+      - "2025-05-15"
+
+  - symbol: BAER
+    rationale: "Small cap, representative of universe"
+    volume_profile: "low"
+    dates:
+      - "2025-05-13"
+      - "2025-05-14"
+      - "2025-05-15"
+
+# Sampling criteria
+sampling_criteria:
+  volume_diversity:
+    low: "< $1M/day"
+    medium: "$1-10M/day"
+    high: "> $10M/day"
+
+  volatility_diversity:
+    low: "< 5% daily"
+    medium: "5-15% daily"
+    high: "> 15% daily"
+
+  temporal:
+    - "2025"  # Recent data (primary focus)
+    - "2024"  # Historical for comparison
+
+  exchanges:
+    - "NASDAQ"
+    - "NYSE"
+    - "NYSE MKT"
+    - "AMEX"
+
+# API budget
+api_budget:
+  alphavantage:
+    calls_available: 5
+    strategy: "1 call = 1 month (20 trading days)"
+    total_ticker_days: 100  # 5 calls × 20 days
+
+  yahoo:
+    calls_available: "unlimited"
+    strategy: "Download all symbols, all dates"
+
+  twelvedata:
+    calls_available: 6
+    strategy: "Spot checks only, tie-breaking"
+
+# Validation levels enabled
+validation_levels:
+  L1_minute: true    # Minute bars vs Alpha Vantage + Twelve Data
+  L2_daily: true     # Daily bars (our agg) vs AV + Yahoo
+  L3_ca: true        # Corporate actions consistency
+  L4_triangulation: true  # Multi-vendor consensus
+
+# Thresholds (strict)
+thresholds:
+  L1_minute:
+    match_rate_min: 0.98          # 98% minimum
+    price_p95_max: 0.001          # 0.10%
+    price_mean_max: 0.0005        # 0.05%
+    volume_p95_max: 0.04          # 4%
+    volume_mean_max: 0.02         # 2%
+    breaks_with_delta_1pct: 0.005 # 0.5%
+
+  L2_daily:
+    ohlc_p95_max: 0.001           # 0.10%
+    ohlc_mean_max: 0.0005         # 0.05%
+    volume_p95_max: 0.03          # 3%
+    volume_mean_max: 0.02         # 2%
+    days_with_delta_0p5pct: 0.01  # 1%
+
+  L3_ca:
+    adj_close_mean_max: 0.0005    # 0.05%
+    adj_close_p95_max: 0.001      # 0.10%
+    split_factor_mismatch: 0      # Zero tolerance
+    div_factor_error_bp: 0.5      # 0.5 basis points
+
+  L4_triangulation:
+    max_deviation_mad: 2.0        # 2×MAD
+    outlier_rate_max: 0.05        # 5%
+
+# Output configuration
+output:
+  raw_data_dir: "raw_data"
+  normalized_dir: "normalized"
+  validation_dir: "validation"
+  final_report: "EXTERNAL_CERTIFICATION_REPORT.md"
+  save_intermediates: true  # Save all intermediate results for debugging
