@@ -13,6 +13,8 @@ def compare_ohlcv(df_ref: pd.DataFrame, df_ours: pd.DataFrame, price_tol=0.002, 
     m["d_price_max"]=m[["d_open","d_high","d_low","d_close"]].max(axis=1); m["pass"]=(m["d_price_max"]<=price_tol)&(m["d_vol"]<=vol_tol)
     rows=len(m); passed=int(m["pass"].sum()); match_rate=(passed/rows) if rows else 0.0
     br=m.loc[~m["pass"],["t_min","open_ref","high_ref","low_ref","close_ref","volume_ref","open_ours","high_ours","low_ours","close_ours","volume_ours","d_price_max","d_vol"]]
+    # Convert Timestamp to string for JSON serialization
+    br["t_min"] = br["t_min"].dt.strftime("%Y-%m-%d %H:%M:%S")
     breaks=br.to_dict(orient="records")
     stats={"rows":rows,"passed":passed,"match_rate":match_rate,"mean_d_price":float(m["d_price_max"].mean() if rows else 0.0),"mean_d_vol":float(m["d_vol"].mean() if rows else 0.0),"p95_d_price":float(m["d_price_max"].quantile(0.95) if rows else 0.0),"p95_d_vol":float(m["d_vol"].quantile(0.95) if rows else 0.0)}
     return {"rows_compared":rows,"match_rate":match_rate,"breaks":breaks,"stats":stats}

@@ -1,0 +1,29 @@
+{
+  "vendors": [
+    "fmp"
+  ],
+  "symbols": [
+    "WOLF"
+  ],
+  "dates": [
+    "2025-05-13"
+  ],
+  "price_tol": 0.002,
+  "vol_tol": 0.05,
+  "items": [
+    {
+      "symbol": "WOLF",
+      "date": "2025-05-13",
+      "vendors": {
+        "fmp": {
+          "error": "FMP API request failed: 403 Client Error: Forbidden for url: https://financialmodelingprep.com/api/v3/historical-chart/1min/WOLF?from=2025-05-13&to=2025-05-13&apikey=yMov9enudpulNoVNHPaM3zwJOiUnacQM",
+          "rows_compared": 0,
+          "match_rate": 0.0
+        }
+      }
+    }
+  ],
+  "overall_match_rate": {
+    "fmp": 0.0
+  }
+}

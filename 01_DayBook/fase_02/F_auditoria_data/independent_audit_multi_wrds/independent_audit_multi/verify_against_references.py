@@ -1,5 +1,15 @@
-import argparse, pathlib, json, pandas as pd, polars as pl
+import argparse, pathlib, json, pandas as pd, polars as pl, os
 from utils.compare_minute import compare_ohlcv
+
+# Load environment variables from .env file if it exists
+try:
+    from dotenv import load_dotenv
+    # Look for .env in project root (6 levels up from this script)
+    env_path = pathlib.Path(__file__).parents[5] / ".env"
+    if env_path.exists():
+        load_dotenv(env_path)
+except ImportError:
+    pass  # python-dotenv not installed, rely on system env vars
 
 def load_our_minute(our_minute_root: str, symbol: str, date: str) -> pd.DataFrame:
     p = pathlib.Path(our_minute_root) / symbol / f"date={date}" / "minute.parquet"
@@ -18,8 +28,8 @@ def load_our_from_dib(our_dib_root: str, symbol: str, date: str) -> pd.DataFrame
     p = pathlib.Path(our_dib_root) / symbol / f"date={date}" / "dollar_imbalance.parquet"
     if not p.exists(): return pd.DataFrame(columns=["t","open","high","low","close","volume"])
     df = pl.read_parquet(p)
-    df = df.with_columns((pl.col("t_close")/1_000_000).cast(pl.Datetime(time_unit="us")).alias("t_close_dt"))
-    df = df.with_columns(pl.col("t_close_dt").dt.truncate("1m").alias("t_min"))
+    # t_close is already Datetime(us), just truncate to minute
+    df = df.with_columns(pl.col("t_close").dt.truncate("1m").alias("t_min"))
     agg = df.group_by("t_min").agg([pl.col("o").first().alias("open"),pl.col("h").max().alias("high"),pl.col("l").min().alias("low"),pl.col("c").last().alias("close"),pl.col("v").sum().alias("volume")]).sort("t_min")
     out = agg.to_pandas().rename(columns={"t_min":"t"}); out["t"]=pd.to_datetime(out["t"], utc=True)
     return out[["t","open","high","low","close","volume"]]
@@ -31,17 +41,29 @@ def load_vendor_frame(vendor: str, symbol: str, date: str, csv_root: str=None, w
         from vendors.iex_client import fetch_iex_1min; return fetch_iex_1min(symbol, date)
     if vendor=="finnhub":
         from vendors.finnhub_client import fetch_finnhub_1min; return fetch_finnhub_1min(symbol, date)
+    if vendor=="twelvedata":
+        from vendors.twelvedata_client import fetch_twelvedata_1min; return fetch_twelvedata_1min(symbol, date)
+    if vendor=="fmp":
+        from vendors.fmp_client import fetch_fmp_1min; return fetch_fmp_1min(symbol, date)
+    if vendor=="alphavantage":
+        from vendors.alphavantage_client import fetch_alphavantage_1min; return fetch_alphavantage_1min(symbol, date)
     if vendor=="csv":
         from vendors.csv_client import load_csv_minute
         if not csv_root: raise RuntimeError("--csv-root required for vendor=csv")
         return load_csv_minute(csv_root, symbol, date)
+    if vendor=="wrds":
+        from vendors.wrds_client import load_wrds_taq_minute
+        if not wrds_root: raise RuntimeError("--wrds-root required for vendor=wrds")
+        include = wrds_include.split(",") if wrds_include else None
+        exclude = wrds_exclude.split(",") if wrds_exclude else None
+        return load_wrds_taq_minute(wrds_root, symbol, date, include, exclude)
     raise RuntimeError(f"Unknown vendor: {vendor}")
 
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--symbols", required=True)
     ap.add_argument("--dates", required=True)
-    ap.add_argument("--vendors", required=True, help="comma list: polygon,iex,finnhub,csv,wrds")
+    ap.add_argument("--vendors", required=True, help="comma list: polygon,iex,finnhub,twelvedata,fmp,alphavantage,csv,wrds")
     ap.add_argument("--csv-root", default=None)
     ap.add_argument("--wrds-root", default=None)
     ap.add_argument("--wrds-include", default="@", help="Comma list of sale-condition codes to include (e.g., @)")
@@ -61,8 +83,8 @@ def main():
 
     for sym in symbols:
         for day in dates:
-            if args.our-minute-root: ours = load_our_minute(args.our-minute-root, sym, day)
-            elif args.our-dib-root:  ours = load_our_from_dib(args.our-dib-root, sym, day)
+            if args.our_minute_root: ours = load_our_minute(args.our_minute_root, sym, day)
+            elif args.our_dib_root:  ours = load_our_from_dib(args.our_dib_root, sym, day)
             else: raise RuntimeError("Provide either --our-minute-root or --our-dib-root")
             item={"symbol":sym,"date":day,"vendors":{}}
             for v in vendors:
