@@ -1,0 +1,7 @@
+polars>=1.6.0
+pyarrow
+pandas
+requests
+numpy
+python-dateutil
+pytz

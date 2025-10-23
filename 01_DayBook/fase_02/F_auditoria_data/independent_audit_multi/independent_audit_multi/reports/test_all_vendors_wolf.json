@@ -1,0 +1,43 @@
+{
+  "vendors": [
+    "polygon",
+    "iex",
+    "finnhub"
+  ],
+  "symbols": [
+    "WOLF"
+  ],
+  "dates": [
+    "2025-05-13"
+  ],
+  "price_tol": 0.002,
+  "vol_tol": 0.05,
+  "items": [
+    {
+      "symbol": "WOLF",
+      "date": "2025-05-13",
+      "vendors": {
+        "polygon": {
+          "error": "POLYGON_API_KEY not set.",
+          "rows_compared": 0,
+          "match_rate": 0.0
+        },
+        "iex": {
+          "error": "IEX_API_TOKEN not set.",
+          "rows_compared": 0,
+          "match_rate": 0.0
+        },
+        "finnhub": {
+          "error": "FINNHUB_API_KEY not set.",
+          "rows_compared": 0,
+          "match_rate": 0.0
+        }
+      }
+    }
+  ],
+  "overall_match_rate": {
+    "polygon": 0.0,
+    "iex": 0.0,
+    "finnhub": 0.0
+  }
+}
