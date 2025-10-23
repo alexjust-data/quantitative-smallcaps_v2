@@ -11,7 +11,102 @@ Usage:
 import argparse
 import pathlib
 import pandas as pd
+import json
 from datetime import time
+
+def parse_vendor_json(data: dict, vendor: str) -> pd.DataFrame:
+    """
+    Parse vendor-specific JSON structures into standard DataFrame
+
+    Args:
+        data: Raw JSON data from vendor API
+        vendor: Vendor name (alphavantage, twelvedata, polygon, fmp)
+
+    Returns:
+        DataFrame with columns: timestamp, open, high, low, close, volume
+    """
+    vendor_lower = vendor.strip().lower()
+
+    if vendor_lower == "alphavantage":
+        # Alpha Vantage: timestamps as dictionary keys
+        time_series_key = "Time Series (1min)"
+        if time_series_key not in data:
+            raise ValueError(f"Missing '{time_series_key}' in Alpha Vantage response")
+
+        records = []
+        for timestamp_str, values in data[time_series_key].items():
+            records.append({
+                "timestamp": timestamp_str,
+                "open": values.get("1. open"),
+                "high": values.get("2. high"),
+                "low": values.get("3. low"),
+                "close": values.get("4. close"),
+                "volume": values.get("5. volume")
+            })
+        return pd.DataFrame(records)
+
+    elif vendor_lower == "twelvedata":
+        # Twelve Data: 'values' array with 'datetime' column
+        if "values" not in data:
+            raise ValueError("Missing 'values' in Twelve Data response")
+
+        df = pd.DataFrame(data["values"])
+
+        # Rename 'datetime' to 'timestamp' for consistency
+        if "datetime" in df.columns:
+            df = df.rename(columns={"datetime": "timestamp"})
+        elif "date" in df.columns:
+            df = df.rename(columns={"date": "timestamp"})
+
+        return df
+
+    elif vendor_lower == "polygon":
+        # Polygon: 'results' array with 't' as unix nanoseconds
+        if "results" not in data:
+            raise ValueError("Missing 'results' in Polygon response")
+
+        df = pd.DataFrame(data["results"])
+
+        # Rename columns to standard names
+        column_map = {
+            "t": "timestamp_ns",  # Unix nanoseconds
+            "o": "open",
+            "h": "high",
+            "l": "low",
+            "c": "close",
+            "v": "volume"
+        }
+
+        df = df.rename(columns=column_map)
+
+        # Convert unix nanoseconds to datetime
+        if "timestamp_ns" in df.columns:
+            df["timestamp"] = pd.to_datetime(df["timestamp_ns"], unit="ns", utc=True)
+            df = df.drop(columns=["timestamp_ns"])
+
+        return df
+
+    elif vendor_lower == "fmp":
+        # FMP: array with 'date' column
+        if isinstance(data, list):
+            df = pd.DataFrame(data)
+        else:
+            raise ValueError("FMP response should be a list")
+
+        # Rename 'date' to 'timestamp'
+        if "date" in df.columns:
+            df = df.rename(columns={"date": "timestamp"})
+
+        return df
+
+    else:
+        # Generic: assume it's already a DataFrame-compatible structure
+        if isinstance(data, list):
+            return pd.DataFrame(data)
+        elif isinstance(data, dict) and "data" in data:
+            return pd.DataFrame(data["data"])
+        else:
+            raise ValueError(f"Unknown JSON structure for vendor: {vendor}")
 
 def normalize_vendor_data(
     input_path: str,
@@ -40,7 +135,10 @@ def normalize_vendor_data(
     elif input_path.suffix.lower() in (".csv", ".txt"):
         df = pd.read_csv(input_path)
     elif input_path.suffix.lower() == ".json":
-        df = pd.read_json(input_path)
+        # Use vendor-specific parser for JSON files
+        with open(input_path, 'r', encoding='utf-8') as f:
+            data = json.load(f)
+        df = parse_vendor_json(data, vendor)
     else:
         raise ValueError(f"Unsupported file type: {input_path.suffix}")
 
