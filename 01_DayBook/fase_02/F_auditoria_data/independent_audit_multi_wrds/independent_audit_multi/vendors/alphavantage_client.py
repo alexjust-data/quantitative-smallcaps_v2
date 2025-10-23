@@ -1,4 +1,4 @@
-import os, requests, pandas as pd
+import os, requests, pandas as pd, pathlib, json
 from datetime import datetime
 
 BASE = "https://www.alphavantage.co/query"
@@ -43,6 +43,13 @@ def fetch_alphavantage_1min(symbol: str, date: str, api_key: str = None):
         r = requests.get(BASE, params=params, timeout=60)
         r.raise_for_status()
         data = r.json()
+
+        # SAVE RAW DATA for future use (avoid re-downloading)
+        raw_dir = pathlib.Path(__file__).parent.parent / "raw_data"
+        raw_dir.mkdir(exist_ok=True)
+        raw_file = raw_dir / f"{symbol}_{date}_alphavantage_raw.json"
+        raw_file.write_text(json.dumps(data, indent=2, ensure_ascii=False))
+        print(f"[SAVED RAW] {raw_file}")
 
         # Check for API errors
         if "Error Message" in data:

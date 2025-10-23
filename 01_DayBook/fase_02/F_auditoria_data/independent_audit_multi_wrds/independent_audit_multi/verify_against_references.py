@@ -34,7 +34,62 @@ def load_our_from_dib(our_dib_root: str, symbol: str, date: str) -> pd.DataFrame
     out = agg.to_pandas().rename(columns={"t_min":"t"}); out["t"]=pd.to_datetime(out["t"], utc=True)
     return out[["t","open","high","low","close","volume"]]
 
-def load_vendor_frame(vendor: str, symbol: str, date: str, csv_root: str=None, wrds_root: str=None, wrds_include: str=None, wrds_exclude: str=None):
+# -----------------------------
+# Normalized file helpers
+# -----------------------------
+
+def _vendor_key(vendor: str) -> str:
+    """Canonical vendor name for file pattern"""
+    return vendor.strip().lower()
+
+def _candidate_paths(root: pathlib.Path, symbol: str, date: str, vendor: str):
+    """Generate candidate paths for normalized files"""
+    base = f"{symbol}_{date}_{_vendor_key(vendor)}_minute"
+    for ext in (".parquet", ".csv", ".json"):
+        yield root / f"{base}{ext}"
+
+def _read_any(path: pathlib.Path) -> pd.DataFrame:
+    """Read DataFrame from parquet, csv, or json"""
+    if path.suffix.lower() in (".parquet", ".pq"):
+        return pd.read_parquet(path)
+    if path.suffix.lower() in (".csv", ".txt"):
+        return pd.read_csv(path)
+    if path.suffix.lower() == ".json":
+        return pd.read_json(path)
+    raise RuntimeError(f"Unsupported file type: {path}")
+
+def load_vendor_frame(vendor: str, symbol: str, date: str, csv_root: str=None, wrds_root: str=None, wrds_include: str=None, wrds_exclude: str=None, normalized_root: str=None):
+    # 1) If normalized file exists, use it directly
+    if normalized_root:
+        nroot = pathlib.Path(normalized_root)
+        for p in _candidate_paths(nroot, symbol, date, vendor):
+            if p.exists():
+                df = _read_any(p)
+                # Ensure expected columns and UTC timezone
+                if "t" not in df.columns:
+                    # Compatibility: rename timestamp/datetime/date to 't'
+                    for c in ("timestamp", "datetime", "date"):
+                        if c in df.columns:
+                            df = df.rename(columns={c: "t"})
+                            break
+                needed = {"t", "open", "high", "low", "close", "volume"}
+                missing = needed - set(df.columns)
+                if missing:
+                    raise RuntimeError(f"{p}: missing columns {missing} in normalized file")
+                # Parse timestamp and ensure UTC
+                dt = pd.to_datetime(df["t"], errors="coerce", utc=True)
+                # If no timezone, assume it's already UTC from preprocessing
+                if dt.dt.tz is None:
+                    dt = dt.dt.tz_localize("UTC")
+                df["t"] = dt
+                # Stable data types
+                for c in ["open", "high", "low", "close"]:
+                    df[c] = pd.to_numeric(df[c], errors="coerce").astype(float)
+                df["volume"] = pd.to_numeric(df["volume"], errors="coerce").fillna(0).astype("Int64")
+                # Return with correct column order
+                return df[["t", "open", "high", "low", "close", "volume"]].dropna(subset=["t"]).sort_values("t")
+
+    # 2) If no normalized file, fallback to existing vendor clients
     if vendor=="polygon":
         from vendors.polygon_client import fetch_polygon_1min; return fetch_polygon_1min(symbol, date)
     if vendor=="iex":
@@ -63,11 +118,12 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--symbols", required=True)
     ap.add_argument("--dates", required=True)
-    ap.add_argument("--vendors", required=True, help="comma list: polygon,iex,finnhub,twelvedata,fmp,alphavantage,csv,wrds")
+    ap.add_argument("--vendors", required=True, help="comma list: polygon,iex,finnhub,twelvedata,fmp,alphavantage,csv,wrds (if --normalized-root is set, will use normalized files when available)")
     ap.add_argument("--csv-root", default=None)
     ap.add_argument("--wrds-root", default=None)
     ap.add_argument("--wrds-include", default="@", help="Comma list of sale-condition codes to include (e.g., @)")
     ap.add_argument("--wrds-exclude", default="", help="Comma list of sale-condition codes to exclude")
+    ap.add_argument("--normalized-root", default=None, help="Root directory for normalized files: <root>/<SYMBOL>_<DATE>_<VENDOR>_minute.(parquet|csv|json)")
     ap.add_argument("--our-minute-root", default=None)
     ap.add_argument("--our-dib-root", default=None)
     ap.add_argument("--price-tol", type=float, default=0.002)
@@ -89,7 +145,7 @@ def main():
             item={"symbol":sym,"date":day,"vendors":{}}
             for v in vendors:
                 try:
-                    ref = load_vendor_frame(v, sym, day, csv_root=args.csv_root, wrds_root=args.wrds_root, wrds_include=args.wrds_include, wrds_exclude=args.wrds_exclude)
+                    ref = load_vendor_frame(v, sym, day, csv_root=args.csv_root, wrds_root=args.wrds_root, wrds_include=args.wrds_include, wrds_exclude=args.wrds_exclude, normalized_root=args.normalized_root)
                     if ref.empty or ours.empty:
                         comp={"rows_compared":0,"match_rate":0.0,"breaks":[],"stats":{}}
                     else:
