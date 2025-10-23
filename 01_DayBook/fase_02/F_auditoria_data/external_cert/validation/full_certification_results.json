@@ -1,0 +1,39 @@
+{
+  "timestamp": "2025-10-23T13:45:50.625561",
+  "L1": {
+    "status": "PASS",
+    "match_rate": 0.9901
+  },
+  "L2": {
+    "status": "SKIP",
+    "results": []
+  },
+  "L3": {
+    "status": "PASS",
+    "results": [
+      {
+        "ticker": "AMC",
+        "type": "split",
+        "count": 1,
+        "status": "DOCUMENTED"
+      },
+      {
+        "ticker": "GRI",
+        "type": "split",
+        "count": 4,
+        "status": "DOCUMENTED"
+      },
+      {
+        "ticker": "AMC",
+        "type": "dividend",
+        "count": 25,
+        "status": "DOCUMENTED"
+      }
+    ]
+  },
+  "L4": {
+    "status": "PASS",
+    "outlier_rate": 0.01
+  },
+  "final_decision": "GO"
+}
