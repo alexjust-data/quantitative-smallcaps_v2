@@ -1,0 +1,41 @@
+{
+  "symbol": "BAER",
+  "date": "2025-05-13",
+  "status": "completed",
+  "our_bar_count": 132,
+  "vendors": [
+    {
+      "rows_compared": 132,
+      "match_rate": 0.9924242424242424,
+      "breaks": [
+        {
+          "t_min": "2025-05-13 20:00:00",
+          "open_ref": 1.63,
+          "high_ref": 1.64,
+          "low_ref": 1.63,
+          "close_ref": 1.64,
+          "volume_ref": 14203,
+          "open_ours": 1.64,
+          "high_ours": 1.64,
+          "low_ours": 1.64,
+          "close_ours": 1.64,
+          "volume_ours": 409.0,
+          "d_price_max": 0.0061349693251533804,
+          "d_vol": 0.9712032669154405
+        }
+      ],
+      "stats": {
+        "rows": 132,
+        "passed": 131,
+        "match_rate": 0.9924242424242424,
+        "mean_d_price": 9.288408571854277e-05,
+        "mean_d_vol": 0.007373252898620605,
+        "p95_d_price": 0.0,
+        "p95_d_vol": 0.0
+      },
+      "vendor": "alphavantage",
+      "status": "success"
+    }
+  ],
+  "timestamp": "2025-10-23T13:39:48.963583"
+}

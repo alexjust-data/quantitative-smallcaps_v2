@@ -1,0 +1,41 @@
+{
+  "symbol": "GRI",
+  "date": "2025-05-13",
+  "status": "completed",
+  "our_bar_count": 94,
+  "vendors": [
+    {
+      "rows_compared": 94,
+      "match_rate": 0.9893617021276596,
+      "breaks": [
+        {
+          "t_min": "2025-05-13 13:29:00",
+          "open_ref": 1.6,
+          "high_ref": 1.6,
+          "low_ref": 1.55,
+          "close_ref": 1.55,
+          "volume_ref": 345,
+          "open_ours": 1.55,
+          "high_ours": 1.55,
+          "low_ours": 1.55,
+          "close_ours": 1.55,
+          "volume_ours": 345.0,
+          "d_price_max": 0.03125000000000003,
+          "d_vol": 0.0
+        }
+      ],
+      "stats": {
+        "rows": 94,
+        "passed": 93,
+        "match_rate": 0.9893617021276596,
+        "mean_d_price": 0.0005060753485503788,
+        "mean_d_vol": 0.0,
+        "p95_d_price": 3.135999999990651e-06,
+        "p95_d_vol": 0.0
+      },
+      "vendor": "alphavantage",
+      "status": "success"
+    }
+  ],
+  "timestamp": "2025-10-23T13:39:48.381829"
+}

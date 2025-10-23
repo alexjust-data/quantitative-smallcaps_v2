@@ -1,0 +1,71 @@
+{
+  "symbol": "BTBT",
+  "date": "2025-05-13",
+  "status": "completed",
+  "our_bar_count": 533,
+  "vendors": [
+    {
+      "rows_compared": 533,
+      "match_rate": 0.9943714821763602,
+      "breaks": [
+        {
+          "t_min": "2025-05-13 20:00:00",
+          "open_ref": 2.25,
+          "high_ref": 2.26,
+          "low_ref": 2.24,
+          "close_ref": 2.24,
+          "volume_ref": 408865,
+          "open_ours": 2.24,
+          "high_ours": 2.24,
+          "low_ours": 2.24,
+          "close_ours": 2.24,
+          "volume_ours": 159.0,
+          "d_price_max": 0.008849557522123706,
+          "d_vol": 0.9996111185843738
+        },
+        {
+          "t_min": "2025-05-13 20:01:00",
+          "open_ref": 2.24,
+          "high_ref": 2.25,
+          "low_ref": 2.24,
+          "close_ref": 2.24,
+          "volume_ref": 3246,
+          "open_ours": 2.24,
+          "high_ours": 2.24,
+          "low_ours": 2.24,
+          "close_ours": 2.24,
+          "volume_ours": 263.0,
+          "d_price_max": 0.00444444444444435,
+          "d_vol": 0.918977202711029
+        },
+        {
+          "t_min": "2025-05-13 20:06:00",
+          "open_ref": 2.24,
+          "high_ref": 2.2697,
+          "low_ref": 2.24,
+          "close_ref": 2.25,
+          "volume_ref": 110,
+          "open_ours": 2.2697,
+          "high_ours": 2.2697,
+          "low_ours": 2.2697,
+          "close_ours": 2.2697,
+          "volume_ours": 110.0,
+          "d_price_max": 0.013258928571428399,
+          "d_vol": 0.0
+        }
+      ],
+      "stats": {
+        "rows": 533,
+        "passed": 530,
+        "match_rate": 0.9943714821763602,
+        "mean_d_price": 0.00029623222855011097,
+        "mean_d_vol": 0.0035996028542127634,
+        "p95_d_price": 0.004298630625294948,
+        "p95_d_vol": 0.0
+      },
+      "vendor": "alphavantage",
+      "status": "success"
+    }
+  ],
+  "timestamp": "2025-10-23T13:39:47.471310"
+}
