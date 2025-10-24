@@ -1327,103 +1327,6 @@ model.fit(features, labels, sample_weight=sample_weights)
 └─────────────────────────────────────────────────────────┘
 ```
 
----
-
-**Código de referencia (estructura básica):**
-
-```python
-# main_pipeline.py
-import pandas as pd
-import numpy as np
-from datetime import datetime, timedelta
-
-# CAPA 1: Ingesta
-from data.polygon_client import PolygonClient
-polygon = PolygonClient(api_key='YOUR_KEY')
-
-# CAPA 2: Construcción de barras
-from bars.dollar_imbalance_bars import build_dollar_imbalance_bars
-from bars.dollar_runs_bars import build_dollar_runs_bars
-
-# CAPA 3: Features
-from features.technical import calculate_technical_features
-from features.fundamental import load_fundamental_features
-from features.microstructure import calculate_microstructure_features
-
-# CAPA 4: Labeling
-from labeling.triple_barrier import getEvents, getBins, getDailyVol
-from labeling.sample_weights import compute_uniqueness, compute_sample_weights
-
-# CAPA 5: Modelo primario
-from strategies.long_plays import detect_all_long_patterns
-from strategies.short_plays import detect_all_short_patterns
-
-# CAPA 6: Meta-modelo
-from sklearn.ensemble import RandomForestClassifier
-from ml.cross_validation import PurgedKFold
-
-# CAPA 7: Risk management
-from risk.position_sizing import kelly_criterion
-from risk.stops import calculate_stop_levels
-
-# Pipeline principal
-def main():
-    # 1. Watchlist del día
-    watchlist = build_watchlist(
-        filters={'market_cap_max': 300e6, 'price_max': 20, 'volume_min': 1e6}
-    )
-
-    for ticker in watchlist:
-        # 2. Descargar ticks
-        trades = polygon.get_trades(ticker, date='2024-01-15')
-
-        # 3. Construir DIBs
-        dibs = build_dollar_imbalance_bars(
-            trades,
-            threshold=get_dynamic_threshold(ticker)
-        )
-
-        # 4. Features
-        features = pd.DataFrame()
-        features['technical'] = calculate_technical_features(dibs)
-        features['fundamental'] = load_fundamental_features(ticker)
-        features['micro'] = calculate_microstructure_features(trades)
-
-        # 5. Labeling (solo para training)
-        if MODE == 'train':
-            daily_vol = getDailyVol(dibs['close'], span0=100)
-            events = getEvents(dibs['close'], tEvents, ptSl=[3,2], trgt=daily_vol)
-            labels = getBins(events, dibs['close'])
-            weights = compute_sample_weights(events, dibs['close'])
-
-        # 6. Modelo primario
-        long_signals = detect_all_long_patterns(dibs)
-        short_signals = detect_all_short_patterns(dibs)
-
-        # 7. Meta-modelo
-        if len(long_signals) > 0:
-            prob_success = meta_model.predict_proba(features.loc[long_signals.index])[:, 1]
-
-            # 8. Decisión de ejecución
-            for i, signal in long_signals.iterrows():
-                if prob_success[i] > 0.6:  # threshold
-                    size = kelly_criterion(prob_success[i], R_R=2.0) * capital
-                    entry_price, stop_price, target_price = calculate_levels(signal)
-
-                    execute_trade(
-                        ticker=ticker,
-                        side='long',
-                        size=size,
-                        entry=entry_price,
-                        stop=stop_price,
-                        target=target_price
-                    )
-
-if __name__ == '__main__':
-    main()
-```
-
----
 
 ## Conclusión
 
@@ -1448,12 +1351,12 @@ Este documento integra:
 **Referencias:**
 
 * López de Prado, M. (2018). *Advances in Financial Machine Learning*. Wiley.
-* EduTrades / Latin Day Trading — Módulos 7 y 8 (2018-2020)
+* EduTrades / Latin Day Trading 
 * Polygon.io API Documentation
 * SEC.gov — EDGAR Database
 
 ---
 
-**Versión:** 1.0
-**Fecha:** 2024-01-15
-**Autor:** Trading Small Caps Project Team
+**Versión:** 1.0  
+**Fecha:** 2024-01-15  
+**Autor:** Trading Small Caps Project Team  
