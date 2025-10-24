@@ -927,5 +927,5 @@ El diseño conceptual actual **está incompleto sin las delistadas**. Se necesit
 ---
 
 
-# [CORRECCION DEL BUG](04.PLAN_descarga_universo_completo.mdPLAN_descarga_universo_completo.md)
+# [CORRECCION DEL BUG listadas + deslistadas](./4_.PLAN_descarga_universo_completo.md)
 
