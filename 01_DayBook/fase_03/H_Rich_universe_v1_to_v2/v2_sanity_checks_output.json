@@ -1,0 +1,36 @@
+============================================================
+SANITY CHECKS - INFO-RICH v2 (2004-2019)
+============================================================
+Cargando eventos...
+Eventos cargados: 1,823,332
+
+=== 1. SIMETRIA %CHG ===
+Total eventos: 1,823,332
+UP: 854,991 (46.89%)
+DOWN: 886,207 (48.6%)
+Mediana: 0.00%
+Std: 121.31%
+
+=== 2. RVOL OUTLIERS ===
+Traceback (most recent call last):
+  File "D:\04_TRADING_SMALLCAPS\scripts\fase_G_atributos_faltantes\sanity_checks_v2.py", line 260, in <module>
+    main()
+    ~~~~^^
+  File "D:\04_TRADING_SMALLCAPS\scripts\fase_G_atributos_faltantes\sanity_checks_v2.py", line 239, in main
+    results["rvol_outliers"] = check_rvol_outliers(df)
+                               ~~~~~~~~~~~~~~~~~~~^^^^
+  File "D:\04_TRADING_SMALLCAPS\scripts\fase_G_atributos_faltantes\sanity_checks_v2.py", line 116, in check_rvol_outliers
+    top_rvol = df.sort("rvol30", descending=True).head(20).select([
+        "ticker", "date", "rvol30", "pctchg_d", "dvol"
+    ])
+  File "C:\Users\AlexJ\AppData\Local\Programs\Python\Python313\Lib\site-packages\polars\dataframe\frame.py", line 10006, in select
+    .collect(optimizations=QueryOptFlags._eager())
+     ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\AlexJ\AppData\Local\Programs\Python\Python313\Lib\site-packages\polars\_utils\deprecation.py", line 97, in wrapper
+    return function(*args, **kwargs)
+  File "C:\Users\AlexJ\AppData\Local\Programs\Python\Python313\Lib\site-packages\polars\lazyframe\opt_flags.py", line 328, in wrapper
+    return function(*args, **kwargs)
+  File "C:\Users\AlexJ\AppData\Local\Programs\Python\Python313\Lib\site-packages\polars\lazyframe\frame.py", line 2415, in collect
+    return wrap_df(ldf.collect(engine, callback))
+                   ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+polars.exceptions.ColumnNotFoundError: unable to find column "dvol"; valid columns: ["ticker", "trading_day", "close_d", "pctchg_d", "rvol30", "vol_d", "dollar_vol_d", "vwap_d", "market_cap_d", "r_rvol", "r_chg", "r_dvol", "r_px", "info_rich", "date", "year"]

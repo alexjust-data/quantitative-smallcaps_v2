@@ -1,0 +1,2080 @@
+{
+  "total_events": 1823332,
+  "unique_tickers": 1396,
+  "date_range": {
+    "min": "2004-01-02",
+    "max": "2019-12-31"
+  },
+  "pctchg_symmetry": {
+    "min": -0.993025070890403,
+    "p01": -0.10106382978723405,
+    "p05": -0.05117270788912587,
+    "p25": -0.014314286299378143,
+    "median": 0.0,
+    "p75": 0.013253012048192625,
+    "p95": 0.0531400966183575,
+    "p99": 0.11515151515151523,
+    "max": 1603.3684210526314,
+    "mean": 0.0016777316416456886,
+    "std": 1.2130665815228376,
+    "n_up": 854991,
+    "n_down": 886207,
+    "n_flat": 81177,
+    "pct_up": 46.89,
+    "pct_down": 48.6,
+    "crisis_std": 0.1005452010502504,
+    "crisis_p99": 0.18181818181818188,
+    "crisis_p01": -0.15254237288135597,
+    "normal_std": 0.05558620146530495,
+    "normal_p99": 0.09769452449567728,
+    "normal_p01": -0.08379888268156432
+  },
+  "rvol_outliers": {
+    "median": 0.7711740030322606,
+    "mean": 1.0251195975457579,
+    "p75": 1.2001499953126464,
+    "p90": 1.8912508751532147,
+    "p95": 2.617911726896158,
+    "p99": 5.420974123567031,
+    "max": 29.914579549954258,
+    "top_outliers": [
+      {
+        "ticker": "SEM",
+        "date": "2009-09-25",
+        "rvol30": 29.914579549954258,
+        "pctchg_d": -0.51338199513382,
+        "dollar_vol_d": 115274630.8969001
+      },
+      {
+        "ticker": "KOS",
+        "date": "2011-05-11",
+        "rvol30": 29.828391305163997,
+        "pctchg_d": -0.2772977219167322,
+        "dollar_vol_d": 332760777.2819001
+      },
+      {
+        "ticker": "SDRL",
+        "date": "2018-07-03",
+        "rvol30": 29.81375591249891,
+        "pctchg_d": -0.993025070890403,
+        "dollar_vol_d": 38961161.00159998
+      },
+      {
+        "ticker": "CCG",
+        "date": "2010-10-14",
+        "rvol30": 29.79441269100665,
+        "pctchg_d": -0.4986027944111776,
+        "dollar_vol_d": 102209340.4572
+      },
+      {
+        "ticker": "BLFS",
+        "date": "2016-07-11",
+        "rvol30": 29.729325157484997,
+        "pctchg_d": 0.4928217507305299,
+        "dollar_vol_d": 51878428.0254
+      },
+      {
+        "ticker": "NSYS",
+        "date": "2019-11-13",
+        "rvol30": 29.65450789412844,
+        "pctchg_d": 0.03069053708439906,
+        "dollar_vol_d": 98437255.1347001
+      },
+      {
+        "ticker": "SXC",
+        "date": "2011-07-21",
+        "rvol30": 29.653712967529184,
+        "pctchg_d": 0.5901189387008234,
+        "dollar_vol_d": 195839024.1825
+      },
+      {
+        "ticker": "BOSC",
+        "date": "2016-05-31",
+        "rvol30": 29.567634880230923,
+        "pctchg_d": 0.9447004608294931,
+        "dollar_vol_d": 83676859.89389999
+      },
+      {
+        "ticker": "CODA",
+        "date": "2018-07-16",
+        "rvol30": 29.48686459961366,
+        "pctchg_d": 0.5790461381732392,
+        "dollar_vol_d": 73745028.28449996
+      },
+      {
+        "ticker": "SERV",
+        "date": "2014-06-26",
+        "rvol30": 29.45740718957458,
+        "pctchg_d": 4.113960113960114,
+        "dollar_vol_d": 225196020.10840005
+      },
+      {
+        "ticker": "SND",
+        "date": "2016-11-04",
+        "rvol30": 29.43624462832784,
+        "pctchg_d": -0.023111111111111082,
+        "dollar_vol_d": 36167937.04029999
+      },
+      {
+        "ticker": "GPRK",
+        "date": "2016-05-11",
+        "rvol30": 29.41290830742559,
+        "pctchg_d": -0.11324114415609021,
+        "dollar_vol_d": 21735177.139031194
+      },
+      {
+        "ticker": "ELTK",
+        "date": "2017-07-24",
+        "rvol30": 29.402510646537714,
+        "pctchg_d": 0.4838709677419353,
+        "dollar_vol_d": 7359811.0678799935
+      },
+      {
+        "ticker": "ICCC",
+        "date": "2004-12-22",
+        "rvol30": 29.40207258387984,
+        "pctchg_d": 1.1294117647058823,
+        "dollar_vol_d": 41545618.0948
+      },
+      {
+        "ticker": "WAFU",
+        "date": "2019-11-21",
+        "rvol30": 29.39909835611728,
+        "pctchg_d": 1.3333333333333335,
+        "dollar_vol_d": 21709484.226999994
+      },
+      {
+        "ticker": "CODX",
+        "date": "2018-05-29",
+        "rvol30": 29.382020065515302,
+        "pctchg_d": 1.024844720496894,
+        "dollar_vol_d": 52398639.74969998
+      },
+      {
+        "ticker": "SERV",
+        "date": "2010-03-29",
+        "rvol30": 29.356948045946545,
+        "pctchg_d": 1.0,
+        "dollar_vol_d": 37784551.29090003
+      },
+      {
+        "ticker": "BLNK",
+        "date": "2018-05-07",
+        "rvol30": 29.347147734401165,
+        "pctchg_d": 1.8040540540540544,
+        "dollar_vol_d": 219222556.27030027
+      },
+      {
+        "ticker": "ZKIN",
+        "date": "2019-02-04",
+        "rvol30": 29.345919762152075,
+        "pctchg_d": 0.07407407407407396,
+        "dollar_vol_d": 34178432.36230212
+      },
+      {
+        "ticker": "VVPR",
+        "date": "2019-06-24",
+        "rvol30": 29.319014016852904,
+        "pctchg_d": 0.8087855297157622,
+        "dollar_vol_d": 30648837.866719984
+      }
+    ],
+    "count_gt_10": 4347,
+    "count_gt_20": 595,
+    "count_gt_50": 0,
+    "count_gt_100": 0
+  },
+  "dvol_growth": {
+    "median": 431630.8494500001,
+    "mean": 2997540.2479301286,
+    "p50_M": 0.43,
+    "p75_M": 1.98,
+    "p90_M": 6.4,
+    "by_period": {
+      "2004-2007": {
+        "median_M": 0.31,
+        "p75_M": 1.54,
+        "p90_M": 4.99,
+        "n_events": 361850
+      },
+      "2008-2009": {
+        "median_M": 0.32,
+        "p75_M": 1.68,
+        "p90_M": 5.44,
+        "n_events": 234120
+      },
+      "2010-2014": {
+        "median_M": 0.39,
+        "p75_M": 1.7,
+        "p90_M": 5.53,
+        "n_events": 549665
+      },
+      "2015-2019": {
+        "median_M": 0.61,
+        "p75_M": 2.63,
+        "p90_M": 8.19,
+        "n_events": 677697
+      }
+    },
+    "by_year": [
+      {
+        "year": 2004,
+        "median_M": 0.26885317000000003,
+        "p75_M": 1.3478012200000002,
+        "n_events": 94995
+      },
+      {
+        "year": 2005,
+        "median_M": 0.28184085999999997,
+        "p75_M": 1.3653974854000004,
+        "n_events": 90016
+      },
+      {
+        "year": 2006,
+        "median_M": 0.33423570075,
+        "p75_M": 1.6062389739999996,
+        "n_events": 88768
+      },
+      {
+        "year": 2007,
+        "median_M": 0.36630915000000003,
+        "p75_M": 1.900038211,
+        "n_events": 88071
+      },
+      {
+        "year": 2008,
+        "median_M": 0.3681097977999999,
+        "p75_M": 1.8788384638999998,
+        "n_events": 109516
+      },
+      {
+        "year": 2009,
+        "median_M": 0.2932951195300001,
+        "p75_M": 1.4859338931999995,
+        "n_events": 124604
+      },
+      {
+        "year": 2010,
+        "median_M": 0.33111335160000005,
+        "p75_M": 1.4883910390000004,
+        "n_events": 116737
+      },
+      {
+        "year": 2011,
+        "median_M": 0.4098797846999999,
+        "p75_M": 1.6945060242999999,
+        "n_events": 108749
+      },
+      {
+        "year": 2012,
+        "median_M": 0.3448472114499999,
+        "p75_M": 1.4572332548000004,
+        "n_events": 112376
+      },
+      {
+        "year": 2013,
+        "median_M": 0.41275205719999997,
+        "p75_M": 1.8697247204,
+        "n_events": 105571
+      },
+      {
+        "year": 2014,
+        "median_M": 0.4922417347,
+        "p75_M": 2.0798582344,
+        "n_events": 106232
+      },
+      {
+        "year": 2015,
+        "median_M": 0.4902705373999999,
+        "p75_M": 2.1342317938,
+        "n_events": 118821
+      },
+      {
+        "year": 2016,
+        "median_M": 0.5550203960000001,
+        "p75_M": 2.492654206399999,
+        "n_events": 135353
+      },
+      {
+        "year": 2017,
+        "median_M": 0.6635186626000003,
+        "p75_M": 2.748609461699999,
+        "n_events": 124295
+      },
+      {
+        "year": 2018,
+        "median_M": 0.7362149283999999,
+        "p75_M": 3.1232259300000007,
+        "n_events": 134104
+      },
+      {
+        "year": 2019,
+        "median_M": 0.6423774475499999,
+        "p75_M": 2.6332390996000004,
+        "n_events": 165124
+      }
+    ]
+  },
+  "top_runners": {
+    "2008": [
+      {
+        "ticker": "JBLU",
+        "days_info_rich": 262,
+        "avg_pctchg": 0.0021225639327664618,
+        "avg_rvol": 0.9959823737415855,
+        "last_seen": "2008-12-31"
+      },
+      {
+        "ticker": "ALTI",
+        "days_info_rich": 258,
+        "avg_pctchg": -0.002432195156918665,
+        "avg_rvol": 0.9677233765969911,
+        "last_seen": "2008-12-31"
+      },
+      {
+        "ticker": "CRNT",
+        "days_info_rich": 256,
+        "avg_pctchg": -0.0013501860105551598,
+        "avg_rvol": 0.9537669425427551,
+        "last_seen": "2008-12-31"
+      },
+      {
+        "ticker": "ADCT",
+        "days_info_rich": 255,
+        "avg_pctchg": -0.0031572660624009955,
+        "avg_rvol": 0.9655212760824832,
+        "last_seen": "2008-12-31"
+      },
+      {
+        "ticker": "HTZ",
+        "days_info_rich": 255,
+        "avg_pctchg": -0.0018984616167325948,
+        "avg_rvol": 1.0245652561563379,
+        "last_seen": "2008-12-31"
+      },
+      {
+        "ticker": "PSEC",
+        "days_info_rich": 255,
+        "avg_pctchg": 0.0009992627894093403,
+        "avg_rvol": 1.0010128525231505,
+        "last_seen": "2008-12-31"
+      },
+      {
+        "ticker": "HCSG",
+        "days_info_rich": 255,
+        "avg_pctchg": -0.0005816767267717069,
+        "avg_rvol": 1.0219040364794438,
+        "last_seen": "2008-12-31"
+      },
+      {
+        "ticker": "EZPW",
+        "days_info_rich": 254,
+        "avg_pctchg": 0.0020119688766022993,
+        "avg_rvol": 1.0534653449007947,
+        "last_seen": "2008-12-31"
+      },
+      {
+        "ticker": "CHW",
+        "days_info_rich": 254,
+        "avg_pctchg": -0.002377070882525525,
+        "avg_rvol": 0.9926438027539034,
+        "last_seen": "2008-12-31"
+      },
+      {
+        "ticker": "NNBR",
+        "days_info_rich": 254,
+        "avg_pctchg": -0.002500901997648379,
+        "avg_rvol": 1.1009074763849382,
+        "last_seen": "2008-12-31"
+      },
+      {
+        "ticker": "LKFN",
+        "days_info_rich": 254,
+        "avg_pctchg": 0.001621565682745614,
+        "avg_rvol": 1.0106264512338337,
+        "last_seen": "2008-12-31"
+      },
+      {
+        "ticker": "RGR",
+        "days_info_rich": 254,
+        "avg_pctchg": -0.000316169167886375,
+        "avg_rvol": 0.9413434208749984,
+        "last_seen": "2008-12-31"
+      },
+      {
+        "ticker": "WNC",
+        "days_info_rich": 254,
+        "avg_pctchg": -0.00067328374192121,
+        "avg_rvol": 0.9936773475106517,
+        "last_seen": "2008-12-31"
+      },
+      {
+        "ticker": "PNNT",
+        "days_info_rich": 254,
+        "avg_pctchg": -0.0025778572642911218,
+        "avg_rvol": 0.9853446597838692,
+        "last_seen": "2008-12-31"
+      },
+      {
+        "ticker": "FONR",
+        "days_info_rich": 254,
+        "avg_pctchg": -0.0029319045460620137,
+        "avg_rvol": 1.0534539457940708,
+        "last_seen": "2008-12-31"
+      },
+      {
+        "ticker": "HAIN",
+        "days_info_rich": 254,
+        "avg_pctchg": -0.0016243304171041654,
+        "avg_rvol": 1.0184392832040385,
+        "last_seen": "2008-12-31"
+      },
+      {
+        "ticker": "ARAY",
+        "days_info_rich": 254,
+        "avg_pctchg": -0.002505786625990858,
+        "avg_rvol": 0.9945274654332131,
+        "last_seen": "2008-12-31"
+      },
+      {
+        "ticker": "CODI",
+        "days_info_rich": 254,
+        "avg_pctchg": -0.00017716399870785162,
+        "avg_rvol": 0.9992732145243867,
+        "last_seen": "2008-12-31"
+      },
+      {
+        "ticker": "IMAX",
+        "days_info_rich": 254,
+        "avg_pctchg": -0.0006390213502402667,
+        "avg_rvol": 0.9640932136540424,
+        "last_seen": "2008-12-31"
+      },
+      {
+        "ticker": "MSEX",
+        "days_info_rich": 254,
+        "avg_pctchg": -6.197303075587242e-05,
+        "avg_rvol": 1.055054646065526,
+        "last_seen": "2008-12-31"
+      },
+      {
+        "ticker": "AEHR",
+        "days_info_rich": 254,
+        "avg_pctchg": -0.00266467162864427,
+        "avg_rvol": 1.0874583792388746,
+        "last_seen": "2008-12-31"
+      },
+      {
+        "ticker": "TZOO",
+        "days_info_rich": 254,
+        "avg_pctchg": -0.0022081898985453984,
+        "avg_rvol": 0.9663781476474473,
+        "last_seen": "2008-12-31"
+      },
+      {
+        "ticker": "HZO",
+        "days_info_rich": 254,
+        "avg_pctchg": -0.0024993344321158676,
+        "avg_rvol": 0.9954507164550797,
+        "last_seen": "2008-12-31"
+      },
+      {
+        "ticker": "CLNE",
+        "days_info_rich": 254,
+        "avg_pctchg": -0.0017806392806352293,
+        "avg_rvol": 1.0485300540555957,
+        "last_seen": "2008-12-31"
+      },
+      {
+        "ticker": "CHRS",
+        "days_info_rich": 254,
+        "avg_pctchg": 0.0009754434682166879,
+        "avg_rvol": 0.9819321547794707,
+        "last_seen": "2008-12-31"
+      },
+      {
+        "ticker": "IMMR",
+        "days_info_rich": 254,
+        "avg_pctchg": -0.0013491115329237698,
+        "avg_rvol": 0.9937516948709181,
+        "last_seen": "2008-12-31"
+      },
+      {
+        "ticker": "LWAY",
+        "days_info_rich": 254,
+        "avg_pctchg": -0.00034082366150201346,
+        "avg_rvol": 0.9711339391012506,
+        "last_seen": "2008-12-31"
+      },
+      {
+        "ticker": "GERN",
+        "days_info_rich": 254,
+        "avg_pctchg": 0.0004976015679944202,
+        "avg_rvol": 0.9915947039561144,
+        "last_seen": "2008-12-31"
+      },
+      {
+        "ticker": "AXTI",
+        "days_info_rich": 254,
+        "avg_pctchg": -0.0039566032853389915,
+        "avg_rvol": 0.9503222762657658,
+        "last_seen": "2008-12-31"
+      },
+      {
+        "ticker": "AIRT",
+        "days_info_rich": 253,
+        "avg_pctchg": -0.001276028241261149,
+        "avg_rvol": 1.0246423464412138,
+        "last_seen": "2008-12-31"
+      },
+      {
+        "ticker": "SSTI",
+        "days_info_rich": 253,
+        "avg_pctchg": -0.00015484615113995132,
+        "avg_rvol": 1.0002719012358405,
+        "last_seen": "2008-12-31"
+      },
+      {
+        "ticker": "TCX",
+        "days_info_rich": 253,
+        "avg_pctchg": 6.264150224072977e-05,
+        "avg_rvol": 0.9736160352591462,
+        "last_seen": "2008-12-31"
+      },
+      {
+        "ticker": "STAA",
+        "days_info_rich": 253,
+        "avg_pctchg": 0.0017407212481840382,
+        "avg_rvol": 0.9849803137899484,
+        "last_seen": "2008-12-31"
+      },
+      {
+        "ticker": "NTCT",
+        "days_info_rich": 253,
+        "avg_pctchg": -0.00017876292420493817,
+        "avg_rvol": 0.9928635483526314,
+        "last_seen": "2008-12-31"
+      },
+      {
+        "ticker": "ANIK",
+        "days_info_rich": 253,
+        "avg_pctchg": -0.005243958128883832,
+        "avg_rvol": 1.0132626415549197,
+        "last_seen": "2008-12-31"
+      },
+      {
+        "ticker": "UCTT",
+        "days_info_rich": 253,
+        "avg_pctchg": -0.0050222409655011875,
+        "avg_rvol": 0.9505264184933437,
+        "last_seen": "2008-12-31"
+      },
+      {
+        "ticker": "HTLD",
+        "days_info_rich": 253,
+        "avg_pctchg": 0.0009684610873721617,
+        "avg_rvol": 1.032123094973541,
+        "last_seen": "2008-12-31"
+      },
+      {
+        "ticker": "DCOM",
+        "days_info_rich": 253,
+        "avg_pctchg": 0.0009796808910089527,
+        "avg_rvol": 1.0351492294056164,
+        "last_seen": "2008-12-31"
+      },
+      {
+        "ticker": "GAIN",
+        "days_info_rich": 253,
+        "avg_pctchg": -0.0009214604682761989,
+        "avg_rvol": 1.0387647192370706,
+        "last_seen": "2008-12-31"
+      },
+      {
+        "ticker": "CENTA",
+        "days_info_rich": 253,
+        "avg_pctchg": 0.002991449641569261,
+        "avg_rvol": 0.9928120204701949,
+        "last_seen": "2008-12-31"
+      },
+      {
+        "ticker": "SCVL",
+        "days_info_rich": 253,
+        "avg_pctchg": -0.00033569036245362357,
+        "avg_rvol": 0.9461018959147927,
+        "last_seen": "2008-12-31"
+      },
+      {
+        "ticker": "OSUR",
+        "days_info_rich": 253,
+        "avg_pctchg": -0.0018205183330863748,
+        "avg_rvol": 0.9806744275158583,
+        "last_seen": "2008-12-31"
+      },
+      {
+        "ticker": "GOOD",
+        "days_info_rich": 253,
+        "avg_pctchg": -0.0016523983999385268,
+        "avg_rvol": 1.0233278670912707,
+        "last_seen": "2008-12-31"
+      },
+      {
+        "ticker": "COHU",
+        "days_info_rich": 253,
+        "avg_pctchg": -0.000910702448340589,
+        "avg_rvol": 0.9936216103961142,
+        "last_seen": "2008-12-31"
+      },
+      {
+        "ticker": "GIII",
+        "days_info_rich": 253,
+        "avg_pctchg": -0.001998336675680369,
+        "avg_rvol": 1.056483867997657,
+        "last_seen": "2008-12-31"
+      },
+      {
+        "ticker": "PDFS",
+        "days_info_rich": 253,
+        "avg_pctchg": -0.005801367449884826,
+        "avg_rvol": 1.0009538609811646,
+        "last_seen": "2008-12-31"
+      },
+      {
+        "ticker": "MLR",
+        "days_info_rich": 253,
+        "avg_pctchg": -0.0031407594080505984,
+        "avg_rvol": 1.0209234507685183,
+        "last_seen": "2008-12-31"
+      },
+      {
+        "ticker": "UFI",
+        "days_info_rich": 253,
+        "avg_pctchg": 0.0017924650369195378,
+        "avg_rvol": 1.0800743965399768,
+        "last_seen": "2008-12-31"
+      },
+      {
+        "ticker": "LYTS",
+        "days_info_rich": 253,
+        "avg_pctchg": -0.002036709312395511,
+        "avg_rvol": 0.947332512420465,
+        "last_seen": "2008-12-31"
+      },
+      {
+        "ticker": "PRAA",
+        "days_info_rich": 253,
+        "avg_pctchg": 0.00017982316678279915,
+        "avg_rvol": 0.9889681088988652,
+        "last_seen": "2008-12-31"
+      }
+    ],
+    "2009": [
+      {
+        "ticker": "ADCT",
+        "days_info_rich": 264,
+        "avg_pctchg": 0.0020742465868179016,
+        "avg_rvol": 1.0125200235086078,
+        "last_seen": "2009-12-31"
+      },
+      {
+        "ticker": "GERN",
+        "days_info_rich": 264,
+        "avg_pctchg": 0.0023410177180636614,
+        "avg_rvol": 1.0513199966513211,
+        "last_seen": "2009-12-31"
+      },
+      {
+        "ticker": "HUN",
+        "days_info_rich": 263,
+        "avg_pctchg": 0.00556170418407319,
+        "avg_rvol": 0.9638191746774023,
+        "last_seen": "2009-12-31"
+      },
+      {
+        "ticker": "DSX",
+        "days_info_rich": 261,
+        "avg_pctchg": 0.0015267475332863096,
+        "avg_rvol": 1.0018854851463534,
+        "last_seen": "2009-12-31"
+      },
+      {
+        "ticker": "NRIM",
+        "days_info_rich": 259,
+        "avg_pctchg": 0.0023160662734213306,
+        "avg_rvol": 1.0029702269020357,
+        "last_seen": "2009-12-31"
+      },
+      {
+        "ticker": "CLNE",
+        "days_info_rich": 259,
+        "avg_pctchg": 0.004629861841873751,
+        "avg_rvol": 1.0477132869947212,
+        "last_seen": "2009-12-31"
+      },
+      {
+        "ticker": "MRTN",
+        "days_info_rich": 258,
+        "avg_pctchg": 0.00016427409556657834,
+        "avg_rvol": 0.9750618974791373,
+        "last_seen": "2009-12-31"
+      },
+      {
+        "ticker": "NTCT",
+        "days_info_rich": 257,
+        "avg_pctchg": 0.0031343743903909558,
+        "avg_rvol": 1.0248443174608994,
+        "last_seen": "2009-12-31"
+      },
+      {
+        "ticker": "ULBI",
+        "days_info_rich": 257,
+        "avg_pctchg": -0.00354686431188413,
+        "avg_rvol": 1.0049637162253895,
+        "last_seen": "2009-12-31"
+      },
+      {
+        "ticker": "SD",
+        "days_info_rich": 257,
+        "avg_pctchg": 0.0030195875777166035,
+        "avg_rvol": 1.0325777372149,
+        "last_seen": "2009-12-31"
+      },
+      {
+        "ticker": "NEXM",
+        "days_info_rich": 256,
+        "avg_pctchg": 0.013836543735447415,
+        "avg_rvol": 1.1298852578890808,
+        "last_seen": "2009-12-31"
+      },
+      {
+        "ticker": "BCRX",
+        "days_info_rich": 256,
+        "avg_pctchg": 0.009718806721626956,
+        "avg_rvol": 1.1825524592386438,
+        "last_seen": "2009-12-31"
+      },
+      {
+        "ticker": "ROCK",
+        "days_info_rich": 256,
+        "avg_pctchg": 0.0028313884206354585,
+        "avg_rvol": 0.962390162897174,
+        "last_seen": "2009-12-31"
+      },
+      {
+        "ticker": "CENTA",
+        "days_info_rich": 256,
+        "avg_pctchg": 0.0028334608552720007,
+        "avg_rvol": 0.9925164410366557,
+        "last_seen": "2009-12-31"
+      },
+      {
+        "ticker": "KFRC",
+        "days_info_rich": 255,
+        "avg_pctchg": 0.00263269817066109,
+        "avg_rvol": 1.085617159459264,
+        "last_seen": "2009-12-31"
+      },
+      {
+        "ticker": "JBLU",
+        "days_info_rich": 255,
+        "avg_pctchg": 4.005739001375385e-05,
+        "avg_rvol": 1.024693487901319,
+        "last_seen": "2009-12-31"
+      },
+      {
+        "ticker": "GOOD",
+        "days_info_rich": 255,
+        "avg_pctchg": 0.002563720071431968,
+        "avg_rvol": 1.006825575815543,
+        "last_seen": "2009-12-31"
+      },
+      {
+        "ticker": "SIGA",
+        "days_info_rich": 255,
+        "avg_pctchg": 0.0034705857131072655,
+        "avg_rvol": 1.2120479845891756,
+        "last_seen": "2009-12-31"
+      },
+      {
+        "ticker": "WLFC",
+        "days_info_rich": 255,
+        "avg_pctchg": 0.0024814839940329072,
+        "avg_rvol": 1.0657842446807344,
+        "last_seen": "2009-12-31"
+      },
+      {
+        "ticker": "CAL",
+        "days_info_rich": 255,
+        "avg_pctchg": 0.0010100218222358116,
+        "avg_rvol": 1.001437861483339,
+        "last_seen": "2009-12-31"
+      },
+      {
+        "ticker": "SMRT",
+        "days_info_rich": 255,
+        "avg_pctchg": 0.010773413969180282,
+        "avg_rvol": 1.0572886978578862,
+        "last_seen": "2009-12-31"
+      },
+      {
+        "ticker": "FBNC",
+        "days_info_rich": 255,
+        "avg_pctchg": 0.00019788495928277502,
+        "avg_rvol": 1.0214224638473304,
+        "last_seen": "2009-12-31"
+      },
+      {
+        "ticker": "TRS",
+        "days_info_rich": 255,
+        "avg_pctchg": 0.007966306718122526,
+        "avg_rvol": 1.0581951687076174,
+        "last_seen": "2009-12-31"
+      },
+      {
+        "ticker": "GT",
+        "days_info_rich": 255,
+        "avg_pctchg": 0.004939301781053153,
+        "avg_rvol": 0.9888547481336634,
+        "last_seen": "2009-12-31"
+      },
+      {
+        "ticker": "PLAB",
+        "days_info_rich": 255,
+        "avg_pctchg": 0.006147274926714501,
+        "avg_rvol": 1.0445582220608371,
+        "last_seen": "2009-12-31"
+      },
+      {
+        "ticker": "CSGS",
+        "days_info_rich": 255,
+        "avg_pctchg": 0.0006887679442715546,
+        "avg_rvol": 0.9614582707679877,
+        "last_seen": "2009-12-31"
+      },
+      {
+        "ticker": "DCOM",
+        "days_info_rich": 255,
+        "avg_pctchg": 0.00027243706282960414,
+        "avg_rvol": 0.9506316222459541,
+        "last_seen": "2009-12-31"
+      },
+      {
+        "ticker": "MTRX",
+        "days_info_rich": 255,
+        "avg_pctchg": 0.002120587713601119,
+        "avg_rvol": 0.9778214928971045,
+        "last_seen": "2009-12-31"
+      },
+      {
+        "ticker": "WEN",
+        "days_info_rich": 255,
+        "avg_pctchg": 0.00052162026515191,
+        "avg_rvol": 1.0254944200061304,
+        "last_seen": "2009-12-31"
+      },
+      {
+        "ticker": "APOG",
+        "days_info_rich": 254,
+        "avg_pctchg": 0.0018232818031189276,
+        "avg_rvol": 0.9992384653078747,
+        "last_seen": "2009-12-31"
+      },
+      {
+        "ticker": "TEN",
+        "days_info_rich": 254,
+        "avg_pctchg": 0.010693957578611041,
+        "avg_rvol": 1.0414818083651598,
+        "last_seen": "2009-12-31"
+      },
+      {
+        "ticker": "USPH",
+        "days_info_rich": 254,
+        "avg_pctchg": 0.001814002324731019,
+        "avg_rvol": 0.967669597770705,
+        "last_seen": "2009-12-31"
+      },
+      {
+        "ticker": "PBT",
+        "days_info_rich": 254,
+        "avg_pctchg": 0.0008068884210979111,
+        "avg_rvol": 0.9810307548555381,
+        "last_seen": "2009-12-31"
+      },
+      {
+        "ticker": "SGMO",
+        "days_info_rich": 254,
+        "avg_pctchg": 0.0036132246717152125,
+        "avg_rvol": 1.020309047651822,
+        "last_seen": "2009-12-31"
+      },
+      {
+        "ticker": "FTEK",
+        "days_info_rich": 254,
+        "avg_pctchg": 4.859225121290959e-05,
+        "avg_rvol": 1.009042222352569,
+        "last_seen": "2009-12-31"
+      },
+      {
+        "ticker": "HCSG",
+        "days_info_rich": 254,
+        "avg_pctchg": 0.001424686695659086,
+        "avg_rvol": 0.9744770157151964,
+        "last_seen": "2009-12-31"
+      },
+      {
+        "ticker": "SRCE",
+        "days_info_rich": 254,
+        "avg_pctchg": -0.0003508896890891417,
+        "avg_rvol": 0.9660981739934185,
+        "last_seen": "2009-12-31"
+      },
+      {
+        "ticker": "BFIN",
+        "days_info_rich": 254,
+        "avg_pctchg": 0.000323954349156199,
+        "avg_rvol": 0.9577367088489072,
+        "last_seen": "2009-12-31"
+      },
+      {
+        "ticker": "FISI",
+        "days_info_rich": 254,
+        "avg_pctchg": 0.00130554724798055,
+        "avg_rvol": 1.0127128243221026,
+        "last_seen": "2009-12-31"
+      },
+      {
+        "ticker": "PETS",
+        "days_info_rich": 254,
+        "avg_pctchg": 0.0003206922889985468,
+        "avg_rvol": 0.9981909930719812,
+        "last_seen": "2009-12-31"
+      },
+      {
+        "ticker": "BMRC",
+        "days_info_rich": 254,
+        "avg_pctchg": 0.0014349709996422154,
+        "avg_rvol": 1.0772701926821302,
+        "last_seen": "2009-12-31"
+      },
+      {
+        "ticker": "IOSP",
+        "days_info_rich": 254,
+        "avg_pctchg": 0.0035571252721073167,
+        "avg_rvol": 0.9834711652695652,
+        "last_seen": "2009-12-31"
+      },
+      {
+        "ticker": "LOOP",
+        "days_info_rich": 254,
+        "avg_pctchg": 0.002032105137549703,
+        "avg_rvol": 0.9941129427999011,
+        "last_seen": "2009-12-31"
+      },
+      {
+        "ticker": "SSYS",
+        "days_info_rich": 253,
+        "avg_pctchg": 0.002515182950581188,
+        "avg_rvol": 0.9889556280790396,
+        "last_seen": "2009-12-31"
+      },
+      {
+        "ticker": "ARRY",
+        "days_info_rich": 253,
+        "avg_pctchg": 0.0005240847285983545,
+        "avg_rvol": 1.1051301154447613,
+        "last_seen": "2009-12-31"
+      },
+      {
+        "ticker": "CLMT",
+        "days_info_rich": 253,
+        "avg_pctchg": 0.00361529885378872,
+        "avg_rvol": 1.0765020322675172,
+        "last_seen": "2009-12-31"
+      },
+      {
+        "ticker": "MSEX",
+        "days_info_rich": 253,
+        "avg_pctchg": 0.00041887649109714027,
+        "avg_rvol": 1.008523146058113,
+        "last_seen": "2009-12-31"
+      },
+      {
+        "ticker": "UFPT",
+        "days_info_rich": 253,
+        "avg_pctchg": 0.0012839480356139354,
+        "avg_rvol": 0.9947062615790273,
+        "last_seen": "2009-12-31"
+      },
+      {
+        "ticker": "CHCI",
+        "days_info_rich": 253,
+        "avg_pctchg": 0.014690955821216102,
+        "avg_rvol": 1.1116001511822862,
+        "last_seen": "2009-12-31"
+      },
+      {
+        "ticker": "PRAA",
+        "days_info_rich": 253,
+        "avg_pctchg": 0.001645873502043082,
+        "avg_rvol": 0.9912205992531474,
+        "last_seen": "2009-12-31"
+      }
+    ],
+    "2016": [
+      {
+        "ticker": "GPRO",
+        "days_info_rich": 266,
+        "avg_pctchg": -0.0017071992405033245,
+        "avg_rvol": 0.969742722769516,
+        "last_seen": "2016-12-31"
+      },
+      {
+        "ticker": "MNKD",
+        "days_info_rich": 264,
+        "avg_pctchg": 0.00031698953928432623,
+        "avg_rvol": 1.0557428873693597,
+        "last_seen": "2016-12-31"
+      },
+      {
+        "ticker": "AVXL",
+        "days_info_rich": 263,
+        "avg_pctchg": 0.000994482488155464,
+        "avg_rvol": 1.0384105687498433,
+        "last_seen": "2016-12-30"
+      },
+      {
+        "ticker": "OPK",
+        "days_info_rich": 260,
+        "avg_pctchg": 0.0001616841097653959,
+        "avg_rvol": 1.034519253748214,
+        "last_seen": "2016-12-31"
+      },
+      {
+        "ticker": "DDD",
+        "days_info_rich": 259,
+        "avg_pctchg": 0.0025559005582275938,
+        "avg_rvol": 0.9741007003276398,
+        "last_seen": "2016-12-31"
+      },
+      {
+        "ticker": "PSEC",
+        "days_info_rich": 257,
+        "avg_pctchg": 0.0007125946504090327,
+        "avg_rvol": 0.9664536676264585,
+        "last_seen": "2016-12-30"
+      },
+      {
+        "ticker": "BTE",
+        "days_info_rich": 256,
+        "avg_pctchg": 0.0033951510582708633,
+        "avg_rvol": 1.0288900168361212,
+        "last_seen": "2016-12-30"
+      },
+      {
+        "ticker": "VCEL",
+        "days_info_rich": 256,
+        "avg_pctchg": 0.00325218279022735,
+        "avg_rvol": 1.1633259022225872,
+        "last_seen": "2016-12-30"
+      },
+      {
+        "ticker": "ARRY",
+        "days_info_rich": 256,
+        "avg_pctchg": 0.004946028999073741,
+        "avg_rvol": 1.0245393301535703,
+        "last_seen": "2016-12-30"
+      },
+      {
+        "ticker": "NAT",
+        "days_info_rich": 256,
+        "avg_pctchg": -0.00207763201396686,
+        "avg_rvol": 1.0214772521245152,
+        "last_seen": "2016-12-30"
+      },
+      {
+        "ticker": "BCRX",
+        "days_info_rich": 255,
+        "avg_pctchg": 0.001549152625148368,
+        "avg_rvol": 1.0752085708517587,
+        "last_seen": "2016-12-30"
+      },
+      {
+        "ticker": "KNDI",
+        "days_info_rich": 255,
+        "avg_pctchg": -0.0022846317957483835,
+        "avg_rvol": 0.9861241664855991,
+        "last_seen": "2016-12-30"
+      },
+      {
+        "ticker": "WEN",
+        "days_info_rich": 255,
+        "avg_pctchg": 0.0010550254000338442,
+        "avg_rvol": 1.015665362482769,
+        "last_seen": "2016-12-30"
+      },
+      {
+        "ticker": "AUPH",
+        "days_info_rich": 255,
+        "avg_pctchg": 0.0022351795030246964,
+        "avg_rvol": 1.264611020097684,
+        "last_seen": "2016-12-31"
+      },
+      {
+        "ticker": "OMER",
+        "days_info_rich": 254,
+        "avg_pctchg": -0.0008597096624650057,
+        "avg_rvol": 1.031241112085611,
+        "last_seen": "2016-12-30"
+      },
+      {
+        "ticker": "TK",
+        "days_info_rich": 254,
+        "avg_pctchg": 0.0006183273035067581,
+        "avg_rvol": 0.9219153715234758,
+        "last_seen": "2016-12-30"
+      },
+      {
+        "ticker": "LOCO",
+        "days_info_rich": 254,
+        "avg_pctchg": 0.0002628174065750768,
+        "avg_rvol": 0.9786326583176129,
+        "last_seen": "2016-12-30"
+      },
+      {
+        "ticker": "GERN",
+        "days_info_rich": 254,
+        "avg_pctchg": -0.0024746445623833654,
+        "avg_rvol": 0.9631678803032319,
+        "last_seen": "2016-12-30"
+      },
+      {
+        "ticker": "NDLS",
+        "days_info_rich": 253,
+        "avg_pctchg": -0.002942851236518778,
+        "avg_rvol": 1.0381436822074388,
+        "last_seen": "2016-12-30"
+      },
+      {
+        "ticker": "LPTH",
+        "days_info_rich": 253,
+        "avg_pctchg": -0.00163331898776171,
+        "avg_rvol": 1.0791121014384082,
+        "last_seen": "2016-12-30"
+      },
+      {
+        "ticker": "ACRE",
+        "days_info_rich": 253,
+        "avg_pctchg": 0.0008516927744635983,
+        "avg_rvol": 1.0248992029204194,
+        "last_seen": "2016-12-30"
+      },
+      {
+        "ticker": "EVC",
+        "days_info_rich": 253,
+        "avg_pctchg": -0.00015453252659377884,
+        "avg_rvol": 0.9919913186800081,
+        "last_seen": "2016-12-30"
+      },
+      {
+        "ticker": "FATE",
+        "days_info_rich": 253,
+        "avg_pctchg": 0.000641134941369518,
+        "avg_rvol": 1.0318611316539272,
+        "last_seen": "2016-12-30"
+      },
+      {
+        "ticker": "XHR",
+        "days_info_rich": 253,
+        "avg_pctchg": 0.0011199686751338503,
+        "avg_rvol": 0.9977744151239034,
+        "last_seen": "2016-12-30"
+      },
+      {
+        "ticker": "SGMO",
+        "days_info_rich": 253,
+        "avg_pctchg": -0.0028995238010909403,
+        "avg_rvol": 1.0017524810723466,
+        "last_seen": "2016-12-30"
+      },
+      {
+        "ticker": "CRNT",
+        "days_info_rich": 253,
+        "avg_pctchg": 0.004054412155316351,
+        "avg_rvol": 1.1073975709933002,
+        "last_seen": "2016-12-30"
+      },
+      {
+        "ticker": "GCI",
+        "days_info_rich": 253,
+        "avg_pctchg": -0.0017596143896693181,
+        "avg_rvol": 1.0137018809179856,
+        "last_seen": "2016-12-30"
+      },
+      {
+        "ticker": "DRH",
+        "days_info_rich": 253,
+        "avg_pctchg": 0.0009380764068949148,
+        "avg_rvol": 1.0266965123800238,
+        "last_seen": "2016-12-30"
+      },
+      {
+        "ticker": "SRI",
+        "days_info_rich": 253,
+        "avg_pctchg": 0.0010716145280192356,
+        "avg_rvol": 1.04876754040239,
+        "last_seen": "2016-12-30"
+      },
+      {
+        "ticker": "PFLT",
+        "days_info_rich": 253,
+        "avg_pctchg": 0.0009292192855700419,
+        "avg_rvol": 0.9716401548574114,
+        "last_seen": "2016-12-30"
+      },
+      {
+        "ticker": "AKBA",
+        "days_info_rich": 253,
+        "avg_pctchg": -0.0003411372326317289,
+        "avg_rvol": 1.016776117119241,
+        "last_seen": "2016-12-30"
+      },
+      {
+        "ticker": "BZH",
+        "days_info_rich": 253,
+        "avg_pctchg": 0.0014752741345140548,
+        "avg_rvol": 1.029712684527561,
+        "last_seen": "2016-12-30"
+      },
+      {
+        "ticker": "MRCC",
+        "days_info_rich": 253,
+        "avg_pctchg": 0.0007752688730801105,
+        "avg_rvol": 1.0115521256170497,
+        "last_seen": "2016-12-30"
+      },
+      {
+        "ticker": "VUZI",
+        "days_info_rich": 253,
+        "avg_pctchg": 0.0009129863275638651,
+        "avg_rvol": 1.0589305077124531,
+        "last_seen": "2016-12-31"
+      },
+      {
+        "ticker": "INN",
+        "days_info_rich": 253,
+        "avg_pctchg": 0.001342302440622022,
+        "avg_rvol": 1.0624674923873147,
+        "last_seen": "2016-12-30"
+      },
+      {
+        "ticker": "GIG",
+        "days_info_rich": 253,
+        "avg_pctchg": -6.911031844612018e-05,
+        "avg_rvol": 0.9723794546533997,
+        "last_seen": "2016-12-30"
+      },
+      {
+        "ticker": "FUND",
+        "days_info_rich": 253,
+        "avg_pctchg": 0.0007663893099249489,
+        "avg_rvol": 0.9615650740076866,
+        "last_seen": "2016-12-30"
+      },
+      {
+        "ticker": "GAIN",
+        "days_info_rich": 253,
+        "avg_pctchg": 0.0005079725779557466,
+        "avg_rvol": 0.9956904549203991,
+        "last_seen": "2016-12-30"
+      },
+      {
+        "ticker": "CLNE",
+        "days_info_rich": 253,
+        "avg_pctchg": 9.862215796201557e-05,
+        "avg_rvol": 1.0320101685641427,
+        "last_seen": "2016-12-30"
+      },
+      {
+        "ticker": "OMEX",
+        "days_info_rich": 253,
+        "avg_pctchg": 0.003718451562041304,
+        "avg_rvol": 1.09457898755451,
+        "last_seen": "2016-12-30"
+      },
+      {
+        "ticker": "CIO",
+        "days_info_rich": 253,
+        "avg_pctchg": 0.0004020081337083132,
+        "avg_rvol": 1.0917522490740739,
+        "last_seen": "2016-12-30"
+      },
+      {
+        "ticker": "CWCO",
+        "days_info_rich": 253,
+        "avg_pctchg": -0.00020942972779254944,
+        "avg_rvol": 1.0033173896622944,
+        "last_seen": "2016-12-30"
+      },
+      {
+        "ticker": "GALT",
+        "days_info_rich": 253,
+        "avg_pctchg": 0.0007522621572683385,
+        "avg_rvol": 1.1024832332862586,
+        "last_seen": "2016-12-30"
+      },
+      {
+        "ticker": "WSR",
+        "days_info_rich": 253,
+        "avg_pctchg": 0.0008586226093476586,
+        "avg_rvol": 0.9998309411766658,
+        "last_seen": "2016-12-30"
+      },
+      {
+        "ticker": "KRO",
+        "days_info_rich": 253,
+        "avg_pctchg": 0.0037116829523482615,
+        "avg_rvol": 1.0126758074150257,
+        "last_seen": "2016-12-30"
+      },
+      {
+        "ticker": "EFC",
+        "days_info_rich": 253,
+        "avg_pctchg": -0.0002513933752376671,
+        "avg_rvol": 0.985413223673332,
+        "last_seen": "2016-12-30"
+      },
+      {
+        "ticker": "AVD",
+        "days_info_rich": 253,
+        "avg_pctchg": 0.001745410970311224,
+        "avg_rvol": 1.0076205799502833,
+        "last_seen": "2016-12-30"
+      },
+      {
+        "ticker": "SHO",
+        "days_info_rich": 253,
+        "avg_pctchg": 0.0009674821362096776,
+        "avg_rvol": 0.9869346702853176,
+        "last_seen": "2016-12-30"
+      },
+      {
+        "ticker": "CAAS",
+        "days_info_rich": 253,
+        "avg_pctchg": 0.001302327958759972,
+        "avg_rvol": 1.1330495908036913,
+        "last_seen": "2016-12-30"
+      },
+      {
+        "ticker": "DSX",
+        "days_info_rich": 253,
+        "avg_pctchg": 0.0002296517904910795,
+        "avg_rvol": 1.0438175732989408,
+        "last_seen": "2016-12-30"
+      }
+    ],
+    "2018": [
+      {
+        "ticker": "GPRO",
+        "days_info_rich": 262,
+        "avg_pctchg": -0.0015849931338537794,
+        "avg_rvol": 1.033312989526076,
+        "last_seen": "2018-12-31"
+      },
+      {
+        "ticker": "CRMD",
+        "days_info_rich": 259,
+        "avg_pctchg": 0.007687700992737647,
+        "avg_rvol": 1.0935076115513864,
+        "last_seen": "2018-12-31"
+      },
+      {
+        "ticker": "PXS",
+        "days_info_rich": 258,
+        "avg_pctchg": -0.000918528178557663,
+        "avg_rvol": 1.0703007428557176,
+        "last_seen": "2018-12-31"
+      },
+      {
+        "ticker": "MNKD",
+        "days_info_rich": 258,
+        "avg_pctchg": -0.00016124203846766387,
+        "avg_rvol": 1.0346413782199257,
+        "last_seen": "2018-12-31"
+      },
+      {
+        "ticker": "SPWR",
+        "days_info_rich": 256,
+        "avg_pctchg": -0.0014564707120875028,
+        "avg_rvol": 0.9807557087797742,
+        "last_seen": "2018-12-31"
+      },
+      {
+        "ticker": "VCEL",
+        "days_info_rich": 256,
+        "avg_pctchg": 0.005987149116395557,
+        "avg_rvol": 1.0277020283277218,
+        "last_seen": "2018-12-31"
+      },
+      {
+        "ticker": "VUZI",
+        "days_info_rich": 256,
+        "avg_pctchg": 7.264041859493964e-05,
+        "avg_rvol": 1.0048999653972164,
+        "last_seen": "2018-12-31"
+      },
+      {
+        "ticker": "AUPH",
+        "days_info_rich": 256,
+        "avg_pctchg": 0.0019247810892693484,
+        "avg_rvol": 1.0045330221439477,
+        "last_seen": "2018-12-31"
+      },
+      {
+        "ticker": "ATOS",
+        "days_info_rich": 256,
+        "avg_pctchg": -0.0015059775274688316,
+        "avg_rvol": 1.1126481483296773,
+        "last_seen": "2018-12-31"
+      },
+      {
+        "ticker": "WEN",
+        "days_info_rich": 255,
+        "avg_pctchg": -8.090837560234794e-05,
+        "avg_rvol": 1.0019863793769288,
+        "last_seen": "2018-12-31"
+      },
+      {
+        "ticker": "PSEC",
+        "days_info_rich": 255,
+        "avg_pctchg": -0.00021499398356781318,
+        "avg_rvol": 1.0294721921666998,
+        "last_seen": "2018-12-31"
+      },
+      {
+        "ticker": "IPWR",
+        "days_info_rich": 254,
+        "avg_pctchg": -0.0049781172338888196,
+        "avg_rvol": 0.9068408411235742,
+        "last_seen": "2018-12-31"
+      },
+      {
+        "ticker": "CLNE",
+        "days_info_rich": 254,
+        "avg_pctchg": 0.00026899141248713337,
+        "avg_rvol": 1.0136728207726668,
+        "last_seen": "2018-12-31"
+      },
+      {
+        "ticker": "AEHR",
+        "days_info_rich": 254,
+        "avg_pctchg": -0.0018259790074425495,
+        "avg_rvol": 0.951103891382991,
+        "last_seen": "2018-12-31"
+      },
+      {
+        "ticker": "FATE",
+        "days_info_rich": 254,
+        "avg_pctchg": 0.004362364238539339,
+        "avg_rvol": 1.0195416244968205,
+        "last_seen": "2018-12-31"
+      },
+      {
+        "ticker": "TCPC",
+        "days_info_rich": 254,
+        "avg_pctchg": -0.0005580380374958861,
+        "avg_rvol": 1.0280994352588493,
+        "last_seen": "2018-12-31"
+      },
+      {
+        "ticker": "NAT",
+        "days_info_rich": 254,
+        "avg_pctchg": -4.693930511711617e-05,
+        "avg_rvol": 0.9855759827197654,
+        "last_seen": "2018-12-31"
+      },
+      {
+        "ticker": "GEVO",
+        "days_info_rich": 254,
+        "avg_pctchg": 0.002507175207662148,
+        "avg_rvol": 1.1701527429753682,
+        "last_seen": "2018-12-31"
+      },
+      {
+        "ticker": "CYH",
+        "days_info_rich": 254,
+        "avg_pctchg": -0.0004458463054264339,
+        "avg_rvol": 1.0065441006715934,
+        "last_seen": "2018-12-31"
+      },
+      {
+        "ticker": "APPS",
+        "days_info_rich": 254,
+        "avg_pctchg": 0.0010089320260980384,
+        "avg_rvol": 1.0331941494722436,
+        "last_seen": "2018-12-31"
+      },
+      {
+        "ticker": "ARRY",
+        "days_info_rich": 253,
+        "avg_pctchg": 0.0010480469645124842,
+        "avg_rvol": 0.9971906076460706,
+        "last_seen": "2018-12-31"
+      },
+      {
+        "ticker": "KNDI",
+        "days_info_rich": 253,
+        "avg_pctchg": -0.0012705830222868606,
+        "avg_rvol": 1.035677548695211,
+        "last_seen": "2018-12-31"
+      },
+      {
+        "ticker": "GROW",
+        "days_info_rich": 253,
+        "avg_pctchg": -0.0035677021696618547,
+        "avg_rvol": 0.899989528273041,
+        "last_seen": "2018-12-31"
+      },
+      {
+        "ticker": "PBI",
+        "days_info_rich": 253,
+        "avg_pctchg": -0.00213830048733764,
+        "avg_rvol": 1.031674136324188,
+        "last_seen": "2018-12-31"
+      },
+      {
+        "ticker": "CRIS",
+        "days_info_rich": 253,
+        "avg_pctchg": -0.003890165460018287,
+        "avg_rvol": 1.0540504897608607,
+        "last_seen": "2018-12-31"
+      },
+      {
+        "ticker": "GSL",
+        "days_info_rich": 253,
+        "avg_pctchg": -0.0010761152750278027,
+        "avg_rvol": 1.0538413857790303,
+        "last_seen": "2018-12-31"
+      },
+      {
+        "ticker": "LADR",
+        "days_info_rich": 253,
+        "avg_pctchg": 0.0005950225866594565,
+        "avg_rvol": 1.0232991950575727,
+        "last_seen": "2018-12-31"
+      },
+      {
+        "ticker": "AXL",
+        "days_info_rich": 253,
+        "avg_pctchg": -0.0012046305364124975,
+        "avg_rvol": 1.0103875093282075,
+        "last_seen": "2018-12-31"
+      },
+      {
+        "ticker": "MBOT",
+        "days_info_rich": 253,
+        "avg_pctchg": -0.007239112922482162,
+        "avg_rvol": 1.1563256590497482,
+        "last_seen": "2018-12-31"
+      },
+      {
+        "ticker": "IDT",
+        "days_info_rich": 253,
+        "avg_pctchg": -0.0011658431193532735,
+        "avg_rvol": 0.980620439887171,
+        "last_seen": "2018-12-31"
+      },
+      {
+        "ticker": "SEED",
+        "days_info_rich": 253,
+        "avg_pctchg": 0.00029833717239673906,
+        "avg_rvol": 1.1486425648600485,
+        "last_seen": "2018-12-31"
+      },
+      {
+        "ticker": "GERN",
+        "days_info_rich": 253,
+        "avg_pctchg": 0.0007937237907170595,
+        "avg_rvol": 1.1135366186071487,
+        "last_seen": "2018-12-31"
+      },
+      {
+        "ticker": "GSM",
+        "days_info_rich": 253,
+        "avg_pctchg": -0.007562364340610244,
+        "avg_rvol": 1.1096311816057953,
+        "last_seen": "2018-12-31"
+      },
+      {
+        "ticker": "IMMR",
+        "days_info_rich": 253,
+        "avg_pctchg": 0.0017246605580128233,
+        "avg_rvol": 0.9870263071647059,
+        "last_seen": "2018-12-31"
+      },
+      {
+        "ticker": "MRAM",
+        "days_info_rich": 253,
+        "avg_pctchg": 0.00032537947578927825,
+        "avg_rvol": 0.9574115522880043,
+        "last_seen": "2018-12-31"
+      },
+      {
+        "ticker": "CGEN",
+        "days_info_rich": 252,
+        "avg_pctchg": 0.0005336412621255484,
+        "avg_rvol": 1.0257173035312719,
+        "last_seen": "2018-12-31"
+      },
+      {
+        "ticker": "DAIO",
+        "days_info_rich": 252,
+        "avg_pctchg": -0.002759391315202814,
+        "avg_rvol": 0.9235924413102911,
+        "last_seen": "2018-12-31"
+      },
+      {
+        "ticker": "QNST",
+        "days_info_rich": 252,
+        "avg_pctchg": 0.0032225791737480933,
+        "avg_rvol": 1.0593859844070506,
+        "last_seen": "2018-12-31"
+      },
+      {
+        "ticker": "CODI",
+        "days_info_rich": 252,
+        "avg_pctchg": -0.001108874764487249,
+        "avg_rvol": 1.0629899269576968,
+        "last_seen": "2018-12-31"
+      },
+      {
+        "ticker": "IOVA",
+        "days_info_rich": 252,
+        "avg_pctchg": 0.0015394280013927154,
+        "avg_rvol": 1.0902641575377765,
+        "last_seen": "2018-12-31"
+      },
+      {
+        "ticker": "BLDP",
+        "days_info_rich": 252,
+        "avg_pctchg": -0.0014579954523378856,
+        "avg_rvol": 0.9878542192724327,
+        "last_seen": "2018-12-31"
+      },
+      {
+        "ticker": "MX",
+        "days_info_rich": 252,
+        "avg_pctchg": -0.0013865664237936056,
+        "avg_rvol": 1.001384111529212,
+        "last_seen": "2018-12-31"
+      },
+      {
+        "ticker": "ARCO",
+        "days_info_rich": 252,
+        "avg_pctchg": -0.0007331797495526695,
+        "avg_rvol": 1.046815108129915,
+        "last_seen": "2018-12-31"
+      },
+      {
+        "ticker": "DXLG",
+        "days_info_rich": 252,
+        "avg_pctchg": 0.0010139026470445502,
+        "avg_rvol": 0.9969032848792195,
+        "last_seen": "2018-12-31"
+      },
+      {
+        "ticker": "DAKT",
+        "days_info_rich": 252,
+        "avg_pctchg": -0.0005787213972699641,
+        "avg_rvol": 1.0686188441925204,
+        "last_seen": "2018-12-31"
+      },
+      {
+        "ticker": "RAVE",
+        "days_info_rich": 252,
+        "avg_pctchg": 0.0004172799559774362,
+        "avg_rvol": 1.034622141254881,
+        "last_seen": "2018-12-31"
+      },
+      {
+        "ticker": "CHW",
+        "days_info_rich": 252,
+        "avg_pctchg": -0.0011887935978213975,
+        "avg_rvol": 1.0608878268156476,
+        "last_seen": "2018-12-31"
+      },
+      {
+        "ticker": "WSR",
+        "days_info_rich": 252,
+        "avg_pctchg": -0.0005138153241892719,
+        "avg_rvol": 1.0107363762709647,
+        "last_seen": "2018-12-31"
+      },
+      {
+        "ticker": "SJT",
+        "days_info_rich": 252,
+        "avg_pctchg": -0.0019004480803414072,
+        "avg_rvol": 1.0200406157595234,
+        "last_seen": "2018-12-31"
+      },
+      {
+        "ticker": "ACTG",
+        "days_info_rich": 252,
+        "avg_pctchg": -0.000646478174369582,
+        "avg_rvol": 0.9899602394273631,
+        "last_seen": "2018-12-31"
+      }
+    ],
+    "2019": [
+      {
+        "ticker": "MNKD",
+        "days_info_rich": 261,
+        "avg_pctchg": 0.0014478649113069766,
+        "avg_rvol": 1.0022519394775147,
+        "last_seen": "2019-12-31"
+      },
+      {
+        "ticker": "BBBY",
+        "days_info_rich": 261,
+        "avg_pctchg": 0.002281407543131518,
+        "avg_rvol": 1.0350700433056235,
+        "last_seen": "2019-12-31"
+      },
+      {
+        "ticker": "JBLU",
+        "days_info_rich": 260,
+        "avg_pctchg": 0.0007081800588631115,
+        "avg_rvol": 0.9844135020979108,
+        "last_seen": "2019-12-31"
+      },
+      {
+        "ticker": "ARLO",
+        "days_info_rich": 260,
+        "avg_pctchg": -0.0021764433878819836,
+        "avg_rvol": 1.0746045807305495,
+        "last_seen": "2019-12-31"
+      },
+      {
+        "ticker": "SPWR",
+        "days_info_rich": 259,
+        "avg_pctchg": 0.0025689382077512227,
+        "avg_rvol": 1.0385319857179858,
+        "last_seen": "2019-12-31"
+      },
+      {
+        "ticker": "CRMD",
+        "days_info_rich": 259,
+        "avg_pctchg": 0.0019261806405035848,
+        "avg_rvol": 0.9963220669944635,
+        "last_seen": "2019-12-31"
+      },
+      {
+        "ticker": "AQST",
+        "days_info_rich": 258,
+        "avg_pctchg": 0.0014756365514813768,
+        "avg_rvol": 1.159278865809062,
+        "last_seen": "2019-12-31"
+      },
+      {
+        "ticker": "BLIN",
+        "days_info_rich": 258,
+        "avg_pctchg": -0.005776868765719963,
+        "avg_rvol": 1.2456491374828131,
+        "last_seen": "2019-12-31"
+      },
+      {
+        "ticker": "GPRO",
+        "days_info_rich": 258,
+        "avg_pctchg": 0.0008832941816573975,
+        "avg_rvol": 1.0356883614104335,
+        "last_seen": "2019-12-31"
+      },
+      {
+        "ticker": "OPK",
+        "days_info_rich": 258,
+        "avg_pctchg": -0.0020557072977771262,
+        "avg_rvol": 0.9991480841682439,
+        "last_seen": "2019-12-31"
+      },
+      {
+        "ticker": "NAT",
+        "days_info_rich": 257,
+        "avg_pctchg": 0.004086088652835923,
+        "avg_rvol": 1.077704827863383,
+        "last_seen": "2019-12-31"
+      },
+      {
+        "ticker": "PSEC",
+        "days_info_rich": 257,
+        "avg_pctchg": 0.00015044417169505453,
+        "avg_rvol": 0.9735448026239504,
+        "last_seen": "2019-12-31"
+      },
+      {
+        "ticker": "SES",
+        "days_info_rich": 257,
+        "avg_pctchg": 0.009461706208524137,
+        "avg_rvol": 1.244782228812676,
+        "last_seen": "2019-12-31"
+      },
+      {
+        "ticker": "VERI",
+        "days_info_rich": 257,
+        "avg_pctchg": -0.0002099724673081726,
+        "avg_rvol": 0.9864024995481462,
+        "last_seen": "2019-12-31"
+      },
+      {
+        "ticker": "ALT",
+        "days_info_rich": 257,
+        "avg_pctchg": 0.0012847801947910061,
+        "avg_rvol": 0.9847129166095502,
+        "last_seen": "2019-12-31"
+      },
+      {
+        "ticker": "LXRX",
+        "days_info_rich": 257,
+        "avg_pctchg": 0.0014174865270418357,
+        "avg_rvol": 1.0880370362847782,
+        "last_seen": "2019-12-31"
+      },
+      {
+        "ticker": "APPS",
+        "days_info_rich": 257,
+        "avg_pctchg": 0.0060683072833869695,
+        "avg_rvol": 1.115535130141461,
+        "last_seen": "2019-12-31"
+      },
+      {
+        "ticker": "GERN",
+        "days_info_rich": 257,
+        "avg_pctchg": 0.0020353401561589947,
+        "avg_rvol": 0.9501977348570015,
+        "last_seen": "2019-12-31"
+      },
+      {
+        "ticker": "UNIT",
+        "days_info_rich": 257,
+        "avg_pctchg": -0.0018638454294522264,
+        "avg_rvol": 1.0458991201467385,
+        "last_seen": "2019-12-31"
+      },
+      {
+        "ticker": "SGMO",
+        "days_info_rich": 257,
+        "avg_pctchg": -0.00012649225997801565,
+        "avg_rvol": 1.0348009042418804,
+        "last_seen": "2019-12-31"
+      },
+      {
+        "ticker": "BLNK",
+        "days_info_rich": 257,
+        "avg_pctchg": 0.001677283833129929,
+        "avg_rvol": 1.021918564215245,
+        "last_seen": "2019-12-31"
+      },
+      {
+        "ticker": "BLDP",
+        "days_info_rich": 256,
+        "avg_pctchg": 0.0049460318191269035,
+        "avg_rvol": 1.0435888065809766,
+        "last_seen": "2019-12-31"
+      },
+      {
+        "ticker": "SCYX",
+        "days_info_rich": 256,
+        "avg_pctchg": 0.0047926190876680565,
+        "avg_rvol": 1.099949104364141,
+        "last_seen": "2019-12-31"
+      },
+      {
+        "ticker": "MBOT",
+        "days_info_rich": 256,
+        "avg_pctchg": 0.017640899831228546,
+        "avg_rvol": 1.278806663998908,
+        "last_seen": "2019-12-31"
+      },
+      {
+        "ticker": "GEVO",
+        "days_info_rich": 256,
+        "avg_pctchg": 0.002006546020062475,
+        "avg_rvol": 0.9938957477677414,
+        "last_seen": "2019-12-31"
+      },
+      {
+        "ticker": "KNDI",
+        "days_info_rich": 256,
+        "avg_pctchg": 0.002053507512268264,
+        "avg_rvol": 0.9881565060102379,
+        "last_seen": "2019-12-31"
+      },
+      {
+        "ticker": "CLDX",
+        "days_info_rich": 256,
+        "avg_pctchg": 0.0007182698408713076,
+        "avg_rvol": 1.0533720423085773,
+        "last_seen": "2019-12-31"
+      },
+      {
+        "ticker": "LADR",
+        "days_info_rich": 256,
+        "avg_pctchg": 0.0006614081401909951,
+        "avg_rvol": 0.9746581668377151,
+        "last_seen": "2019-12-31"
+      },
+      {
+        "ticker": "PXS",
+        "days_info_rich": 255,
+        "avg_pctchg": 0.0019380723185931968,
+        "avg_rvol": 0.9608675903136495,
+        "last_seen": "2019-12-31"
+      },
+      {
+        "ticker": "DDD",
+        "days_info_rich": 255,
+        "avg_pctchg": -8.48997819491594e-05,
+        "avg_rvol": 1.004463406308482,
+        "last_seen": "2019-12-31"
+      },
+      {
+        "ticker": "AVXL",
+        "days_info_rich": 255,
+        "avg_pctchg": 0.0034038436384549887,
+        "avg_rvol": 1.0766681136111327,
+        "last_seen": "2019-12-31"
+      },
+      {
+        "ticker": "AKBA",
+        "days_info_rich": 255,
+        "avg_pctchg": 0.0016602022207912648,
+        "avg_rvol": 1.0207664454420213,
+        "last_seen": "2019-12-31"
+      },
+      {
+        "ticker": "QNST",
+        "days_info_rich": 255,
+        "avg_pctchg": 0.0003113517222405319,
+        "avg_rvol": 0.9740430732661722,
+        "last_seen": "2019-12-31"
+      },
+      {
+        "ticker": "GOGO",
+        "days_info_rich": 255,
+        "avg_pctchg": 0.0037151311929804485,
+        "avg_rvol": 1.003903931058189,
+        "last_seen": "2019-12-31"
+      },
+      {
+        "ticker": "ESEA",
+        "days_info_rich": 255,
+        "avg_pctchg": 0.0011390838108118818,
+        "avg_rvol": 1.0641192679805214,
+        "last_seen": "2019-12-31"
+      },
+      {
+        "ticker": "AAOI",
+        "days_info_rich": 255,
+        "avg_pctchg": -0.0002736299022442787,
+        "avg_rvol": 1.0031124953718122,
+        "last_seen": "2019-12-31"
+      },
+      {
+        "ticker": "DERM",
+        "days_info_rich": 255,
+        "avg_pctchg": 0.004976249593438316,
+        "avg_rvol": 1.0659341696631712,
+        "last_seen": "2019-12-31"
+      },
+      {
+        "ticker": "FOSL",
+        "days_info_rich": 254,
+        "avg_pctchg": -0.0017215307530422572,
+        "avg_rvol": 1.0068118998261626,
+        "last_seen": "2019-12-31"
+      },
+      {
+        "ticker": "PBT",
+        "days_info_rich": 254,
+        "avg_pctchg": -0.0012830871611335167,
+        "avg_rvol": 1.0287330960185839,
+        "last_seen": "2019-12-31"
+      },
+      {
+        "ticker": "FPAY",
+        "days_info_rich": 254,
+        "avg_pctchg": 0.00603810934211889,
+        "avg_rvol": 1.0220271569583685,
+        "last_seen": "2019-12-31"
+      },
+      {
+        "ticker": "CRNT",
+        "days_info_rich": 254,
+        "avg_pctchg": -0.0013131188729266895,
+        "avg_rvol": 1.061924300167347,
+        "last_seen": "2019-12-31"
+      },
+      {
+        "ticker": "GSM",
+        "days_info_rich": 254,
+        "avg_pctchg": -0.0004952330285415257,
+        "avg_rvol": 0.9394539704105042,
+        "last_seen": "2019-12-31"
+      },
+      {
+        "ticker": "VRA",
+        "days_info_rich": 254,
+        "avg_pctchg": 0.001835241612413672,
+        "avg_rvol": 1.0026343394387802,
+        "last_seen": "2019-12-31"
+      },
+      {
+        "ticker": "ATOS",
+        "days_info_rich": 254,
+        "avg_pctchg": 0.010097271738122506,
+        "avg_rvol": 0.876367203204874,
+        "last_seen": "2019-12-31"
+      },
+      {
+        "ticker": "NEON",
+        "days_info_rich": 254,
+        "avg_pctchg": 0.0017707388524159289,
+        "avg_rvol": 0.9713897822947976,
+        "last_seen": "2019-12-31"
+      },
+      {
+        "ticker": "VOC",
+        "days_info_rich": 254,
+        "avg_pctchg": 0.0014510275575992041,
+        "avg_rvol": 0.9739174410529209,
+        "last_seen": "2019-12-31"
+      },
+      {
+        "ticker": "FORD",
+        "days_info_rich": 254,
+        "avg_pctchg": -0.00030488558918250125,
+        "avg_rvol": 0.9707382628517351,
+        "last_seen": "2019-12-31"
+      },
+      {
+        "ticker": "CODX",
+        "days_info_rich": 254,
+        "avg_pctchg": 0.0008013292024876017,
+        "avg_rvol": 1.171549303012294,
+        "last_seen": "2019-12-31"
+      },
+      {
+        "ticker": "ARDX",
+        "days_info_rich": 254,
+        "avg_pctchg": 0.007731481381214011,
+        "avg_rvol": 1.1427623576258947,
+        "last_seen": "2019-12-31"
+      },
+      {
+        "ticker": "CRIS",
+        "days_info_rich": 254,
+        "avg_pctchg": 0.0053632340092458364,
+        "avg_rvol": 1.0347251016380434,
+        "last_seen": "2019-12-31"
+      }
+    ]
+  }
+}

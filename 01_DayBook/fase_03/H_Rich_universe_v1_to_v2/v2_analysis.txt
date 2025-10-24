@@ -1,0 +1,20 @@
+============================================================
+ANÁLISIS INFO-RICH UNIVERSE v2 (2004-2019)
+============================================================
+
+=== DENSIDAD TEMPORAL ===
+
+Eventos info-rich por año:
+Traceback (most recent call last):
+  File "D:\04_TRADING_SMALLCAPS\scripts\fase_G_atributos_faltantes\analyze_v2_distribution.py", line 197, in <module>
+    main()
+    ~~~~^^
+  File "D:\04_TRADING_SMALLCAPS\scripts\fase_G_atributos_faltantes\analyze_v2_distribution.py", line 177, in main
+    df_events = analyze_temporal_density(watchlist_root)
+  File "D:\04_TRADING_SMALLCAPS\scripts\fase_G_atributos_faltantes\analyze_v2_distribution.py", line 49, in analyze_temporal_density
+    print(yearly)
+    ~~~~~^^^^^^^^
+  File "C:\Users\AlexJ\AppData\Local\Programs\Python\Python313\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode characters in position 16-94: character maps to <undefined>

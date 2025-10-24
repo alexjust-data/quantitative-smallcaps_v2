@@ -8,7 +8,8 @@ Ejemplo:
   python download_finra_short_volume_txt.py \
     --outdir raw/finra/regsho_daily_txt \
     --from 2025-01-01 --to 2025-01-31 \
-    --resume
+    --resume \
+    --workers 4
 
 Si necesitas ajustar la URL:
   --url-template "https://cdn.finra.org/equity/regsho/daily/{yyyy}/FNRA_REGSHO_{yyyymmdd}.txt"
@@ -20,6 +21,8 @@ from pathlib import Path
 from datetime import datetime, timedelta
 import io, requests
 import polars as pl
+from multiprocessing import Pool
+from functools import partial
 
 DEFAULT_TEMPLATE = (
   # Ajustable. Muchos deployments públicos usan un árbol por año y fichero por día.
@@ -106,6 +109,37 @@ def parse_txt(text:str)->pl.DataFrame:
             df = df.with_columns(pl.lit(None).alias(col))
     return df
 
+def process_single_day(args_tuple):
+    """Process a single day (for multiprocessing)"""
+    d, outdir, url_template, resume = args_tuple
+    part = outdir / f"date={d.isoformat()}"
+
+    if resume and (part / "_SUCCESS").exists():
+        print(f"[RESUME] {d} skip")
+        return None
+
+    url = build_url(url_template, d)
+    print(f"[GET] {d} -> {url}")
+    txt = get_txt(url)
+    if not txt:
+        print(f"[WARN] {d} sin datos o no encontrado")
+        return None
+
+    try:
+        df = parse_txt(txt)
+        part.mkdir(parents=True, exist_ok=True)
+        df.write_parquet(
+            part/"regsho.parquet",
+            compression="zstd",
+            compression_level=3
+        )
+        (part/"_SUCCESS").write_text("")
+        print(f"[OK] {d} filas={df.height}")
+        return d
+    except Exception as e:
+        print(f"[ERR] {d} parse/escritura: {e}", file=sys.stderr)
+        return None
+
 def main():
     ap = argparse.ArgumentParser(description="FINRA Reg SHO (TXT diarios) → Parquet particionado")
     ap.add_argument("--outdir", required=True)
@@ -113,35 +147,27 @@ def main():
     ap.add_argument("--to", dest="date_to", required=True)
     ap.add_argument("--url-template", default=DEFAULT_TEMPLATE)
     ap.add_argument("--resume", action="store_true")
+    ap.add_argument("--workers", type=int, default=1, help="Parallel workers (default: 1, recommended: 4)")
     args = ap.parse_args()
 
     outdir = Path(args.outdir)
     outdir.mkdir(parents=True, exist_ok=True)
 
-    for d in drange(args.date_from, args.date_to):
-        part = outdir / f"date={d.isoformat()}"
-        if args.resume and (part / "_SUCCESS").exists():
-            print(f"[RESUME] {d} skip")
-            continue
+    dates = drange(args.date_from, args.date_to)
+    print(f"[INFO] Processing {len(dates)} days with {args.workers} workers")
 
-        url = build_url(args.url_template, d)
-        print(f"[GET] {d} -> {url}")
-        txt = get_txt(url)
-        if not txt:
-            print(f"[WARN] {d} sin datos o no encontrado")
-            continue
-        try:
-            df = parse_txt(txt)
-            part.mkdir(parents=True, exist_ok=True)
-            df.write_parquet(
-                part/"regsho.parquet",
-                compression="zstd",
-                compression_level=3
-            )
-            (part/"_SUCCESS").write_text("")
-            print(f"[OK] {d} filas={df.height}")
-        except Exception as e:
-            print(f"[ERR] {d} parse/escritura: {e}", file=sys.stderr)
+    if args.workers == 1:
+        # Sequential mode (original behavior)
+        for d in dates:
+            process_single_day((d, outdir, args.url_template, args.resume))
+    else:
+        # Parallel mode
+        tasks = [(d, outdir, args.url_template, args.resume) for d in dates]
+        with Pool(processes=args.workers) as pool:
+            results = pool.map(process_single_day, tasks)
+
+        success_count = sum(1 for r in results if r is not None)
+        print(f"[DONE] {success_count}/{len(dates)} days processed successfully")
 
 if __name__=="__main__":
     main()

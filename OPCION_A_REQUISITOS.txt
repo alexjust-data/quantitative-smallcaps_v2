@@ -1,0 +1,120 @@
+================================================================================
+OPCION A: GENERACION DE INFO-RICH 2004-2019 (SIN DESCARGAR TICKS)
+================================================================================
+
+ARCHIVOS REQUERIDOS:
+================================================================================
+
+1. SCRIPTS (DISPONIBLES):
+   [OK] scripts/fase_C_ingesta_tiks/build_daily_cache.py (14KB)
+   [OK] scripts/fase_C_ingesta_tiks/build_dynamic_universe_optimized.py (8.4KB)
+
+2. CONFIGURACION (DISPONIBLE):
+   [OK] configs/universe_config.yaml (942 bytes)
+   
+3. DATOS DE ENTRADA (DISPONIBLES):
+   [OK] raw/polygon/ohlcv_intraday_1m/ (estructura: ticker/year=YYYY/)
+        - Contiene OHLCV 1-minuto para 3,110 tickers
+        - Periodo: 2004-2025 (21 anos completos)
+        - Ya descargado y verificado
+
+DIRECTORIOS DE SALIDA (SE CREARAN AUTOMATICAMENTE):
+================================================================================
+   [ ] processed/daily_cache/v2_2004_2019/
+   [ ] processed/universe/info_rich/v2_2004_2019/
+
+ESTIMACION DE RECURSOS:
+================================================================================
+
+PASO 1: build_daily_cache.py (2004-2019)
+   Tiempo estimado:   40-60 minutos
+   Storage estimado:  ~2-3 GB
+   CPU:               Moderado (--parallel 8)
+   Red:               No requiere (usa OHLCV 1-min local)
+   API calls:         0
+
+PASO 2: build_dynamic_universe_optimized.py (2004-2019)
+   Tiempo estimado:   15-25 minutos  
+   Storage estimado:  ~500 MB - 1 GB
+   CPU:               Bajo
+   Red:               No requiere
+   API calls:         0
+
+TOTAL OPCION A:
+   Tiempo total:      55-85 minutos (~1 hora)
+   Storage total:     ~2.5-4 GB
+   Requisitos:        Solo CPU y disco local
+   Sin descargas:     Usa data ya existente
+
+COMANDOS PARA EJECUTAR:
+================================================================================
+
+# PASO 1: Generar daily cache v2 (2004-2019)
+python scripts/fase_C_ingesta_tiks/build_daily_cache.py \
+  --intraday-root raw/polygon/ohlcv_intraday_1m \
+  --outdir processed/daily_cache/v2_2004_2019 \
+  --from 2004-01-01 --to 2019-12-31 \
+  --parallel 8
+
+# PASO 2: Generar universo info-rich v2 (2004-2019)
+python scripts/fase_C_ingesta_tiks/build_dynamic_universe_optimized.py \
+  --daily-cache processed/daily_cache/v2_2004_2019 \
+  --outdir processed/universe/info_rich/v2_2004_2019 \
+  --from 2004-01-01 --to 2019-12-31 \
+  --config configs/universe_config.yaml
+
+RESULTADOS ESPERADOS:
+================================================================================
+
+Archivo generado 1:
+   processed/universe/info_rich/v2_2004_2019/info_rich_tickers.csv
+   - Lista de tickers unicos que fueron info-rich 2004-2019
+   - Estimado: ~2,500-3,000 tickers
+
+Archivo generado 2:
+   processed/universe/info_rich/v2_2004_2019/daily/date=*/watchlist.parquet
+   - Watchlists diarias (1 por dia de mercado)
+   - Estimado: ~3,800-4,000 archivos (dias de mercado 2004-2019)
+   - Cada watchlist: tickers que fueron info-rich ese dia especifico
+
+Archivo generado 3:
+   processed/universe/info_rich/v2_2004_2019/stats/topN_12m_rolling.parquet
+   - Ranking de tickers mas activos (12 meses rolling)
+
+Metricas esperadas:
+   - Ticker-days info-rich: ~35,000-50,000 (vs 11,054 en 2020-2025)
+   - Tickers unicos: ~2,500-3,000 (vs 1,906 en 2020-2025)
+   - Watchlists diarias: ~3,800-4,000 (vs 1,562 en 2020-2025)
+
+DECISION POST-OPCION A:
+================================================================================
+
+Despues de ejecutar OPCION A, podras analizar:
+
+1. DISTRIBUCION TEMPORAL:
+   - Cuantos eventos info-rich por ano (2004-2019)?
+   - Hay mas eventos en 2008-2009 (crisis)?
+   - La calidad de eventos es similar a 2020-2025?
+
+2. DECISION DE DESCARGA DE TICKS:
+   Basado en los resultados, decidir:
+   
+   [A] NO DESCARGAR: Si eventos son pocos o de baja calidad
+   [B] DESCARGA SELECTIVA: Solo 2008-2009 (crisis) + 2015-2019 (pre-COVID)
+   [C] DESCARGA COMPLETA: Todos los periodos 2004-2019
+
+3. ESTIMACION PARA DESCARGA DE TICKS (SI DECIDES):
+   Con ~40,000 ticker-days estimados:
+   - Tiempo descarga: ~8-12 horas (con 8 workers, config optima)
+   - Storage ticks: ~10-15 GB
+   - Storage total (bars+labels+weights): ~25-35 GB
+
+STATUS ACTUAL:
+================================================================================
+[OK] Scripts disponibles
+[OK] Config disponible  
+[OK] OHLCV 1-min 2004-2025 disponible (ya descargado)
+[OK] Espacio en disco suficiente
+[OK] Sin dependencias de API (usa data local)
+
+LISTO PARA EJECUTAR: SI
