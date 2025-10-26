@@ -48,6 +48,13 @@ import polars as pl
 import requests
 import certifi
 
+# Cargar variables de entorno desde .env si existe
+try:
+    from dotenv import load_dotenv
+    load_dotenv()
+except ImportError:
+    pass  # dotenv no instalado, usar solo variables de entorno del sistema
+
 API_BASE = "https://api.polygon.io"
 PAGE_LIMIT_DEFAULT = 50_000
 TIMEOUT = (10, 60)  # connect, read
@@ -317,7 +324,7 @@ def download_span(session: requests.Session, ticker: str, span_from: date, span_
 
 def parse_args():
     ap = argparse.ArgumentParser(description="Descarga optimizada de trades Polygon")
-    ap.add_argument("--tickers-csv", required=True, help="CSV con columna 'ticker'")
+    ap.add_argument("--tickers-csv", required=False, help="OPCIONAL: CSV con columna 'ticker' para limitar descarga a subset (ej: topN_12m.csv)")
     ap.add_argument("--outdir", required=True, help="Directorio de salida (raw/polygon/trades)")
     ap.add_argument("--from", dest="date_from", required=True, help="YYYY-MM-DD")
     ap.add_argument("--to", dest="date_to", required=True, help="YYYY-MM-DD")
@@ -358,20 +365,29 @@ def main():
         sys.exit("ERROR: falta POLYGON_API_KEY en el entorno")
 
     outdir = Path(args.outdir); outdir.mkdir(parents=True, exist_ok=True)
-    tickers = load_tickers(Path(args.tickers_csv))
+
+    # Cargar tickers solo si se proporciona el CSV (opcional)
+    allowed_tickers = None
+    if args.tickers_csv:
+        tickers = load_tickers(Path(args.tickers_csv))
+        allowed_tickers = set(tickers)
+        log(f"Tickers filtrados desde CSV: {len(tickers)} tickers")
+
     dfrom = datetime.strptime(args.date_from, "%Y-%m-%d").date()
     dto   = datetime.strptime(args.date_to, "%Y-%m-%d").date()
 
     # Construye tareas (ticker × spans)
     tasks: List[Tuple[str, date, date, str]] = []
     if args.mode == "months":
+        if not args.tickers_csv:
+            sys.exit("ERROR: modo 'months' requiere --tickers-csv")
         spans = month_iter(dfrom, dto)
         for t in tickers:
             for (a,b) in spans:
                 tasks.append((t, a, b, "months"))
     else:
         # watchlists: sólo días info-rich (con expansión de ventana si event_window > 0)
-        days_by_ticker = load_info_rich_days(Path(args.watchlist_root), dfrom, dto, set(tickers), args.event_window)
+        days_by_ticker = load_info_rich_days(Path(args.watchlist_root), dfrom, dto, allowed_tickers, args.event_window)
         for t, days in days_by_ticker.items():
             for d in days:
                 tasks.append((t, d, d, "watchlists"))
@@ -392,7 +408,9 @@ def main():
 
     from concurrent.futures import ProcessPoolExecutor, as_completed
 
-    log(f"Tickers: {len(tickers):,} | Tareas: {len(tasks):,} | Workers: {args.workers} | Mode: {args.mode}")
+    # Log info (tickers count depende de si se usó --tickers-csv)
+    ticker_count = len(allowed_tickers) if allowed_tickers else len(set(t[0] for t in tasks))
+    log(f"Tickers: {ticker_count:,} | Tareas: {len(tasks):,} | Workers: {args.workers} | Mode: {args.mode}")
     batches = chunked(tasks, BATCH)
     started = time.time()
 
