@@ -723,6 +723,348 @@ Una vez completada la descarga de ticks E0:
 
 ---
 
+## 6. EVENTOS FUTUROS E1-E17 (NO IMPLEMENTADOS AÚN)
+
+### 6.1 Estado Actual vs. Futuro
+
+**ACTUALMENTE IMPLEMENTADO** (C_v2 Fase 1 - PASO 5 en ejecución):
+```
+✅ E0 (Generic Info-Rich)
+   - RVOL ≥ 2.0
+   - |%chg| ≥ 15%
+   - $vol ≥ $5M
+   - Precio $0.20-$20
+   - Event window: ±1 día (3 días total)
+   - Status: DESCARGANDO AHORA
+   - Archivos: raw/polygon/trades/{TICKER}/date={YYYY-MM-DD}/
+```
+
+**PLANIFICADO PARA FUTURO** (C_v2 Fases 2-N):
+
+Según [C.1_estrategia_descarga_ticks_eventos.md](C.1_estrategia_descarga_ticks_eventos.md):
+
+| Evento | Descripción | Ventana | Días/Evento | Status |
+|--------|-------------|---------|-------------|--------|
+| E1 | Volume Explosion (RVOL > 5×) | −1 → +2 | 4 días | ⏳ Pendiente |
+| E2 | Gap Up > 10% | −1 → +1 | 3 días | ⏳ Pendiente |
+| E3 | Spike Intraday | mismo día | 1 día | ⏳ Pendiente |
+| E4 | Parabolic Move (+50% en ≤5 días) | −2 → +3 | 6 días | ⏳ Pendiente |
+| E5 | Breakout ATH | −1 → +2 | 4 días | ⏳ Pendiente |
+| E7 | First Red Day (FRD) | −1 → +2 | 4 días | ⏳ Pendiente |
+| E8 | Gap Down > 15% | −1 → +1 | 3 días | ⏳ Pendiente |
+| E10 | First Green Bounce | −1 → +1 | 3 días | ⏳ Pendiente |
+| E12-E14 | Dilution events | −2 → +2 | 5 días | ⏳ Pendiente |
+| E15-E17 | Halts, SSR, spread | mismo día | 1 día | ⏳ Pendiente |
+
+**Promedio ponderado** (según frecuencia): ~3–5 días por evento
+
+### 6.2 Pregunta Clave: ¿Dónde se Guardarán los Otros E's?
+
+**Respuesta**: Cuando implementes E1-E17, tienes **DOS opciones arquitectónicas**:
+
+#### Opción A: Watchlists Separados por Tipo de Evento (NO RECOMENDADA)
+
+```
+processed/universe/
+├── E0_generic_info_rich/
+│   └── daily/
+│       └── date=2020-03-16/
+│           └── watchlist.parquet (info_rich=True)
+│
+├── E1_volume_explosion/
+│   └── daily/
+│       └── date=2020-03-16/
+│           └── watchlist.parquet (volume_explosion=True, RVOL>5.0)
+│
+├── E2_gap_up/
+│   └── daily/...
+│
+└── E4_parabolic/
+    └── daily/...
+
+raw/polygon/trades/
+├── E0/
+│   └── BCRX/date=2020-03-16/trades.parquet  ← Duplica ticks
+├── E1/
+│   └── BCRX/date=2020-03-16/trades.parquet  ← Duplica ticks
+└── E4/
+    └── BCRX/date=2020-03-16/trades.parquet  ← Duplica ticks
+```
+
+**Ventajas**:
+- Separación clara por tipo de evento
+- Fácil auditar cada evento independientemente
+
+**Desventajas**:
+- ❌ **Duplicación de ticks**: Un ticker-día con E0+E1+E4 → 3× storage
+- ❌ Ineficiente en disco (un ticker puede tener múltiples eventos simultáneos)
+- ❌ Confuso para downstream analysis
+
+#### Opción B: Columnas Multi-Evento en UN SOLO Watchlist (✅ RECOMENDADA)
+
+```
+processed/universe/multi_event/
+└── daily/
+    └── date=2020-03-16/
+        └── watchlist.parquet
+            Columnas:
+            - ticker
+            - trading_day
+            - E0_info_rich: bool
+            - E1_volume_explosion: bool
+            - E2_gap_up: bool
+            - E4_parabolic: bool
+            - E5_breakout_ath: bool
+            - E7_first_red: bool
+            - E8_gap_down: bool
+            - E10_first_green: bool
+            - E12_dilution: bool
+            - E15_halt: bool
+            - event_types: List[str]  ← ["E0", "E4"] para multi-events
+            - max_event_window: int   ← Max(ventana E0, E4) = max(3, 6) = 6
+
+raw/polygon/trades/
+└── BCRX/
+    └── date=2020-03-16/
+        ├── trades.parquet    ← UN solo archivo (sin duplicados)
+        ├── _SUCCESS
+        └── events.json       ← Metadata: {"events": ["E0", "E4"], "windows": {"E0": 3, "E4": 6}}
+```
+
+**Ejemplo de fila en watchlist**:
+```python
+{
+  'ticker': 'BCRX',
+  'trading_day': '2020-03-16',
+  'E0_info_rich': True,          # ✓ Cumple E0 (RVOL≥2.0, |%chg|≥15%)
+  'E1_volume_explosion': False,
+  'E2_gap_up': False,
+  'E4_parabolic': True,          # ✓ Cumple E4 (+50% en ≤5 días)
+  'E5_breakout_ath': False,
+  'event_types': ['E0', 'E4'],   # Multi-evento simultáneo
+  'max_event_window': 6          # Max de (E0=3, E4=6) = 6 días
+}
+```
+
+**Ventajas**:
+- ✅ **UN solo archivo de ticks por ticker-día** (sin duplicados)
+- ✅ Eficiente en storage (~3-5x menos espacio vs Opción A)
+- ✅ Puedes filtrar por cualquier combinación de eventos
+- ✅ Downstream analysis más fácil (un ticker-día = un archivo)
+- ✅ Metadata clara sobre qué eventos aplican
+
+**Desventaja**:
+- Watchlist más complejo (13+ columnas booleanas)
+
+### 6.3 Implementación Futura Recomendada
+
+Cuando implementes E1-E17, sigue estos pasos:
+
+#### Paso 1: Modificar `build_dynamic_universe_optimized.py`
+
+Agregar cálculo de TODAS las E's en un solo pass:
+
+```python
+def calculate_all_events(df: pl.DataFrame) -> pl.DataFrame:
+    """
+    Calcula todos los eventos E0-E17 en un solo pass del daily_cache.
+    """
+    return df.with_columns([
+        # E0: Generic Info-Rich (ya implementado)
+        ((pl.col('rvol30') >= 2.0) &
+         (pl.col('pctchg_d').abs() >= 0.15) &
+         (pl.col('dollar_vol_d') >= 5_000_000) &
+         (pl.col('close_d') >= 0.20) &
+         (pl.col('close_d') <= 20.00)).alias('E0_info_rich'),
+
+        # E1: Volume Explosion
+        (pl.col('rvol30') >= 5.0).alias('E1_volume_explosion'),
+
+        # E2: Gap Up > 10%
+        (pl.col('gap_pct') > 0.10).alias('E2_gap_up'),
+
+        # E4: Parabolic Move (+50% en ≤5 días)
+        (pl.col('change_5d') >= 0.50).alias('E4_parabolic'),
+
+        # E5: Breakout ATH
+        (pl.col('close_d') >= pl.col('ath_252d')).alias('E5_breakout_ath'),
+
+        # ... E7, E8, E10, E12-E17
+
+        # Metadata: lista de eventos activos
+        pl.when(pl.col('E0_info_rich')).then(pl.lit('E0')).otherwise(pl.lit(None)).alias('e0_flag'),
+        pl.when(pl.col('E1_volume_explosion')).then(pl.lit('E1')).otherwise(pl.lit(None)).alias('e1_flag'),
+        # ... agregar todos los flags
+    ]).with_columns([
+        # Consolidar eventos en una lista
+        pl.concat_list(['e0_flag', 'e1_flag', 'e4_flag', ...])
+          .list.drop_nulls()
+          .alias('event_types'),
+
+        # Calcular ventana máxima
+        pl.when(pl.col('E4_parabolic')).then(pl.lit(6))
+          .when(pl.col('E5_breakout_ath')).then(pl.lit(4))
+          .when(pl.col('E1_volume_explosion')).then(pl.lit(4))
+          .when(pl.col('E0_info_rich')).then(pl.lit(3))
+          .otherwise(pl.lit(1))
+          .alias('max_event_window')
+    ])
+```
+
+#### Paso 2: Modificar `download_trades_optimized.py`
+
+Agregar soporte para multi-eventos:
+
+```python
+def load_multi_event_days(watchlist_root: Path, dfrom: date, dto: date,
+                          event_types: List[str], allowed_tickers: Optional[set]) -> Dict[str, List[date]]:
+    """
+    Lee watchlists multi-evento y expande según ventana máxima por ticker-día.
+
+    Args:
+        event_types: ['E0', 'E1', 'E4'] - qué eventos descargar
+        Si None, descarga TODOS los eventos encontrados
+    """
+    days_by_ticker = {}
+
+    for watchlist_path in sorted(watchlist_root.glob('date=*/watchlist.parquet')):
+        df = pl.read_parquet(watchlist_path)
+        day = datetime.strptime(watchlist_path.parent.name.split('=')[1], '%Y-%m-%d').date()
+
+        # Filtrar por eventos solicitados (si se especifican)
+        if event_types:
+            event_filter = pl.lit(False)
+            for event_type in event_types:
+                event_filter = event_filter | pl.col(f'{event_type}_event')
+            df_events = df.filter(event_filter)
+        else:
+            # Cualquier ticker con al menos un evento activo
+            df_events = df.filter(pl.col('event_types').list.len() > 0)
+
+        # Expandir según max_event_window de cada ticker-día
+        for row in df_events.iter_rows(named=True):
+            ticker = row['ticker']
+            if allowed_tickers and ticker not in allowed_tickers:
+                continue
+
+            max_window = row['max_event_window']
+
+            # Expandir ventana: [day - max_window, day, day + max_window]
+            for offset in range(-max_window, max_window + 1):
+                expanded_day = day + timedelta(days=offset)
+                if expanded_day >= dfrom and expanded_day <= dto:
+                    days_by_ticker.setdefault(ticker, []).append(expanded_day)
+
+    # Deduplicar y ordenar fechas
+    for ticker in days_by_ticker:
+        days_by_ticker[ticker] = sorted(set(days_by_ticker[ticker]))
+
+    return days_by_ticker
+
+# Agregar argumento --event-types al argparse
+ap.add_argument("--event-types", type=str, default=None,
+                help="Comma-separated list de eventos a descargar (ej: 'E0,E1,E4'). "
+                     "Si no se especifica, descarga TODOS los eventos detectados.")
+```
+
+#### Paso 3: Guardar Metadata de Eventos
+
+Al descargar cada ticker-día, guardar metadata:
+
+```python
+def download_span_with_metadata(ticker: str, day: date, watchlist_data: dict, ...):
+    """
+    Descarga ticks + guarda metadata de eventos.
+    """
+    # ... descargar ticks como siempre ...
+
+    # Guardar metadata de eventos
+    events_json = {
+        'ticker': ticker,
+        'date': str(day),
+        'events': watchlist_data['event_types'],  # ["E0", "E4"]
+        'event_windows': {
+            'E0': 3,
+            'E4': 6
+        },
+        'max_window_used': watchlist_data['max_event_window']
+    }
+
+    events_path = day_path / 'events.json'
+    with open(events_path, 'w') as f:
+        json.dump(events_json, f, indent=2)
+```
+
+### 6.4 Estructura Final de Datos (Multi-Evento)
+
+```
+raw/polygon/trades/
+└── BCRX/
+    ├── date=2020-03-15/          ← Ventana pre-evento
+    │   ├── trades.parquet
+    │   ├── _SUCCESS
+    │   └── events.json           ← {"events": ["E0", "E4"], "reason": "window"}
+    ├── date=2020-03-16/          ← DÍA DEL EVENTO
+    │   ├── trades.parquet
+    │   ├── _SUCCESS
+    │   └── events.json           ← {"events": ["E0", "E4"], "reason": "event_day"}
+    ├── date=2020-03-17/          ← Ventana post-evento (day+1)
+    │   ├── trades.parquet
+    │   ├── _SUCCESS
+    │   └── events.json           ← {"events": ["E0", "E4"], "reason": "window"}
+    ├── date=2020-03-18/          ← Ventana extendida (E4 requiere hasta day+3)
+    │   ├── trades.parquet
+    │   ├── _SUCCESS
+    │   └── events.json           ← {"events": ["E4"], "reason": "window_E4"}
+    └── ...
+```
+
+### 6.5 Uso Downstream (Multi-Evento)
+
+```python
+import polars as pl
+from pathlib import Path
+
+# Cargar todos los eventos
+watchlists = pl.scan_parquet('processed/universe/multi_event/daily/**/*.parquet')
+
+# Filtrar por eventos de interés
+e0_and_e4_events = watchlists.filter(
+    pl.col('E0_info_rich') & pl.col('E4_parabolic')
+).collect()
+
+print(f"Tickers con E0+E4 simultáneos: {len(e0_and_e4_events)}")
+
+# Cargar ticks para un evento
+for row in e0_and_e4_events.head(10).iter_rows(named=True):
+    ticker = row['ticker']
+    event_date = row['trading_day']
+
+    # Cargar ticks del día del evento
+    ticks_path = f'raw/polygon/trades/{ticker}/date={event_date}/trades.parquet'
+    if Path(ticks_path).exists():
+        ticks = pl.read_parquet(ticks_path)
+        print(f"{ticker} {event_date}: {len(ticks):,} ticks - Eventos: {row['event_types']}")
+```
+
+### 6.6 Resumen: Respuesta a "¿Dónde se Guardarán los Otros E's?"
+
+1. **Ahora mismo**: NO SE GUARDAN porque E1-E17 no están implementados (solo E0 existe)
+
+2. **Cuando los implementes** (recomendación):
+   - **Watchlists**: UN solo archivo diario con columnas booleanas por cada evento
+   - **Ticks**: UN solo archivo por ticker-día (sin duplicados)
+   - **Metadata**: `events.json` indica qué eventos aplican a cada ticker-día
+   - **Sin duplicación**: Si BCRX tiene E0+E1+E4 el 2020-03-16 → un solo `trades.parquet`
+
+3. **Beneficios**:
+   - Eficiencia de storage (~3-5x menos espacio)
+   - Análisis downstream simplificado
+   - Trazabilidad completa (metadata en JSON)
+   - Flexible: puedes filtrar por cualquier combinación de eventos
+
+---
+
 ## 7. COMANDOS RÁPIDOS (RESUMEN)
 
 ```bash
