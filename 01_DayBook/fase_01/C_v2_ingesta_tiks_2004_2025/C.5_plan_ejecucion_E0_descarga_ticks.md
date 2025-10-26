@@ -375,19 +375,34 @@ Esta auditoría verifica que E0 cumple con el Contrato v2.0.0 sin necesidad de c
 
 **Objetivo**: Descargar ticks de Polygon solo para días info-rich identificados
 
-**Tiempo estimado**: ~3-4 horas (29,555 eventos E0 reales)
+**Tiempo estimado**: ~11 horas (88,665 días con event-window=1) o ~3.7 horas (29,555 días con event-window=0)
 
 **Script**: `download_trades_optimized.py`
 
 **Estrategia**: **Modo watchlists** (lee automáticamente todos los watchlists)
 
-**Comando COMPLETO** (todos los tickers E0):
+**Comando RECOMENDADO** (todos los tickers E0 + ventana ±1 día):
 ```bash
 python scripts/fase_C_ingesta_tiks/download_trades_optimized.py \
   --watchlist-root processed/universe/info_rich/daily \
   --outdir raw/polygon/trades \
   --from 2004-01-01 --to 2025-10-21 \
   --mode watchlists \
+  --event-window 1 \
+  --page-limit 50000 \
+  --rate-limit 0.15 \
+  --workers 8 \
+  --resume
+```
+
+**Comando ALTERNATIVO** (solo día del evento, sin ventana):
+```bash
+python scripts/fase_C_ingesta_tiks/download_trades_optimized.py \
+  --watchlist-root processed/universe/info_rich/daily \
+  --outdir raw/polygon/trades \
+  --from 2004-01-01 --to 2025-10-21 \
+  --mode watchlists \
+  --event-window 0 \
   --page-limit 50000 \
   --rate-limit 0.15 \
   --workers 8 \
@@ -410,17 +425,26 @@ python scripts/fase_C_ingesta_tiks/download_trades_optimized.py \
 
 **¿Qué hace?** (MODO WATCHLISTS):
 1. Lee todos los watchlists en `processed/universe/info_rich/daily/` (5,934 días)
-2. Para cada watchlist, identifica tickers con `info_rich=True`
-3. Descarga ticks SOLO de esos ticker-días usando Polygon API v3
-4. **Si usas `--tickers-csv`**: Limita descarga SOLO a tickers en ese CSV (ej: TOP 200)
-5. **Sin `--tickers-csv`**: Descarga TODOS los tickers E0 (4,898 únicos, 29,555 eventos)
-6. Guarda en: `raw/polygon/trades/{TICKER}/date={YYYY-MM-DD}/trades.parquet`
-7. Marca completados con `_SUCCESS`
-8. Resume automático si se interrumpe
+2. Para cada watchlist, identifica tickers con `info_rich=True` (eventos E0)
+3. **EXPANDE cada evento E0 con ventana temporal**: `--event-window N` descarga ±N días alrededor del evento
+   - `event-window=0`: Solo el día del evento (29,555 días total)
+   - `event-window=1` (DEFAULT): ±1 día → [day-1, day, day+1] (~88,665 días total)
+   - Ej: E0 el 2020-03-16 con window=1 descarga [2020-03-15, 2020-03-16, 2020-03-17]
+   - **Rationale**: Triple barrier labeling, meta-labeling y microstructure analysis necesitan contexto pre/post evento
+4. Descarga ticks de esos ticker-días usando Polygon API v3
+5. **Si usas `--tickers-csv`**: Limita descarga SOLO a tickers en ese CSV (ej: TOP 200)
+6. **Sin `--tickers-csv`**: Descarga TODOS los tickers E0 (4,898 únicos, 29,555 eventos)
+7. Guarda en: `raw/polygon/trades/{TICKER}/date={YYYY-MM-DD}/trades.parquet`
+8. Marca completados con `_SUCCESS`
+9. Resume automático si se interrumpe
 
 **Parámetros clave**:
 - `--mode watchlists`: Descarga solo días con `info_rich=True` (eficiente)
 - `--tickers-csv`: **OPCIONAL** - Limita a subset de tickers (ej: topN_12m.csv = TOP 200)
+- `--event-window N`: **NUEVO** - Días extra antes/después del evento E0 (default=1)
+  - `0`: Solo día evento (29,555 días total)
+  - `1`: ±1 día (window default, ~88,665 días, 3x volumen)
+  - `2`: ±2 días (~147,775 días, 5x volumen)
 - `--page-limit 50000`: Tamaño de página Polygon (óptimo para ticks)
 - `--rate-limit 0.15`: 150ms entre requests (evita 429)
 - `--workers 8`: Procesos concurrentes (ajustar según RAM)
@@ -431,12 +455,22 @@ python scripts/fase_C_ingesta_tiks/download_trades_optimized.py \
 Eventos E0 identificados: 29,555 ticker-días (2004-2025)
 Tickers únicos: 4,898
 Promedio eventos/ticker: 6.04 días E0
+```
 
-Estimación volumen:
-- Ticks promedio/evento: ~50,000
-- Tamaño promedio/evento: ~30 MB (comprimido ZSTD)
+**Estimación Volumen con event-window=1** (±1 día, RECOMENDADO):
+```
+- Días descargados: 29,555 × 3 = ~88,665 ticker-días
+- Ticks promedio/día: ~50,000
+- Total ticks: 88,665 × 50,000 = ~4.4B ticks
+- Tamaño promedio/día: ~30 MB (comprimido ZSTD)
+- Storage total: 88,665 × 30 MB = ~2.6 TB
+```
+
+**Estimación Volumen con event-window=0** (solo día evento):
+```
+- Días descargados: 29,555 ticker-días
 - Total ticks: 29,555 × 50,000 = ~1.5B ticks
-- Storage: 29,555 × 30 MB = ~886 GB
+- Storage total: 29,555 × 30 MB = ~886 GB
 ```
 
 **Tiempo estimado REAL**:
@@ -444,12 +478,17 @@ Estimación volumen:
 Supuestos:
 - Rate limit: 0.15s/request → ~400 requests/min → 24,000/hora
 - Requests/ticker-día: ~3 (promedio con paginación)
-- Total requests: 29,555 × 3 = 88,665
 
-Tiempo descarga: 88,665 / 24,000 = ~3.7 horas
+Con event-window=1 (RECOMENDADO):
+- Total requests: 88,665 × 3 = 265,995
+- Tiempo descarga: 265,995 / 24,000 = ~11.1 horas
+
+Con event-window=0 (solo evento):
+- Total requests: 29,555 × 3 = 88,665
+- Tiempo descarga: 88,665 / 24,000 = ~3.7 horas
 ```
 
-**Nota**: Con 8 workers en paralelo. Con 1 worker sería ~30 horas.
+**Nota**: Con 8 workers en paralelo. Con 1 worker sería 8x más lento.
 
 **Output esperado**:
 ```

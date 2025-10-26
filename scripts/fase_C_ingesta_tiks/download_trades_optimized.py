@@ -4,7 +4,7 @@
 download_trades_optimized.py
 Descarga trades (ticks) de Polygon con:
 - Modo 1 (months): por meses completos, ideal 12–24 meses de validación
-- Modo 2 (watchlists): sólo días info-rich (máxima eficiencia)
+- Modo 2 (watchlists): sólo días info-rich con expansión de ventana temporal (máxima eficiencia)
 Optimizado: PAGE_LIMIT=50k, keep-alive, ZSTD, _SUCCESS, resume, backoff diferenciando errores.
 
 Uso (months):
@@ -14,13 +14,29 @@ Uso (months):
     --from 2024-01-01 --to 2025-10-21 \
     --mode months --page-limit 50000 --rate-limit 0.15 --workers 8 --resume
 
-Uso (watchlists):
+Uso (watchlists) - CON VENTANA ±1 día (recomendado para ML/labeling):
   python download_trades_optimized.py \
     --tickers-csv processed/universe/info_rich/info_rich_tickers_20251015_20251021.csv \
     --watchlist-root processed/universe/info_rich/daily \
     --outdir raw/polygon/trades \
     --from 2024-01-01 --to 2025-10-21 \
-    --mode watchlists --page-limit 50000 --rate-limit 0.15 --workers 8 --resume
+    --mode watchlists --event-window 1 \
+    --page-limit 50000 --rate-limit 0.15 --workers 8 --resume
+
+Uso (watchlists) - SIN VENTANA (solo día evento):
+  python download_trades_optimized.py \
+    --tickers-csv processed/universe/info_rich/info_rich_tickers_20251015_20251021.csv \
+    --watchlist-root processed/universe/info_rich/daily \
+    --outdir raw/polygon/trades \
+    --from 2024-01-01 --to 2025-10-21 \
+    --mode watchlists --event-window 0 \
+    --page-limit 50000 --rate-limit 0.15 --workers 8 --resume
+
+event-window:
+  - 0: Solo el día del evento E0
+  - 1: ±1 día (evento E0 + día anterior + día posterior) [DEFAULT - RECOMENDADO]
+  - 2: ±2 días (5 días total: E0 + 2 antes + 2 después)
+  - N: ±N días (2N+1 días total)
 """
 
 import os, sys, time, math, argparse, itertools, json
@@ -72,8 +88,26 @@ def load_tickers(csv_path: Path) -> List[str]:
     col = "ticker" if "ticker" in df.columns else df.columns[0]
     return df[col].unique().to_list()
 
-def load_info_rich_days(watchlist_root: Path, dfrom: date, dto: date, allowed_tickers: Optional[set]) -> Dict[str, List[date]]:
-    # Lee todos los watchlist.parquet en [dfrom, dto] y devuelve {ticker: [dates...]} para info_rich True
+def load_info_rich_days(watchlist_root: Path, dfrom: date, dto: date, allowed_tickers: Optional[set], event_window: int = 1) -> Dict[str, List[date]]:
+    """
+    Lee todos los watchlist.parquet en [dfrom, dto] y devuelve {ticker: [dates...]} para info_rich True
+
+    Args:
+        watchlist_root: Directorio raíz de watchlists
+        dfrom: Fecha inicio
+        dto: Fecha fin
+        allowed_tickers: Set de tickers permitidos (None = todos)
+        event_window: Días extra antes/después del evento E0 (default=1 para ±1 día)
+
+    Returns:
+        Dict[ticker] = [list of dates] con expansión de ventana aplicada
+
+    Example:
+        Si event_window=1 y detecta E0 en 2020-03-16:
+        - Descarga: [2020-03-15, 2020-03-16, 2020-03-17]
+        Si event_window=0:
+        - Descarga: [2020-03-16] (solo el día del evento)
+    """
     out: Dict[str, List[date]] = {}
     today = date.today()
     # paths tipo: processed/universe/info_rich/daily/date=YYYY-MM-DD/watchlist.parquet
@@ -91,7 +125,18 @@ def load_info_rich_days(watchlist_root: Path, dfrom: date, dto: date, allowed_ti
         if allowed_tickers:
             sub = sub.filter(pl.col("ticker").is_in(list(allowed_tickers)))
         for t in sub["ticker"].to_list():
-            out.setdefault(t, []).append(day)
+            # EXPANDE LA VENTANA: agrega day-window, day, day+window
+            for offset in range(-event_window, event_window + 1):
+                expanded_day = day + timedelta(days=offset)
+                # Valida que la fecha expandida esté en el rango y no sea futura
+                if expanded_day >= dfrom and expanded_day <= dto and expanded_day <= today:
+                    if expanded_day not in out.get(t, []):
+                        out.setdefault(t, []).append(expanded_day)
+
+    # Ordena fechas por ticker para mejor logging
+    for t in out:
+        out[t] = sorted(out[t])
+
     return out
 
 def success_marker(path: Path):
@@ -278,6 +323,10 @@ def parse_args():
     ap.add_argument("--to", dest="date_to", required=True, help="YYYY-MM-DD")
     ap.add_argument("--mode", choices=["months","watchlists"], default="months")
     ap.add_argument("--watchlist-root", default="processed/universe/info_rich/daily", help="Necesario en modo watchlists")
+    ap.add_argument("--event-window", type=int, default=1,
+                    help="Días extra antes/después del evento E0 en modo watchlists (default=1 para ±1 día). "
+                         "Ej: event-window=1 con E0 el 2020-03-16 descarga [2020-03-15, 2020-03-16, 2020-03-17]. "
+                         "Usar event-window=0 para solo el día del evento.")
     ap.add_argument("--page-limit", type=int, default=PAGE_LIMIT_DEFAULT)
     ap.add_argument("--rate-limit", type=float, default=0.15)
     ap.add_argument("--workers", type=int, default=8, help="Procesos concurrentes")
@@ -321,12 +370,19 @@ def main():
             for (a,b) in spans:
                 tasks.append((t, a, b, "months"))
     else:
-        # watchlists: sólo días info-rich
-        days_by_ticker = load_info_rich_days(Path(args.watchlist_root), dfrom, dto, set(tickers))
+        # watchlists: sólo días info-rich (con expansión de ventana si event_window > 0)
+        days_by_ticker = load_info_rich_days(Path(args.watchlist_root), dfrom, dto, set(tickers), args.event_window)
         for t, days in days_by_ticker.items():
             for d in days:
                 tasks.append((t, d, d, "watchlists"))
-        log(f"Tareas (watchlists): {sum(len(v) for v in days_by_ticker.values()):,} días info-rich en {len(days_by_ticker)} tickers")
+
+        # Log con información de expansión
+        if args.event_window > 0:
+            log(f"Tareas (watchlists): {sum(len(v) for v in days_by_ticker.values()):,} días total "
+                f"(eventos E0 expandidos con ventana ±{args.event_window} día{'s' if args.event_window > 1 else ''}) "
+                f"en {len(days_by_ticker)} tickers")
+        else:
+            log(f"Tareas (watchlists): {sum(len(v) for v in days_by_ticker.values()):,} días info-rich en {len(days_by_ticker)} tickers")
 
     # Ejecuta en micro-batches (evitar procesos zombis / fuga RAM)
     BATCH = 20  # 20 tareas por micro-batch; ajusta si ves RAM alta
