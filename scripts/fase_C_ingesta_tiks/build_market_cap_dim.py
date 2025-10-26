@@ -60,17 +60,39 @@ def list_ticker_details_snapshots(root: Path) -> list[tuple[dt.date, Path]]:
 def load_snapshots(snapshots: list[tuple[dt.date, Path]]) -> pl.DataFrame:
     """
     Carga todos los snapshots y añade columna as_of_date
-    Proyecta solo: ticker, market_cap, share_class_shares_outstanding, as_of_date
+    Proyecta solo: ticker, market_cap, shares_outstanding, as_of_date
+
+    ROBUSTO: Usa coalesce para shares_outstanding (soporta múltiples nombres de columna)
     """
     if not snapshots:
         return pl.DataFrame()
 
     dfs = []
     for as_of_date, path in snapshots:
-        df = pl.read_parquet(path).select([
+        raw_df = pl.read_parquet(path)
+
+        # Detectar qué columnas de shares están disponibles
+        available_cols = raw_df.columns
+        shares_candidates = []
+
+        # Orden de preferencia: share_class > weighted > shares_outstanding
+        if "share_class_shares_outstanding" in available_cols:
+            shares_candidates.append(pl.col("share_class_shares_outstanding").cast(pl.Float64))
+        if "weighted_shares_outstanding" in available_cols:
+            shares_candidates.append(pl.col("weighted_shares_outstanding").cast(pl.Float64))
+        if "shares_outstanding" in available_cols:
+            shares_candidates.append(pl.col("shares_outstanding").cast(pl.Float64))
+
+        if not shares_candidates:
+            log(f"[WARN] Snapshot {as_of_date} no tiene columnas de shares_outstanding, usando null")
+            shares_expr = pl.lit(None).cast(pl.Float64).alias("shares_outstanding")
+        else:
+            shares_expr = pl.coalesce(shares_candidates).alias("shares_outstanding")
+
+        df = raw_df.select([
             "ticker",
             pl.col("market_cap").cast(pl.Float64).alias("market_cap"),
-            pl.col("share_class_shares_outstanding").cast(pl.Float64).alias("shares_outstanding"),
+            shares_expr,
         ])
         df = df.with_columns(pl.lit(as_of_date).alias("as_of_date"))
         dfs.append(df)
@@ -177,11 +199,16 @@ def impute_market_cap_from_cache(
         try:
             daily = pl.read_parquet(cache_path, columns=["trading_day", "close_d"])
 
-            # Filtrar por periodo de validez
+            # ESTRATEGIA MEJORADA: Si el rango [eff_from, eff_to) tiene pocos datos,
+            # usar los ultimos 30 dias disponibles en daily_cache
             daily_period = daily.filter(
                 (pl.col("trading_day") >= eff_from) &
                 (pl.col("trading_day") < eff_to)
             )
+
+            # Si tenemos <5 dias en el rango SCD-2, usar ultimos 30 dias disponibles
+            if len(daily_period) < 5:
+                daily_period = daily.sort("trading_day").tail(30)
 
             if daily_period.is_empty():
                 continue

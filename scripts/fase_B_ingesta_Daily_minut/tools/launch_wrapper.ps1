@@ -26,10 +26,10 @@ Write-Host ""
 
 # Configuracion del WRAPPER PRINCIPAL (optimizada para universo completo)
 # Configuracion BALANCEADA que funciona bien para mix de tickers normales + elefantes
-$tickersCsv = "processed/universe/cs_xnas_xnys_under2b_2025-10-21.csv"
+$tickersCsv = "processed/universe/cs_xnas_xnys_hybrid_2025-10-24.csv"
 $outdir = "raw/polygon/ohlcv_intraday_1m"
 $dateFrom = "2004-01-01"
-$dateTo = "2025-10-21"
+$dateTo = "2025-10-24"
 
 # CONFIGURACION BALANCEADA (optimizada con descarga mensual):
 # - Batches moderados (20 tickers)
@@ -38,14 +38,14 @@ $dateTo = "2025-10-21"
 $batchSize = 20          # Balance entre throughput y estabilidad
 $maxConcurrent = 8       # Balance entre velocidad y recursos
 $rateLimit = 0.22        # Balanceado (adaptativo: 0.12-0.35s)
-$ingestScript = "scripts/fase_1_Bloque_B/ingest_ohlcv_intraday_minute.py"
+$ingestScript = "scripts/fase_B_ingesta_Daily_minut/ingest_ohlcv_intraday_minute.py"
 
 Write-Host "============================================================" -ForegroundColor Cyan
 Write-Host "  WRAPPER PRINCIPAL - OPTIMIZADO (Universo Completo)" -ForegroundColor Cyan
 Write-Host "============================================================" -ForegroundColor Cyan
 Write-Host ""
 Write-Host "Configuracion:"
-Write-Host "  Universo:        $tickersCsv (3,107 tickers)"
+Write-Host "  Universo:        $tickersCsv (8,686 tickers - hibrido)"
 Write-Host "  Periodo:         $dateFrom -> $dateTo"
 Write-Host "  Batch size:      $batchSize tickers/batch"
 Write-Host "  Concurrencia:    $maxConcurrent batches simultaneos"
@@ -81,7 +81,7 @@ if ($LASTEXITCODE -eq 0 -and $cert) {
 Write-Host ""
 
 # Ejecutar wrapper Python
-python scripts/fase_1_Bloque_B/tools/batch_intraday_wrapper.py `
+python scripts/fase_B_ingesta_Daily_minut/tools/batch_intraday_wrapper.py `
   --tickers-csv $tickersCsv `
   --outdir $outdir `
   --from $dateFrom `

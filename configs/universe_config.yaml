@@ -12,7 +12,7 @@ thresholds:
   dvol: 5000000  # $5M
 
   # Rango de precio valido
-  min_price: 0.5
+  min_price: 0.2  # E0 v2.0.0: $0.20 (C_v1: $0.50)
   max_price: 20.0
 
   # Market cap maximo (small caps)
@@ -33,5 +33,5 @@ processing:
 # - rvol: Valores tipicos 1.5-3.0 (2.0 = volumen 2x sobre promedio 30 dias)
 # - pctchg: 0.15 = 15% movimiento minimo para considerar "info-rich"
 # - dvol: $5M es umbral tipico para liquidez real en small caps
-# - Precio: [0.5, 20] evita penny stocks (<$0.50) y large caps (>$20)
+# - Precio: [0.2, 20] E0 v2.0.0 más inclusivo para penny stocks vs C_v1 [0.5, 20]
 # - cap_max: $2B define small caps segun tu universo
