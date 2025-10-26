@@ -273,11 +273,11 @@ print(f"Precio max: ${df['close_d'].max():.2f}")  # ≤$20.00
 
 ### PASO 4: Análisis Características E0 (2004-2025)
 
-**Objetivo**: Documentar características de eventos E0 identificados
+* **Objetivo**: Documentar características de eventos E0 identificados
 
-**Tiempo REAL**: ~2 minutos (2025-10-26)
+* **Tiempo REAL**: ~2 minutos (2025-10-26)
 
-**Script ejecutado**: `analyze_e0_characteristics.py`
+* **Script ejecutado**: `analyze_e0_characteristics.py`
 
 **Comando**:
 ```bash
@@ -353,11 +353,11 @@ $vol: mean=$82.8M, median=$22.1M   ✅ (≥$5M)
 Precio: min=$0.20, max=$20.00      ✅ (rango correcto)
 ```
 
-**Análisis completo**: Ver notebook [analysis_caracteristicas_paso4_executed.ipynb](notebooks/analysis_caracteristicas_paso4_executed.ipynb)
+* **Análisis completo**: Ver notebook [analysis_caracteristicas_paso4_executed.ipynb](notebooks/analysis_caracteristicas_paso4_executed.ipynb)
 
-**Resultados detallados**: Ver [C.5.4_resultados_paso_4.md](C.5.4_resultados_paso_4.md)
+* **Resultados detallados**: Ver [C.5.4_resultados_paso_4.md](C.5.4_resultados_paso_4.md)
 
-**Archivos de auditoría**: Ver [audits/CARACTERISTICAS_E0.json](audits/CARACTERISTICAS_E0.json)
+* **Archivos de auditoría**: Ver [audits/CARACTERISTICAS_E0.json](audits/CARACTERISTICAS_E0.json)
 
 **Criterio de éxito**:
 - ✅ 29,555 eventos E0 identificados (2004-2025)
@@ -375,13 +375,26 @@ Esta auditoría verifica que E0 cumple con el Contrato v2.0.0 sin necesidad de c
 
 **Objetivo**: Descargar ticks de Polygon solo para días info-rich identificados
 
-**Tiempo estimado**: Variable (depende de total ticker-días info-rich)
+**Tiempo estimado**: ~3-4 horas (29,555 eventos E0 reales)
 
 **Script**: `download_trades_optimized.py`
 
-**Estrategia recomendada**: **Modo watchlists** (solo días info-rich)
+**Estrategia**: **Modo watchlists** (lee automáticamente todos los watchlists)
 
-**Comando**:
+**Comando COMPLETO** (todos los tickers E0):
+```bash
+python scripts/fase_C_ingesta_tiks/download_trades_optimized.py \
+  --watchlist-root processed/universe/info_rich/daily \
+  --outdir raw/polygon/trades \
+  --from 2004-01-01 --to 2025-10-21 \
+  --mode watchlists \
+  --page-limit 50000 \
+  --rate-limit 0.15 \
+  --workers 8 \
+  --resume
+```
+
+**Comando ALTERNATIVO** (solo TOP 200 tickers más activos):
 ```bash
 python scripts/fase_C_ingesta_tiks/download_trades_optimized.py \
   --tickers-csv processed/universe/info_rich/topN_12m.csv \
@@ -395,63 +408,68 @@ python scripts/fase_C_ingesta_tiks/download_trades_optimized.py \
   --resume
 ```
 
-**¿Qué hace?**:
-1. Lee `topN_12m.csv` (lista de tickers a procesar)
-2. Para cada ticker, lee watchlists diarias en `processed/universe/info_rich/daily/`
-3. Identifica días donde `info_rich = True`
-4. Descarga ticks SOLO de esos días usando Polygon API v3
-5. Guarda en: `raw/polygon/trades/{TICKER}/date={YYYY-MM-DD}/trades.parquet`
-6. Marca completados con `_SUCCESS`
-7. Resume automático si se interrumpe
+**¿Qué hace?** (MODO WATCHLISTS):
+1. Lee todos los watchlists en `processed/universe/info_rich/daily/` (5,934 días)
+2. Para cada watchlist, identifica tickers con `info_rich=True`
+3. Descarga ticks SOLO de esos ticker-días usando Polygon API v3
+4. **Si usas `--tickers-csv`**: Limita descarga SOLO a tickers en ese CSV (ej: TOP 200)
+5. **Sin `--tickers-csv`**: Descarga TODOS los tickers E0 (4,898 únicos, 29,555 eventos)
+6. Guarda en: `raw/polygon/trades/{TICKER}/date={YYYY-MM-DD}/trades.parquet`
+7. Marca completados con `_SUCCESS`
+8. Resume automático si se interrumpe
 
 **Parámetros clave**:
-- `--mode watchlists`: Descarga solo días info-rich (eficiente)
+- `--mode watchlists`: Descarga solo días con `info_rich=True` (eficiente)
+- `--tickers-csv`: **OPCIONAL** - Limita a subset de tickers (ej: topN_12m.csv = TOP 200)
 - `--page-limit 50000`: Tamaño de página Polygon (óptimo para ticks)
 - `--rate-limit 0.15`: 150ms entre requests (evita 429)
 - `--workers 8`: Procesos concurrentes (ajustar según RAM)
 - `--resume`: Salta días ya descargados (_SUCCESS existe)
 
-**Estimación de volumen**:
+**Métricas REALES** (basado en PASO 4):
 ```
-Supuestos:
-- Ticker-días info-rich: ~150,000 (21 años)
-- Ticks promedio/día: ~50,000
-- Tamaño promedio/ticker-día: ~30 MB (comprimido ZSTD)
+Eventos E0 identificados: 29,555 ticker-días (2004-2025)
+Tickers únicos: 4,898
+Promedio eventos/ticker: 6.04 días E0
 
-Total estimado:
-- Ticks totales: 150,000 × 50,000 = 7.5B ticks
-- Storage: 150,000 × 30 MB = 4.5 TB
+Estimación volumen:
+- Ticks promedio/evento: ~50,000
+- Tamaño promedio/evento: ~30 MB (comprimido ZSTD)
+- Total ticks: 29,555 × 50,000 = ~1.5B ticks
+- Storage: 29,555 × 30 MB = ~886 GB
 ```
 
-**Tiempo estimado**:
+**Tiempo estimado REAL**:
 ```
 Supuestos:
 - Rate limit: 0.15s/request → ~400 requests/min → 24,000/hora
 - Requests/ticker-día: ~3 (promedio con paginación)
-- Total requests: 150,000 × 3 = 450,000
+- Total requests: 29,555 × 3 = 88,665
 
-Tiempo descarga: 450,000 / 24,000 = ~18.75 horas (~1 día)
+Tiempo descarga: 88,665 / 24,000 = ~3.7 horas
 ```
 
-**Nota**: Esto es con 8 workers en paralelo. Con 1 worker sería ~150 horas (~6 días).
+**Nota**: Con 8 workers en paralelo. Con 1 worker sería ~30 horas.
 
 **Output esperado**:
 ```
 raw/polygon/trades/
-├── AAPL/
-│   ├── date=2004-01-05/
-│   │   ├── trades.parquet          (ticks del día, schema: t, p, s, c)
+├── BCRX/                            (63 días E0 - TOP 1 ticker)
+│   ├── date=2008-10-15/
+│   │   ├── trades.parquet          (ticks del día)
 │   │   └── _SUCCESS
-│   ├── date=2004-03-12/
+│   ├── date=2020-03-16/
+│   │   ├── trades.parquet
+│   │   └── _SUCCESS
+│   └── ... (63 días con eventos E0)
+├── GERN/                            (53 días E0 - TOP 2 ticker)
+│   ├── date=2009-01-22/
 │   │   ├── trades.parquet
 │   │   └── _SUCCESS
 │   └── ...
-├── TSLA/
-│   ├── date=2020-08-31/
-│   │   ├── trades.parquet
-│   │   └── _SUCCESS
+├── VXRT/                            (51 días E0 - TOP 3 ticker)
 │   └── ...
-└── ... (2,000-2,500 tickers únicos con días info-rich)
+└── ... (4,898 tickers únicos, 29,555 eventos E0 total)
 ```
 
 **Schema trades.parquet**:
