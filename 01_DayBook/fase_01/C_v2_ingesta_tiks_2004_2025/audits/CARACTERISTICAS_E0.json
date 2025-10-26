@@ -1,0 +1,226 @@
+{
+  "timestamp": "2025-10-26T22:00:50.526487",
+  "periodo": "2004-01-06 \u2192 2025-10-21",
+  "total_eventos_e0": 29555,
+  "tickers_unicos": 4898,
+  "dias_con_e0": 4949,
+  "eventos_por_a\u00f1o": [
+    {
+      "year": "2004",
+      "eventos": 407
+    },
+    {
+      "year": "2005",
+      "eventos": 375
+    },
+    {
+      "year": "2006",
+      "eventos": 362
+    },
+    {
+      "year": "2007",
+      "eventos": 442
+    },
+    {
+      "year": "2008",
+      "eventos": 1014
+    },
+    {
+      "year": "2009",
+      "eventos": 966
+    },
+    {
+      "year": "2010",
+      "eventos": 472
+    },
+    {
+      "year": "2011",
+      "eventos": 536
+    },
+    {
+      "year": "2012",
+      "eventos": 494
+    },
+    {
+      "year": "2013",
+      "eventos": 597
+    },
+    {
+      "year": "2014",
+      "eventos": 633
+    },
+    {
+      "year": "2015",
+      "eventos": 776
+    },
+    {
+      "year": "2016",
+      "eventos": 1127
+    },
+    {
+      "year": "2017",
+      "eventos": 1086
+    },
+    {
+      "year": "2018",
+      "eventos": 1148
+    },
+    {
+      "year": "2019",
+      "eventos": 1284
+    },
+    {
+      "year": "2020",
+      "eventos": 3267
+    },
+    {
+      "year": "2021",
+      "eventos": 2053
+    },
+    {
+      "year": "2022",
+      "eventos": 2220
+    },
+    {
+      "year": "2023",
+      "eventos": 2588
+    },
+    {
+      "year": "2024",
+      "eventos": 3527
+    },
+    {
+      "year": "2025",
+      "eventos": 4181
+    }
+  ],
+  "precio": {
+    "min": 0.2,
+    "q25": 2.96,
+    "median": 6.23,
+    "q75": 11.25,
+    "max": 20.0,
+    "distribucion": [
+      {
+        "bin": "$1.00-$5.00",
+        "eventos": 10508
+      },
+      {
+        "bin": "$10.00-$20.00",
+        "eventos": 8972
+      },
+      {
+        "bin": "$5.00-$10.00",
+        "eventos": 8323
+      },
+      {
+        "bin": "$0.50-$1.00",
+        "eventos": 1127
+      },
+      {
+        "bin": "$0.20-$0.50 (penny)",
+        "eventos": 625
+      }
+    ]
+  },
+  "caracteristicas_e0": {
+    "rvol30": {
+      "mean": 9.126837895022206,
+      "median": 5.939090122033825,
+      "umbral_min": 2.0
+    },
+    "pctchg_abs": {
+      "mean": 0.41747434202207023,
+      "median": 0.23766816143497738,
+      "umbral_min": 0.15
+    },
+    "dollar_vol": {
+      "mean": 82792984.37204301,
+      "median": 22094050.872300006,
+      "umbral_min": 5000000
+    }
+  },
+  "top_20_tickers": [
+    {
+      "ticker": "BCRX",
+      "dias_e0": 63
+    },
+    {
+      "ticker": "GERN",
+      "dias_e0": 53
+    },
+    {
+      "ticker": "VXRT",
+      "dias_e0": 51
+    },
+    {
+      "ticker": "SRNE",
+      "dias_e0": 50
+    },
+    {
+      "ticker": "BLDP",
+      "dias_e0": 43
+    },
+    {
+      "ticker": "SGMO",
+      "dias_e0": 43
+    },
+    {
+      "ticker": "KNDI",
+      "dias_e0": 42
+    },
+    {
+      "ticker": "ABK",
+      "dias_e0": 41
+    },
+    {
+      "ticker": "GEVO",
+      "dias_e0": 40
+    },
+    {
+      "ticker": "NETE",
+      "dias_e0": 40
+    },
+    {
+      "ticker": "TUP",
+      "dias_e0": 39
+    },
+    {
+      "ticker": "CRMD",
+      "dias_e0": 39
+    },
+    {
+      "ticker": "OCGN",
+      "dias_e0": 39
+    },
+    {
+      "ticker": "ALT",
+      "dias_e0": 39
+    },
+    {
+      "ticker": "CLNE",
+      "dias_e0": 38
+    },
+    {
+      "ticker": "YRCW",
+      "dias_e0": 38
+    },
+    {
+      "ticker": "VERI",
+      "dias_e0": 37
+    },
+    {
+      "ticker": "ATOS",
+      "dias_e0": 36
+    },
+    {
+      "ticker": "IMGN",
+      "dias_e0": 36
+    },
+    {
+      "ticker": "KERX",
+      "dias_e0": 36
+    }
+  ],
+  "conclusion": "E0 cumple con Contrato v2.0.0: small/micro caps ($0.20-$20.00), info-rich (RVOL\u22652, |%chg|\u226515%, $vol\u2265$5M)"
+}
