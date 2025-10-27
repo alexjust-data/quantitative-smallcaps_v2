@@ -9,7 +9,10 @@ import time
 from datetime import datetime
 
 # Configuración
-API_KEY = "_Er3Vf1uYmQyRXswzA3PDMvDmLOAxNLO"
+import os
+API_KEY = os.getenv("POLYGON_API_KEY")
+if not API_KEY:
+    raise ValueError("POLYGON_API_KEY environment variable not set. Please set it before running.")
 output_dir = Path("raw/polygon/reference/tickers_snapshot")
 snapshot_date = datetime.now().strftime("%Y-%m-%d")
 
