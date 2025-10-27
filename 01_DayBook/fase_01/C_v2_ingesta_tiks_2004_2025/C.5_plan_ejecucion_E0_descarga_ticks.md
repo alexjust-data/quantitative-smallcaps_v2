@@ -1,12 +1,32 @@
 # C.5 - Plan de Ejecución E0: Descarga Ticks 2004-2025
 
-**Fecha**: 2025-10-26  
-**Versión**: 1.1.0 (actualizado post-error SCD-2)  
-**Basado en**: Contrato_E0.md v2.0.0  
-**Prerequisito**: C.4 - Descarga OHLCV Daily/Intraday completada (8,620 tickers raw intraday)  
-**Ver también**: C.7_ERROR_SCD2_Y_SOLUCION.md para contexto del error crítico y fix aplicado    
+**Fecha**: 2025-10-27
+**Versión**: 1.2.0 (refactor post-PASO 5 completado)
+**Basado en**: Contrato_E0.md v2.0.0
+**Prerequisito**: C.4 - Descarga OHLCV Daily/Intraday completada (8,620 tickers raw intraday)
+**Ver también**: C.7_ERROR_SCD2_Y_SOLUCION.md para contexto del error crítico y fix aplicado
 
+---
 
+## ÍNDICE
+
+1. [Pipeline de Ejecución (5 PASOS)](#1-pipeline-de-ejecución-5-pasos)
+   - [PASO 0: Generación Dimensión SCD-2 (DEPRECADO)](#paso-0-generación-dimensión-scd-2-market-cap-deprecado)
+   - [PASO 1: Generación Caché Diario 2004-2025](#paso-1-generación-caché-diario-2004-2025)
+   - [PASO 2: Actualizar Configuración Umbrales E0](#paso-2-actualizar-configuración-umbrales-e0)
+   - [PASO 3: Generación Universo Dinámico E0](#paso-3-generación-universo-dinámico-e0-2004-2025)
+   - [PASO 4: Análisis Características E0](#paso-4-análisis-características-e0-2004-2025)
+   - [PASO 5: Descarga Ticks Días Info-Rich E0](#paso-5-descarga-ticks-días-info-rich-e0)
+2. [Estructura Final de Datos (PASO 5 Completado)](#2-estructura-final-de-datos-paso-5-completado)
+3. [Especificación Técnica Multi-Evento](#3-especificación-técnica-multi-evento-e0--e1-e17-futuros)
+4. [Comandos Rápidos (Resumen)](#4-comandos-rápidos-resumen)
+5. [Notas Finales](#5-notas-finales)
+
+**Roadmaps de Implementación Multi-Evento**:
+- [C.6 - Roadmap Ejecutivo Multi-Evento](C.6_roadmap_multi_evento.md) - Estrategia, decisiones, timeline
+- [C.7 - Especificación Técnica Detallada](C.7_roadmap_post_paso5.md) - Código ejecutable, algoritmos completos
+
+---
 
 ## 1. PIPELINE DE EJECUCIÓN (5 PASOS)
 
@@ -605,48 +625,15 @@ D:\04_TRADING_SMALLCAPS\
 
 ---
 
-## 6. PRÓXIMOS PASOS POST-DESCARGA
+## 3. ESPECIFICACIÓN TÉCNICA MULTI-EVENTO (E0 + E1-E17 FUTUROS)
 
-Una vez completada la descarga de ticks E0:
+**Roadmaps de Implementación**:
+- **[C.6 - Roadmap Ejecutivo Multi-Evento](C.6_roadmap_multi_evento.md)** - Estrategia Híbrido A+B, decisiones, timeline
+- **[C.7 - Especificación Técnica Detallada](C.7_roadmap_post_paso5.md)** - Código ejecutable, algoritmos DIB/VIB, detectores completos
 
-1. **Construcción de Barras Informativas** (DIB/VIB):
-   - Dollar Imbalance Bars
-   - Volume Imbalance Bars
-   - Tick Imbalance Bars
+Esta sección documenta la **especificación técnica** de cómo se almacenarán y procesarán múltiples eventos (E0-E17) de forma eficiente sin duplicar ticks.
 
-2. **Triple Barrier Labeling**:
-   - Profit target / stop loss
-   - Time-based exit
-   - Meta-labeling
-
-3. **Feature Engineering**:
-   - Microestructura (spread, VWAP deviation, order flow)
-   - Volume Profile
-   - Tick-level features
-
-4. **Sample Weighting**:
-   - Bootstrap weights
-   - Sequential bootstrap
-   - Time decay
-
-5. **Incorporación eventos E1-E13**:
-   - Parabolic (E4)
-   - First Red Day (E7)
-   - Dilution (E9)
-   - etc.
-
-6. **Dataset Maestro 2004-2025**:
-   - Unificación E0 ∪ E1 ∪ ... ∪ E13
-   - Particionado por régimen
-   - Versionado para ML
-
----
-
-## 6. ARQUITECTURA MULTI-EVENTO (E0 + E1-E17 FUTUROS)
-
-**Ver roadmap completo**: [C.6_roadmap_multi_evento.md](C.6_roadmap_multi_evento.md)
-
-### 6.1 Estado Actual
+### 3.1 Estado Actual
 
 **ACTUALMENTE IMPLEMENTADO** (PASO 5 completado):
 ```
@@ -665,7 +652,7 @@ Una vez completada la descarga de ticks E0:
 - E8: Gap Down (>15%)
 - E13: Offering Pricing (dilution events)
 
-### 6.2 Arquitectura de Almacenamiento Multi-Evento
+### 3.2 Arquitectura de Almacenamiento Multi-Evento
 
 **Pregunta**: ¿Cómo guardar múltiples eventos sin duplicar ticks?
 
@@ -700,7 +687,7 @@ raw/polygon/trades/TICKER/date=YYYY-MM-DD/
 - ✅ Filtrado flexible por evento(s)
 - ✅ Trazabilidad completa vía `events.json`
 
-### 6.3 Especificación Técnica de Datos
+### 3.3 Especificación Técnica de Datos
 
 #### Schema: `watchlist.parquet` (multi-evento)
 
@@ -775,7 +762,7 @@ Ubicación: `raw/polygon/trades/TICKER/date=YYYY-MM-DD/events.json`
 
 ---
 
-### 6.4 Implementación (Roadmap Completo)
+### 3.4 Implementación (Roadmap Completo)
 
 **Ver documento completo**: [C.6_roadmap_multi_evento.md](C.6_roadmap_multi_evento.md)
 
@@ -913,7 +900,7 @@ def download_span_with_metadata(ticker: str, day: date, watchlist_data: dict, ..
         json.dump(events_json, f, indent=2)
 ```
 
-### 6.4 Estructura Final de Datos (Multi-Evento)
+### 3.5 Estructura Final de Datos (Multi-Evento)
 
 ```
 raw/polygon/trades/
@@ -937,7 +924,7 @@ raw/polygon/trades/
     └── ...
 ```
 
-### 6.5 Uso Downstream (Multi-Evento)
+### 3.6 Uso Downstream (Multi-Evento)
 
 ```python
 import polars as pl
@@ -965,7 +952,7 @@ for row in e0_and_e4_events.head(10).iter_rows(named=True):
         print(f"{ticker} {event_date}: {len(ticks):,} ticks - Eventos: {row['event_types']}")
 ```
 
-### 6.6 Resumen: Respuesta a "¿Dónde se Guardarán los Otros E's?"
+### 3.7 Resumen: Respuesta a "¿Dónde se Guardarán los Otros E's?"
 
 1. **Ahora mismo**: NO SE GUARDAN porque E1-E17 no están implementados (solo E0 existe)
 
@@ -983,7 +970,7 @@ for row in e0_and_e4_events.head(10).iter_rows(named=True):
 
 ---
 
-## 7. COMANDOS RÁPIDOS (RESUMEN)
+## 4. COMANDOS RÁPIDOS (RESUMEN)
 
 ```bash
 # PASO 0: SCD-2 - DEPRECADO (solo cubre 2025-10-19→)
@@ -1030,7 +1017,7 @@ python scripts/fase_C_ingesta_tiks/download_trades_optimized.py \
 
 ---
 
-## 8. NOTAS FINALES
+## 5. NOTAS FINALES
 
 ### Validación conceptual
 Este plan ejecuta la estrategia documentada en Contrato_E0.md v2.0.0:
