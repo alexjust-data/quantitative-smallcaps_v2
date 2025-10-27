@@ -373,16 +373,16 @@ Esta auditoría verifica que E0 cumple con el Contrato v2.0.0 sin necesidad de c
 
 ### PASO 5: Descarga Ticks Días Info-Rich E0
 
-**Objetivo**: Descargar ticks de Polygon solo para días info-rich identificados
+* **Objetivo**: Descargar ticks de Polygon solo para días info-rich identificados
 
-**Status**: COMPLETADO (2025-10-27)
-**Tiempo real**: ~1 hora (paralelización eficiente)
-**Cobertura**: 92.2% (64,801 / 70,290 días trading)
-**Storage**: 16.58 GB (vs 2.6 TB estimado, -99.2%)
+  * **Status**: COMPLETADO (2025-10-27)  
+  * **Tiempo real**: ~1 hora (paralelización eficiente)  
+  * **Cobertura**: 92.2% (64,801 / 70,290 días trading)  
+  * **Storage**: 16.58 GB (vs 2.6 TB estimado, -99.2%)  
 
-**Script**: `download_trades_optimized.py`
+* **Script**: `download_trades_optimized.py`
 
-**Estrategia**: **Modo watchlists** (lee automáticamente todos los watchlists)
+* **Estrategia**: **Modo watchlists** (lee automáticamente todos los watchlists)
 
 **Comando RECOMENDADO** (todos los tickers E0 + ventana ±1 día):
 ```bash
@@ -482,7 +482,7 @@ RAZON DIFERENCIA:
 
 **Nota**: Con 8 workers en paralelo. Con 1 worker sería 8x más lento.
 
-**Output esperado**:
+**Output REAL generado**:
 ```
 raw/polygon/trades/
 ├── BCRX/                            (63 días E0 - TOP 1 ticker)
@@ -500,15 +500,23 @@ raw/polygon/trades/
 │   └── ...
 ├── VXRT/                            (51 días E0 - TOP 3 ticker)
 │   └── ...
-└── ... (4,898 tickers únicos, 29,555 eventos E0 total)
+└── ... (4,875 tickers con descarga, 67,439 archivos completados)
 ```
 
-**Schema trades.parquet**:
+**Archivos REALES generados**:
+- **Tickers con descarga**: 4,875 (de 4,898 tickers únicos E0)
+- **Archivos _SUCCESS**: 67,439
+- **Archivos trades.parquet**: 67,439
+- **Storage total**: 16.58 GB (~20 GB proyectado al 100%)
+
+**Schema trades.parquet** (Polygon API v3):
 ```
-t: Datetime (microseconds)      # sip_timestamp
-p: Float64                       # price
-s: Int64                         # size
-c: List[Utf8]                   # conditions
+t: Datetime(ns)                  # Timestamp nanosegundos
+p: Float64                       # Precio
+s: UInt64                        # Size (volumen)
+c: List[UInt8]                   # Condiciones del trade
+x: UInt8                         # Exchange ID
+z: UInt8                         # Tape (A/B/C)
 ```
 
 **Validación durante descarga**:
@@ -547,134 +555,53 @@ python scripts/fase_C_ingesta_tiks/estimate_remaining_time.py \
 
 ---
 
-## 2. CRONOGRAMA REAL vs ESTIMADO
-
-| Paso | Tarea | Estimado | Real | Status |
-|------|-------|----------|------|--------|
-| 0 | ~~SCD-2 market cap~~ | 2 min | 2 min | ❌ DEPRECADO (datos solo 2025-10-19→) |
-| 1 | Caché diario 2004-2025 | 6-8h | 4.8h × 2 = 9.6h | ✅ COMPLETADO (2da ejecución OK) |
-| 2 | Config umbrales | 1 min | 1 min | ✅ ACTUALIZADO (sin cap_max) |
-| 3 | Universo dinámico E0 | 30-45 min | 11 min | ✅ COMPLETADO (5,934 watchlists, 29,555 E0) |
-| 4 | Análisis características E0 | 10-15 min | 2 min | ✅ COMPLETADO (simplificado, sin C_v1) |
-| 5 | Descarga ticks | 18-24h | TBD | ⏳ PENDIENTE |
-
-**Total real**: ~10-15 horas hasta aquí (incluyendo debugging y re-ejecución)
-
-**Nota**: El paso 5 (descarga ticks) es el cuello de botella. Considerar:
-- Ejecutar en servidor/instancia cloud con buena conexión
-- Monitorear rate limits de Polygon API
-- Usar `--resume` para tolerancia a fallos
-- Ejecutar en horario off-peak si es posible
-
----
-
-## 3. ESTRATEGIA DE VALIDACIÓN (CADA PASO)
-
-### Antes de avanzar al siguiente paso, verificar:
-
-**PASO 0 → PASO 1**:
-- ~~SCD-2 market_cap_dim~~ **DEPRECADO** (solo cubre 2025-10-19→)
-
-**PASO 1 → PASO 2**:
-- ✅ 8,617+ tickers procesados
-- ✅ Tickers con datos tienen >100 días (verificar NO solo 2)
-- ✅ `rvol30`, `pctchg_d`, `dollar_vol_d` calculados
-- ✅ `market_cap_d` = NULL (aceptable)
-
-**PASO 2 → PASO 3**:
-- ✅ `configs/universe_config.yaml` actualizado SIN `cap_max`
-- ✅ `min_price: 0.2`, `max_price: 20.0`
-
-**PASO 3 → PASO 4**:
-- ✅ 5,934 watchlists generadas (confirmado)
-- ✅ ~29,555 eventos E0 identificados
-- ✅ Tickers info-rich cumplen TODOS los umbrales
-- ✅ Exit code 0 (ejecución exitosa)
-
-**PASO 4 → PASO 5**:
-- ✅ Análisis características E0 completado
-- ✅ 29,555 eventos E0 identificados (2004-2025)
-- ✅ TODOS los eventos cumplen filtros E0
-- ✅ Documentación JSON y CSV generada
-
-**PASO 5 → FIN**:
-- ✅ >95% ticker-días info-rich con ticks descargados
-- ✅ `_SUCCESS` markers presentes
-- ✅ Ticks válidos (sample verificado)
-
----
-
-## 4. GESTIÓN DE ERRORES Y CONTINGENCIAS
-
-### Errores comunes y soluciones:
-
-**SCD-2 con baja cobertura** (<80% market cap):
-```bash
-# Opción 1: Imputar con shares_outstanding × close_d
-python scripts/fase_C_ingesta_tiks/build_market_cap_dim.py \
-  --details-root raw/polygon/reference/ticker_details \
-  --outdir processed/ref/market_cap_dim \
-  --daily-cache processed/daily_cache \
-  --impute
-```
-
-**Caché diario lento**:
-- Aumentar `--parallel` (si tienes más cores)
-- Ejecutar en instancia con más CPU/RAM
-- Usar `--incremental` para procesar solo nuevos
-
-**Descarga ticks interrumpida**:
-- Usar `--resume` (automático)
-- Verificar API key de Polygon activa
-- Verificar rate limits no excedidos
-- Ajustar `--rate-limit` si ves muchos 429
-
-**Polygon API 429 (Too Many Requests)**:
-- Aumentar `--rate-limit` (0.15 → 0.20 → 0.25)
-- Reducir `--workers` (8 → 4 → 2)
-- Pausar y reintentar más tarde
-
-**Storage lleno durante descarga ticks**:
-- Estimar antes: ~4.5 TB para 21 años
-- Considerar descarga por ventanas (2004-2010, 2011-2015, etc.)
-- Comprimir con ZSTD level 3-5 (más agresivo)
-
----
-
-## 5. ESTRUCTURA FINAL DE DATOS
+## 2. ESTRUCTURA FINAL DE DATOS (PASO 5 COMPLETADO)
 
 ```
 D:\04_TRADING_SMALLCAPS\
 │
 ├── raw/polygon/
-│   ├── reference/ticker_details/          (snapshots market cap)
-│   └── trades/                             (ticks E0)
-│       ├── AAPL/date=2004-01-05/trades.parquet
-│       └── ... (~150,000 ticker-días)
+│   ├── reference/
+│   │   └── ticker_details/                (8,686 tickers)
+│   └── trades/                             (PASO 5 ✅ COMPLETADO)
+│       ├── BCRX/
+│       │   ├── date=2008-10-15/
+│       │   │   ├── trades.parquet
+│       │   │   └── _SUCCESS
+│       │   └── ... (63 días E0 para BCRX)
+│       └── ... (67,439 archivos, 16.58 GB)
 │
 ├── processed/
-│   ├── ref/market_cap_dim/
-│   │   └── market_cap_dim.parquet         (SCD-2 temporal)
-│   ├── daily_cache/                        (caché diario agregado)
-│   │   ├── ticker=AAPL/daily.parquet
-│   │   └── ... (3,107 tickers)
-│   └── universe/info_rich/
-│       ├── daily/                          (watchlists E0)
-│       │   ├── date=2004-01-02/watchlist.parquet
-│       │   └── ... (~5,292 días)
-│       ├── topN_12m.parquet
-│       └── topN_12m.csv
-│
-├── audits/
-│   ├── AUDITORIA_INCLUSION_C_v1_vs_E0.json
-│   ├── only_C_v1_midcaps.parquet
-│   └── only_E0_pennystocks.parquet
+│   ├── ref/
+│   │   └── market_cap_dim/
+│   │       └── market_cap_dim.parquet      (SCD-2, 8,686 tickers)
+│   ├── daily_cache/                         (PASO 1 ✅ COMPLETADO)
+│   │   ├── ticker=AAPL/
+│   │   │   ├── daily.parquet
+│   │   │   └── _SUCCESS
+│   │   └── ... (8,618 tickers)
+│   └── universe/
+│       └── info_rich/                       (PASO 3 ✅ COMPLETADO)
+│           ├── daily/
+│           │   ├── date=2004-01-02/watchlist.parquet
+│           │   └── ... (5,934 watchlists)
+│           ├── topN_12m.parquet
+│           └── topN_12m.csv
 │
 └── 01_DayBook/fase_01/C_v2_ingesta_tiks_2004_2025/
-    ├── Contrato_E0.md                      (contrato inmutable v2.0.0)
-    ├── C.4_anotacion_descarga_tiks_daily.md
-    └── C.5_plan_ejecucion_E0_descarga_ticks.md  (este documento)
+    ├── audits/                              (PASO 4 ✅ COMPLETADO)
+    │   ├── CARACTERISTICAS_E0.json
+    │   └── top_e0_tickers.csv
+    ├── C.5_plan_ejecucion_E0_descarga_ticks.md
+    ├── C.5.5_resultados_paso_5.md
+    └── notebooks/
+        └── analysis_paso5_executed.ipynb
 ```
+
+**Métricas finales REALES (2025-10-27)**:
+- **PASO 1** (Daily Cache): 8,617 tickers procesados
+- **PASO 3** (Watchlists): 5,934 días, 29,555 eventos E0, 4,898 tickers únicos
+- **PASO 5** (Ticks): 4,875 tickers, 67,439 archivos, 16.58 GB, ~805M ticks, 92.2% cobertura
 
 ---
 
@@ -715,146 +642,145 @@ Una vez completada la descarga de ticks E0:
 
 ---
 
-## 6. EVENTOS FUTUROS E1-E17 (NO IMPLEMENTADOS AÚN)
+## 6. ARQUITECTURA MULTI-EVENTO (E0 + E1-E17 FUTUROS)
 
-### 6.1 Estado Actual vs. Futuro
+**Ver roadmap completo**: [C.6_roadmap_multi_evento.md](C.6_roadmap_multi_evento.md)
 
-**ACTUALMENTE IMPLEMENTADO** (C_v2 Fase 1 - PASO 5 en ejecución):
+### 6.1 Estado Actual
+
+**ACTUALMENTE IMPLEMENTADO** (PASO 5 completado):
 ```
-✅ E0 (Generic Info-Rich)
-   - RVOL ≥ 2.0
-   - |%chg| ≥ 15%
-   - $vol ≥ $5M
-   - Precio $0.20-$20
-   - Event window: ±1 día (3 días total)
-   - Status: DESCARGANDO AHORA
-   - Archivos: raw/polygon/trades/{TICKER}/date={YYYY-MM-DD}/
+✅ E0 (Generic Info-Rich) - 2004-2025
+   - 67,439 archivos descargados
+   - 16.58 GB storage
+   - 92.2% cobertura (64,801 / 70,290 días trading)
+   - Event window: ±1 día
+   - Estructura: raw/polygon/trades/{TICKER}/date={YYYY-MM-DD}/trades.parquet
 ```
 
-**PLANIFICADO PARA FUTURO** (C_v2 Fases 2-N):
+**PLANIFICADO** (Ver [C.1](C.1_estrategia_descarga_ticks_eventos.md) y [C.6](C.6_roadmap_multi_evento.md)):
+- E1: Volume Explosion (RVOL > 5×)
+- E4: Parabolic Move (+50% en ≤5 días)
+- E7: First Red Day (patrón más confiable)
+- E8: Gap Down (>15%)
+- E13: Offering Pricing (dilution events)
 
-Según [C.1_estrategia_descarga_ticks_eventos.md](C.1_estrategia_descarga_ticks_eventos.md):
+### 6.2 Arquitectura de Almacenamiento Multi-Evento
 
-| Evento | Descripción | Ventana | Días/Evento | Status |
-|--------|-------------|---------|-------------|--------|
-| E1 | Volume Explosion (RVOL > 5×) | −1 → +2 | 4 días | ⏳ Pendiente |
-| E2 | Gap Up > 10% | −1 → +1 | 3 días | ⏳ Pendiente |
-| E3 | Spike Intraday | mismo día | 1 día | ⏳ Pendiente |
-| E4 | Parabolic Move (+50% en ≤5 días) | −2 → +3 | 6 días | ⏳ Pendiente |
-| E5 | Breakout ATH | −1 → +2 | 4 días | ⏳ Pendiente |
-| E7 | First Red Day (FRD) | −1 → +2 | 4 días | ⏳ Pendiente |
-| E8 | Gap Down > 15% | −1 → +1 | 3 días | ⏳ Pendiente |
-| E10 | First Green Bounce | −1 → +1 | 3 días | ⏳ Pendiente |
-| E12-E14 | Dilution events | −2 → +2 | 5 días | ⏳ Pendiente |
-| E15-E17 | Halts, SSR, spread | mismo día | 1 día | ⏳ Pendiente |
+**Pregunta**: ¿Cómo guardar múltiples eventos sin duplicar ticks?
 
-**Promedio ponderado** (según frecuencia): ~3–5 días por evento
+**Respuesta**: Watchlist unificado + metadata JSON por ticker-día
 
-### 6.2 Pregunta Clave: ¿Dónde se Guardarán los Otros E's?
+#### Opción A: Carpetas Separadas por Evento ❌
 
-**Respuesta**: Cuando implementes E1-E17, tienes **DOS opciones arquitectónicas**:
+**Problema**: Duplicación masiva si `BCRX` tiene E0+E1+E4 el mismo día → 3× `trades.parquet`
 
-#### Opción A: Watchlists Separados por Tipo de Evento (NO RECOMENDADA)
+**Conclusión**: Descartada (no escala para ML, imposible "verdad única" por ticker-día)
+
+#### Opción B: Watchlist Unificado + Metadata JSON ✅
+
+**Estructura**:
 
 ```
-processed/universe/
-├── E0_generic_info_rich/
-│   └── daily/
-│       └── date=2020-03-16/
-│           └── watchlist.parquet (info_rich=True)
-│
-├── E1_volume_explosion/
-│   └── daily/
-│       └── date=2020-03-16/
-│           └── watchlist.parquet (volume_explosion=True, RVOL>5.0)
-│
-├── E2_gap_up/
-│   └── daily/...
-│
-└── E4_parabolic/
-    └── daily/...
+processed/universe/multi_event/daily/date=YYYY-MM-DD/
+└── watchlist.parquet
+    # Columnas boolean por evento: E0_info_rich, E1_volume_explosion, E4_parabolic, E7_first_red, E8_gap_down
+    # event_types: list[str]  (ej: ["E0", "E4"])
+    # max_event_window: int   (ventana individual más grande, ej: E4 ±3 → 7 días)
 
-raw/polygon/trades/
-├── E0/
-│   └── BCRX/date=2020-03-16/trades.parquet  ← Duplica ticks
-├── E1/
-│   └── BCRX/date=2020-03-16/trades.parquet  ← Duplica ticks
-└── E4/
-    └── BCRX/date=2020-03-16/trades.parquet  ← Duplica ticks
+raw/polygon/trades/TICKER/date=YYYY-MM-DD/
+├── trades.parquet  # UN SOLO archivo (sin duplicados)
+├── _SUCCESS
+└── events.json     # Metadata: qué eventos, ventanas, is_event_day, window_offset
 ```
 
 **Ventajas**:
-- Separación clara por tipo de evento
-- Fácil auditar cada evento independientemente
+- ✅ UN solo `trades.parquet` por ticker-día (sin duplicación)
+- ✅ Storage eficiente (~3-5x menos que carpetas separadas)
+- ✅ Filtrado flexible por evento(s)
+- ✅ Trazabilidad completa vía `events.json`
 
-**Desventajas**:
-- ❌ **Duplicación de ticks**: Un ticker-día con E0+E1+E4 → 3× storage
-- ❌ Ineficiente en disco (un ticker puede tener múltiples eventos simultáneos)
-- ❌ Confuso para downstream analysis
+### 6.3 Especificación Técnica de Datos
 
-#### Opción B: Columnas Multi-Evento en UN SOLO Watchlist (✅ RECOMENDADA)
+#### Schema: `watchlist.parquet` (multi-evento)
 
-```
-processed/universe/multi_event/
-└── daily/
-    └── date=2020-03-16/
-        └── watchlist.parquet
-            Columnas:
-            - ticker
-            - trading_day
-            - E0_info_rich: bool
-            - E1_volume_explosion: bool
-            - E2_gap_up: bool
-            - E4_parabolic: bool
-            - E5_breakout_ath: bool
-            - E7_first_red: bool
-            - E8_gap_down: bool
-            - E10_first_green: bool
-            - E12_dilution: bool
-            - E15_halt: bool
-            - event_types: List[str]  ← ["E0", "E4"] para multi-events
-            - max_event_window: int   ← Max(ventana E0, E4) = max(3, 6) = 6
-
-raw/polygon/trades/
-└── BCRX/
-    └── date=2020-03-16/
-        ├── trades.parquet    ← UN solo archivo (sin duplicados)
-        ├── _SUCCESS
-        └── events.json       ← Metadata: {"events": ["E0", "E4"], "windows": {"E0": 3, "E4": 6}}
-```
-
-**Ejemplo de fila en watchlist**:
 ```python
+ticker: str
+trading_day: date
+
+# Columnas boolean legibles por evento
+E0_info_rich: bool
+E1_volume_explosion: bool
+E4_parabolic: bool
+E7_first_red_day: bool
+E8_gap_down: bool
+
+# Resumen compacto
+event_types: list[str]         # Códigos cortos: ["E0", "E4"]
+max_event_window: int          # Ventana individual más grande (E4 ±3 → 7 días)
+```
+
+**Nota**: `max_event_window` es el tamaño total de la ventana MÁS EXIGENTE, NO la unión de ventanas.
+
+#### Schema: `events.json` (por ticker-día descargado)
+
+Ubicación: `raw/polygon/trades/TICKER/date=YYYY-MM-DD/events.json`
+
+```json
 {
-  'ticker': 'BCRX',
-  'trading_day': '2020-03-16',
-  'E0_info_rich': True,          # ✓ Cumple E0 (RVOL≥2.0, |%chg|≥15%)
-  'E1_volume_explosion': False,
-  'E2_gap_up': False,
-  'E4_parabolic': True,          # ✓ Cumple E4 (+50% en ≤5 días)
-  'E5_breakout_ath': False,
-  'event_types': ['E0', 'E4'],   # Multi-evento simultáneo
-  'max_event_window': 6          # Max de (E0=3, E4=6) = 6 días
+  "ticker": "BCRX",
+  "date": "2020-03-14",
+
+  "events_context": [
+    {
+      "event_type": "E4",
+      "event_day": "2020-03-16",
+      "is_event_day": false,
+      "window_offset": -2,
+      "window_size": 7
+    },
+    {
+      "event_type": "E0",
+      "event_day": "2020-03-16",
+      "is_event_day": false,
+      "window_offset": -2,
+      "window_size": 3
+    }
+  ],
+
+  "max_event_window": 7,
+  "download_window_applied_days": ["2020-03-13", "2020-03-14", ..., "2020-03-19"],
+  "_success": true
 }
 ```
 
-**Ventajas**:
-- ✅ **UN solo archivo de ticks por ticker-día** (sin duplicados)
-- ✅ Eficiente en storage (~3-5x menos espacio vs Opción A)
-- ✅ Puedes filtrar por cualquier combinación de eventos
-- ✅ Downstream analysis más fácil (un ticker-día = un archivo)
-- ✅ Metadata clara sobre qué eventos aplican
+**Campos clave**:
+- `is_event_day`: Distingue día del evento vs contexto pre/post (crítico para labeling)
+- `window_offset`: Días desde evento (`date - event_day`)
+- `download_window_applied_days`: Auditoría y reproducibilidad
 
-**Desventaja**:
-- Watchlist más complejo (13+ columnas booleanas)
+#### Lógica `--resume` con Merge Inteligente
 
-### 6.3 Implementación Futura Recomendada
+**Problema**: Nuevo evento E4 requiere ventana ±3, pero E0 ya descargó ±1
 
-Cuando implementes E1-E17, sigue estos pasos:
+**Solución**: Merge incremental en `events.json`
 
-#### Paso 1: Modificar `build_dynamic_universe_optimized.py`
+1. Leer `events.json` existente
+2. Agregar nuevo evento a `events_context`
+3. Recalcular `max_event_window` = max(window_size)
+4. Regenerar `download_window_applied_days` (unión de ventanas)
+5. Si hay días nuevos no cubiertos → descargar adicionales
 
-Agregar cálculo de TODAS las E's en un solo pass:
+**Implementación**: Ver `scripts/fase_C_ingesta_tiks/build_multi_event_watchlists.py`
+
+---
+
+### 6.4 Implementación (Roadmap Completo)
+
+**Ver documento completo**: [C.6_roadmap_multi_evento.md](C.6_roadmap_multi_evento.md)
+
+**Scripts a implementar**:
+- `scripts/fase_C_ingesta_tiks/event_detectors/` (E1, E4, E7, E8)
 
 ```python
 def calculate_all_events(df: pl.DataFrame) -> pl.DataFrame:
