@@ -174,8 +174,9 @@ def http_get_trades(session: requests.Session, ticker: str, t_from_iso: str, t_t
 def to_parquet_trades(out_parquet: Path, records: List[dict]):
     if not records:
         # crea parquet vacío con esquema mínimo
+        # CRITICAL FIX: Save timestamp as Int64 (t_raw) not Datetime to avoid "year 52XXX" corruption
         schema = {
-            "tx": pl.Utf8, "t": pl.Datetime, "p": pl.Float64, "s": pl.Int64, "c": pl.List(pl.Utf8)
+            "tx": pl.Utf8, "t_raw": pl.Int64, "t_unit": pl.Utf8, "p": pl.Float64, "s": pl.Int64, "c": pl.List(pl.Utf8)
         }
         pl.DataFrame(schema=schema).write_parquet(out_parquet, compression="zstd", compression_level=2, statistics=False)
         return
@@ -190,9 +191,32 @@ def to_parquet_trades(out_parquet: Path, records: List[dict]):
     if "conditions" in cols:    mapping["conditions"]    = "c"
     if mapping:
         df = df.rename(mapping)
-    # Tipos
+
+    # CRITICAL FIX: Save timestamp as Int64 + time_unit metadata
+    # Polygon API returns inconsistent scales (ns, us, ms) - detect and save metadata
     if "t" in df.columns:
-        df = df.with_columns(pl.col("t").cast(pl.Datetime(time_unit="us")))  # polygon devuelve µs/ns; ajusta si ves desajuste
+        # Cast to Int64 WITHOUT datetime conversion (preserves raw value)
+        df = df.with_columns([
+            pl.col("t").cast(pl.Int64).alias("t_raw")
+        ])
+
+        # Detect time unit by magnitude (avoid "year 52XXX" corruption)
+        max_ts = int(df["t_raw"].max())
+        if max_ts > 1e17:
+            time_unit = "ns"  # nanoseconds (1e18)
+        elif max_ts > 1e14:
+            time_unit = "us"  # microseconds (1e15)
+        else:
+            time_unit = "ms"  # milliseconds (1e12)
+
+        # Save time_unit as metadata column
+        df = df.with_columns([
+            pl.lit(time_unit).alias("t_unit")
+        ])
+
+        # Drop original 't' column (keep only t_raw + t_unit)
+        df = df.drop("t")
+
     # Escribe
     out_parquet.parent.mkdir(parents=True, exist_ok=True)
     df.write_parquet(out_parquet, compression="zstd", compression_level=2, statistics=False)

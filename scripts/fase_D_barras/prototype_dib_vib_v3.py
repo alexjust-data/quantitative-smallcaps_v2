@@ -49,7 +49,7 @@ def build_simple_dib(df_ticks: pl.DataFrame, threshold_usd: float = 250_000.0):
 
     # Acumular imbalance
     df = df.with_columns([
-        pl.col('signed_dv').cumsum().alias('cumulative_imbalance')
+        pl.col('signed_dv').cum_sum().alias('cumulative_imbalance')
     ])
 
     # Crear IDs de barra cuando |imbalance| >= threshold
@@ -58,7 +58,7 @@ def build_simple_dib(df_ticks: pl.DataFrame, threshold_usd: float = 250_000.0):
     ])
 
     df = df.with_columns([
-        pl.col('bar_trigger').cumsum().alias('bar_id')
+        pl.col('bar_trigger').cum_sum().alias('bar_id')
     ])
 
     # Agregar por bar_id para crear barras
