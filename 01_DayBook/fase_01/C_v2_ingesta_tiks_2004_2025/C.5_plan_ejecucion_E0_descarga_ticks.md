@@ -375,7 +375,10 @@ Esta auditoría verifica que E0 cumple con el Contrato v2.0.0 sin necesidad de c
 
 **Objetivo**: Descargar ticks de Polygon solo para días info-rich identificados
 
-**Tiempo estimado**: ~11 horas (88,665 días con event-window=1) o ~3.7 horas (29,555 días con event-window=0)
+**Status**: COMPLETADO (2025-10-27)
+**Tiempo real**: ~1 hora (paralelización eficiente)
+**Cobertura**: 92.2% (64,801 / 70,290 días trading)
+**Storage**: 16.58 GB (vs 2.6 TB estimado, -99.2%)
 
 **Script**: `download_trades_optimized.py`
 
@@ -450,43 +453,32 @@ python scripts/fase_C_ingesta_tiks/download_trades_optimized.py \
 - `--workers 8`: Procesos concurrentes (ajustar según RAM)
 - `--resume`: Salta días ya descargados (_SUCCESS existe)
 
-**Métricas REALES** (basado en PASO 4):
+**Métricas REALES** (PASO 5 completado):
 ```
 Eventos E0 identificados: 29,555 ticker-días (2004-2025)
-Tickers únicos: 4,898
-Promedio eventos/ticker: 6.04 días E0
+Tickers únicos E0: 4,898
+Event window aplicado: ±1 día
+
+DESCARGA COMPLETADA:
+- Días objetivo: 82,012 (incluye weekends/holidays)
+- Días trading reales: 70,290
+- Días descargados: 64,801 (92.2% cobertura)
+- Días faltantes: 7,039 (7.8% - Polygon gaps, delisted)
+
+STORAGE Y TICKS:
+- Storage total: 16.58 GB
+- Proyección 100%: ~20 GB (vs 2.6 TB estimado, -99.2%)
+- Ticks promedio/día: ~12,234 (vs ~50K estimado)
+- Total ticks: ~805M (vs ~4.4B estimado)
+- Tamaño promedio/día: ~258 KB (vs ~30 MB estimado)
+
+RAZON DIFERENCIA:
+- Small caps tienen 100x-1000x menos volumen que large caps
+- Estimación basada en tickers grandes (AAPL, TSLA)
+- Años antiguos (2004-2010) tienen muy pocos ticks
 ```
 
-**Estimación Volumen con event-window=1** (±1 día, RECOMENDADO):
-```
-- Días descargados: 29,555 × 3 = ~88,665 ticker-días
-- Ticks promedio/día: ~50,000
-- Total ticks: 88,665 × 50,000 = ~4.4B ticks
-- Tamaño promedio/día: ~30 MB (comprimido ZSTD)
-- Storage total: 88,665 × 30 MB = ~2.6 TB
-```
-
-**Estimación Volumen con event-window=0** (solo día evento):
-```
-- Días descargados: 29,555 ticker-días
-- Total ticks: 29,555 × 50,000 = ~1.5B ticks
-- Storage total: 29,555 × 30 MB = ~886 GB
-```
-
-**Tiempo estimado REAL**:
-```
-Supuestos:
-- Rate limit: 0.15s/request → ~400 requests/min → 24,000/hora
-- Requests/ticker-día: ~3 (promedio con paginación)
-
-Con event-window=1 (RECOMENDADO):
-- Total requests: 88,665 × 3 = 265,995
-- Tiempo descarga: 265,995 / 24,000 = ~11.1 horas
-
-Con event-window=0 (solo evento):
-- Total requests: 29,555 × 3 = 88,665
-- Tiempo descarga: 88,665 / 24,000 = ~3.7 horas
-```
+**Ver resultados detallados**: `C.5.5_resultados_paso_5.md`
 
 **Nota**: Con 8 workers en paralelo. Con 1 worker sería 8x más lento.
 
