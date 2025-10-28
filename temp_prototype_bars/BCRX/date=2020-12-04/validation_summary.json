@@ -1,0 +1,13 @@
+{
+  "ticker": "BCRX",
+  "date": "2020-12-04",
+  "status": "SUCCESS",
+  "reason": null,
+  "n_ticks": 85902,
+  "price_min": 4.75,
+  "price_max": 7.09,
+  "volume_total": 25189319,
+  "dollar_volume": 149976843.69959998,
+  "timestamp_first": "1607040007409284864",
+  "timestamp_last": "1607126353838000000"
+}

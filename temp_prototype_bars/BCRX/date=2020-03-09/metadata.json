@@ -1,0 +1,18 @@
+{
+  "ticker": "BCRX",
+  "date": "2020-03-09",
+  "status": "SUCCESS",
+  "reason": null,
+  "n_ticks": 40925,
+  "n_bars": 27635,
+  "threshold_usd": 250000.0,
+  "time_unit": "ns",
+  "price_min": 3.045,
+  "price_max": 4.8,
+  "volume_total": 12480859,
+  "notional_total": 45168956.710868,
+  "avg_ticks_per_bar": 1.4809118870996925,
+  "avg_duration_sec": 0.7868282974488873,
+  "bar_start_first": "2020-03-09 08:01:40.117579",
+  "bar_end_last": "2020-03-09 23:57:33.529552"
+}

@@ -41,13 +41,13 @@ python scripts/fase_D_creando_DIB_VIB/build_bars_from_trades.py \
 | `--parallel` | `12` | Workers en paralelo (optimizado vs 8 default) |
 | `--resume` | `true` | Idempotencia con `_SUCCESS` markers |
 
+* ['notas sobre los parámetros'](./6.1.1_notas_sobre_6.1.md)
+
 ### Problema encontrado y solución
 
-**Error inicial:** Timestamps corruptos causaban `ValueError: year 56767 is out of range`
-
-**Causa raíz:** Polygon API devuelve timestamps en **nanosegundos**, pero Polars los interpretaba como **microsegundos** al usar `iter_rows()`.
-
-**Fix aplicado en `build_bars_from_trades.py` (líneas 57-63):**
+* **Error inicial:** Timestamps corruptos causaban `ValueError: year 56767 is out of range`
+* **Causa raíz:** Polygon API devuelve timestamps en **nanosegundos**, pero Polars los interpretaba como **microsegundos** al usar `iter_rows()`.
+* **Fix aplicado en `build_bars_from_trades.py` (líneas 57-63):**
 
 ```python
 # Check if timestamp values are too large (> year 3000 when interpreted as microseconds)
@@ -147,6 +147,8 @@ python scripts/fase_D_creando_DIB_VIB/triple_barrier_labeling.py \
 | `--vol-est` | `ema` | Estimador de volatilidad: EMA de retornos absolutos |
 | `--vol-window` | `50` | Ventana EMA para estimación de σ |
 | `--parallel` | `12` | Workers en paralelo |
+
+* [`notas sobre los parámetros`](./D.1.2_notas_6.1_tripleBarrierLabeling.md)
 
 ### Lógica Triple Barrier
 

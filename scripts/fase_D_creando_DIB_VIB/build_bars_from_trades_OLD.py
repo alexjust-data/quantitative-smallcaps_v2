@@ -4,7 +4,7 @@
 build_bars_from_trades.py
 Crea barras informacionales (Dollar/Volume Imbalance Bars) a partir de trades v3.
 Entrada:
-  raw/polygon/trades/{ticker}/date=YYYY-MM-DD/trades.parquet  (cols: t_raw,t_unit,p,s[,c])
+  raw/polygon/trades/{ticker}/date=YYYY-MM-DD/trades.parquet  (cols: t,p,s[,c])
 Salida:
   processed/bars/{ticker}/date=YYYY-MM-DD/{bar_type}.parquet
 Uso:
@@ -13,8 +13,6 @@ Uso:
     --outdir processed/bars \
     --bar-type dollar_imbalance --target-usd 300000 \
     --ema-window 50 --parallel 8 --resume
-
-ACTUALIZADO 2025-10-27: Soporte para NUEVO formato timestamps (t_raw + t_unit)
 """
 import os, sys, argparse, time
 from pathlib import Path
@@ -50,37 +48,19 @@ def build_bars_one_day(in_file: Path, out_dir: Path, bar_type: str,
         )
         success_marker(out_dir); return
 
-    # ========================================================================
-    # TIMESTAMP FORMAT HANDLING (2025-10-27 UPDATE)
-    # ========================================================================
-    # NEW FORMAT (definitive fix): t_raw (Int64) + t_unit (String: 'ns'/'us'/'ms')
-    # OLD FORMAT (deprecated/corrupted): t (Datetime) with wrong time_unit
-    # ========================================================================
+    # Orden temporal y columnas mínimas
     cols = df.columns
-
-    if "t_raw" in cols and "t_unit" in cols:
-        # NEW format with raw timestamp + metadata (definitive fix applied 2025-10-27)
-        time_unit = df["t_unit"][0]  # 'ns', 'us', or 'ms'
-        if time_unit == "ns":
-            df = df.with_columns([pl.col("t_raw").cast(pl.Datetime(time_unit="ns")).alias("t")])
-        elif time_unit == "us":
-            df = df.with_columns([pl.col("t_raw").cast(pl.Datetime(time_unit="us")).alias("t")])
-        else:  # 'ms'
-            df = df.with_columns([pl.col("t_raw").cast(pl.Datetime(time_unit="ms")).alias("t")])
-    elif "t" in cols:
-        # OLD format (DEPRECATED) - Apply temporary fix for corrupted timestamps
-        # This branch handles files downloaded BEFORE 2025-10-27
-        t_sample = df["t"].head(1).cast(pl.Int64).item()
-        if t_sample > 32503680000000000:  # Year 3000+ in microseconds = corrupted nanoseconds
-            # Timestamps are in nanoseconds but stored as microseconds -> convert
-            df = df.with_columns((pl.col("t").cast(pl.Int64) // 1000).cast(pl.Datetime(time_unit="us")).alias("t"))
-    else:
-        raise ValueError(f"Missing timestamp columns in {in_file}. Expected either (t_raw, t_unit) or (t)")
-
-    # Validate required columns after timestamp conversion
     need = set(["t","p","s"])
-    if not need.issubset(df.columns):
-        raise ValueError(f"Missing required columns in {in_file}: {need - set(df.columns)}")
+    if not need.issubset(cols):
+        raise ValueError(f"Faltan columnas en {in_file}: {need - set(cols)}")
+
+    # FIX: Convert timestamp from nanoseconds to microseconds if needed
+    # Polygon API returns nanosecond timestamps, but they may be stored as microseconds in parquet
+    # Check if timestamp values are too large (> year 3000 when interpreted as microseconds)
+    t_sample = df["t"].head(1).cast(pl.Int64).item()
+    if t_sample > 32503680000000000:  # Jan 1, 3000 in microseconds
+        # Timestamps are in nanoseconds, convert to microseconds
+        df = df.with_columns((pl.col("t").cast(pl.Int64) // 1000).cast(pl.Datetime(time_unit="us")).alias("t"))
 
     df = df.sort("t")
 

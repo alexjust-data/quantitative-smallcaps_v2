@@ -1,0 +1,18 @@
+{
+  "ticker": "VXRT",
+  "date": "2020-03-17",
+  "status": "SUCCESS",
+  "reason": null,
+  "n_ticks": 41800,
+  "n_bars": 36426,
+  "threshold_usd": 250000.0,
+  "time_unit": "ns",
+  "price_min": 1.18,
+  "price_max": 2.0395,
+  "volume_total": 18475995,
+  "notional_total": 32372059.729599997,
+  "avg_ticks_per_bar": 1.1475319826497556,
+  "avg_duration_sec": 0.45733816504694447,
+  "bar_start_first": "2020-03-17 08:13:08.437939",
+  "bar_end_last": "2020-03-17 23:59:40.712277"
+}
