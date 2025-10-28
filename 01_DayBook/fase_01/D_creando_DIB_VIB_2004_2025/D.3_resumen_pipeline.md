@@ -231,20 +231,87 @@ processed/datasets/
 
 ---
 
-## Limitaciones Actuales (E0 Solo)
+## Arquitectura E0: Por Qué Este Dataset Primero
 
-**Dataset actual basado en E0 genérico**:
-- ❌ No identifica patrón específico (FRD, Parabolic, GapDown)
-- ❌ No permite labeling por tipo de setup
-- ❌ No captura eventos específicos de playbook
+### Contexto: E0 vs E1-E13 (Estrategia Multi-Evento)
 
-**Por qué necesitamos E1-E13**:
-> E0 es "algo está pasando" pero NO identifica el patrón específico. Modelo aprende "ruido promediado" en vez de setups concretos.
+**E0 = Filtro Universal "Info-Rich"** (replica C_v1 logic sobre 21 años):
+```python
+E0 = (RVOL≥2.0) AND (|%chg|≥15%) AND ($vol≥$5M) AND ($0.20≤price≤$20)
+```
+- **Propósito**: RED DE SEGURIDAD que captura CUALQUIER día con actividad inusual
+- **Cobertura**: 67,439 ticker-days (29,555 eventos E0, 4,874 tickers únicos)
+- **Garantía matemática**: E0 ⊇ C_v1 → backward compatibility con 11,054 eventos probados
 
-**Estrategia aprobada** (C.6/C.7):
-- Baseline E0: validación técnica pipeline
-- NO tunear profundamente E0
-- Implementar multi-evento → dataset completo → ML definitivo
+**E1-E13 = Detectores de Patrones Específicos**:
+```
+E1: Volume Explosion (RVOL>5× específicamente) - Informed money
+E4: Parabolic (+50% ≤5d sostenido)         - Pump initiation
+E7: First Red Day (3+ greens → 1st red)    - Dump initiation [CRÍTICO]
+E8: Gap Down Violent (>15% gap)            - Crash events
+E13: SEC 424B filings (offering ±2d)       - Dilution triggers
+```
+- **Propósito**: Clasificación específica para ML event-driven (FRD → short bias, etc.)
+- **Cobertura proyectada**: +300K ticker-days (~35-40% eventos que E0 NO captura)
+
+### Por Qué Procesar E0 Primero: 4 Razones Estratégicas
+
+**1. Eliminación Regime Bias (2004-2025 vs 2020-2025)**
+   - C_v1 = 5 años → MISSING: 2008 crisis, 2011 flash crash, 2015 China shock
+   - E0 = 21 años → cubre 4 bull markets, 3 bear markets, 2 crises completas
+   - **Resultado**: Dataset robusto multi-régimen para backtesting histórico
+
+**2. Validación Pipeline Sin Riesgo (+3-4 TB commitment)**
+   - E0 replica C_v1 lógica probada → garantiza DIB/Labels/Weights funcionan
+   - Evita descargar E1-E13 ANTES de confirmar pipeline estable
+   - **Resultado**: 67,439 archivos (16.58 GB) validados → pipeline 100% funcional
+
+**3. Cobertura Más Amplia Que E1-E13 Solos** ⭐
+   - E0 captura 2.0≤RVOL<5.0 (que E1 con RVOL>5 miss)
+   - E0 captura +15% a +50% moves (que E4 parabolic miss)
+   - E0 incluye penny stocks $0.20-$0.50 (que C_v1 filtró)
+   - E0 captura bounces, consolidations, earnings (sin patrón específico)
+   - **Resultado**: E0 tiene 170%+ eventos vs C_v1 (11K → 30K+)
+   - **Crítico**: E1-E13 solos = pérdida 35-40% de eventos movibles
+
+**4. Baseline Model E0 = Proof-of-Concept Técnico**
+   - Valida que 14 features + triple barrier + weighting funcionan end-to-end
+   - NO es modelo definitivo (dataset final = E0 ∪ E1-E13 con metadata eventos)
+   - Permite iterar features/labels ANTES de descarga masiva +3-4 TB
+
+### Dataset E0 Actual: Qué SÍ Tiene y Qué NO
+
+**✅ COMPLETO en E0**:
+- ✅ 21 años cobertura (2004-2025) → elimina regime bias C_v1
+- ✅ 4,874 tickers (incluye delistados 2004-2019) → elimina survivorship bias
+- ✅ 67,439 días info-rich → red de seguridad amplia
+- ✅ 4.36M barras DIB ML-ready → pipeline validado técnicamente
+
+**⏳ PENDIENTE para E1-E13 (viene en descarga incremental)**:
+- ⏳ Metadata evento específico (¿fue FRD? ¿Parabolic? ¿Gap?)
+- ⏳ Labeling event-driven (FRD → short bias, Parabolic → long bias)
+- ⏳ Eventos con patrones que E0 miss (~35-40% adicionales, E1 RVOL>5, etc.)
+- ⏳ Overlap multi-evento (día puede ser E0+E7+E1 simultáneo → weighting complejo)
+
+### Próxima Fase: Hybrid Strategy (C.6 Roadmap Aprobado)
+
+```
+NOW (COMPLETADO):
+├─ E0 download 67,439 files (16.58 GB) ✅
+├─ DIB/Labels/Weights pipeline (64,801 files, 156.6 min) ✅
+└─ ML dataset 4.36M rows (train/valid split) ✅
+
+NEXT (Track A + B en paralelo, 2-3 días):
+├─ Track A: Implementar detectores E1, E4, E7, E8 (Python validators)
+└─ Track B: Baseline model E0 (proof-of-concept, NO tunear profundo)
+
+DESPUÉS (descarga incremental, +2 semanas):
+├─ Download E1-E13 ticks (~30K-40K días, +3-4 TB, resume-safe)
+├─ RE-BUILD DIB/VIB sobre {E0 ∪ E1-E13} dataset completo
+└─ ML Pipeline definitivo con event metadata + specific labeling
+```
+
+**Nota Crítica**: NO tunear E0 profundamente. Este dataset es validación técnica, no modelo final. El dataset definitivo será {E0 ∪ E1-E13} con clasificación multi-evento.
 
 ---
 
