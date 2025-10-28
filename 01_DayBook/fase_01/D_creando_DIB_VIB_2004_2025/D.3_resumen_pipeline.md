@@ -1,9 +1,9 @@
 # D.3 - Resumen Pipeline ML: DIB + Labels + Weights + Dataset
 
-**Fecha**: 2025-10-28
-**Status**: COMPLETADO (Fases 1-4)
-**Tiempo total**: ~106 minutos
-**Dataset final**: 4.36M filas ML-ready
+**Fecha**: 2025-10-28  
+**Status**: COMPLETADO (Fases 1-4)  
+**Tiempo total**: ~106 minutos  
+**Dataset final**: 4.36M filas ML-ready  
 
 ---
 
@@ -84,9 +84,9 @@ processed/labels/{TICKER}/date={YYYY-MM-DD}/
 ---
 
 ### Fase D.3: Sample Weights
-**Documentación**: [D.1.3_notas_6.1_SampleWeights.md](D.1.3_notas_6.1_SampleWeights.md)
-**Script**: `scripts/fase_D_creando_DIB_VIB/make_sample_weights.py`
-**Validación**: [notebooks/validacion_fase3_sample_weights_executed.ipynb](notebooks/validacion_fase3_sample_weights_executed.ipynb)
+**Documentación**: [D.1.3_notas_6.1_SampleWeights.md](D.1.3_notas_6.1_SampleWeights.md)  
+**Script**: `scripts/fase_D_creando_DIB_VIB/make_sample_weights.py`  
+**Validación**: [notebooks/validacion_fase3_sample_weights_executed.ipynb](notebooks/validacion__weights_distribuciones.png)  
 
 **Parámetros**:
 ```bash
@@ -334,7 +334,7 @@ DESPUÉS (descarga incremental, +2 semanas):
 
 ---
 
-**Última actualización**: 2025-10-28
-**Pipeline completado**: ✅ Fases D.1-D.4 (156.6 min, 0 errores)
-**Dataset ML-ready**: 4.36M filas (3.49M train / 872K valid)
-**Próximo paso**: Validación EDA + Baseline model E0
+**Última actualización**: 2025-10-28  
+**Pipeline completado**: ✅ Fases D.1-D.4 (156.6 min, 0 errores)  
+**Dataset ML-ready**: 4.36M filas (3.49M train / 872K valid)  
+**Próximo paso**: Validación EDA + Baseline model E0  
