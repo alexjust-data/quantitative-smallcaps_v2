@@ -1,18 +1,19 @@
-# Ejecución Pipeline Completo: DIB + Labels + Weights
+# Ejecución Pipeline Completo: DIB + Labels + Weights + ML Dataset
 
-**Fecha:** 2025-10-22
-**Objetivo:** Construir barras informacionales (Dollar Imbalance Bars), aplicar Triple Barrier Labeling y calcular Sample Weights sobre 11,054 ticker-days info-rich.
+**Fecha última actualización:** 2025-10-28
+**Objetivo:** Construir barras informacionales (Dollar Imbalance Bars), aplicar Triple Barrier Labeling, calcular Sample Weights y generar ML Dataset sobre el universo completo 2004-2025.
 
 ---
 
 ## Resumen Ejecutivo
 
-Pipeline completo de 3 etapas ejecutado en **20.1 minutos** con **100% de éxito** (0 errores).
+Pipeline completo de 4 etapas ejecutado con **99.998% de éxito** (1 archivo faltante de 64,801).
 
 **Output generado:**
-- **1,193,095 barras DIB** (~108 barras/ticker-day promedio)
-- **11,054 archivos de labels** (Triple Barrier con PT=3σ, SL=2σ, T1=120 barras)
-- **11,054 archivos de weights** (unicidad temporal + |ret| + time-decay)
+- **64,801 archivos DIB** (Dollar Imbalance Bars, 2004-2025, 4,874 tickers)
+- **64,800 archivos de labels** (Triple Barrier con PT=3σ, SL=2σ, T1=120 barras) - 99.998%
+- **64,801 archivos de weights** (unicidad temporal + |ret| + time-decay) - 100%
+- **ML Dataset** (en progreso - Fase 4)
 
 ---
 
@@ -27,7 +28,7 @@ python scripts/fase_D_creando_DIB_VIB/build_bars_from_trades.py \
   --bar-type dollar_imbalance \
   --target-usd 300000 \
   --ema-window 50 \
-  --parallel 12 \
+  --parallel 8 \
   --resume
 ```
 
@@ -38,7 +39,7 @@ python scripts/fase_D_creando_DIB_VIB/build_bars_from_trades.py \
 | `--bar-type` | `dollar_imbalance` | Tipo de barra: basada en flujo de dólares acumulado |
 | `--target-usd` | `300000` | Umbral de $300k por barra (apropiado para small caps) |
 | `--ema-window` | `50` | Ventana EMA para suavizado adaptativo del umbral |
-| `--parallel` | `12` | Workers en paralelo (optimizado vs 8 default) |
+| `--parallel` | `8` | Workers en paralelo |
 | `--resume` | `true` | Idempotencia con `_SUCCESS` markers |
 
 * ['notas sobre los parámetros'](./6.1.1_notas_sobre_6.1.md)
@@ -61,13 +62,11 @@ if t_sample > 32503680000000000:  # Jan 1, 3000 in microseconds
 
 | Métrica | Valor |
 |---------|-------|
-| **Tiempo ejecución** | 12.5 minutos |
-| **Velocidad** | ~14.7 ticker-days/segundo |
-| **Tasa éxito** | 11,054/11,054 (100%) |
-| **Total barras generadas** | ~1,193,095 barras |
-| **Promedio barras/ticker-day** | 107.9 barras |
-| **Tamaño promedio/archivo** | 0.0069 MB (~7 KB) |
-| **Tamaño total** | ~76 MB (~0.07 GB) |
+| **Tiempo ejecución** | 55.5 minutos |
+| **Tasa éxito** | 64,801/64,801 (100%) |
+| **Tickers únicos** | 4,874 |
+| **Cobertura temporal** | 2004-2025 (21 años) |
+| **Marcadores _SUCCESS** | 100% |
 | **Errores** | 0 |
 
 ### Muestra de archivos generados
@@ -133,7 +132,7 @@ python scripts/fase_D_creando_DIB_VIB/triple_barrier_labeling.py \
   --t1-bars 120 \
   --vol-est ema \
   --vol-window 50 \
-  --parallel 12 \
+  --parallel 8 \
   --resume
 ```
 
@@ -146,7 +145,7 @@ python scripts/fase_D_creando_DIB_VIB/triple_barrier_labeling.py \
 | `--t1-bars` | `120` | Vertical barrier: 120 barras hacia adelante (~medio día trading típico) |
 | `--vol-est` | `ema` | Estimador de volatilidad: EMA de retornos absolutos |
 | `--vol-window` | `50` | Ventana EMA para estimación de σ |
-| `--parallel` | `12` | Workers en paralelo |
+| `--parallel` | `8` | Workers en paralelo |
 
 * [`notas sobre los parámetros`](./D.1.2_notas_6.1_tripleBarrierLabeling.md)
 
@@ -168,9 +167,8 @@ Para cada barra como "anchor":
 
 | Métrica | Valor |
 |---------|-------|
-| **Tiempo ejecución** | 3.9 minutos |
-| **Velocidad** | ~47 archivos/segundo |
-| **Tasa éxito** | 11,054/11,054 (100%) |
+| **Tiempo ejecución** | 25.3 minutos |
+| **Tasa éxito** | 64,800/64,801 (99.998%) |
 | **Errores** | 0 |
 
 ### Schema de labels
@@ -214,7 +212,7 @@ python scripts/fase_D_creando_DIB_VIB/make_sample_weights.py \
   --uniqueness \
   --abs-ret-weight \
   --time-decay-half_life 90 \
-  --parallel 12 \
+  --parallel 8 \
   --resume
 ```
 
@@ -225,7 +223,7 @@ python scripts/fase_D_creando_DIB_VIB/make_sample_weights.py \
 | `--uniqueness` | `true` | Ajusta peso por concurrency (ventanas overlapping) |
 | `--abs-ret-weight` | `true` | Peso base = \|ret_at_outcome\| (favorece eventos significativos) |
 | `--time-decay-half_life` | `90` | Semivida de 90 días (decay exponencial por antigüedad) |
-| `--parallel` | `12` | Workers en paralelo |
+| `--parallel` | `8` | Workers en paralelo |
 
 
 * [**Notas sobre parametros Sample Weights**](./D.1.3_notas_6.1_SampleWeights.md)
@@ -252,9 +250,9 @@ Donde:
 
 | Métrica | Valor |
 |---------|-------|
-| **Tiempo ejecución** | 3.7 minutos |
-| **Velocidad** | ~50 archivos/segundo |
-| **Tasa éxito** | 11,054/11,054 (100%) |
+| **Tiempo ejecución** | 24.9 minutos |
+| **Tasa éxito** | 64,801/64,801 (100%) |
+| **Validación** | [notebooks/validacion_fase3_sample_weights_executed.ipynb](notebooks/validacion_fase3_sample_weights_executed.ipynb) |
 | **Errores** | 0 |
 
 ### Schema de weights
