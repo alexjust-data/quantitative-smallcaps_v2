@@ -227,6 +227,9 @@ python scripts/fase_D_creando_DIB_VIB/make_sample_weights.py \
 | `--time-decay-half_life` | `90` | Semivida de 90 días (decay exponencial por antigüedad) |
 | `--parallel` | `12` | Workers en paralelo |
 
+
+* [**Notas sobre parametros Sample Weights**](./D.1.3_notas_6.1_SampleWeights.md)
+
 ### Lógica de pesos
 
 **Fórmula:**
