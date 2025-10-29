@@ -1,0 +1,24 @@
+{
+  "description": "Snapshots point-in-time de referencia por día",
+  "datasets": {
+    "daily_cache": {
+      "columns": {
+        "close": "float64",
+        "volume": "int64",
+        "rvol": "float64",
+        "pct_chg": "float64",
+        "shares_out": "float64",
+        "float_est": "float64",
+        "exchange": "string"
+      }
+    },
+    "filings": {
+      "columns": {
+        "date": "YYYY-MM-DD",
+        "form": "string (S-3, 424B, ATM, PIPE, etc.)",
+        "effective_ts": "int64 (μs, opcional)",
+        "meta": "json string (opcional)"
+      }
+    }
+  }
+}

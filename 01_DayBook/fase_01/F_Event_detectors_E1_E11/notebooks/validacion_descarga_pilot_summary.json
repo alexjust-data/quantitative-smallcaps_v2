@@ -1,0 +1,67 @@
+{
+  "timestamp": "2025-10-29T10:07:29.776673",
+  "summary": {
+    "DESCARGA": {
+      "Fecha inicio": "2025-10-29 01:04:40",
+      "Configuraci\u00f3n": "15 tickers, event-window \u00b12, workers 6, ZSTD compression",
+      "Estado": "COMPLETADA \u2705"
+    },
+    "ARCHIVOS": {
+      "Total archivos descargados": "65,907",
+      "Archivos _SUCCESS": "65,907",
+      "Ratio SUCCESS/parquet": "1.00"
+    },
+    "TICKERS": {
+      "Tickers planeados (pilot)": "15",
+      "Tickers descargados (pilot)": "15/15",
+      "Tickers extra (bonus)": "4,859",
+      "Total tickers \u00fanicos": "4,874"
+    },
+    "ESPACIO": {
+      "Espacio total": "11.23 GB",
+      "Estimaci\u00f3n original": "~528 GB",
+      "Eficiencia real": "97.9% menos",
+      "Promedio/ticker-day": "0.174 MB"
+    },
+    "COBERTURA": {
+      "Ticker-days esperados (pilot)": "2,127",
+      "Ticker-days descargados (pilot)": "5,285",
+      "Ticker-days totales": "65,907",
+      "Expansi\u00f3n por event-window": "31.0x"
+    },
+    "CALIDAD": {
+      "Archivos v\u00e1lidos (sample)": "100/100",
+      "Archivos vac\u00edos (sample)": "0/100",
+      "Archivos corruptos (sample)": "0/100",
+      "Integridad estimada": "100.0%"
+    },
+    "TEMPORAL": {
+      "Fechas \u00fanicas": "5,723",
+      "Rango temporal": "2004-01-05 \u2192 2025-10-21",
+      "Avg archivos/fecha": "11.5"
+    }
+  },
+  "pilot_tickers": [
+    "ALPP",
+    "ASTI",
+    "BBIG",
+    "DCTH",
+    "FRBK",
+    "HMNY",
+    "IDEX",
+    "LTCH",
+    "MULN",
+    "RNVA",
+    "SBNY",
+    "SONG",
+    "SRAX",
+    "SRNE",
+    "TNXP"
+  ],
+  "metrics": {
+    "total_files": 65907,
+    "total_tickers": 4874,
+    "total_size_gb": 11.225584421306849,
+    "avg_mb_per_ticker_day": 0.17441240607853814
+  }
+}

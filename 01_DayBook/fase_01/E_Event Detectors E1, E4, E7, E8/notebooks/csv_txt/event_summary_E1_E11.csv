@@ -1,0 +1,11 @@
+Event,Description,Count,Unique Tickers,Date Range,Avg Events/Ticker
+E1,Volume Explosion (RVOL > 5x),164941,7990,2004-01-30 to 2025-10-24,20.64
+E2,Gap Up (+10%),73170,6554,2004-01-05 to 2025-10-24,11.16
+E3,Price Spike Intraday (+20%) [RADAR],144062,6607,2004-01-02 to 2025-10-24,21.8
+E5,Breakout ATH (52w high),412902,7267,2004-01-02 to 2025-10-24,56.82
+E6,Multiple Green Days (3+ consec),1543990,8307,2004-01-07 to 2025-10-24,185.87
+E7,First Red Day (FRD),16919,4296,2004-01-08 to 2025-10-22,3.94
+E8,Gap Down Violent (-15%),19924,4466,2004-01-05 to 2025-10-24,4.46
+E9,Crash Intraday (-30%) [RADAR],24074,4588,2004-01-06 to 2025-10-24,5.25
+E10,First Green Bounce (after 3+ red),814068,8193,2004-01-07 to 2025-10-24,99.36
+E11,Volume Bounce (RVOL>3x + bounce),47583,7137,2004-01-30 to 2025-10-21,6.67
