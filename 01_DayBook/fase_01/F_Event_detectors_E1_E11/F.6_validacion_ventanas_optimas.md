@@ -1,7 +1,7 @@
 # F.6 - Validación Matemática de Ventanas Temporales Óptimas
 
-**Fecha**: 2025-10-29
-**Status**: 🔄 EN PROCESO
+**Fecha**: 2025-10-29  
+**Status**: 🔄 EN PROCESO  
 **Objetivo**: Determinar empíricamente las ventanas temporales óptimas `[t_start, t_end]` para cada evento E1-E11 usando datos reales del Pilot50.
 
 ---
@@ -49,8 +49,14 @@ EVENT_WINDOWS = {
 La ventana óptima maximiza información total con restricciones de costo:
 
 $$
-[t^*_{start}, t^*_{end}] = \arg\max_{t_{start}, t_{end}} \left[ \sum_{t=t_{start}}^{t_{end}} I(X_t; y) - \lambda \cdot \text{window_size} \right]
+[t^*_{start}, t^*_{end}] = 
+\arg\max_{t_{start}, t_{end}} 
+\left[
+\sum_{t=t_{start}}^{t_{end}} I(X_t; y) 
+- \lambda \cdot \text{window\_size}
+\right]
 $$
+
 
 Donde:
 - $I(X_t; y)$ = Información mutua entre features día $t$ y target
