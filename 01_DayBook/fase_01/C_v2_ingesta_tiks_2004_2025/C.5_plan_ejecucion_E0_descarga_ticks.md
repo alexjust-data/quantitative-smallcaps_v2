@@ -150,7 +150,7 @@ Verificar:
 ---
 
 > ...  
-> **Resultados** : mira este link [PASO 1: Generación Caché Diario 2004-2025](./C.5.0_resultados_paso_1.md)  
+> **Resultados** : mira este link [PASO 1: Generación Caché Diario 2004-2025](./C.5.1_resultados_paso_1.md)  
 >  
 > 📊 **Archivo JSON Generado**
 > El archivo `stats_daily_cache.json` contiene:
