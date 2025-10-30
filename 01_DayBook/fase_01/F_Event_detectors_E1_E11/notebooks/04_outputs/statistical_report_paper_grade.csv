@@ -1,0 +1,25 @@
+Metric,Value
+N Ventanas Analizadas,12
+,
+MI - Mean,0.6262
+MI - Std,0.1021
+MI - Min,0.4453
+MI - Max,0.7555
+,
+Edge - Mean,0.009074
+Edge - Std,0.004990
+Edge - Min,0.002951
+Edge - Max,0.020933
+,
+Hybrid - Mean,0.4860
+Hybrid - Std,0.2405
+Hybrid - Min,0.0933
+Hybrid - Max,0.9866
+,
+Spearman ρ (MI vs Edge),-0.0699
+P-value,0.829024
+Significancia,No sig
+,
+Concordancia Interpretación,Baja
+Ventanas Seleccionadas (top 20%),3
+Proporción Seleccionadas,25.0%
