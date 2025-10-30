@@ -1,11 +1,16 @@
 # Validation Pipeline - Checkpoint Map
-
-**Objetivo**: Certificar ejecución completa del proyecto desde su inicio. Documento de control ejecutivo `checkpoint map` que certifique cada paso completado con evidencia tangible + links a documentación detallada.  
+Certifica la ejecución completa del proyecto desde su inicio, que certifique cada paso completado con evidencia tangible + links a documentación detallada.  
 **Última actualización**: 2025-10-30  
 
+* Universo y fundamento teorico
+    * [Eventos, la fase del ciclo pump & dump:](#eventos-a--fase-del-ciclo-pump--dump)
+    * [Ventanas temporales de estos eventos](#ventanas-temporales-de-estos-eventos)
+* Pipeline
+    * [fase_01/A_universo](#--fase_01--a_universo)
+    * [fase_01/B_ingesta_Daily_Minut_v2](#--fase_01--b_ingesta_daily_minut_v2)
 
-**OBJETIVO**  
-Descargar datos tick-by-tick (trades) de Polygon API **SOLO para ventanas temporales donde ocurren eventos clave** detectables en el universo hibrido (8,686 tickers, 21 anos). NO necesitamos ticks de TODO el historico: Solo necesitamos ticks de periodos con **actividad informativa relevante = eventos de pump & dump**. Estos eventos marcan las ventanas temporales criticas para descargar ticks.
+**OBJETIVO de este pipeline**  
+Descargar datos tick-by-tick (trades) de Polygon API, `SOLO para ventanas temporales donde ocurren eventos clave` detectables en el universo hibrido (8,686 tickers, 21 anos, 3,092 tikers activos y 5,594 inactivos). NO necesitamos ticks de TODO el historico (2004-2025): Solo necesitamos ticks de periodos con `actividad informativa relevante = eventos de pump & dump`. Estos eventos marcan las ventanas temporales criticas para descargar ticks.
 
 **FUNDAMENTO TEORICO**
 
@@ -25,9 +30,7 @@ Descargar datos tick-by-tick (trades) de Polygon API **SOLO para ventanas tempor
     > 5. **Dilution events** (offerings, correlacionados con colapsos)
 
 
-### EVENTOS 
-
-**CLAVES A DETECTAR : fase del ciclo pump & dump:**
+## EVENTOS a : fase del ciclo pump & dump:
 
 ```
 FASE 1: DORMIDO (skip - no descargar ticks)
@@ -70,13 +73,21 @@ MICROSTRUCTURE ANOMALIES (EVENTO 6)
     +-- [E17] Extreme Spread Events (bid/ask > 10%)
 ```
 
-### VENTANAS temporales
+## VENTANAS temporales de estos eventos
 
 Para cada evento detectado, descargar ticks en ventana
 
+* E0 -> +1 -1
+
 ---
 
-## .. / fase_01 / A_universo 
+# Pipeline
+
+## fase_01 / A_universo 
+
+**Descargas:**
+
+**Reference Universe**: 34,380 tickers (11,853 activos + 22,527 inactivos)
 
 ```sh
 1. Reference Universe (/v3/reference/tickers)
@@ -85,32 +96,41 @@ Para cada evento detectado, descargar ticks en ventana
     ├── 11,853 activos
     └── 22,527 inactivos (anti-survivorship bias)
     📄 Files: tickers_all.parquet, tickers_active.parquet, tickers_inactive.parquet
-
+```
+**Splits**: 26,641 splits históricos (31 archivos parquet)
+```sh
 2. Splits (/v3/reference/splits)
     📂 raw/polygon/reference/splits/
     📊 26,641 splits históricos
     📄 31 archivos parquet (particionado)
+```
 
+**Dividends**: 1,878,357 dividendos (31 archivos parquet)
+```sh
 3. Dividends (/v3/reference/dividends)
     📂 raw/polygon/reference/dividends/
     📊 1,878,357 dividendos históricos
     📄 31 archivos parquet (particionado)
+```
 
+⚠️  **Ticker Details**: INCOMPLETO (<1% completitud)
+```sh
 4. Ticker Details (/v3/reference/tickers/{ticker})
     📂 raw/polygon/reference/ticker_details/
     📄 2 archivos parquet (enriquecimiento parcial)
     ⚠️  INCOMPLETO - Solo sample ejecutado
 ```
 
-> EVIDENCIA de los resulados: 
->- [A_Universo / notebooks / notebook2.ipynb](../01_DayBook/fase_01/A_Universo/notebooks/notebook2.ipynb)
-
 ---
 
-## .. / fase_01 / B_ingesta_Daily_Minut_v2
+> **EVIDENCIA de los resultados**: [A_Universo / notebooks / notebook2.ipynb](../01_DayBook/fase_01/A_Universo/notebooks/notebook2.ipynb)  
+
+---  
+
+## fase_01 / B_ingesta_Daily_Minut_v2
 
 ```sh
-Flujo: 
+hemos hecho :
 
 ../fase_01/A_universo (34,380 tickers) 
                             ↓
@@ -120,19 +140,32 @@ Flujo:
                             ├── 3,092 activos
                             └── 5,594 inactivos (ANTI-SURVIVORSHIP BIAS)
                             ↓
+ahora toca :
+
 ../fase_01/B_ingesta → OHLCV Polygon.io
 ```
 
 **Objetivo**:  
-Descargar `OHLCV (Open, High, Low, Close, Volume)` completo del Universo Híbrido: 8,686 tickers para:
-* Eliminar survivorship bias (López de Prado Ch.1)
-* Preparar datos para Event Detection (pumps & dumps)
-* Base para construcción de DIB bars (Cap.2)
-* OHLCV Daily
-* OHLCV Intraday 1-minute
 
-**Output critical**:  
-`OHLCV` historical data es input para:
+Descargar `OHLCV (Open, High, Low, Close, Volume)` completo del Universo Híbrido: 8,686 tickers para:
+
+* Eliminar survivorship bias (López de Prado Ch.1)  
+* Preparar datos para Event Detection (pumps & dumps)  
+* Base para construcción de DIB bars (Cap.2)  
+* OHLCV Daily  
+* OHLCV Intraday 1-minute  
+
+
+```sh
+# ¿que es OHLCV?
+O = $175.20  ← Primer trade del minuto
+H = $175.85  ← Máximo alcanzado
+L = $175.10  ← Mínimo alcanzado  
+C = $175.60  ← Último trade del minuto
+V = 45,230   ← Total shares intercambiadas
+```
+
+**Output critical**:  `OHLCV` historical data es input para:
 * **Event Detection (E1-E11)**: Detectar VolExplosion, GapUp, Parabolic, etc.
 * **Daily features**: RVOL, volatility, %change
 * **Intraday bars**: Construcción de 1-min OHLCV
@@ -169,15 +202,14 @@ Descargas completadas:
     Ejemplos: ['ADSW', 'ASTI', 'Hw', 'MURAV', 'RNVA']
 ```
 
-> EVIDENCIA de los resulados: 
-> - [B_ingesta_Daily_Minut_v2 / notebooks / notebook2.ipynb](../01_DayBook/fase_01/B_ingesta_Daily_Minut_v2/notebooks/notebook2.ipynb)
+> EVIDENCIA de los resulados: [B_ingesta_Daily_Minut_v2 / notebooks / notebook2.ipynb](../01_DayBook/fase_01/B_ingesta_Daily_Minut_v2/notebooks/notebook2.ipynb)
 
 --- 
 
-## .. \ fase_01 \ C_v2_ingesta_tiks_2004_2025 \ 
+## fase_01 \ C_v2_ingesta_tiks_2004_2025 \ 
 
 ```sh
-Flujo:
+hemos hecho :
 
 ../fase_01/A_universo (34,380 tickers) 
                             ↓
@@ -189,6 +221,9 @@ Flujo:
                             
 ../fase_01/B_ingesta → OHLCV (8,619 daily + 8,623 intraday tickers)
                             ↓
+
+ahora toca :
+
 ../fase_01/C_v2_ingesta_tiks_2004_2025 (Event-Driven Pipeline)
                             ↓
         [PASO 1] Agregación OHLCV 1m → Daily Cache
@@ -223,8 +258,7 @@ Flujo:
 
 ### [PASO 1] Resumen diario desde barras 1-minuto (390 barras → 1 fila)
 
-**Explicacion detallada**: [proceso ](EXPLICACION_PASO1_DAILY_CACHE.md) .   
-Este paso está agregando LAS barras OHLCV de 1-minuto EN barras diarias
+**Explicacion detallada**: [proceso [PASO 1]](EXPLICACION_PASO1_DAILY_CACHE.md) .  Este paso está agregando LAS barras OHLCV de 1-minuto EN barras diarias
 
 `INPUT`: Las barras 1-minuto de Fase B (`raw/polygon/ohlcv_intraday_1m/`)
 
@@ -287,10 +321,12 @@ Columnas finales:
 - has_gaps         ← ¿Faltaron barras?
 ```
 ### [PASO 2] Configuración Filtros E0
-NO depende de PASO 1, puedes hacerlo antes/después  
-Genera un YAML `universe_config.yaml` con : `RVOL≥2`, `|%chg|≥15%`, `$vol≥$5M`, `precio $0.20-$20`  
+Justificacion completa del porqué de los Filtros E0 : [LINK](../01_DayBook/fase_01/C_v2_ingesta_tiks_2004_2025/anotaciones/JUSTIFICACION_FILTROS_E0_COMPLETA.md)
 
-Justificacion completa de Filtros E0 : [LINK](../01_DayBook/fase_01/C_v2_ingesta_tiks_2004_2025/anotaciones/JUSTIFICACION_FILTROS_E0_COMPLETA.md)
+PASO 2 NO depende de PASO 1, puedes hacerlo antes/después.  
+Genera un YAML `universe_config.yaml` con :   
+`RVOL≥2`, `|%chg|≥15%`, `$vol≥$5M`, `precio $0.20-$20`  
+
 
 **Resumen de Justificación Filtros E0** (Generic Info-Rich):
 >
@@ -321,6 +357,7 @@ processed/universe/info_rich/daily/
 ├── date=2024-01-03/watchlist.parquet  
 └── ...
 ```
+> EVIDENCIA de resulados: [[PASO 3] Generación Watchlists E0](../01_DayBook/fase_01/C_v2_ingesta_tiks_2004_2025/notebooks/analysis_paso3_executed.ipynb)
 
 ### [PASO 4] Análisis Características E0
 
@@ -357,6 +394,11 @@ Distribución |%chg|:
 ✅ 4,898 tickers únicos con eventos E0
 ✅ Stats guardadas en analysis/e0_characteristics/
 
+> EVIDENCIA de resulados: 
+> [PASO 4 (Análisis Características)](../01_DayBook/fase_01/C_v2_ingesta_tiks_2004_2025/notebooks/analysis_paso4_executed.ipynb)
+> [PASO 4 (validación adicional)](../01_DayBook/fase_01/C_v2_ingesta_tiks_2004_2025/notebooks/analysis_caracteristicas_paso4.ipynb)
+
+
 ### [PASO 5] Descarga Ticks Selectiva 
 
 1. Lee watchlists E0 del PASO 3
@@ -382,7 +424,10 @@ INPUT:
 processed/universe/info_rich/daily/
 ├── date=2024-01-02/watchlist.parquet  ← 50 eventos
 ├── date=2024-01-03/watchlist.parquet  ← 120 eventos
-└── ...                                  ← 5,934 watchlists totales
+└── ...                                ← 5,934 watchlists totales
+```
+
+```sh
 OUTPUT:
 raw/polygon/trades/
 ├── ticker=AAM/
@@ -395,6 +440,281 @@ raw/polygon/trades/
 
 Total: 64,801 ticker-días × ~250 KB promedio = 16.58 GB
 ```
+> EVIDENCIA de resulados: 
+>* [PASO 5 (Descarga Ticks)](../01_DayBook/fase_01/C_v2_ingesta_tiks_2004_2025/notebooks/analysis_paso5_executed.ipynb)  
+>* [PASO 5 (validación adicional)](../01_DayBook/fase_01/C_v2_ingesta_tiks_2004_2025/notebooks/analysis_paso5_executed_2.ipynb)  
+>* [Visualizaciones globales](../01_DayBook/fase_01/C_v2_ingesta_tiks_2004_2025/notebooks/analysis_estadisticas_visuales_executed.ipynb)  
+
+
+## Estudio datos E0 en mercado
+
+> ---  
+>**Analisis profundo de eventos E0** : [**Link**](../01_DayBook/fase_01/C_v2_ingesta_tiks_2004_2025/notebooks/ANALISIS_PROFUNDO_EVENTOS_E0_FIXED.ipynb)  
+> * Analiza trades tick-by-tick y encuentra la hora exacta del trigger E0
+> * ¿cuándo ocurren los eventos?
+> ---  
+
+---
+
+
+## fase_01 \ D_creando_DIB_VIB_2004_2025
+```sh
+hemos hecho :
+
+../fase_01/A_universo (34,380 tickers) 
+                            ↓
+                    Filtrado Small Caps (market cap < $2B, XNAS/XNYS, CS)
+                    Universo Híbrido: 8,686 tickers
+                        ├── 3,092 activos
+                        └── 5,594 inactivos (ANTI-SURVIVORSHIP BIAS)
+                            
+../fase_01/B_ingesta → OHLCV (8,619 daily + 8,623 intraday tickers)
+                            ↓
+../fase_01/C_v2_ingesta_tiks_2004_2025 (Event-Driven Pipeline)
+        [PASO 1] 
+        [PASO 2] 
+        [PASO 3] 
+        [PASO 4] 
+        [PASO 5] Descarga Ticks Selectiva con eventos E0 (+1 / -1 día)
+                            ↓
+                OUTPUT:
+                raw/polygon/trades/
+                ├── ticker=AAM/
+                │   ├── date=2024-01-01/trades.parquet  ← Tick-by-tick (price, size, conditions)
+                │   ├── date=2024-01-02/trades.parquet
+                │   └── date=2024-01-03/trades.parquet
+                ├── ticker=BCRX/
+                │   └── ...
+                └── ...
+
+                            ↓
+
+ahora toca :
+
+  raw/polygon/trades/                    (PASO 5 output - 60,825 días)
+          │
+          ├──[D.1]──> processed/bars/              (Dollar Imbalance Bars)
+          │               │
+          │               ├──[D.2]──> processed/labels/        (Triple Barrier Labels)
+          │               │               │
+          │               │               ├──[D.3]──> processed/weights/     (Sample Weights)
+          │               │               │               │
+          │               │               │               └──[D.4]──> processed/datasets/
+          │               │               │                               ├── daily/
+          │               │               │                               ├── global/
+          │               │               │                               └── splits/
+          │               │               │                                    ├── train.parquet (3.49M rows)
+          │               │               │                                    └── valid.parquet (872K rows)
+```
+
+**Objetivo**:  
+
+* Construir barras informacionales (Dollar Imbalance Bars) desde tick data, 
+* aplicar Triple Barrier Labeling, 
+* calcular Sample Weights con unicidad temporal, 
+* y generar ML Dataset walk-forward listo para entrenamiento supervisado.   
+
+**Cobertura**: 
+* 2004-2025 (21 años), 4,874 tickers, 64,801 días únicos  
+
+**Resultado final**: 
+
+* 4.36M eventos ML-ready con 14 features intraday + labels + weights.  
+
+### fase_01 / D_creando_DIB_VIB_2004_2025
+
+---
+
+#### [D.1] Dollar Imbalance Bars (DIB)
+
+>**Explicación detallada**:
+>- [D.0_Constructor_barras_Dollar_Vol_Imbalance.md](./D.0_Constructor_barras_Dollar_Vol_Imbalance.md)
+>- [D.1.1_notas_6.1_DIB.md](./D.1.1_notas_6.1_DIB.md) - Parámetros target-usd y ema-window
+>
+>**Script**: `scripts/fase_D_creando_DIB_VIB/build_bars_from_trades.py`
+
+`INPUT`:
+- `raw/polygon/trades/{ticker}/date={YYYY-MM-DD}/trades.parquet` (60,825 archivos, formato NUEVO con t_raw + t_unit)
+
+`TRANSFORMACIÓN`:
+
+```python
+# Event-driven sampling (López de Prado 2018)
+# Acumula flujo de dólares hasta umbral adaptativo
+
+for cada tick:
+    dollar_flow += price × size × tick_sign
+    if dollar_flow >= threshold_adaptativo:
+        flush_bar(t_open, t_close, OHLC, volume, n_trades, imbalance_score)
+        threshold = EMA(threshold, window=50)
+```
+
+- Parámetros clave:
+    - `--target-usd 300000`: $300k por barra (~1-2% volumen diario small cap)
+    - `--ema-window 50`: Suavización adaptativa del umbral (memoria ~sesión completa)
+    - `--parallel 8`: Workers concurrentes
+
+`OUTPUT`:
+- `processed/bars/{ticker}/date={YYYY-MM-DD}/dollar_imbalance.parquet`
+- **64,801 archivos** (100% completitud)
+- Schema: `{t_open, t_close, o, h, l, c, v, n, dollar, imbalance_score}`
+- Promedio: ~57 barras/día, ~190 KB/archivo
+
+> ---
+>   ...  
+> EVIDENCIA de resultados:   
+> [D.1_Ejecucion_Pipeline_DIB_Labels_Weights.md](./D.1_Ejecucion_Pipeline_DIB_Labels_Weights.md#1-dollar-imbalance-bars-dib)  
+> ...  
+
+
+#### [D.2] Triple Barrier Labeling
+
+---
+
+**Explicación detallada**: [D.1.2_notas_6.1_tripleBarrierLabeling.md](./D.1.2_notas_6.1_tripleBarrierLabeling.md)  
+**Script**: `scripts/fase_D_creando_DIB_VIB/triple_barrier_labeling.py`
+
+`INPUT`:
+- `processed/bars/{ticker}/date={YYYY-MM-DD}/dollar_imbalance.parquet`
+
+`TRANSFORMACIÓN`:
+```python
+# Triple Barrier Method (López de Prado Ch.3)
+# Para cada barra como "anchor":
+
+σ = EMA(|log_returns|, span=50)  # Volatilidad adaptativa
+
+# Barreras horizontales:
+PT = price_anchor × (1 + 3.0 × σ)  → label = +1 si toca primero
+SL = price_anchor × (1 - 2.0 × σ)  → label = -1 si toca primero
+
+# Barrera vertical:
+t1 = anchor_ts + 120 barras (~medio día)  → label = 0 si expira sin tocar PT/SL
+
+# Asimétrico: PT=3σ vs SL=2σ favorece captura de momentum (pumps explosivos)
+```
+
+* Parámetros clave:
+    - `--pt-mul 3.0`: Profit target = 3 × σ (significancia estadística)
+    - `--sl-mul 2.0`: Stop loss = 2 × σ (asimétrico, stop más cercano)
+    - `--t1-bars 120`: Vertical barrier ~2-3 horas trading
+    - `--vol-est ema --vol-window 50`: Estimación volatilidad adaptativa
+
+`OUTPUT`:
+- `processed/labels/{ticker}/date={YYYY-MM-DD}/labels.parquet`
+- **64,800 archivos** (99.998% completitud, 1 archivo faltante)
+- Schema: `{anchor_ts, t1, pt_hit, sl_hit, label, ret_at_outcome, vol_at_anchor}`
+
+
+
+> ---  
+> EVIDENCIA de resultados: [D.1_Ejecucion_Pipeline_DIB_Labels_Weights.md](./D.1_Ejecucion_Pipeline_DIB_Labels_Weights.md#2-triple-barrier-labeling)  
+> ...
+---
+
+#### [D.3] Sample Weights (Uniqueness + Magnitude + Time-Decay)
+
+---
+
+**Explicación detallada**: [D.1.3_notas_6.1_SampleWeights.md](./D.1.3_notas_6.1_SampleWeights.md)  
+**Script**: `scripts/fase_D_creando_DIB_VIB/make_sample_weights.py`  
+
+`INPUT`:
+- `processed/labels/{ticker}/date={YYYY-MM-DD}/labels.parquet`
+
+`TRANSFORMACIÓN`:
+```python
+# Fórmula (López de Prado Ch.4):
+weight[i] = (|ret_at_outcome[i]| / concurrency[i]) × decay[i]
+
+# Componentes:
+# 1. |ret_at_outcome|: Peso base por magnitud (eventos +80% > +0.3%)
+# 2. concurrency[i]: #ventanas [anchor_ts, t1] que contienen evento i
+#    → Reduce peso de eventos solapados (no independientes)
+# 3. decay[i]: 0.5 ^ (age_days / 90) - Prioriza recencia
+#    (actualmente stub=1.0 intra-día, activable cross-day futuro)
+
+# Normalización: ∑weights = 1.0 por ticker-day
+```
+
+* Parámetros clave:
+    - `--uniqueness`: Ajusta por concurrency (evita overfit a racimos temporales)
+    - `--abs-ret-weight`: Peso base = |ret| (prioriza eventos significativos)
+    - `--time-decay-half_life 90`: Semivida 90 días (hook preparado para cross-day)
+
+`OUTPUT`:
+- `processed/weights/{ticker}/date={YYYY-MM-DD}/weights.parquet`
+- **64,801 archivos** (100% completitud)
+- Schema: `{anchor_ts, weight}`
+
+
+
+> --- 
+> EVIDENCIA de resultados: [D.1_Ejecucion_Pipeline_DIB_Labels_Weights.md](./D.1_Ejecucion_Pipeline_DIB_Labels_Weights.md#3-sample-weights-unicidad--retorno--time-decay)  
+> ...    
+
+---
+
+#### [D.4] ML Dataset Builder (Features + Walk-Forward Split)
+
+---
+
+
+**Script**: `scripts/fase_D_creando_DIB_VIB/build_ml_daser.py`
+
+`INPUT`:
+- `processed/bars/{ticker}/date={day}/dollar_imbalance.parquet`
+- `processed/labels/{ticker}/date={day}/labels.parquet`
+- `processed/weights/{ticker}/date={day}/weights.parquet`
+
+`TRANSFORMACIÓN`:
+```python
+# 1. Feature Engineering (14 columnas intraday):
+ret_1 = log(c / c_prev)
+range_norm = (h - l) / |c_prev|
+vol_f, dollar_f, imb_f = volume/dollar/imbalance fractional changes
+ret_1_ema10, ret_1_ema30, range_norm_ema20, ...
+vol_z20, dollar_z20 = z-scores volumen/dólar (20-bar window)
+
+# 2. Join componentes:
+dataset = bars.join(labels, left_on="t_close", right_on="anchor_ts")
+              .join(weights, on="anchor_ts")
+
+# 3. Walk-Forward Split (no aleatorio):
+timeline = sorted(anchor_ts)
+train = primeros 80% días - purge_bars=50
+valid = últimos 20% días
+
+# Purged K-Fold: gap 50 barras entre train/valid (evita leakage temporal)
+```
+
+* Parámetros clave:
+    - `--split walk_forward`: Split temporal (no random)
+    - `--folds 5`: Divide timeline en 5 folds
+    - `--purge-bars 50`: Embargo period entre train/valid
+    - `--parallel 12`: Workers concurrentes
+
+`OUTPUT`:
+- `processed/datasets/daily/{ticker}/date={day}/dataset.parquet` (**64,801 archivos**)
+- `processed/datasets/global/dataset.parquet` (**4,359,730 rows**)
+- `processed/datasets/splits/train.parquet` (**3,487,734 rows, 80.0%**)
+- `processed/datasets/splits/valid.parquet` (**871,946 rows, 20.0%**)
+- `processed/datasets/meta.json` (metadata: features, folds, purge, stats)
+
+**Features generadas (14)**:
+```
+ret_1, range_norm, vol_f, dollar_f, imb_f,
+ret_1_ema10, ret_1_ema30, range_norm_ema20,
+vol_f_ema20, dollar_f_ema20, imb_f_ema20,
+vol_z20, dollar_z20, n
+```
+
+> ---  
+> EVIDENCIA de resultados: [D.1_Ejecucion_Pipeline_DIB_Labels_Weights.md](./D.1_Ejecucion_Pipeline_DIB_Labels_Weights.md#4-ml-dataset-builder-bonus)  
+> ...  
+
+
+---
 
 ### ..  / A_universo / [1_influencia_MarcosLopezDePadro.md](fase_01/A_Universo/1_influencia_MarcosLopezDePadro.md)
 
@@ -408,9 +728,7 @@ Total: 64,801 ticker-días × ~250 KB promedio = 16.58 GB
 2. **Construir múltiples tipos de barras para comparación:**
 
    **a) Dollar Bars (baseline):**
-
    **b) Dollar Imbalance Bars (DIBs) - RECOMENDADO para pumps:**
-
    **c) Dollar Runs Bars (DRBs) - Para detectar sweeping agresivo:**
 
 3. **Validar propiedades estadísticas** (ejercicios del Capítulo 2):
@@ -419,312 +737,7 @@ Total: 64,801 ticker-días × ~250 KB promedio = 16.58 GB
    - Test de normalidad (Jarque-Bera) → retornos deben estar más cerca de Gaussiana
 
 
-### EJECUCION
-
-```sh
-✅ E0 (Generic Info-Rich) - 2004-2025
-   - 67,439 archivos descargados
-   - 16.58 GB storage
-   - 92.2% cobertura (64,801 / 70,290 días trading)
-   - Event window: ±1 día
-   - Estructura: raw/polygon/trades/{TICKER}/date={YYYY-MM-DD}/trades.parquet
-```
 
 ---
 
-### CP-B1: Descarga Trades Polygon.io ✅
 
-**Doc**: [F.5_auditoria_descarga_pilot50.md](fase_01/F_Event_detectors_E1_E11/F.5_auditoria_descarga_pilot50.md)
-
-**Resultado**:
-```
-📂 raw/polygon/trades_pilot50_validation/
-📊 139,684 parquet files
-🎯 50 tickers (2004-2025)
-📈 37,274 ticker-days con eventos
-📅 139,684 ticker-days totales (ventana ±3)
-```
-
-**Verificación**: `find raw/polygon/trades_pilot50_validation -name "*.parquet" | wc -l` → 139684
-
-**Certificación**: ✅ Dataset completo
-
----
-
-### CP-B2: Construcción DIB Bars ✅
-
-**Script**: `scripts/fase_D_creando_DIB_VIB/build_bars_from_trades.py`
-
-**Parámetros**:
-```bash
---bar-type dollar_imbalance
---target-usd 300000        # $300k target
---ema-window 50            # EMA-50 imbalance
---parallel 12
-```
-
-**Resultado**:
-```
-📂 processed/dib_bars/pilot50_validation/
-📊 139,684 parquet files
-📋 Formato: OHLCV + imbalance_score + num_ticks
-```
-
-**Verificación**: `find processed/dib_bars/pilot50_validation -name "_SUCCESS" | wc -l` → 139684
-
-**Certificación**: ✅ DIB bars construidos con López de Prado methodology
-
----
-
-### CP-C1: Event Detection E1-E11 ✅
-
-**Doc**: [F.3_arquitectura_descarga_ventana_dinamica.md](fase_01/F_Event_detectors_E1_E11/F.3_arquitectura_descarga_ventana_dinamica.md)
-
-**Eventos**: E1-VolExplosion | E2-GapUp | E3-PriceSpikeIntraday | E4-Parabolic | E5-BreakoutATH | E6-MultipleGreenDays | E7-FirstRedDay | E8-GapDownViolent | E9-CrashIntraday | E10-FirstGreenBounce | E11-VolumeBounce
-
-**Certificación**: ✅ 11 detectores implementados
-
----
-
-### CP-C2: Generación Watchlist ✅
-
-**Script**: `scripts/fase_E_Event_Detectors_*/event_detectors.py`
-
-**Resultado**:
-```
-📂 processed/watchlists/wl_expanded_E1_E11.parquet
-📊 44,189 eventos detectados (2004-2025)
-```
-
-**Distribución**:
-```
-E1:7,686 | E2:1,070 | E3:1,901 | E4:1,265 | E5:4,633 | E6:16,776
-E7:233 | E8:455 | E9:420 | E10:8,494 | E11:1,256
-```
-
-**Certificación**: ✅ 44,189 eventos catalogados
-
----
-
-### CP-D1: Triple Barrier Labeling ✅
-
-**Script**: `scripts/fase_D_creando_DIB_VIB/triple_barrier_labeling.py`
-**Doc**: [F.7_pipeline_labels_weights_pilot50.md](fase_01/F_Event_detectors_E1_E11/F.7_pipeline_labels_weights_pilot50.md)
-
-**Parámetros**:
-```bash
---pt-mul 3.0           # Profit = 3σ
---sl-mul 2.0           # Stop = 2σ
---t1-bars 120          # Vertical = 120 bars
---vol-est ema --vol-window 50
-```
-
-**Resultado**:
-```
-📂 processed/labels_pilot50/
-📊 139,684 labels.parquet
-📋 Formato: t_open, t_close, ret, label ∈ {-1,0,1}
-```
-
-**Verificación**: `find processed/labels_pilot50 -name "labels.parquet" | wc -l` → 139684
-
-**Certificación**: ✅ Triple Barrier ejecutado (López de Prado Ch.3)
-
----
-
-### CP-D2: Sample Weights ✅
-
-**Script**: `scripts/fase_D_creando_DIB_VIB/make_sample_weights.py`
-
-**Parámetros**:
-```bash
---uniqueness              # López de Prado Ch.4
---abs-ret-weight          # Weight by |return|
---time-decay-half_life 90 # 90-day decay
-```
-
-**Resultado**:
-```
-📂 processed/weights_pilot50/
-📊 139,684 weights.parquet
-📋 Formato: weight, avg_uniqueness
-```
-
-**Certificación**: ✅ Sample weights calculados
-
----
-
-### CP-D3: Feature Engineering ✅
-
-**Features**: Returns (log/simple) | Volatility (rolling/EWMA) | Volume ratios (RVOL) | Imbalance metrics | Price ratios
-
-**Certificación**: ✅ Features integrados en D.4
-
----
-
-### CP-D4: Dataset Construction ✅
-
-**Script**: `scripts/fase_D_creando_DIB_VIB/build_ml_daser.py`
-
-**Parámetros**:
-```bash
---bars-root processed/dib_bars/pilot50_validation
---labels-root processed/labels_pilot50
---weights-root processed/weights_pilot50
---outdir processed/dataset_pilot50
---split none
-```
-
-**Resultado**:
-```
-📂 processed/dataset_pilot50/daily/
-📊 96,897 dataset.parquet
-📋 Formato: bars + labels + weights + features
-```
-
-**Verificación**: `find processed/dataset_pilot50/daily -name "dataset.parquet" | wc -l` → 96897
-
-**Certificación**: ✅ 96,897 ML datasets construidos (D.1-D.4 completo)
-
----
-
-### CP-F1: Window Validation Phase1 (Information Theory) ✅
-
-**Notebook**: [phase1_information_theory.ipynb](fase_01/F_Event_detectors_E1_E11/notebooks/01_notebooks/phase1_information_theory.ipynb)
-**Doc**: [F.6_validacion_ventanas_optimas.md](fase_01/F_Event_detectors_E1_E11/F.6_validacion_ventanas_optimas.md)
-
-**Método**: Mutual Information I(X_t; y) por día relativo | Threshold 10% max MI
-
-**Resultado**: Ventanas [-3,+3] sugeridas para todos los eventos
-
-**Output**:
-```
-📂 notebooks/03_checkpoints/phase1_results.pkl
-📊 notebooks/04_outputs/information_by_day_phase1.png
-```
-
-**Certificación**: ✅ Phase1 ejecutada, MI calculado
-
----
-
-### CP-F2: Window Validation Phase2 (Economic Validation) ✅
-
-**Notebook**: [phase2_model_performance_FIXED.ipynb](fase_01/F_Event_detectors_E1_E11/notebooks/01_notebooks/phase2_model_performance_FIXED.ipynb)
-
-**Método**: LightGBM por ventana | AUC + Economic Edge
-
-**Resultados**:
-```
-E10_FirstGreenBounce [0,0]: AUC=0.963, Edge=1.21%, n=6,137
-E11_VolumeBounce [0,0]: AUC=0.975, Edge=2.09%, n=6,750
-```
-
-**Output**:
-```
-📂 notebooks/03_checkpoints/phase2_results.pkl
-📄 notebooks/04_outputs/optimal_windows_empirical_phase2.csv
-📊 notebooks/04_outputs/window_optimization_phase2.png
-```
-
-**Certificación**: ✅ Phase2 ejecutada, ventanas [0,0] óptimas económicamente
-
----
-
-### CP-F3: Window Validation Phase3 (Statistical Analysis) ✅
-
-**Notebook**: [phase3_paper_grade_analysis_EXECUTED.ipynb](fase_01/F_Event_detectors_E1_E11/notebooks/01_notebooks/phase3_paper_grade_analysis_EXECUTED.ipynb)
-
-**Método**: Spearman correlation MI vs Edge | Concordance analysis | Hybrid score α·MI + (1-α)·Edge
-
-**Resultados**:
-```
-Spearman ρ: -0.0699
-P-value: 0.829
-Conclusión: MI y Edge DIVERGEN (no correlación)
-```
-
-**Output**:
-```
-📄 notebooks/04_outputs/statistical_report_paper_grade.csv
-📄 notebooks/04_outputs/concordance_analysis_full.csv
-📊 notebooks/04_outputs/concordance_analysis.png
-📊 notebooks/04_outputs/heatmap_event_x_time.png
-```
-
-**Certificación**: ✅ Phase3 ejecutada, divergencia confirmada estadísticamente
-
----
-
-### CP-F4: TradingView Export ✅
-
-**Guía**: [TRADINGVIEW_USAGE_GUIDE.md](fase_01/F_Event_detectors_E1_E11/notebooks/02_documentacion/TRADINGVIEW_USAGE_GUIDE.md)
-
-**Resultado**:
-```
-📂 notebooks/04_outputs/tradingview_exports/
-📊 11 CSV files (44,189 eventos con timestamps exactos)
-📋 Formato: ticker, datetime, close_price, event_code, window_suggested, date
-```
-
-**Files**: E1(7,686) | E2(1,070) | E3(1,901) | E4(1,265) | E5(4,633) | E6(16,776) | E7(233) | E8(455) | E9(420) | E10(8,494) | E11(1,256)
-
-**Certificación**: ✅ 44,189 eventos exportados para validación visual
-
----
-
-## 📊 RESUMEN EJECUTIVO
-
-| Componente | Files | Status | Path |
-|------------|-------|--------|------|
-| Trades | 139,684 | ✅ | `raw/polygon/trades_pilot50_validation/` |
-| DIB Bars | 139,684 | ✅ | `processed/dib_bars/pilot50_validation/` |
-| Events | 44,189 | ✅ | `processed/watchlists/` |
-| Labels | 139,684 | ✅ | `processed/labels_pilot50/` |
-| Weights | 139,684 | ✅ | `processed/weights_pilot50/` |
-| ML Datasets | 96,897 | ✅ | `processed/dataset_pilot50/daily/` |
-| Window Validation | Phase1-3 | ✅ | `notebooks/04_outputs/` |
-| TradingView Export | 11 CSVs | ✅ | `notebooks/04_outputs/tradingview_exports/` |
-
----
-
-## 🔍 HALLAZGOS CLAVE
-
-**DIB Bars**: $300k target + EMA-50 imbalance tracking operacional
-
-**Event Detection**: 44,189 eventos E1-E11 (2004-2025, 50 tickers)
-
-**ML Pipeline**: 96,897 datasets con labels + weights + features
-
-**Window Optimization**:
-- **Phase1 (MI)**: [-3,+3] sugeridas
-- **Phase2 (Edge)**: [0,0] óptimas (AUC=0.96-0.97, Edge=1.2-2.1%)
-- **Phase3 (Stats)**: Divergencia MI/Edge (ρ=-0.07, p=0.829)
-
----
-
-## ⏭️ PRÓXIMO PASO
-
-**Decisión pendiente**: Selección final de ventanas
-
-**Opciones**:
-1. MI-based [-3,+3]: Máxima información
-2. Edge-based [0,0]: Máxima rentabilidad
-3. Hybrid: Balance información + profit
-
-**Acción**: Validación visual TradingView (10-20 eventos/tipo)
-
----
-
-## 📚 DOCUMENTACIÓN
-
-**Teoría**: [1_influencia_MarcosLopezDePadro.md](fase_01/A_Universo/1_influencia_MarcosLopezDePadro.md)
-**Architecture**: [F.3_arquitectura...md](fase_01/F_Event_detectors_E1_E11/F.3_arquitectura_descarga_ventana_dinamica.md)
-**Pipeline ML**: [F.7_pipeline...md](fase_01/F_Event_detectors_E1_E11/F.7_pipeline_labels_weights_pilot50.md)
-**Window Validation**: [F.6_validacion...md](fase_01/F_Event_detectors_E1_E11/F.6_validacion_ventanas_optimas.md)
-**Notebooks**: [README.md](fase_01/F_Event_detectors_E1_E11/notebooks/README.md)
-
----
-
-**STATUS**: ✅ PHASE 1 COMPLETADA 100%
-**Git commit**: `5a0ab13` - "feat: Complete F.6 hybrid window validation with Phase1-3 pipeline + TradingView exports"
-**Última verificación**: 2025-10-30
