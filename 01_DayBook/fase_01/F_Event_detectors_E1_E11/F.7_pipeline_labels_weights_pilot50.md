@@ -139,37 +139,88 @@ processed/labels_pilot50/{TICKER}/date={YYYY-MM-DD}/
 
 ---
 
-## Fase F.7.2: Sample Weights (PENDIENTE)
+## Fase F.7.2: Sample Weights (COMPLETADO)
 
 **Documentación base**: [D.1.3_notas_6.1_SampleWeights.md](../../D_creando_DIB_VIB_2004_2025/D.1.3_notas_6.1_SampleWeights.md)
 **Script**: `scripts/fase_D_creando_DIB_VIB/make_sample_weights.py`
 
-**Parámetros previstos**:
+**Parámetros ejecutados**:
 ```bash
---bars-root processed/dib_bars/pilot50_validation
---labels-root processed/labels_pilot50
---outdir processed/weights_pilot50
---uniqueness              # Temporal overlap weighting
---abs-ret-weight          # Weight by |ret_at_outcome|
---time-decay-half_life 90 # 90-day half-life
---parallel 12
---resume
+python scripts/fase_D_creando_DIB_VIB/make_sample_weights.py \
+  --labels-root processed/labels_pilot50 \
+  --outdir processed/weights_pilot50 \
+  --uniqueness \
+  --abs-ret-weight \
+  --time-decay-half_life 90 \
+  --parallel 12 \
+  --resume
 ```
 
-**Fórmula**:
+**Fórmula aplicada**:
 ```
 weight[i] = (|ret_at_outcome[i]| / concurrency[i]) × decay[i]
 Normalización: sum(weights) = 1.0 por archivo
 ```
 
-**Output esperado**:
+**Output generado**:
 ```
 processed/weights_pilot50/{TICKER}/date={YYYY-MM-DD}/
 └── weights.parquet
-    Schema: {anchor_ts, weight}
+    Schema: {anchor_ts: Datetime, weight: Float64}
 ```
 
-**Tiempo estimado**: 20-30 min
+**Resultados**:
+- Archivos creados: 96,897 / 96,897 (100%)
+- Tiempo total: 112.9 minutos (~1h 53min)
+- Inicio: 2025-10-29 22:07:41
+- Fin: 2025-10-30 00:00:33
+- Errores: 0
+- Log: `logs/make_sample_weights_20251029_2156.log`
+
+---
+
+## Fase F.7.3: ML Dataset Builder (EN EJECUCIÓN)
+
+**Documentación base**: [D.4_resumen_unificacion.md](../../D_creando_DIB_VIB_2004_2025/D.4_resumen_unificacion.md)
+**Script**: `scripts/fase_D_creando_DIB_VIB/build_ml_daser.py`
+
+**Función**: Unifica DIB bars + labels + weights, calcula features enriquecidos ML-ready
+
+**Features generados**:
+- **Retornos**: `ret_1`, `ret_1_ema10`, `ret_1_ema30`
+- **Volatilidad**: `range_norm`, `range_norm_ema20`
+- **Flujos**: `vol_f`, `dollar_f`, `imb_f` + EMAs
+- **Z-scores**: `vol_z20`, `dollar_z20`
+- **Básicos**: `n` (número de trades)
+
+**Parámetros ejecutados**:
+```bash
+python scripts/fase_D_creando_DIB_VIB/build_ml_daser.py \
+  --bars-root processed/dib_bars/pilot50_validation \
+  --labels-root processed/labels_pilot50 \
+  --weights-root processed/weights_pilot50 \
+  --outdir processed/dataset_pilot50 \
+  --bar-file dollar_imbalance.parquet \
+  --parallel 12 \
+  --resume \
+  --split none
+```
+
+**Output esperado**:
+```
+processed/dataset_pilot50/{TICKER}/date={YYYY-MM-DD}/
+└── dataset.parquet
+    Schema: {features enriquecidos + label + weight + ret_at_outcome + ...}
+```
+
+**Status actual**:
+- Inicio: 2025-10-30 ~08:40
+- Estado: Escaneando archivos (fase inicial silenciosa)
+- Bash ID: 60a1fb
+- Tiempo estimado: 15-30 min (basado en D.2=126min, D.3=113min)
+
+**Razón para ejecutar D.4**:
+El notebook `validacion_ventanas_hibrida.ipynb` requiere features enriquecidos (EMAs, z-scores) que NO existen en DIB bars raw. D.4 genera estas features para que Fase 2 (Model Performance) del notebook pueda ejecutarse correctamente.
 
 ---
 
@@ -237,14 +288,13 @@ processed/weights_pilot50/{TICKER}/date={YYYY-MM-DD}/
 └─────────────────────────────────────────────────────────────┘
                             ↓
 ┌─────────────────────────────────────────────────────────────┐
-│ FASE F.7.2: SAMPLE WEIGHTS ⏳                              │
+│ FASE F.7.2: SAMPLE WEIGHTS ✅                              │
 ├─────────────────────────────────────────────────────────────┤
-│ Input:  processed/dib_bars/pilot50_validation/             │
-│         processed/labels_pilot50/                          │
+│ Input:  processed/labels_pilot50/                          │
 │ Output: processed/weights_pilot50/                         │
-│ Files:  96,897 weights.parquet (esperado)                  │
-│ Time:   20-30 min (estimado)                               │
-│ Status: PENDIENTE                                           │
+│ Files:  96,897 weights.parquet                             │
+│ Time:   112.9 min                                           │
+│ Status: COMPLETADO (100%, 0 errores)                       │
 └─────────────────────────────────────────────────────────────┘
                             ↓
 ┌─────────────────────────────────────────────────────────────┐
@@ -349,6 +399,9 @@ find processed/labels_pilot50 -name "labels.parquet" | wc -l
 
 ---
 
-**Última actualización**: 2025-10-29 21:13:55
-**Status**: D.2 Triple Barrier Labeling COMPLETADO ✅ (126.1 min, 96,897 archivos, 0 errores)
-**Próximo paso**: D.3 Sample Weights (20-30 min estimado)
+**Última actualización**: 2025-10-30 08:40 (aprox)
+**Status**: D.2 + D.3 COMPLETADOS ✅ | D.4 EN EJECUCIÓN 🔄
+- **D.2 Triple Barrier Labeling**: 126.1 min, 96,897 labels.parquet, 0 errores ✅
+- **D.3 Sample Weights**: 112.9 min, 96,897 weights.parquet, 0 errores ✅
+- **D.4 ML Dataset Builder**: EN EJECUCIÓN (bash ID: 60a1fb) 🔄
+**Próximo paso**: Completar D.4, luego ejecutar notebook validacion_ventanas_hibrida.ipynb (46 celdas)
