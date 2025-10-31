@@ -122,14 +122,40 @@ D:\04_TRADING_SMALLCAPS\
 
 ### Enriquecimiento tickers activos con datos corporativos.
 
+```sh
+D:\04_TRADING_SMALLCAPS\
+├── raw\polygon\reference\tickers_snapshot\
+    │
+    └── snapshot_date=2025-10-24\              UNIVERSO COMPLETO
+        ├── tickers_all.parquet                (34,380 tickers - activos + inactivos)
+        ├── tickers_active.parquet             (11,853 tickers - solo activos)
+        └── tickers_inactive.parquet           (22,527 tickers - solo inactivos)
+
+        NUEVOS FILTROS A 34,380 tickers - activos + inactivos
+                      ↓
+            Filtro: type=CS, exchange=XNAS/XNYS
+            ├─ Activos: 5,005
+            └─ Inactivos: 5,594
+            RESULTADO: 10,599 CS en XNAS/XNYS
+                      ↓
+            ENRIQUECIMIENTO con datos corporativos: 
+            ├─ 5,234 activos con market_cap válido
+            └─ 5,358 inactivos con error:not_found (sin market_cap)
+            Resultado: 10,592 procesados (-7 fallidos)
+```
+
 **Objetivo** : Enriquecer tickers activos con datos corporativos (market_cap, employees, description).  
 **Script:** [scripts/fase_A_Universo/ingest_ticker_details.py](../scripts/fase_A_Universo/ingest_ticker_details.py)  
 Enriquecer tickers activos con datos corporativos (market_cap, employees, description).  
 **Fuente de datos**: Polygon `/v3/reference/tickers/{ticker}`  
-**Pasos implementacion real**: [3.2_ingest_ticker_detail.md](../01_DayBook/fase_01/A_Universo/3.2_ingest_ticker_detail.md)  
-**Output**: [raw/polygon/reference/ticker_details/as_of_date=2025-10-24/details.parquet](../raw/polygon/reference/ticker_details/as_of_date=2025-10-19/details.parquet)
-**Pasos implementacion**: [3.1_ingest_reference_universe_v2.md](../01_DayBook/fase_01/A_Universo/3.1_ingest_reference_universe_v2.md)  , [3_descarga_Universo_y_referencia.md](../01_DayBook/fase_01/A_Universo/3_descarga_Universo_y_referencia.md)
-**notebook**
+**Pasos implementacion**: 
+* [3_descarga_Universo_y_referencia.md](../01_DayBook/fase_01/A_Universo/3_descarga_Universo_y_referencia.md) 
+* [3.1_ingest_reference_universe_v2.md](../01_DayBook/fase_01/A_Universo/3.1_ingest_reference_universe_v2.md) 
+* [3.2_ingest_ticker_detail.md](../01_DayBook/fase_01/A_Universo/3.2_ingest_ticker_detail.md)    
+ 
+
+**Notebook**  
+**Output**: [raw/polygon/reference/ticker_details/as_of_date=2025-10-24/details.parquet](../raw/polygon/reference/ticker_details/as_of_date=2025-10-19/details.parquet)  
 
 ```
 Total rows:      10,482
@@ -224,20 +250,73 @@ ticker_suffix                 :    884 / 10,482 (  8.4%)
 ### Descarga de Splits & Dividends (Datos globales)
 
 **Objetivo**: Obtener eventos corporativos históricos (splits, dividends) para ajustes de precio.  
-**Script**: [scripts/fase_A_universo/ingest_splits_dividends.py](../scripts/fase_A_Universo/ingest_splits_dividends.py)  
-**Fuente de datos**: Polygon `/v3/reference/splits` y `/v3/reference/dividends` (sin filtros)  
-**Estado**: Ejecutado  - Datos globales reutilizables  
-**Documentación**: [3.3_split_dividens.md](../01_DayBook/fase_01/A_Universo/3.3_split_dividens.md)  
+**Script**: [scripts/fase_A_universo/ingest_splits_dividends.py](../scripts/fase_A_Universo/ingest_splits_dividends.py)    
+**Fuente de datos**: Polygon `/v3/reference/splits` y `/v3/reference/dividends` (sin filtros) 
 
---- 
-**Datos descargados (globales)**:
-```bash
-raw/polygon/reference/
-├── splits/
-│   └── year=*/splits.parquet         (26,641 splits, 1978-2025, 18,423 tickers)
-└── dividends/
-    └── year=*/dividends.parquet      (1,878,357 dividends, 2000-2030, 75,198 tickers)
+```sh
+D:\04_TRADING_SMALLCAPS\
+├── raw\polygon\reference\
+    │
+    ├─ DESCARGA GLOBAL (sin filtros - TODOS los tickers de Polygon)
+    │  Script: ingest_splits_dividends.py
+    │  Endpoint: /v3/reference/splits (sin filtros)
+    │  Endpoint: /v3/reference/dividends (sin filtros)
+    │       ↓
+    ├── splits/
+    │   └── year=*/splits.parquet
+    │       ├─ Total: 26,641 splits
+    │       ├─ Tickers únicos: 18,423
+    │       └─ Período: 1978-2025 (48 años)
+    │
+    └── dividends/
+        └── year=*/dividends.parquet
+            ├─ Total: 1,878,357 dividends
+            ├─ Tickers únicos: 75,198
+            └─ Período: 2000-2030 (31 años)
+            
+                ↓ 
+                
+            FILTRADO para nuestro universo (8,686 tickers)
+            Script: filter_splits_dividends_universe.py
+            Input: cs_xnas_xnys_hybrid_enriched_2025-10-24.parquet
+            ENRIQUECIMIENTO Splits & Dividends
+            processed/corporate_actions/
+            │
+            ├── splits_universe_2025-10-24.parquet
+            │   ├─ 4,012 splits (de 26,641 globales)
+            │   ├─ 2,420 tickers con splits (27.9% de 8,686)
+            │   └─ Reducción: 84.9%
+            │
+            ├── dividends_universe_2025-10-24.parquet
+            │   ├─ 94,546 dividends (de 1,878,357 globales)
+            │   ├─ 2,723 tickers con dividends (31.4% de 8,686)
+            │   └─ Reducción: 95.0%
+            │
+            └── corporate_actions_lookup_2025-10-24.parquet
+                └─ Lookup table: ticker → has_splits, has_dividends, counts
 ```
+
+**Output**:  
+
+* **Datos descargados (globales)**: Backup global, nunca lo borres
+    ```bash
+    raw/polygon/reference/
+    ├── splits/
+    │   └── year=*/splits.parquet         (26,641 splits, 1978-2025, 18,423 tickers)
+    └── dividends/
+        └── year=*/dividends.parquet      (1,878,357 dividends, 2000-2030, 75,198 tickers)
+    ```
+* **Datos filtrados para universo (8,686 tickers):** Usas ESTE en tu código (más rápido, más pequeño)
+
+    ```sh
+    processed/corporate_actions/
+    ├── splits_universe_2025-10-24.parquet       (4,012 splits, 2,420 tickers, 27.9% cobertura)
+    ├── dividends_universe_2025-10-24.parquet    (94,546 dividends, 2,723 tickers, 31.4% cobertura)
+    └── corporate_actions_lookup_2025-10-24.parquet (lookup table con flags has_splits/has_dividends)
+    ``` 
+
+**Estado**: Ejecutado  - Datos globales reutilizables   
+**Documentación**: [3.3_split_dividens.md](../01_DayBook/fase_01/A_Universo/3.3_split_dividens.md)  
 
 ```
 📊 1. SPLITS (raw/polygon/reference/splits/year=*/splits.parquet)
@@ -300,27 +379,7 @@ Tickers únicos:           75,198
 Años disponibles:       2000-2030 (31 años)
 ```
 
-**Datos filtrados para universo (8,686 tickers):**
-```
-processed/corporate_actions/
-├── splits_universe_2025-10-24.parquet       (4,012 splits, 2,420 tickers, 27.9% cobertura)
-├── dividends_universe_2025-10-24.parquet    (94,546 dividends, 2,723 tickers, 31.4% cobertura)
-└── corporate_actions_lookup_2025-10-24.parquet (lookup table con flags has_splits/has_dividends)
-```
 
-> Más descargas ejecutadas:  
-[scripts/fase_A_Universo/ingest_reference_universe.py](../../../scripts/fase_A_Universo/ingest_reference_universe.py)  
-[scripts/fase_A_Universo/ingest_ticker_details.py](../../../scripts/fase_A_Universo/ingest_ticker_details.py)  
-[scripts/fase_A_Universo/ingest_splits_dividends.PY](../../../scripts/fase_A_Universo/ingest_splits_dividends.py)  
->
->
->⚠️  **Ticker Details**: INCOMPLETO (<1% completitud)
->```sh
->4. Ticker Details (/v3/reference/tickers/{ticker})
->    📂 raw/polygon/reference/ticker_details/
->    📄 2 archivos parquet (enriquecimiento parcial)
->    ⚠️  INCOMPLETO - Solo sample ejecutado
->```
 
 ### Filtro para poblacion target : Small Caps (market cap < $2B, XNAS/XNYS, CS)
 ---  
@@ -358,21 +417,50 @@ D:\04_TRADING_SMALLCAPS\
 
         NUEVOS FILTROS A 34,380 tickers - activos + inactivos
                       ↓
-            Filtro: type=CS, exchange=XNAS/XNYS
+            FILTRO: type=CS, exchange=XNAS/XNYS
             ├─ Activos: 5,005
             └─ Inactivos: 5,594
-
             RESULTADO: 10,599 CS en XNAS/XNYS
                       ↓
-            Filtro market_cap < $2B (SOLO ACTIVOS)
+            ENRIQUECIMIENTO con datos corporativos: 
+            ├─ 5,234 activos con market_cap válido
+            └─ 5,358 inactivos con error:not_found (sin market_cap)
+            RESULTADO: 10,592 procesados (-7 fallidos)
+                      ↓
+            FILTRO market_cap < $2B (SOLO ACTIVOS) ✅ El actual - poblacion target
             ├─ Activos: 3,092 ← FILTRADOS
             └─ Inactivos: 5,594 ← SIN FILTRAR (todos)(ANTI-SURVIVORSHIP BIAS)
-
             RESULTADO: 8,686 tickers (Universo Híbrido para descargar OHLCV)
-                      ↓
-                   Exporta:
-                   - cs_xnas_xnys_hybrid_2025-10-24.parquet (SIN market_cap aún)
-                   - cs_xnas_xnys_hybrid_2025-10-24.csv (6 columnas básicas)  
+                                │
+            ┌────────────────────────────────────────┐
+            │             (esperando)                │ 
+            │   DESCARGA GLOBAL SPLITS & DIVIDENDS   │    
+            └────────────────────────────────────────┘                 
+                                │
+                    ┌───────────┘
+                    ↓
+            ENRIQUECIMIENTO Splits & Dividends
+            (solo para 8,686 tickers Universo Híbrido)
+            processed/corporate_actions/
+            │
+            ├── splits_universe_2025-10-24.parquet
+            │   ├─ 4,012 splits (de 26,641 globales)
+            │   ├─ 2,420 tickers con splits (27.9% de 8,686)
+            │   └─ Reducción: 84.9%
+            │
+            ├── dividends_universe_2025-10-24.parquet
+            │   ├─ 94,546 dividends (de 1,878,357 globales)
+            │   ├─ 2,723 tickers con dividends (31.4% de 8,686)
+            │   └─ Reducción: 95.0%
+            │
+            └── corporate_actions_lookup_2025-10-24.parquet
+                └─ Lookup table: ticker → has_splits, has_dividends, counts
+                    ↓
+            RESULTADO: 8,686 tickers (Universo Híbrido para descargar OHLCV)
+                    ↓
+                Exporta:
+                - cs_xnas_xnys_hybrid_2025-10-24.parquet (SIN market_cap aún)
+                - cs_xnas_xnys_hybrid_2025-10-24.csv (6 columnas básicas)  
 ```
 
 `cs_xnas_xnys_hybrid_2025-10-24.csv` y  
@@ -534,25 +622,6 @@ El snapshot de `/v3/reference/tickers` descargado el 2025-10-24 **SI** contiene 
 * OHLCV Intraday 1-minute  
 
 
-```sh
-hemos hecho :
-
-../fase_01/A_universo (34,380 tickers) 
-                            ↓
-                        Filtrado Small Caps (market cap < $2B, XNAS/XNYS, CS)
-                            ↓
-                        Universo Híbrido: 8,686 tickers
-                            ├── 3,092 activos
-                            └── 5,594 inactivos (ANTI-SURVIVORSHIP BIAS)
-                            RESULTADO: 8,686 tickers (Universo Híbrido para descargar OHLCV)
-                                    ↓
-                                Exporta:
-                                - cs_xnas_xnys_hybrid_2025-10-24.parquet (SIN market_cap aún)
-                                - cs_xnas_xnys_hybrid_2025-10-24.csv (6 columnas básicas)  
-ahora toca :
-
-../fase_01/B_ingesta → OHLCV Polygon.io
-```
 
 ### Scripts Utilizados
 
