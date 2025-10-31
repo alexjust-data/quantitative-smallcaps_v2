@@ -104,8 +104,9 @@ Para cada evento detectado, descargar ticks en ventana
 **Objetivo**: descargar universo completo 2004-2025 (34,380 tickers - activos + inactivos).   
 **Script:** [scripts/fase_A_Universo/ingest_reference_universe.py](../scripts/fase_A_Universo/ingest_reference_universe.py)    
 Sirve para ingestar el universo de referencia desde Polygon (tickers activos e inactivos, splits, dividends, detalles), y dejarlo normalizado/particionado en raw/polygon/reference/... y derivados. Es la “materia prima” de la Fase A (snapshot completo), sobre la que luego operan los constructores del universo híbrido.  
-Construye universo completo (activos + delistados), sin sesgo de supervivencia, con paginación y checkpoint..  
-**Pasos implementacion real**: [3.1_ingest_reference_universe_v2.md](../01_DayBook/fase_01/A_Universo/3.1_ingest_reference_universe_v2.md)  
+Construye universo completo (activos + delistados), sin sesgo de supervivencia, con paginación y checkpoint..    
+**Fuente de datos**: Polygon API (tickers snapshot histórico)  
+**Pasos implementacion**: [3.1_ingest_reference_universe_v2.md](../01_DayBook/fase_01/A_Universo/3.1_ingest_reference_universe_v2.md)  
 
 ```bash
 D:\04_TRADING_SMALLCAPS\
@@ -119,29 +120,199 @@ D:\04_TRADING_SMALLCAPS\
 └── temp_active_counts_complete.csv            (resumen CSV con conteos)
 ```
 
+### Enriquecimiento tickers activos con datos corporativos.
+
+**Objetivo** : Enriquecer tickers activos con datos corporativos (market_cap, employees, description).  
+**Script:** [scripts/fase_A_Universo/ingest_ticker_details.py](../scripts/fase_A_Universo/ingest_ticker_details.py)  
+Enriquecer tickers activos con datos corporativos (market_cap, employees, description).  
+**Fuente de datos**: Polygon `/v3/reference/tickers/{ticker}`  
+**Pasos implementacion real**: [3.2_ingest_ticker_detail.md](../01_DayBook/fase_01/A_Universo/3.2_ingest_ticker_detail.md)  
+**Output**: [raw/polygon/reference/ticker_details/as_of_date=2025-10-24/details.parquet](../raw/polygon/reference/ticker_details/as_of_date=2025-10-19/details.parquet)
+**Pasos implementacion**: [3.1_ingest_reference_universe_v2.md](../01_DayBook/fase_01/A_Universo/3.1_ingest_reference_universe_v2.md)  , [3_descarga_Universo_y_referencia.md](../01_DayBook/fase_01/A_Universo/3_descarga_Universo_y_referencia.md)
+**notebook**
+
+```
+Total rows:      10,482
+Total columns:       27
+
+📋 COLUMNAS (27):
+
+📊 HEAD(5):
+----------------------------------------------------------------------------------------------------
+shape: (27, 3)
+┌────────────────────────────────┬─────────────────────────────────┬─────────────────────────────────┐
+│ column                         ┆ column_0                        ┆ column_1                        │
+╞════════════════════════════════╪═════════════════════════════════╪═════════════════════════════════╡
+│ ticker                         ┆ AEM                             ┆ FLXS                            │
+│ name                           ┆ Agnico Eagle Mines Ltd.         ┆ Flexsteel Industries            │
+│ market                         ┆ stocks                          ┆ stocks                          │
+│ locale                         ┆ us                              ┆ us                              │
+│ primary_exchange               ┆ XNYS                            ┆ XNAS                            │
+│ type                           ┆ CS                              ┆ CS                              │
+│ active                         ┆ true                            ┆ true                            │
+│ currency_name                  ┆ usd                             ┆ usd                             │
+│ cik                            ┆ 0000002809                      ┆ 0000037472                      │
+│ composite_figi                 ┆ BBG000DLVDK3                    ┆ BBG000BJNBB3                    │
+│ share_class_figi               ┆ BBG001S77MK3                    ┆ BBG001S5R835                    │
+│ market_cap                     ┆ 87653650345.3                   ┆ 202966296.60999998              │
+│ description                    ┆ Agnico Eagle is a gold miner w… ┆ Flexsteel Industries Inc is a … │
+│ ticker_root                    ┆ AEM                             ┆ FLXS                            │
+│ homepage_url                   ┆ https://www.agnicoeagle.com     ┆ https://www.flexsteel.com       │
+│ total_employees                ┆ 16968                           ┆ 1400                            │
+│ list_date                      ┆ 1972-06-07                      ┆ 1972-06-01                      │
+│ branding                       ┆ {"https://api.polygon.io/v1/re… ┆ {"https://api.polygon.io/v1/re… │
+│ share_class_shares_outstanding ┆ 502814045                       ┆ 5275963                         │
+│ weighted_shares_outstanding    ┆ 502341970                       ┆ 5275963                         │
+│ round_lot                      ┆ 100                             ┆ 100                             │
+│ as_of_date                     ┆ 2025-10-19                      ┆ 2025-10-19                      │
+│ phone_number                   ┆ null                            ┆ (319) 556-7730                  │
+│ address                        ┆ null                            ┆ null                            │
+│ sic_code                       ┆ null                            ┆ 2510                            │
+│ sic_description                ┆ null                            ┆ HOUSEHOLD FURNITURE             │
+│ ticker_suffix                  ┆ null                            ┆ null                            │
+└────────────────────────────────┴─────────────────────────────────┴─────────────────────────────────┘
+
+📊 HEAD(5) - Solo columnas clave:
+----------------------------------------------------------------------------------------------------
+shape: (7, 3)
+┌──────────────────┬─────────────────────────┬──────────────────────┐
+│ column           ┆ column_0                ┆ column_1             │
+╞══════════════════╪═════════════════════════╪══════════════════════╡
+│ ticker           ┆ AEM                     ┆ FLXS                 │
+│ name             ┆ Agnico Eagle Mines Ltd. ┆ Flexsteel Industries │
+│ market_cap       ┆ 87653650345.3           ┆ 202966296.60999998   │
+│ primary_exchange ┆ XNYS                    ┆ XNAS                 │
+│ active           ┆ true                    ┆ true                 │
+│ type             ┆ CS                      ┆ CS                   │
+│ as_of_date       ┆ 2025-10-19              ┆ 2025-10-19           │
+└──────────────────┴─────────────────────────┴──────────────────────┘
+
+📊 COMPLETITUD:
+----------------------------------------------------------------------------------------------------
+ticker                        : 10,482 / 10,482 (100.0%)
+name                          : 10,114 / 10,482 ( 96.5%)
+market                        : 10,114 / 10,482 ( 96.5%)
+locale                        : 10,114 / 10,482 ( 96.5%)
+primary_exchange              : 10,114 / 10,482 ( 96.5%)
+type                          : 10,114 / 10,482 ( 96.5%)
+active                        : 10,114 / 10,482 ( 96.5%)
+currency_name                 : 10,114 / 10,482 ( 96.5%)
+cik                           :  9,138 / 10,482 ( 87.2%)
+composite_figi                :  8,533 / 10,482 ( 81.4%)
+share_class_figi              :  8,306 / 10,482 ( 79.2%)
+market_cap                    :  5,608 / 10,482 ( 53.5%)
+description                   :  6,330 / 10,482 ( 60.4%)
+ticker_root                   : 10,114 / 10,482 ( 96.5%)
+homepage_url                  :  6,026 / 10,482 ( 57.5%)
+total_employees               :  5,298 / 10,482 ( 50.5%)
+list_date                     : 10,032 / 10,482 ( 95.7%)
+branding                      :  5,442 / 10,482 ( 51.9%)
+share_class_shares_outstanding:  9,257 / 10,482 ( 88.3%)
+weighted_shares_outstanding   :  5,634 / 10,482 ( 53.7%)
+round_lot                     : 10,114 / 10,482 ( 96.5%)
+as_of_date                    : 10,482 / 10,482 (100.0%)
+phone_number                  :  5,107 / 10,482 ( 48.7%)
+address                       :  5,107 / 10,482 ( 48.7%)
+sic_code                      :  5,032 / 10,482 ( 48.0%)
+sic_description               :  5,014 / 10,482 ( 47.8%)
+ticker_suffix                 :    884 / 10,482 (  8.4%)
+```
 
 ---
+
+
+### Descarga de Splits & Dividends (Datos globales)
+
+**Objetivo**: Obtener eventos corporativos históricos (splits, dividends) para ajustes de precio.  
+**Script**: [scripts/fase_A_universo/ingest_splits_dividends.py](../scripts/fase_A_Universo/ingest_splits_dividends.py)  
+**Fuente de datos**: Polygon `/v3/reference/splits` y `/v3/reference/dividends` (sin filtros)  
+**Estado**: Ejecutado  - Datos globales reutilizables  
+**Documentación**: [3.3_split_dividens.md](../01_DayBook/fase_01/A_Universo/3.3_split_dividens.md)  
+
+--- 
+**Datos descargados (globales)**:
+```bash
+raw/polygon/reference/
+├── splits/
+│   └── year=*/splits.parquet         (26,641 splits, 1978-2025, 18,423 tickers)
+└── dividends/
+    └── year=*/dividends.parquet      (1,878,357 dividends, 2000-2030, 75,198 tickers)
+```
+
+```
+📊 1. SPLITS (raw/polygon/reference/splits/year=*/splits.parquet)
+----------------------------------------------------------------------------------------------------
+Archivos encontrados: 31
+
+Total rows (sample):           1
+Total columns:                 6
+
+📊 HEAD(5) TRANSPUESTO:
+----------------------------------------------------------------------------------------------------
+shape: (6, 2)
+┌────────────────┬─────────────────────────────────┐
+│ column         ┆ column_0                        │
+╞════════════════╪═════════════════════════════════╡
+│ execution_date ┆ 1978-10-25                      │
+│ id             ┆ Pef962e8ce572df20933cdaac3a2d2… │
+│ split_from     ┆ 2.0                             │
+│ split_to       ┆ 3.0                             │
+│ ticker         ┆ AMD                             │
+│ ratio          ┆ 0.6666666666666666              │
+└────────────────┴─────────────────────────────────┘
+
+📊 ESTADÍSTICAS GLOBALES (todos los años):
+----------------------------------------------------------------------------------------------------
+Total splits:             26,641
+Tickers únicos:           18,423
+Años disponibles:       1978-2025 (31 años)
+
+
+📊 2. DIVIDENDS (raw/polygon/reference/dividends/year=*/dividends.parquet)
+----------------------------------------------------------------------------------------------------
+Archivos encontrados: 31
+
+Total rows (sample):           1
+Total columns:                10
+
+📊 HEAD(5) TRANSPUESTO:
+----------------------------------------------------------------------------------------------------
+shape: (10, 2)
+┌──────────────────┬─────────────────────────────────┐
+│ column           ┆ column_0                        │
+╞══════════════════╪═════════════════════════════════╡
+│ cash_amount      ┆ 0.15                            │
+│ currency         ┆ CNY                             │
+│ dividend_type    ┆ CD                              │
+│ ex_dividend_date ┆ 2000-08-15                      │
+│ frequency        ┆ 1                               │
+│ id               ┆ E4a7d4e17e772232caf90d14c98574… │
+│ pay_date         ┆ 2000-08-18                      │
+│ record_date      ┆ 2000-08-16                      │
+│ ticker           ┆ CHVKF                           │
+│ declaration_date ┆ null                            │
+└──────────────────┴─────────────────────────────────┘
+
+📊 ESTADÍSTICAS GLOBALES (todos los años):
+----------------------------------------------------------------------------------------------------
+Total dividends:        1,878,357
+Tickers únicos:           75,198
+Años disponibles:       2000-2030 (31 años)
+```
+
+**Datos filtrados para universo (8,686 tickers):**
+```
+processed/corporate_actions/
+├── splits_universe_2025-10-24.parquet       (4,012 splits, 2,420 tickers, 27.9% cobertura)
+├── dividends_universe_2025-10-24.parquet    (94,546 dividends, 2,723 tickers, 31.4% cobertura)
+└── corporate_actions_lookup_2025-10-24.parquet (lookup table con flags has_splits/has_dividends)
+```
 
 > Más descargas ejecutadas:  
 [scripts/fase_A_Universo/ingest_reference_universe.py](../../../scripts/fase_A_Universo/ingest_reference_universe.py)  
 [scripts/fase_A_Universo/ingest_ticker_details.py](../../../scripts/fase_A_Universo/ingest_ticker_details.py)  
 [scripts/fase_A_Universo/ingest_splits_dividends.PY](../../../scripts/fase_A_Universo/ingest_splits_dividends.py)  
 >
->**Splits**: 26,641 splits históricos (31 archivos parquet)
->```sh
->2. Splits (/v3/reference/splits)
->    📂 raw/polygon/reference/splits/
->    📊 26,641 splits históricos
->    📄 31 archivos parquet (particionado)
->```
->
->**Dividends**: 1,878,357 dividendos (31 archivos parquet)
->```sh
->3. Dividends (/v3/reference/dividends)
->    📂 raw/polygon/reference/dividends/
->    📊 1,878,357 dividendos históricos
->    📄 31 archivos parquet (particionado)
->```
 >
 >⚠️  **Ticker Details**: INCOMPLETO (<1% completitud)
 >```sh
@@ -190,11 +361,13 @@ D:\04_TRADING_SMALLCAPS\
             Filtro: type=CS, exchange=XNAS/XNYS
             ├─ Activos: 5,005
             └─ Inactivos: 5,594
+
             RESULTADO: 10,599 CS en XNAS/XNYS
                       ↓
             Filtro market_cap < $2B (SOLO ACTIVOS)
             ├─ Activos: 3,092 ← FILTRADOS
             └─ Inactivos: 5,594 ← SIN FILTRAR (todos)(ANTI-SURVIVORSHIP BIAS)
+
             RESULTADO: 8,686 tickers (Universo Híbrido para descargar OHLCV)
                       ↓
                    Exporta:
@@ -202,7 +375,9 @@ D:\04_TRADING_SMALLCAPS\
                    - cs_xnas_xnys_hybrid_2025-10-24.csv (6 columnas básicas)  
 ```
 
-`cs_xnas_xnys_hybrid_2025-10-24.csv` y `cs_xnas_xnys_hybrid_2025-10-24.parquet` **no** tiene market_cap: El CSV se usa solo como input para scripts de descarga (como ingest_ohlcv_daily.py) que solo necesitan el ticker. 
+`cs_xnas_xnys_hybrid_2025-10-24.csv` y  
+`cs_xnas_xnys_hybrid_2025-10-24.parquet`  
+**no** tienen market_cap: El CSV se usa solo como input para scripts de descarga (como ingest_ohlcv_daily.py) que solo necesitan el ticker. 
 ```
 📊 1. cs_xnas_xnys_hybrid_2025-10-24.parquet
 ----------------------------------------------------------------------------------------------------
@@ -236,6 +411,7 @@ shape: (14, 3)
 **Objetivo** : Es el último paso de la Fase A: el que produce el universo híbrido enriquecido, que usará la Fase B (descarga OHLCV daily + intraday).  
 **Polygon API limitation:** El endpoint `/v3/reference/tickers/{ticker}` NO retorna informacion completa para tickers delisted/inactivos  
 **Market cap imposible:** No existe `market_cap` historico en el momento del delisting (Polygon no lo guarda)  
+**Documentado** : [4.1_estrategia_dual_enriquecimiento.md](../01_DayBook/fase_01/A_Universo/4.1_problemas_&_decisiones.md) y [4.2_inactivos_sin_data.md](./fase_01/A_Universo/4.2_inactivos_sin_data.md)
 
 El snapshot de `/v3/reference/tickers` descargado el 2025-10-24 **SI** contiene informacion basica para tickers inactivos. 
 
@@ -341,25 +517,10 @@ El snapshot de `/v3/reference/tickers` descargado el 2025-10-24 **SI** contiene 
     composite_figi           : Activos 2,409/3,092 ( 77.9%)  |  Inactivos 2,403/5,594 ( 43.0%)
     ```
 
-**Criterios de Filtrado:**
-
-* Para ACTIVOS (11,853 → `3,092`):
-    * **Type** = CS (Common Stock) - Elimina ETFs, warrants, preferred, ADRCs
-    * **Exchange** = XNAS o XNYS (Nasdaq o NYSE) - Elimina ARCX, BATS, XASE
-    * **Market Cap** < $2B - Filtro de small caps
-    * **Market Cap IS NOT NULL** - Solo activos con datos de capitalización
-
-* Para INACTIVOS (22,527 → `5,594`):
-    * **Type** = CS (Common Stock)
-    * **Exchange** = XNAS o XNYS
-    * **SIN filtro de market cap** - Incluye TODOS porque ya no tienen market_cap (no cotizan)
-
 
 **¿Dónde se ejecuta este filtrado?**
-* Mencionado todo en [4.1_estrategia_dual_enriquecimiento.md](../01_DayBook/fase_01/A_Universo/4.1_problemas_&_decisiones.md)
-* Archivo creado: [`../processed/universe/cs_xnas_xnys_hybrid_enriched_2025-10-24.parquet` (Fase A)](../processed/universe/cs_xnas_xnys_hybrid_enriched_2025-10-24.parquet)
-* Resultado exportado**: [`../processed/universe/cs_xnas_xnys_hybrid_2025-10-24.csv` (8,686 tickers)](../processed/universe/cs_xnas_xnys_hybrid_2025-10-24.csv)
 * EVIDENCIA de los resultados: [A_Universo / notebooks / notebook2.ipynb](../01_DayBook/fase_01/A_Universo/notebooks/notebook2.ipynb)  
+* 
 
 
 ## fase_01 / B_ingesta_Daily_Minut_v2
