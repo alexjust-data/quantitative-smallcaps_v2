@@ -101,71 +101,31 @@ Para cada evento detectado, descargar ticks en ventana
 
 ## fase_01 / A_universo  (34,380 tickers - activos + inactivos)
 
-**Descargas:**  Script desarrollado: `scripts/fase_A_universo/download_complete_snapshot.py`  
+**Objetivo**: descargar universo completo 2004-2025 (34,380 tickers - activos + inactivos).   
+**Script:** [scripts/fase_A_Universo/ingest_reference_universe.py](../scripts/fase_A_Universo/ingest_reference_universe.py)    
+Sirve para ingestar el universo de referencia desde Polygon (tickers activos e inactivos, splits, dividends, detalles), y dejarlo normalizado/particionado en raw/polygon/reference/... y derivados. Es la “materia prima” de la Fase A (snapshot completo), sobre la que luego operan los constructores del universo híbrido.  
+Construye universo completo (activos + delistados), sin sesgo de supervivencia, con paginación y checkpoint..  
+**Pasos implementacion real**: [3.1_ingest_reference_universe_v2.md](../01_DayBook/fase_01/A_Universo/3.1_ingest_reference_universe_v2.md)  
 
 ```bash
 D:\04_TRADING_SMALLCAPS\
 ├── raw\polygon\reference\tickers_snapshot\
-│   ├── snapshot_date=2025-10-19\
-│   │   └── tickers.parquet                    (11,845 - solo activos, LEGACY)
 │   │
-│   └── snapshot_date=2025-10-24\              ⬅️ NUEVO UNIVERSO COMPLETO
+│   └── snapshot_date=2025-10-24\              UNIVERSO COMPLETO
 │       ├── tickers_all.parquet                (34,380 tickers - activos + inactivos)
 │       ├── tickers_active.parquet             (11,853 tickers - solo activos)
 │       └── tickers_inactive.parquet           (22,527 tickers - solo inactivos)
 │
 └── temp_active_counts_complete.csv            (resumen CSV con conteos)
 ```
-Metadatos de archivos:
-
-| Archivo | Tamaño | Filas | Columnas | Descripción |
-|---------|--------|-------|----------|-------------|
-| `tickers_all.parquet` | ~15 MB | 34,380 | 14 | Dataset completo unificado |
-| `tickers_active.parquet` | ~5 MB | 11,853 | 13 | Solo activos (referencia rápida) |
-| `tickers_inactive.parquet` | ~10 MB | 22,527 | 14 | Solo inactivos (tiene columna `delisted_utc`) |
-| `temp_active_counts_complete.csv` | <1 KB | 2 | 3 | Resumen: active, count, percentage |
 
 
-```
-# Distribución por TIPO DE ACTIVO (activos):  
-┌─────────┬───────┬────────────┐
-│ type    │ count │ percentage │
-├─────────┼───────┼────────────┤
-│ CS      │ 5,226 │ 44.1%      │ ⬅️ Common Stocks (nuestro objetivo)
-│ ETF     │ 4,361 │ 36.8%      │
-│ PFD     │   441 │  3.7%      │
-│ WARRANT │   418 │  3.5%      │
-│ ADRC    │   389 │  3.3%      │
-│ FUND    │   536 │  4.5%      │
-│ Otros   │   482 │  4.1%      │
-└─────────┴───────┴────────────┘
-```
+---
 
-```
-Distribución por EXCHANGE (activos):  
-┌──────────────────┬────────┬────────────┐
-│ primary_exchange │ count  │ percentage │
-├──────────────────┼────────┼────────────┤
-│ XNAS (Nasdaq)    │ 5,127  │ 43.3%      │
-│ XNYS (NYSE)      │ 2,882  │ 24.3%      │
-│ ARCX (NYSE Arca) │ 2,473  │ 20.9%      │
-│ BATS             │ 1,061  │  9.0%      │
-│ XASE (NYSE Amer) │   302  │  2.5%      │
-└──────────────────┴────────┴────────────┘
-```
-
-```
-Calidad de datos (identificadores):
-
-CIK (SEC Identifier):
-  ✅ Activos con CIK:     10,555 / 11,853 (89.1%)
-  ❌ Activos sin CIK:      1,298 / 11,853 (10.9%)
-
-FIGI (Bloomberg ID):
-  ✅ Activos con FIGI:     9,840 / 11,853 (83.1%)
-  ❌ Activos sin FIGI:     2,013 / 11,853 (16.9%)
-```
-> Más descargas ejecutadas:
+> Más descargas ejecutadas:  
+[scripts/fase_A_Universo/ingest_reference_universe.py](../../../scripts/fase_A_Universo/ingest_reference_universe.py)  
+[scripts/fase_A_Universo/ingest_ticker_details.py](../../../scripts/fase_A_Universo/ingest_ticker_details.py)  
+[scripts/fase_A_Universo/ingest_splits_dividends.PY](../../../scripts/fase_A_Universo/ingest_splits_dividends.py)  
 >
 >**Splits**: 26,641 splits históricos (31 archivos parquet)
 >```sh
@@ -194,21 +154,33 @@ FIGI (Bloomberg ID):
 ### Filtro para poblacion target : Small Caps (market cap < $2B, XNAS/XNYS, CS)
 ---  
   
->**[ADVERTENCIA]** **Polygon API `/v3/reference/tickers/{ticker}` NO devuelve `market_cap` para tickers inactivos/delistados.**  
+>**[ADVERTENCIA]**  
+**Polygon API `/v3/reference/tickers/{ticker}` NO devuelve `market_cap` para tickers inactivos/delistados.**  
 >Esto significa:
 >- [X] Imposible filtrar inactivos por market_cap historico
 >- [X] Si solo usamos activos < $2B -> **SURVIVORSHIP BIAS SEVERO**
 >- [X] Perdemos 5,594 tickers delistados (los MAS importantes para entrenar pump & dump terminal)
+
+
+**Objetivo**: descargar universo completo 2004-2025 (34,380 tickers - activos + inactivos)   
+**Scripts:**  [`create_hybrid_universe.py`](../scripts/fase_A_Universo/create_hybrid_universe.py)   
+Construye el “universo híbrido” de small caps sin sesgo de supervivencia a partir de los datos de referencia ya descargados en: 
+```
+snapshot_date=2025-10-24\                  
+    ├── tickers_all.parquet                (34,380 tickers - activos + inactivos)
+    ├── tickers_active.parquet             (11,853 tickers - solo activos)
+    └── tickers_inactive.parquet           (22,527 tickers - solo inactivos) 
+```
+**Pasos implementacion real**: [3.1_ingest_reference_universe_v2.md](../01_DayBook/fase_01/A_Universo/3.1_ingest_reference_universe_v2.md)
+
 
 Pipeline ejecutado:
 
 ```sh
 D:\04_TRADING_SMALLCAPS\
 ├── raw\polygon\reference\tickers_snapshot\
-    ├── snapshot_date=2025-10-19\
-    │   └── tickers.parquet                    (11,845 - solo activos, LEGACY)
     │
-    └── snapshot_date=2025-10-24\              ⬅️ NUEVO UNIVERSO COMPLETO
+    └── snapshot_date=2025-10-24\              UNIVERSO COMPLETO
         ├── tickers_all.parquet                (34,380 tickers - activos + inactivos)
         ├── tickers_active.parquet             (11,853 tickers - solo activos)
         └── tickers_inactive.parquet           (22,527 tickers - solo inactivos)
@@ -230,25 +202,144 @@ D:\04_TRADING_SMALLCAPS\
                    - cs_xnas_xnys_hybrid_2025-10-24.csv (6 columnas básicas)  
 ```
 
-**`cs_xnas_xnys_hybrid_2025-10-24.csv` no tiene market_cap**: El CSV se usa solo como input para scripts de descarga (como ingest_ohlcv_daily.py) que solo necesitan el ticker. 
-
-```py
-# Línea 84 en create_hybrid_universe.py:
-cols_csv = ["ticker", "name", "primary_exchange", "type", "active", "cik"]
-df_hybrid.select([col for col in cols_csv if col in df_hybrid.columns]).write_csv(output_csv)
+`cs_xnas_xnys_hybrid_2025-10-24.csv` y `cs_xnas_xnys_hybrid_2025-10-24.parquet` **no** tiene market_cap: El CSV se usa solo como input para scripts de descarga (como ingest_ohlcv_daily.py) que solo necesitan el ticker. 
+```
+📊 1. cs_xnas_xnys_hybrid_2025-10-24.parquet
+----------------------------------------------------------------------------------------------------
+Total tickers:        8,686
+Activos:              3,092
+Inactivos:            5,594
+Columnas:                14
+shape: (14, 3)
+┌──────────────────┬─────────────────────────────────┬─────────────────────────────────┐
+│ column           ┆ 0                               ┆ 1                               │
+╞══════════════════╪═════════════════════════════════╪═════════════════════════════════╡
+│ ticker           ┆ AACB                            ┆ AACI                            │
+│ name             ┆ Artius II Acquisition Inc. Cla… ┆ Armada Acquisition Corp. II Cl… │
+│ market           ┆ stocks                          ┆ stocks                          │
+│ locale           ┆ us                              ┆ us                              │
+│ primary_exchange ┆ XNAS                            ┆ XNAS                            │
+│ type             ┆ CS                              ┆ CS                              │
+│ active           ┆ true                            ┆ true                            │
+│ currency_name    ┆ usd                             ┆ usd                             │
+│ cik              ┆ 0002034334                      ┆ 0002044009                      │
+│ composite_figi   ┆ null                            ┆ null                            │
+│ share_class_figi ┆ null                            ┆ null                            │
+│ last_updated_utc ┆ 2025-10-22T14:39:56.53685577Z   ┆ 2025-10-22T14:39:56.536856281Z  │
+│ snapshot_date    ┆ 2025-10-24                      ┆ 2025-10-24                      │
+│ delisted_utc     ┆ null                            ┆ null                            │
+└──────────────────┴─────────────────────────────────┴─────────────────────────────────┘
 ```
 
-[`cs_xnas_xnys_hybrid_enriched_2025-10-24.parquet`](../processed/universe/cs_xnas_xnys_hybrid_enriched_2025-10-24.parquet) SÍ tiene market_cap y 23 columnas completas:
+### Implementacion enriquecimiento
 
-```sh
-# PARQUET: 23 columnas (dataset completo con todas las features)
-['active', 'cik', 'composite_figi', 'currency_name', 'delisted_utc', 
- 'description', 'homepage_url', 'last_updated_utc', 'list_date', 
- 'locale', 'market', 'market_cap', 'name', 'primary_exchange', 
- 'share_class_figi', 'share_class_shares_outstanding', 'sic_code', 
- 'sic_description', 'snapshot_date', 'ticker', 'total_employees', 
- 'type', 'weighted_shares_outstanding']
-```
+**Objetivo** : Es el último paso de la Fase A: el que produce el universo híbrido enriquecido, que usará la Fase B (descarga OHLCV daily + intraday).  
+**Polygon API limitation:** El endpoint `/v3/reference/tickers/{ticker}` NO retorna informacion completa para tickers delisted/inactivos  
+**Market cap imposible:** No existe `market_cap` historico en el momento del delisting (Polygon no lo guarda)  
+
+El snapshot de `/v3/reference/tickers` descargado el 2025-10-24 **SI** contiene informacion basica para tickers inactivos. 
+
+**script** : [`scripts/fase_A_universo/enrich_hybrid_universe.py`](../scripts/fase_A_Universo/enrich_hybrid_universe.py)
+
+1. **Carga el universo híbrido** ya filtrado
+   (`processed/universe/cs_xnas_xnys_hybrid_2025-10-24.parquet`)  
+   → contiene 8,686 tickers (3,092 activos + 5,594 inactivos).  
+   Este archivo viene del **script anterior (`create_hybrid_universe.py`)**.
+
+2. **Carga los snapshots crudos de Polygon**
+   (`raw/polygon/reference/tickers_snapshot/snapshot_date=2025-10-24/tickers_all.parquet`)  
+   → contiene *todos* los tickers (activos + inactivos) con sus identificadores, delisting date, FIGI, etc.
+
+3. **Carga los `ticker_details`** de Polygon  
+   (`raw/polygon/reference/ticker_details/ticker_details_2025-10-24.parquet`)  
+   → contiene campos como:  
+
+   * `market_cap`
+   * `sic_description`
+   * `homepage_url`
+   * `employees`
+   * `description`, etc.
+
+4. **Hace dos “joins” inteligentes:**  
+
+   * **Activos:** une `df_hybrid` (activos) con `df_details`  
+     → añade `market_cap`, `description`, `sic_description`, etc.  
+   * **Inactivos:** une `df_hybrid` (inactivos) con `df_snapshot`  
+     → añade `delisted_utc`, `figi`, `cik`, etc.  
+
+5. **Normaliza columnas**
+
+   * A los activos les agrega `delisted_utc = None`.
+   * A los inactivos les agrega `market_cap = None`.
+
+6. **Concatena ambos segmentos**
+   (`df_activos` + `df_inactivos`)  
+   y crea un **dataset final enriquecido** con columnas uniformes.  
+
+7. **Calcula estadísticas de completitud**, por ejemplo:
+
+   ```
+   market_cap          : 3,092 / 8,686 (35.6%)
+   delisted_utc        : 5,594 / 8,686 (64.4%)
+   sic_description     : 2,890 / 8,686 (33.3%)
+   total_employees     : 2,144 / 8,686 (24.7%)
+   composite_figi      : 8,686 / 8,686 (100%)
+   ```
+
+8. **Guarda el resultado final** en:
+
+   ```
+   processed/universe/cs_xnas_xnys_hybrid_enriched_2025-10-24.parquet
+   ```
+
+
+
+    [`cs_xnas_xnys_hybrid_enriched_2025-10-24.parquet`](../processed/universe/cs_xnas_xnys_hybrid_enriched_2025-10-24.parquet) **SÍ** tiene market_cap y 23 columnas completas:
+
+    ```sh
+    Total tickers:        8,686
+    Activos:              3,092
+    Inactivos:            5,594
+    Total columnas:          23
+
+    📋 PARQUET: 23 columnas (dataset completo con todas las features)
+    ----------------------------------------------------------------------------------------------------
+    ['active', 'cik', 'composite_figi', 'currency_name', 'delisted_utc', 'description', 'homepage_url', 'last_updated_utc', 'list_date', 'locale', 'market', 'market_cap', 'name', 'primary_exchange', 'share_class_figi', 'share_class_shares_outstanding', 'sic_code', 'sic_description', 'snapshot_date', 'ticker', 'total_employees', 'type', 'weighted_shares_outstanding']
+
+    📊 HEAD(5) - Activos con market_cap
+    ----------------------------------------------------------------------------------------------------
+    shape: (5, 5)
+    ┌────────┬─────────────────────────────────┬─────────────┬──────────────────┬────────┐
+    │ ticker ┆ name                            ┆ market_cap  ┆ primary_exchange ┆ active │
+    ╞════════╪═════════════════════════════════╪═════════════╪══════════════════╪════════╡
+    │ AACB   ┆ Artius II Acquisition Inc. Cla… ┆ 2.828385e8  ┆ XNAS             ┆ true   │
+    │ AACI   ┆ Armada Acquisition Corp. II Cl… ┆ 3.237975e8  ┆ XNAS             ┆ true   │
+    │ AAM    ┆ AA Mission Acquisition Corp.    ┆ 4.6568466e8 ┆ XNYS             ┆ true   │
+    │ AAME   ┆ Atlantic American Corp          ┆ 6.2587e7    ┆ XNAS             ┆ true   │
+    │ AAMI   ┆ Acadian Asset Management Inc.   ┆ 1.7043e9    ┆ XNYS             ┆ true   │
+    └────────┴─────────────────────────────────┴─────────────┴──────────────────┴────────┘
+
+    📊 HEAD(5) - Inactivos (market_cap = null, delisted_utc presente)
+    ----------------------------------------------------------------------------------------------------
+    shape: (5, 5)
+    ┌────────┬─────────────────────────────────┬────────────┬──────────────────────┬────────┐
+    │ ticker ┆ name                            ┆ market_cap ┆ delisted_utc         ┆ active │
+    ╞════════╪═════════════════════════════════╪════════════╪══════════════════════╪════════╡
+    │ AABA   ┆ Altaba Inc. Common Stock        ┆ null       ┆ 2019-10-07T04:00:00Z ┆ false  │
+    │ AAC    ┆ Ares Acquisition Corporation    ┆ null       ┆ 2023-11-07T05:00:00Z ┆ false  │
+    │ AACQ   ┆ Artius Acquisition Inc. Class … ┆ null       ┆ 2021-06-25T04:00:00Z ┆ false  │
+    │ AACT   ┆ Ares Acquisition Corporation I… ┆ null       ┆ 2025-09-25T00:00:00Z ┆ false  │
+    │ AADI   ┆ Aadi Bioscience, Inc. Common S… ┆ null       ┆ null                 ┆ false  │
+    └────────┴─────────────────────────────────┴────────────┴──────────────────────┴────────┘
+
+    📊 COMPLETITUD: Columnas clave
+    ----------------------------------------------------------------------------------------------------
+    market_cap               : Activos 3,092/3,092 (100.0%)  |  Inactivos     0/5,594 (  0.0%)
+    delisted_utc             : Activos     0/3,092 (  0.0%)  |  Inactivos 5,393/5,594 ( 96.4%)
+    description              : Activos 3,092/3,092 (100.0%)  |  Inactivos     0/5,594 (  0.0%)
+    sic_code                 : Activos 2,469/3,092 ( 79.9%)  |  Inactivos     0/5,594 (  0.0%)
+    composite_figi           : Activos 2,409/3,092 ( 77.9%)  |  Inactivos 2,403/5,594 ( 43.0%)
+    ```
 
 **Criterios de Filtrado:**
 
