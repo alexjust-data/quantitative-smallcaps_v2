@@ -503,62 +503,13 @@ shape: (14, 3)
 
 El snapshot de `/v3/reference/tickers` descargado el 2025-10-24 **SI** contiene informacion basica para tickers inactivos. 
 
-**script** : [`scripts/fase_A_universo/enrich_hybrid_universe.py`](../scripts/fase_A_Universo/enrich_hybrid_universe.py)
-
-1. **Carga el universo híbrido** ya filtrado
-   (`processed/universe/cs_xnas_xnys_hybrid_2025-10-24.parquet`)  
-   → contiene 8,686 tickers (3,092 activos + 5,594 inactivos).  
-   Este archivo viene del **script anterior (`create_hybrid_universe.py`)**.
-
-2. **Carga los snapshots crudos de Polygon**
-   (`raw/polygon/reference/tickers_snapshot/snapshot_date=2025-10-24/tickers_all.parquet`)  
-   → contiene *todos* los tickers (activos + inactivos) con sus identificadores, delisting date, FIGI, etc.
-
-3. **Carga los `ticker_details`** de Polygon  
-   (`raw/polygon/reference/ticker_details/ticker_details_2025-10-24.parquet`)  
-   → contiene campos como:  
-
-   * `market_cap`
-   * `sic_description`
-   * `homepage_url`
-   * `employees`
-   * `description`, etc.
-
-4. **Hace dos “joins” inteligentes:**  
-
-   * **Activos:** une `df_hybrid` (activos) con `df_details`  
-     → añade `market_cap`, `description`, `sic_description`, etc.  
-   * **Inactivos:** une `df_hybrid` (inactivos) con `df_snapshot`  
-     → añade `delisted_utc`, `figi`, `cik`, etc.  
-
-5. **Normaliza columnas**
-
-   * A los activos les agrega `delisted_utc = None`.
-   * A los inactivos les agrega `market_cap = None`.
-
-6. **Concatena ambos segmentos**
-   (`df_activos` + `df_inactivos`)  
-   y crea un **dataset final enriquecido** con columnas uniformes.  
-
-7. **Calcula estadísticas de completitud**, por ejemplo:
-
-   ```
-   market_cap          : 3,092 / 8,686 (35.6%)
-   delisted_utc        : 5,594 / 8,686 (64.4%)
-   sic_description     : 2,890 / 8,686 (33.3%)
-   total_employees     : 2,144 / 8,686 (24.7%)
-   composite_figi      : 8,686 / 8,686 (100%)
-   ```
-
-8. **Guarda el resultado final** en:
-
-   ```
-   processed/universe/cs_xnas_xnys_hybrid_enriched_2025-10-24.parquet
-   ```
+**script** : [`scripts/fase_A_universo/enrich_hybrid_universe.py`](../scripts/fase_A_Universo/enrich_hybrid_universe.py)  
+**Output** :  [processed/universe/cs_xnas_xnys_hybrid_enriched_2025-10-24.parquet](../processed/universe/cs_xnas_xnys_hybrid_enriched_2025-10-24.parquet)
 
 
 
-    [`cs_xnas_xnys_hybrid_enriched_2025-10-24.parquet`](../processed/universe/cs_xnas_xnys_hybrid_enriched_2025-10-24.parquet) **SÍ** tiene market_cap y 23 columnas completas:
+
+[`cs_xnas_xnys_hybrid_enriched_2025-10-24.parquet`](../processed/universe/cs_xnas_xnys_hybrid_enriched_2025-10-24.parquet) **SÍ** tiene market_cap y 23 columnas completas:
 
     ```sh
     Total tickers:        8,686
@@ -605,89 +556,375 @@ El snapshot de `/v3/reference/tickers` descargado el 2025-10-24 **SI** contiene 
     composite_figi           : Activos 2,409/3,092 ( 77.9%)  |  Inactivos 2,403/5,594 ( 43.0%)
     ```
 
+```sh 
+D:\04_TRADING_SMALLCAPS\
+├── raw\polygon\reference\tickers_snapshot\
+    │
+    └── snapshot_date=2025-10-24\              UNIVERSO COMPLETO
+        ├── tickers_all.parquet                (34,380 tickers - activos + inactivos)
+        ├── tickers_active.parquet             (11,853 tickers - solo activos)
+        └── tickers_inactive.parquet           (22,527 tickers - solo inactivos)
+
+        NUEVOS FILTROS A 34,380 tickers - activos + inactivos
+                      ↓
+            FILTRO: type=CS, exchange=XNAS/XNYS
+            ├─ Activos: 5,005
+            └─ Inactivos: 5,594
+            RESULTADO: 10,599 CS en XNAS/XNYS
+                      ↓
+            ENRIQUECIMIENTO con datos corporativos: 
+            ├─ 5,234 activos con market_cap válido
+            └─ 5,358 inactivos con error:not_found (sin market_cap)
+            RESULTADO: 10,592 procesados (-7 fallidos)
+                      ↓
+            FILTRO market_cap < $2B (SOLO ACTIVOS) ✅ El actual - poblacion target
+            ├─ Activos: 3,092 ← FILTRADOS
+            └─ Inactivos: 5,594 ← SIN FILTRAR (todos)(ANTI-SURVIVORSHIP BIAS)
+            RESULTADO: 8,686 tickers (Universo Híbrido para descargar OHLCV)
+                                │
+            ┌────────────────────────────────────────┐
+            │             (esperando)                │ 
+            │   DESCARGA GLOBAL SPLITS & DIVIDENDS   │    
+            └────────────────────────────────────────┘                 
+                                │
+                    ┌───────────┘
+                    ↓
+            ENRIQUECIMIENTO Splits & Dividends
+            (solo para 8,686 tickers Universo Híbrido)
+            processed/corporate_actions/
+            │
+            ├── splits_universe_2025-10-24.parquet
+            │   ├─ 4,012 splits (de 26,641 globales)
+            │   ├─ 2,420 tickers con splits (27.9% de 8,686)
+            │   └─ Reducción: 84.9%
+            │
+            ├── dividends_universe_2025-10-24.parquet
+            │   ├─ 94,546 dividends (de 1,878,357 globales)
+            │   ├─ 2,723 tickers con dividends (31.4% de 8,686)
+            │   └─ Reducción: 95.0%
+            │
+            └── corporate_actions_lookup_2025-10-24.parquet
+                └─ Lookup table: ticker → has_splits, has_dividends, counts
+                    ↓
+            ENRIQUECIMIENTO DUAL (Activos vs Inactivos)
+            Script: enrich_hybrid_universe.py
+            ├─ Activos (3,092): JOIN con ticker_details
+            │   └─ Añade: market_cap, description, sic_description, 
+            │              total_employees, homepage_url
+            │
+            └─ Inactivos (5,594): JOIN con snapshot
+                └─ Añade: delisted_utc, composite_figi, share_class_figi
+                    ↓
+            RESULTADO: 8,686 tickers ENRIQUECIDOS (23 columnas)
+            processed/universe/cs_xnas_xnys_hybrid_enriched_2025-10-24.parquet
+            │
+            │ Columnas: ticker, name, market, locale, primary_exchange, type,
+            │          active, currency_name, cik, composite_figi, share_class_figi,
+            │          market_cap, description, homepage_url, total_employees,
+            │          list_date, share_class_shares_outstanding,
+            │          weighted_shares_outstanding, sic_code, sic_description,
+            │          snapshot_date, last_updated_utc, delisted_utc
+            │
+            │ Completitud:
+            │  ├─ market_cap: 3,092/8,686 (35.6%) - SOLO activos
+            │  ├─ delisted_utc: 5,594/8,686 (64.4%) - SOLO inactivos
+            │  ├─ composite_figi: 8,686/8,686 (100%)
+            └─────────────────────────────────────────────────────────
+```
 
 **¿Dónde se ejecuta este filtrado?**
 * EVIDENCIA de los resultados: [A_Universo / notebooks / notebook2.ipynb](../01_DayBook/fase_01/A_Universo/notebooks/notebook2.ipynb)  
 * 
 
 
-## fase_01 / B_ingesta_Daily_Minut_v2
+## fase_01 / B_ingesta_Daily_&_Minut
 
-**Objetivo**: Descargar `OHLCV (Open, High, Low, Close, Volume)` completo del Universo Híbrido: 8,686 tickers para:
+**Objetivo**: Descargar `OHLCV (Open, High, Low, Close, Volume)` completo del Universo Híbrido: 8,686 tickers.  
+**Propósito del OHLCV:** 
 
-* Eliminar survivorship bias (López de Prado Ch.1)  
-* Preparar datos para Event Detection (pumps & dumps)  
-* Base para construcción de DIB bars (Cap.2)  
-* OHLCV Daily  
-* OHLCV Intraday 1-minute  
+* Eliminar survivorship bias (López de Prado Ch.1)
+* Preparar datos para Event Detection (pumps & dumps)
+* Base para construcción de DIB bars (Cap.2)
+* Input para features técnicos (RVOL, volatility, %change)
 
+**Fuente de datos**: `Polygon /v2/aggs/ticker/{ticker}/range/{multiplier}/{timespan}/{from}/{to}`
+**Input**: `processed/universe/cs_xnas_xnys_hybrid_2025-10-24.csv (8,686 tickers)
+**Período**: 2004-01-01 → 2025-10-24 (21 años)
 
-
-### Scripts Utilizados
-
-**Daily**:
-- Ingestor: `scripts/fase_B_ingesta_Daily_minut/ingest_ohlcv_daily.py`
-
-**Intradía**:
-- Launcher: `scripts/fase_B_ingesta_Daily_minut/tools/launch_wrapper.ps1`
-- Wrapper: `scripts/fase_B_ingesta_Daily_minut/tools/batch_intraday_wrapper.py`
-- Ingestor: `scripts/fase_B_ingesta_Daily_minut/ingest_ohlcv_intraday_minute.py`
-
-
-
-### Logs de Descarga
-
-**Daily**:
-- Log principal: `logs/daily_download_20251024_221953.log`
-- Log final: `raw/polygon/ohlcv_daily/daily_download.log`
-
-**Intradía**:
-- Wrapper log: `logs/intraday_wrapper_20251024_223730.log`
-- Batch logs: `raw/polygon/ohlcv_intraday_1m/_batch_temp/batch_*.log`
-
-
-
-### Datos
 
 **Universo**:
 - CSV: `processed/universe/cs_xnas_xnys_hybrid_2025-10-24.csv` (8,686 tickers)
 - Parquet enriched: `processed/universe/cs_xnas_xnys_hybrid_enriched_2025-10-24.parquet`
 
-**OHLCV**:
-- Daily: `raw/polygon/ohlcv_daily/` (8,618 tickers)
-- Intradía: `raw/polygon/ohlcv_intraday_1m/` (8,620 tickers)
+```sh 
+D:\04_TRADING_SMALLCAPS\
+├── raw\polygon\reference\tickers_snapshot\
+    │
+    └── snapshot_date=2025-10-24\              UNIVERSO COMPLETO
+        ├── tickers_all.parquet                (34,380 tickers - activos + inactivos)
+        ├── tickers_active.parquet             (11,853 tickers - solo activos)
+        └── tickers_inactive.parquet           (22,527 tickers - solo inactivos)
+
+        NUEVOS FILTROS A 34,380 tickers - activos + inactivos
+                      ↓
+            FILTRO: type=CS, exchange=XNAS/XNYS
+            ├─ Activos: 5,005
+            └─ Inactivos: 5,594
+            RESULTADO: 10,599 CS en XNAS/XNYS
+                      ↓
+            ENRIQUECIMIENTO con datos corporativos: 
+            ├─ 5,234 activos con market_cap válido
+            └─ 5,358 inactivos con error:not_found (sin market_cap)
+            RESULTADO: 10,592 procesados (-7 fallidos)
+                      ↓
+            FILTRO market_cap < $2B (SOLO ACTIVOS) ✅ El actual - poblacion target
+            ├─ Activos: 3,092 ← FILTRADOS
+            └─ Inactivos: 5,594 ← SIN FILTRAR (todos)(ANTI-SURVIVORSHIP BIAS)
+            RESULTADO: 8,686 tickers (Universo Híbrido para descargar OHLCV)
+                                │
+            ┌────────────────────────────────────────┐
+            │             (esperando)                │ 
+            │   DESCARGA GLOBAL SPLITS & DIVIDENDS   │    
+            └────────────────────────────────────────┘                 
+                                │
+                    ┌───────────┘
+                    ↓
+            ENRIQUECIMIENTO Splits & Dividends
+            (solo para 8,686 tickers Universo Híbrido)
+            processed/corporate_actions/
+            │
+            ├── splits_universe_2025-10-24.parquet
+            │   ├─ 4,012 splits (de 26,641 globales)
+            │   ├─ 2,420 tickers con splits (27.9% de 8,686)
+            │   └─ Reducción: 84.9%
+            │
+            ├── dividends_universe_2025-10-24.parquet
+            │   ├─ 94,546 dividends (de 1,878,357 globales)
+            │   ├─ 2,723 tickers con dividends (31.4% de 8,686)
+            │   └─ Reducción: 95.0%
+            │
+            └── corporate_actions_lookup_2025-10-24.parquet
+                └─ Lookup table: ticker → has_splits, has_dividends, counts
+                    ↓
+            ENRIQUECIMIENTO DUAL (Activos vs Inactivos)
+            Script: enrich_hybrid_universe.py
+            ├─ Activos (3,092): JOIN con ticker_details
+            │   └─ Añade: market_cap, description, sic_description, 
+            │              total_employees, homepage_url
+            │
+            └─ Inactivos (5,594): JOIN con snapshot
+                └─ Añade: delisted_utc, composite_figi, share_class_figi
+                    ↓
+            RESULTADO: 8,686 tickers ENRIQUECIDOS (23 columnas)
+            processed/universe/cs_xnas_xnys_hybrid_enriched_2025-10-24.parquet
+            │
+            │ Columnas: ticker, name, market, locale, primary_exchange, type,
+            │          active, currency_name, cik, composite_figi, share_class_figi,
+            │          market_cap, description, homepage_url, total_employees,
+            │          list_date, share_class_shares_outstanding,
+            │          weighted_shares_outstanding, sic_code, sic_description,
+            │          snapshot_date, last_updated_utc, delisted_utc
+            │
+            │ Completitud:
+            │  ├─ market_cap: 3,092/8,686 (35.6%) - SOLO activos
+            │  ├─ delisted_utc: 5,594/8,686 (64.4%) - SOLO inactivos
+            │  ├─ composite_figi: 8,686/8,686 (100%)
+            │  └─ description: 3,092/8,686 (35.6%) - SOLO activos
+            │
+            └─────────────────────────────────────────────────────────┐
+                                                                      │
+                        ════════════════════════════════════════════  │
+                        FASE A COMPLETADA - UNIVERSO CONSTRUIDO      │
+                        ════════════════════════════════════════════  │
+                                                                      │
+                                      ↓                               │
+            ┌─────────────────────────────────────────────────────────┘
+            │
+            │ FASE B: DESCARGA OHLCV HISTÓRICO
+            │ Input: cs_xnas_xnys_hybrid_2025-10-24.csv (8,686 tickers)
+            │ Período: 2004-01-01 → 2025-10-24 (21 años)
+            │
+            ├─────────────────────────────────────────────┐
+            │                                             │
+            ↓                                             ↓
+    ┌──────────────────────┐                  ┌──────────────────────┐
+    │  DESCARGA DAILY      │                  │  DESCARGA INTRADAY   │
+    │  (Paralelo simple)   │                  │  (Micro-batches)     │
+    └──────────────────────┘                  └──────────────────────┘
+            │                                             │
+            │ Script:                                     │ Scripts:
+            │ ingest_ohlcv_daily.py                      │ ingest_ohlcv_intraday_minute.py
+            │                                             │ batch_intraday_wrapper.py
+            │ Endpoint:                                   │ launch_wrapper.ps1
+            │ /v2/aggs/ticker/{ticker}/                  │
+            │    range/1/day/{from}/{to}                 │ Endpoint:
+            │                                             │ /v2/aggs/ticker/{ticker}/
+            │ Estrategia:                                 │    range/1/minute/{from}/{to}
+            │ - ThreadPoolExecutor (12 workers)          │
+            │ - Paginación cursor-based                  │ Estrategia:
+            │ - Escritura por año                        │ - Descarga MENSUAL (252 meses)
+            │ - Idempotente (merge automático)           │ - Micro-batches de 20 tickers
+            │                                             │ - 8 batches concurrentes
+            │ Parámetros:                                 │ - Rate-limit ADAPTATIVO (0.12-0.35s)
+            │ - PAGE_LIMIT: 50,000                       │ - Escritura streaming por página
+            │ - ADJUSTED: True                           │ - Idempotente (merge por minute)
+            │ - Timeout: 35s                             │
+            │ - Max workers: 12                          │ Optimizaciones críticas:
+            │                                             │ 1. Descarga mensual (evita JSON 20GB)
+            │ Ejecución:                                  │ 2. PAGE_LIMIT 50K (5x menos requests)
+            │ - Inicio: 22:19:31                         │ 3. Rate-limit adaptativo (acelera/frena)
+            │ - Duración: ~25 minutos                    │ 4. Compresión ZSTD level 2 (-50% size)
+            │ - Velocidad: ~360 tickers/min              │ 5. TLS heredado (fix SSL Windows)
+            │                                             │ 6. Pool mejorado (menos handshake)
+            │                                             │
+            ↓                                             │ Problema resuelto:
+    ┌──────────────────────┐                  │ "Atasco de Elefantes"
+    │  RESULTADO DAILY     │                  │ (tickers pesados bloqueando sistema)
+    └──────────────────────┘                  │
+            │                                             │ Ejecución:
+    📂 raw/polygon/ohlcv_daily/                         │ - Inicio: 22:37:30
+       └── {TICKER}/                                     │ - Duración: 4.99 horas
+           └── year={YYYY}/                              │ - Velocidad promedio: 297 t/h
+               └── daily.parquet                         │ - Velocidad pico: 558 t/h
+                                                          │
+    ✅ Resultado:                                        ↓
+    - 8,618 tickers (99.22%)                  ┌──────────────────────┐
+    - 10 columnas                              │  RESULTADO INTRADAY  │
+    - ~43 GB (sin compresión)                 └──────────────────────┘
+    - Success rate: 99.98%                              │
+    - Faltantes: 68 tickers                    📂 raw/polygon/ohlcv_intraday_1m/
+                                                  └── {TICKER}/
+            │                                         └── year={YYYY}/
+            │                                             └── month={MM}/
+            │                                                 └── minute.parquet (ZSTD)
+            │                                             
+            │                                      ✅ Resultado:
+            │                                      - 8,620 tickers (99.24%)
+            │                                      - 11 columnas
+            │                                      - ~2.15 TB (ZSTD compressed)
+            │                                      - Success rate: 100%
+            │                                      - 280 batches completados
+            │                                      - 0 batches fallidos
+            │                                      - Faltantes: 66 tickers
+            │                                             
+            └─────────────────┬────────────────────────┘
+                              │
+                              ↓
+            ════════════════════════════════════════════
+            FASE B COMPLETADA - OHLCV HISTÓRICO LISTO
+            ════════════════════════════════════════════
+                              │
+                Datasets disponibles:
+                ├─ Daily: 8,618 tickers × 21 años
+                ├─ Intraday: 8,620 tickers × 21 años × 1-min
+                └─ Cobertura: 99.18% en ambos
+                              │
+                              ↓
+            ┌─────────────────────────────────────────┐
+            │  PRÓXIMA FASE: Event Detection (E0-E11) │
+            │  - VolExplosion, GapUp, Parabolic       │
+            │  - Feature engineering (RVOL, etc.)     │
+            │  - DIB bars construction                │
+            │  - Pump & Dump detection                │
+            └─────────────────────────────────────────┘
+```
 
 
 
-**Output critical**:  `OHLCV` historical data es input para:
-* **Event Detection (E1-E11)**: Detectar VolExplosion, GapUp, Parabolic, etc.
-* **Daily features**: RVOL, volatility, %change
-* **Intraday bars**: Construcción de 1-min OHLCV
+
+### 1. Descarga OHLCV Daily  
+**Script** : `scripts/fase_B_ingesta_Daily_minut/ingest_ohlcv_daily.py`  
+**Endpoint**: `/v2/aggs/ticker/{ticker}/range/1/day/{from}/{to}`  
+
+**Comando utilizado:**  
+```sh
+python scripts/fase_B_ingesta_Daily_minut/ingest_ohlcv_daily.py \
+  --tickers-csv processed/universe/cs_xnas_xnys_hybrid_2025-10-24.csv \
+  --outdir raw/polygon/ohlcv_daily \
+  --from 2004-01-01 \
+  --to 2025-10-24 \
+  --max-workers 12
+```
+
+Resultados
+```sh
+📊 OHLCV DAILY - RESULTADOS FINALES
+------------------------------------------------------------
+Tickers procesados:   8,618 / 8,686 (99.22%)
+Tickers fallidos:         68 (0.78%)
+Período:              2004-01-01 → 2025-10-24 (21 años)
+Duración:             ~25 minutos
+Velocidad:            ~360 tickers/minuto
+Volumen total:        ~43 GB (parquet sin compresión)
+Success rate:         99.98%
+
+Estructura de datos:
+  📂 raw/polygon/ohlcv_daily/
+     └── {TICKER}/
+         └── year={YYYY}/
+             └── daily.parquet
+
+Columnas (10):
+  ticker, date, t, o, h, l, c, v, n, vw
+  
+Tipos:
+  - ticker: String
+  - date: String (YYYY-MM-DD)
+  - t: Int64 (timestamp Unix ms)
+  - o, h, l, c, v, vw: Float64
+  - n: Int64 (número de transacciones)
+```
+
+### 2. Descarga OHLCV Intraday 1-Minute
+**Script principa**l: scripts/fase_B_ingesta_Daily_minut/ingest_ohlcv_intraday_minute.py  
+**Wrapper**: scripts/fase_B_ingesta_Daily_minut/tools/batch_intraday_wrapper.py  
+**Launcher**: scripts/fase_B_ingesta_Daily_minut/tools/launch_wrapper.ps1  
+**Endpoint**: /v2/aggs/ticker/{ticker}/range/1/minute/{from}/{to}  
+
+**Problema historico**: "Atasco de Elefantes" 01_DayBook/fase_01/B_ingesta_Daily_minut_v1/04.5_Problema_Elefantes_y_Solucion.md
+
+**Duración total**: 4.99 horas (desde relanzamiento optimizado)  
+**Lanzamiento**: 2025-10-24 22:37:30  
+**Wrapper log**: logs/intraday_wrapper_20251024_223730.log  
+**Batch logs**: raw/polygon/ohlcv_intraday_1m/_batch_temp/batch_*.log  
+
+Resultados  
 
 ```sh
-Descargas completadas:
+📊 OHLCV INTRADAY 1-MINUTE - RESULTADOS FINALES
+------------------------------------------------------------
+Tickers procesados:   8,620 / 8,686 (99.24%)
+Tickers fallidos:         66 (0.76%)
+Batches completados:  280 / 280 (100%)
+Batches fallidos:       0
+Período:              2004-01-01 → 2025-10-24 (21 años, 252 meses)
+Duración:             4.99 horas
+Velocidad promedio:   297 tickers/hora
+Velocidad pico:       558 tickers/hora (23:16)
+Volumen total:        ~2.15 TB (ZSTD level 2)
+Success rate:         100%
 
-1. OHLCV Daily (/v2/aggs/ticker/{ticker}/range/1/day/)
-    📂 raw/polygon/ohlcv_daily/
-    📊 8,619 tickers (99.22% del universo)
-    Período: 2004-01-01 → 2025-10-24 (21 años)
-    Volumen: ~43 GB
-    Estructura: TICKER/year=YYYY/daily.parquet
-    Duración: 25 minutos (360 tickers/min)
-    Columnas disponibles (DAILY): C10 (ticker, date, t, o, h, l, c, v, n, vw)
-    ✅ Success rate: 99.98%
+Estructura de datos:
+  📂 raw/polygon/ohlcv_intraday_1m/
+     └── {TICKER}/
+         └── year={YYYY}/
+             └── month={MM}/
+                 └── minute.parquet (ZSTD compressed)
 
-2. OHLCV Intraday 1-minute (/v2/aggs/ticker/{ticker}/range/1/minute/)
-    📂 raw/polygon/ohlcv_intraday_1m/
-    📊 8,623 tickers (99.27% del universo)
-    Período: 2004-01-01 → 2025-10-24 (21 años)
-    Volumen: ~2.15 TB (ZSTD level 2)
-    Estructura: TICKER/year=YYYY/month=MM/minute.parquet
-    Duración: 10.48 horas (534 tickers/hora)
-    Columnas disponibles (DAILY): C10 (ticker, date, t, o, h, l, c, v, n, vw)
-    ✅ Success rate: 100% (280/280 batches)
+Columnas (11):
+  ticker, date, minute, t, o, h, l, c, v, n, vw
+  
+Tipos:
+  - ticker: String
+  - date: String (YYYY-MM-DD)
+  - minute: String (YYYY-MM-DD HH:MM)
+  - t: Int64 (timestamp Unix ms)
+  - o, h, l, c, v, vw: Float64
+  - n: Int64 (número de transacciones)
+```
 
-4. Tickers Faltantes
+```sh
+Tickers Faltantes
     ✓ Impacto: MÍNIMO (no afectan análisis)
     Análisis de Faltantes: Normalización de texto pendiente Algunos tickers con mayúsculas/minúsculas diferentes (ADSw vs ADSW, HW vs Hw)
     ⚠️  Solo en daily: 3 tickers
