@@ -2,12 +2,28 @@
 Certifica la ejecución completa del proyecto desde su inicio, que certifique cada paso completado con evidencia tangible + links a documentación detallada.  
 **Última actualización**: 2025-10-30  
 
-* Universo y fundamento teorico
-    * [Eventos, la fase del ciclo pump & dump:](#eventos-a--fase-del-ciclo-pump--dump)
+## Índice
+
+* **Fundamento Teórico**
+    * [Eventos: fases del ciclo pump & dump](#eventos-a--fase-del-ciclo-pump--dump)
     * [Ventanas temporales de estos eventos](#ventanas-temporales-de-estos-eventos)
-* Pipeline
-    * [fase_01/A_universo](#--fase_01--a_universo)
-    * [fase_01/B_ingesta_Daily_Minut_v2](#--fase_01--b_ingesta_daily_minut_v2)
+
+* **Pipeline Fase 1**
+    * [A. Universo](#fase_01--a_universo)
+    * [B. Ingesta Daily/Minute](#fase_01--b_ingesta_daily_minut_v2)
+    * [C. Ingesta Ticks Event-Driven](#fase_01--c_v2_ingesta_tiks_2004_2025-)
+        * [PASO 1: Daily Cache](#paso-1-resumen-diario-desde-barras-1-minuto-390-barras--1-fila)
+        * [PASO 2: Configuración Filtros E0](#paso-2-configuración-filtros-e0)
+        * [PASO 3: Generación Watchlists E0](#paso-3-generación-watchlists-e0-universeinforichdaily)
+        * [PASO 4: Análisis Características E0](#paso-4-análisis-características-e0)
+        * [PASO 5: Descarga Ticks Selectiva](#paso-5-descarga-ticks-selectiva)
+        * [Estudio datos E0 en mercado](#estudio-datos-e0-en-mercado)
+    * [D. Creando DIB/VIB 2004-2025](#fase_01--d_creando_dib_vib_2004_2025)
+        * [D.1: Dollar Imbalance Bars](#d1-dollar-imbalance-bars-dib)
+        * [D.2: Triple Barrier Labeling](#d2-triple-barrier-labeling)
+        * [D.3: Sample Weights](#d3-sample-weights-uniqueness--magnitude--time-decay)
+        * [D.4: ML Dataset Builder](#d4-ml-dataset-builder-features--walk-forward-split)
+    * [E. Influencia López de Prado](#---a_universo--1_influencia_marcoslopezdepradromd)
 
 **OBJETIVO de este pipeline**  
 Descargar datos tick-by-tick (trades) de Polygon API, `SOLO para ventanas temporales donde ocurren eventos clave` detectables en el universo hibrido (8,686 tickers, 21 anos, 3,092 tikers activos y 5,594 inactivos). NO necesitamos ticks de TODO el historico (2004-2025): Solo necesitamos ticks de periodos con `actividad informativa relevante = eventos de pump & dump`. Estos eventos marcan las ventanas temporales criticas para descargar ticks.
@@ -73,61 +89,198 @@ MICROSTRUCTURE ANOMALIES (EVENTO 6)
     +-- [E17] Extreme Spread Events (bid/ask > 10%)
 ```
 
-## VENTANAS temporales de estos eventos
+**VENTANAS temporales de estos eventos**
 
 Para cada evento detectado, descargar ticks en ventana
 
 * E0 -> +1 -1
 
----
+
 
 # Pipeline
 
-## fase_01 / A_universo 
+## fase_01 / A_universo  (34,380 tickers - activos + inactivos)
 
-**Descargas:**
+**Descargas:**  Script desarrollado: `scripts/fase_A_universo/download_complete_snapshot.py`  
 
-**Reference Universe**: 34,380 tickers (11,853 activos + 22,527 inactivos)
-
-```sh
-1. Reference Universe (/v3/reference/tickers)
-    📂 raw/polygon/reference/tickers_snapshot/
-    📊 34,380 tickers totales (snapshot 2025-10-24)
-    ├── 11,853 activos
-    └── 22,527 inactivos (anti-survivorship bias)
-    📄 Files: tickers_all.parquet, tickers_active.parquet, tickers_inactive.parquet
+```bash
+D:\04_TRADING_SMALLCAPS\
+├── raw\polygon\reference\tickers_snapshot\
+│   ├── snapshot_date=2025-10-19\
+│   │   └── tickers.parquet                    (11,845 - solo activos, LEGACY)
+│   │
+│   └── snapshot_date=2025-10-24\              ⬅️ NUEVO UNIVERSO COMPLETO
+│       ├── tickers_all.parquet                (34,380 tickers - activos + inactivos)
+│       ├── tickers_active.parquet             (11,853 tickers - solo activos)
+│       └── tickers_inactive.parquet           (22,527 tickers - solo inactivos)
+│
+└── temp_active_counts_complete.csv            (resumen CSV con conteos)
 ```
-**Splits**: 26,641 splits históricos (31 archivos parquet)
-```sh
-2. Splits (/v3/reference/splits)
-    📂 raw/polygon/reference/splits/
-    📊 26,641 splits históricos
-    📄 31 archivos parquet (particionado)
+Metadatos de archivos:
+
+| Archivo | Tamaño | Filas | Columnas | Descripción |
+|---------|--------|-------|----------|-------------|
+| `tickers_all.parquet` | ~15 MB | 34,380 | 14 | Dataset completo unificado |
+| `tickers_active.parquet` | ~5 MB | 11,853 | 13 | Solo activos (referencia rápida) |
+| `tickers_inactive.parquet` | ~10 MB | 22,527 | 14 | Solo inactivos (tiene columna `delisted_utc`) |
+| `temp_active_counts_complete.csv` | <1 KB | 2 | 3 | Resumen: active, count, percentage |
+
+
+```
+# Distribución por TIPO DE ACTIVO (activos):  
+┌─────────┬───────┬────────────┐
+│ type    │ count │ percentage │
+├─────────┼───────┼────────────┤
+│ CS      │ 5,226 │ 44.1%      │ ⬅️ Common Stocks (nuestro objetivo)
+│ ETF     │ 4,361 │ 36.8%      │
+│ PFD     │   441 │  3.7%      │
+│ WARRANT │   418 │  3.5%      │
+│ ADRC    │   389 │  3.3%      │
+│ FUND    │   536 │  4.5%      │
+│ Otros   │   482 │  4.1%      │
+└─────────┴───────┴────────────┘
 ```
 
-**Dividends**: 1,878,357 dividendos (31 archivos parquet)
-```sh
-3. Dividends (/v3/reference/dividends)
-    📂 raw/polygon/reference/dividends/
-    📊 1,878,357 dividendos históricos
-    📄 31 archivos parquet (particionado)
+```
+Distribución por EXCHANGE (activos):  
+┌──────────────────┬────────┬────────────┐
+│ primary_exchange │ count  │ percentage │
+├──────────────────┼────────┼────────────┤
+│ XNAS (Nasdaq)    │ 5,127  │ 43.3%      │
+│ XNYS (NYSE)      │ 2,882  │ 24.3%      │
+│ ARCX (NYSE Arca) │ 2,473  │ 20.9%      │
+│ BATS             │ 1,061  │  9.0%      │
+│ XASE (NYSE Amer) │   302  │  2.5%      │
+└──────────────────┴────────┴────────────┘
 ```
 
-⚠️  **Ticker Details**: INCOMPLETO (<1% completitud)
-```sh
-4. Ticker Details (/v3/reference/tickers/{ticker})
-    📂 raw/polygon/reference/ticker_details/
-    📄 2 archivos parquet (enriquecimiento parcial)
-    ⚠️  INCOMPLETO - Solo sample ejecutado
 ```
+Calidad de datos (identificadores):
 
----
+CIK (SEC Identifier):
+  ✅ Activos con CIK:     10,555 / 11,853 (89.1%)
+  ❌ Activos sin CIK:      1,298 / 11,853 (10.9%)
 
-> **EVIDENCIA de los resultados**: [A_Universo / notebooks / notebook2.ipynb](../01_DayBook/fase_01/A_Universo/notebooks/notebook2.ipynb)  
+FIGI (Bloomberg ID):
+  ✅ Activos con FIGI:     9,840 / 11,853 (83.1%)
+  ❌ Activos sin FIGI:     2,013 / 11,853 (16.9%)
+```
+> Más descargas ejecutadas:
+>
+>**Splits**: 26,641 splits históricos (31 archivos parquet)
+>```sh
+>2. Splits (/v3/reference/splits)
+>    📂 raw/polygon/reference/splits/
+>    📊 26,641 splits históricos
+>    📄 31 archivos parquet (particionado)
+>```
+>
+>**Dividends**: 1,878,357 dividendos (31 archivos parquet)
+>```sh
+>3. Dividends (/v3/reference/dividends)
+>    📂 raw/polygon/reference/dividends/
+>    📊 1,878,357 dividendos históricos
+>    📄 31 archivos parquet (particionado)
+>```
+>
+>⚠️  **Ticker Details**: INCOMPLETO (<1% completitud)
+>```sh
+>4. Ticker Details (/v3/reference/tickers/{ticker})
+>    📂 raw/polygon/reference/ticker_details/
+>    📄 2 archivos parquet (enriquecimiento parcial)
+>    ⚠️  INCOMPLETO - Solo sample ejecutado
+>```
 
+### Filtro para poblacion target : Small Caps (market cap < $2B, XNAS/XNYS, CS)
 ---  
+  
+>**[ADVERTENCIA]** **Polygon API `/v3/reference/tickers/{ticker}` NO devuelve `market_cap` para tickers inactivos/delistados.**  
+>Esto significa:
+>- [X] Imposible filtrar inactivos por market_cap historico
+>- [X] Si solo usamos activos < $2B -> **SURVIVORSHIP BIAS SEVERO**
+>- [X] Perdemos 5,594 tickers delistados (los MAS importantes para entrenar pump & dump terminal)
+
+Pipeline ejecutado:
+
+```sh
+D:\04_TRADING_SMALLCAPS\
+├── raw\polygon\reference\tickers_snapshot\
+    ├── snapshot_date=2025-10-19\
+    │   └── tickers.parquet                    (11,845 - solo activos, LEGACY)
+    │
+    └── snapshot_date=2025-10-24\              ⬅️ NUEVO UNIVERSO COMPLETO
+        ├── tickers_all.parquet                (34,380 tickers - activos + inactivos)
+        ├── tickers_active.parquet             (11,853 tickers - solo activos)
+        └── tickers_inactive.parquet           (22,527 tickers - solo inactivos)
+
+        NUEVOS FILTROS A 34,380 tickers - activos + inactivos
+                      ↓
+            Filtro: type=CS, exchange=XNAS/XNYS
+            ├─ Activos: 5,005
+            └─ Inactivos: 5,594
+            RESULTADO: 10,599 CS en XNAS/XNYS
+                      ↓
+            Filtro market_cap < $2B (SOLO ACTIVOS)
+            ├─ Activos: 3,092 ← FILTRADOS
+            └─ Inactivos: 5,594 ← SIN FILTRAR (todos)(ANTI-SURVIVORSHIP BIAS)
+            RESULTADO: 8,686 tickers (Universo Híbrido para descargar OHLCV)
+                      ↓
+                   Exporta:
+                   - cs_xnas_xnys_hybrid_2025-10-24.parquet (SIN market_cap aún)
+                   - cs_xnas_xnys_hybrid_2025-10-24.csv (6 columnas básicas)  
+```
+
+**`cs_xnas_xnys_hybrid_2025-10-24.csv` no tiene market_cap**: El CSV se usa solo como input para scripts de descarga (como ingest_ohlcv_daily.py) que solo necesitan el ticker. 
+
+```py
+# Línea 84 en create_hybrid_universe.py:
+cols_csv = ["ticker", "name", "primary_exchange", "type", "active", "cik"]
+df_hybrid.select([col for col in cols_csv if col in df_hybrid.columns]).write_csv(output_csv)
+```
+
+[`cs_xnas_xnys_hybrid_enriched_2025-10-24.parquet`](../processed/universe/cs_xnas_xnys_hybrid_enriched_2025-10-24.parquet) SÍ tiene market_cap y 23 columnas completas:
+
+```sh
+# PARQUET: 23 columnas (dataset completo con todas las features)
+['active', 'cik', 'composite_figi', 'currency_name', 'delisted_utc', 
+ 'description', 'homepage_url', 'last_updated_utc', 'list_date', 
+ 'locale', 'market', 'market_cap', 'name', 'primary_exchange', 
+ 'share_class_figi', 'share_class_shares_outstanding', 'sic_code', 
+ 'sic_description', 'snapshot_date', 'ticker', 'total_employees', 
+ 'type', 'weighted_shares_outstanding']
+```
+
+**Criterios de Filtrado:**
+
+* Para ACTIVOS (11,853 → `3,092`):
+    * **Type** = CS (Common Stock) - Elimina ETFs, warrants, preferred, ADRCs
+    * **Exchange** = XNAS o XNYS (Nasdaq o NYSE) - Elimina ARCX, BATS, XASE
+    * **Market Cap** < $2B - Filtro de small caps
+    * **Market Cap IS NOT NULL** - Solo activos con datos de capitalización
+
+* Para INACTIVOS (22,527 → `5,594`):
+    * **Type** = CS (Common Stock)
+    * **Exchange** = XNAS o XNYS
+    * **SIN filtro de market cap** - Incluye TODOS porque ya no tienen market_cap (no cotizan)
+
+
+**¿Dónde se ejecuta este filtrado?**
+* Mencionado todo en [4.1_estrategia_dual_enriquecimiento.md](../01_DayBook/fase_01/A_Universo/4.1_problemas_&_decisiones.md)
+* Archivo creado: [`../processed/universe/cs_xnas_xnys_hybrid_enriched_2025-10-24.parquet` (Fase A)](../processed/universe/cs_xnas_xnys_hybrid_enriched_2025-10-24.parquet)
+* Resultado exportado**: [`../processed/universe/cs_xnas_xnys_hybrid_2025-10-24.csv` (8,686 tickers)](../processed/universe/cs_xnas_xnys_hybrid_2025-10-24.csv)
+* EVIDENCIA de los resultados: [A_Universo / notebooks / notebook2.ipynb](../01_DayBook/fase_01/A_Universo/notebooks/notebook2.ipynb)  
+
 
 ## fase_01 / B_ingesta_Daily_Minut_v2
+
+**Objetivo**: Descargar `OHLCV (Open, High, Low, Close, Volume)` completo del Universo Híbrido: 8,686 tickers para:
+
+* Eliminar survivorship bias (López de Prado Ch.1)  
+* Preparar datos para Event Detection (pumps & dumps)  
+* Base para construcción de DIB bars (Cap.2)  
+* OHLCV Daily  
+* OHLCV Intraday 1-minute  
+
 
 ```sh
 hemos hecho :
@@ -139,31 +292,51 @@ hemos hecho :
                         Universo Híbrido: 8,686 tickers
                             ├── 3,092 activos
                             └── 5,594 inactivos (ANTI-SURVIVORSHIP BIAS)
-                            ↓
+                            RESULTADO: 8,686 tickers (Universo Híbrido para descargar OHLCV)
+                                    ↓
+                                Exporta:
+                                - cs_xnas_xnys_hybrid_2025-10-24.parquet (SIN market_cap aún)
+                                - cs_xnas_xnys_hybrid_2025-10-24.csv (6 columnas básicas)  
 ahora toca :
 
 ../fase_01/B_ingesta → OHLCV Polygon.io
 ```
 
-**Objetivo**:  
+### Scripts Utilizados
 
-Descargar `OHLCV (Open, High, Low, Close, Volume)` completo del Universo Híbrido: 8,686 tickers para:
+**Daily**:
+- Ingestor: `scripts/fase_B_ingesta_Daily_minut/ingest_ohlcv_daily.py`
 
-* Eliminar survivorship bias (López de Prado Ch.1)  
-* Preparar datos para Event Detection (pumps & dumps)  
-* Base para construcción de DIB bars (Cap.2)  
-* OHLCV Daily  
-* OHLCV Intraday 1-minute  
+**Intradía**:
+- Launcher: `scripts/fase_B_ingesta_Daily_minut/tools/launch_wrapper.ps1`
+- Wrapper: `scripts/fase_B_ingesta_Daily_minut/tools/batch_intraday_wrapper.py`
+- Ingestor: `scripts/fase_B_ingesta_Daily_minut/ingest_ohlcv_intraday_minute.py`
 
 
-```sh
-# ¿que es OHLCV?
-O = $175.20  ← Primer trade del minuto
-H = $175.85  ← Máximo alcanzado
-L = $175.10  ← Mínimo alcanzado  
-C = $175.60  ← Último trade del minuto
-V = 45,230   ← Total shares intercambiadas
-```
+
+### Logs de Descarga
+
+**Daily**:
+- Log principal: `logs/daily_download_20251024_221953.log`
+- Log final: `raw/polygon/ohlcv_daily/daily_download.log`
+
+**Intradía**:
+- Wrapper log: `logs/intraday_wrapper_20251024_223730.log`
+- Batch logs: `raw/polygon/ohlcv_intraday_1m/_batch_temp/batch_*.log`
+
+
+
+### Datos
+
+**Universo**:
+- CSV: `processed/universe/cs_xnas_xnys_hybrid_2025-10-24.csv` (8,686 tickers)
+- Parquet enriched: `processed/universe/cs_xnas_xnys_hybrid_enriched_2025-10-24.parquet`
+
+**OHLCV**:
+- Daily: `raw/polygon/ohlcv_daily/` (8,618 tickers)
+- Intradía: `raw/polygon/ohlcv_intraday_1m/` (8,620 tickers)
+
+
 
 **Output critical**:  `OHLCV` historical data es input para:
 * **Event Detection (E1-E11)**: Detectar VolExplosion, GapUp, Parabolic, etc.
@@ -454,7 +627,36 @@ Total: 64,801 ticker-días × ~250 KB promedio = 16.58 GB
 > * ¿cuándo ocurren los eventos?
 > ---  
 
----
+![](./fase_01/C_v2_ingesta_tiks_2004_2025/notebooks/graficos/e0_distribucion_temporal_FIXED.png)
+
+* Eventos E0 totales (2004-2025): 29,555 eventos
+* Eventos E0 últimos 5 años (2020-2025): 17,836 eventos (60.3%)   
+* Triggers encontrados con trades (2004-2025): 7,306 (24.7%)
+
+ANÁLISIS INTRADAY: HORA EXACTA DEL TRIGGER E0
+
+Análisis completado:
+
+* Período: 2004-01-01 → 2025-10-21
+* Eventos analizados: 29,555
+* Triggers encontrados: 7,306
+* % con trades disponibles: 24.7%
+
+![](./fase_01/C_v2_ingesta_tiks_2004_2025/notebooks/graficos/e0_triggers_por_hora_COMPLETO.png)
+
+
+ANÁLISIS E0: ÚLTIMOS 5 AÑOS (2020-2025)
+
+[Link to .csv](./fase_01/C_v2_ingesta_tiks_2004_2025/notebooks/data/eventos_E0_CON_HORA_EXACTA_2020_2025_TRADINGVIEW.csv)
+
+Eventos E0 filtrados:
+
+* Período: 2020-01-01 → 2025-10-21
+* Total eventos: 17,836
+* Tickers únicos: 3,402
+* % del total E0: 60.3%
+
+![](./fase_01/C_v2_ingesta_tiks_2004_2025/notebooks/graficos/e0_triggers_por_hora_2020_2025.png)
 
 
 ## fase_01 \ D_creando_DIB_VIB_2004_2025
@@ -509,39 +711,38 @@ ahora toca :
 
 **Objetivo**:  
 
-* Construir barras informacionales (Dollar Imbalance Bars) desde tick data, 
-* aplicar Triple Barrier Labeling, 
-* calcular Sample Weights con unicidad temporal, 
-* y generar ML Dataset walk-forward listo para entrenamiento supervisado.   
+* 1. Construir barras informacionales `DIB` (Dollar Imbalance Bars) desde tick data, 
+* 2. aplicar `Triple Barrier Labeling`, 
+* 3. calcular `Sample Weights` con unicidad temporal, 
+* 4. y generar `ML Dataset walk-forward` listo para entrenamiento supervisado.   
 
-**Cobertura**: 
-* 2004-2025 (21 años), 4,874 tickers, 64,801 días únicos  
-
-**Resultado final**: 
-
-* 4.36M eventos ML-ready con 14 features intraday + labels + weights.  
-
-### fase_01 / D_creando_DIB_VIB_2004_2025
+**Cobertura**: 2004-2025 (21 años), 4,874 tickers, 64,801 días únicos   
+**Resultado final**: 4.36M eventos ML-ready con 14 features intraday + labels + weights.    
 
 ---
 
-#### [D.1] Dollar Imbalance Bars (DIB)
+### **fase_01 / D_creando_DIB_VIB_2004_2025**
+
+---
+
+#### **[D.1] Dollar Imbalance Bars (DIB)**
 
 >**Explicación detallada**:
->- [D.0_Constructor_barras_Dollar_Vol_Imbalance.md](./D.0_Constructor_barras_Dollar_Vol_Imbalance.md)
->- [D.1.1_notas_6.1_DIB.md](./D.1.1_notas_6.1_DIB.md) - Parámetros target-usd y ema-window
+>- [D.0_Constructor_barras_Dollar_Vol_Imbalance.md](./fase_01/D_creando_DIB_VIB_2004_2025/D.0_Constructor_barras_Dollar_Vol_Imbalance.md)
+>- [D.1.1_notas_6.1_DIB.md](./fase_01/D_creando_DIB_VIB_2004_2025/D.1.1_notas_6.1_DIB.md) - Parámetros target-usd y ema-window
 >
->**Script**: `scripts/fase_D_creando_DIB_VIB/build_bars_from_trades.py`
+
+**Script**: `scripts/fase_D_creando_DIB_VIB/build_bars_from_trades.py`
 
 `INPUT`:
-- `raw/polygon/trades/{ticker}/date={YYYY-MM-DD}/trades.parquet` (60,825 archivos, formato NUEVO con t_raw + t_unit)
+- `raw/polygon/trades/{ticker}/date={YYYY-MM-DD}/trades.parquet` 
+- (60,825 archivos, formato NUEVO con t_raw + t_unit)
 
 `TRANSFORMACIÓN`:
 
 ```python
 # Event-driven sampling (López de Prado 2018)
 # Acumula flujo de dólares hasta umbral adaptativo
-
 for cada tick:
     dollar_flow += price × size × tick_sign
     if dollar_flow >= threshold_adaptativo:
@@ -563,15 +764,17 @@ for cada tick:
 > ---
 >   ...  
 > EVIDENCIA de resultados:   
-> [D.1_Ejecucion_Pipeline_DIB_Labels_Weights.md](./D.1_Ejecucion_Pipeline_DIB_Labels_Weights.md#1-dollar-imbalance-bars-dib)  
+> [D.1_Ejecucion_Pipeline_DIB_Labels_Weights.md](./fase_01/D_creando_DIB_VIB_2004_2025/D.1_Ejecucion_Pipeline_DIB_Labels_Weights.md)  
 > ...  
 
 
-#### [D.2] Triple Barrier Labeling
+#### **[D.2] Triple Barrier Labeling**
+
+Triple Barrier Labeling es un método que etiqueta cada evento con +1 (ganancia), -1 (pérdida) o 0 (neutral) según qué barrera se toque primero: profit target (PT), stop loss (SL), o límite de tiempo (t1). En otras palabras: define 3 "barreras" (arriba=ganancia, abajo=pérdida, tiempo=expiración) y clasifica cada trade según cuál toca primero, creando así las etiquetas supervisadas para machine learning.
 
 ---
 
-**Explicación detallada**: [D.1.2_notas_6.1_tripleBarrierLabeling.md](./D.1.2_notas_6.1_tripleBarrierLabeling.md)  
+**Explicación detallada**: [D.1.2_notas_6.1_tripleBarrierLabeling.md](./fase_01/D_creando_DIB_VIB_2004_2025/D.1.2_notas_6.1_tripleBarrierLabeling.md)   
 **Script**: `scripts/fase_D_creando_DIB_VIB/triple_barrier_labeling.py`
 
 `INPUT`:
@@ -581,7 +784,6 @@ for cada tick:
 ```python
 # Triple Barrier Method (López de Prado Ch.3)
 # Para cada barra como "anchor":
-
 σ = EMA(|log_returns|, span=50)  # Volatilidad adaptativa
 
 # Barreras horizontales:
@@ -608,15 +810,19 @@ t1 = anchor_ts + 120 barras (~medio día)  → label = 0 si expira sin tocar PT/
 
 
 > ---  
-> EVIDENCIA de resultados: [D.1_Ejecucion_Pipeline_DIB_Labels_Weights.md](./D.1_Ejecucion_Pipeline_DIB_Labels_Weights.md#2-triple-barrier-labeling)  
+> EVIDENCIA de resultados: 
+> * [D.1_Ejecucion_Pipeline_DIB_Labels_Weights.md](./D.1_Ejecucion_Pipeline_DIB_Labels_Weights.md#2-triple-barrier-labeling)   
+> * [validacion_dib_produccion_executed](../01_DayBook/fase_01/D_creando_DIB_VIB_2004_2025/notebooks/validacion_dib_produccion_executed.ipynb)  
 > ...
 ---
 
-#### [D.3] Sample Weights (Uniqueness + Magnitude + Time-Decay)
+#### **[D.3] Sample Weights (Uniqueness + Magnitude + Time-Decay)**
+
+Sample Weights asigna un peso de importancia a cada evento para machine learning, reduciendo el peso de eventos solapados temporalmente (no independientes) y priorizando movimientos grandes y recientes. En otras palabras: no todos los eventos valen lo mismo para entrenar - los eventos únicos (no concurrentes), grandes (alto retorno) y recientes pesan más que los eventos amontonados, pequeños y antiguos.
 
 ---
 
-**Explicación detallada**: [D.1.3_notas_6.1_SampleWeights.md](./D.1.3_notas_6.1_SampleWeights.md)  
+**Explicación detallada**: [D.1.3_notas_6.1_SampleWeights.md](./fase_01/D_creando_DIB_VIB_2004_2025/D.1.3_notas_6.1_SampleWeights.md)  
 **Script**: `scripts/fase_D_creando_DIB_VIB/make_sample_weights.py`  
 
 `INPUT`:
@@ -650,7 +856,9 @@ weight[i] = (|ret_at_outcome[i]| / concurrency[i]) × decay[i]
 
 
 > --- 
-> EVIDENCIA de resultados: [D.1_Ejecucion_Pipeline_DIB_Labels_Weights.md](./D.1_Ejecucion_Pipeline_DIB_Labels_Weights.md#3-sample-weights-unicidad--retorno--time-decay)  
+> EVIDENCIA de resultados: 
+> * [D.1_Ejecucion_Pipeline_DIB_Labels_Weights.md](./fase_01/D_creando_DIB_VIB_2004_2025/D.1_Ejecucion_Pipeline_DIB_Labels_Weights.md)     
+> * [validacion_dib&labels_executed](./fase_01/D_creando_DIB_VIB_2004_2025/notebooks/validacion_dib&labels_executed.ipynb)  
 > ...    
 
 ---
@@ -710,7 +918,9 @@ vol_z20, dollar_z20, n
 ```
 
 > ---  
-> EVIDENCIA de resultados: [D.1_Ejecucion_Pipeline_DIB_Labels_Weights.md](./D.1_Ejecucion_Pipeline_DIB_Labels_Weights.md#4-ml-dataset-builder-bonus)  
+> EVIDENCIA de resultados: 
+> * [D.1_Ejecucion_Pipeline_DIB_Labels_Weights.md](./fase_01/D_creando_DIB_VIB_2004_2025/D.1_Ejecucion_Pipeline_DIB_Labels_Weights.md) )  
+> * [validacion_ml_dataset_executed](./fase_01/D_creando_DIB_VIB_2004_2025/notebooks/validacion_fase4_ml_dataset_executed.ipynb)  
 > ...  
 
 
